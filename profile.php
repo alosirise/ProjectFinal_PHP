@@ -14,7 +14,6 @@
     <!-- Bootstrap navbar CSS-->
     <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
-    
 </head>
 
 <body>
