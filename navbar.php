@@ -63,15 +63,15 @@
       <!-- Logo -->
       <li>
         <div class="logo-wrapper sn-ad-avatar-wrapper center">
-          <div style="padding: 35px; center"></div>
-          <img class="" src="psu-logo.jpg" style="width:50%">
-        </div>  
+          <div style="padding: 10px;"></div>
+          <span>PSU</span></a>
+        </div>
       </li>
       <!--/. Logo -->
       <!-- Side navigation links -->
       <li>
         <ul class="collapsible collapsible-accordion">
-          <div style="padding: 30px;"></div>
+          <div style="padding: 20px;"></div>
           <li><a class="collapsible-header waves-effect arrow-r active">
               หน้าหลัก<i class="fas fa-angle-down rotate-icon"></i></a>
             <div class="collapsible-body">
@@ -127,7 +127,7 @@
          }
            
          if(!empty($_SESSION['role']) && ($_SESSION['role'] == "staff" || $_SESSION['role'] == "admin")){
-          echo ' <hr><li><a class="collapsible-header waves-effect arrow-r">
+          echo ' <li><a class="collapsible-header waves-effect arrow-r">
                 จัดการโครงการ<i class="fas fa-angle-down rotate-icon"></i></a>
                   <div class="collapsible-body">
                   </div>
@@ -143,12 +143,6 @@
       
                 <li><a class="collapsible-header waves-effect arrow-r"><i class="sv-slim-icon fas fa-eye"></i>
                     Report โครงการ</a>
-                  <div class="collapsible-body">
-                  </div>
-                </li>
-                <hr>
-                 <li><a class="collapsible-header waves-effect arrow-r"><i class="sv-slim-icon fas fa-eye"></i>
-                   จัดการบัญชี</a>
                   <div class="collapsible-body">
                   </div>
                 </li>';
