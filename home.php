@@ -21,10 +21,10 @@
 
     <div class="" id="nav"></div>
 
-    <div class="row">
-        <div class="col-lg-3"></div>
-        <div class="col-lg-9 center ">โครงการแนะนำ<br><br><br>
-            <div class="swiper-container">
+    <div class="row ">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-10 center ">โครงการแนะนำ<br><br><br>
+            <div class="swiper-container ">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide"> <img class="" src="pic.jpg" style="width:50%"></div>
                     <div class="swiper-slide"> <img class="" src="pic2.jpg" style="width:50%"></div>

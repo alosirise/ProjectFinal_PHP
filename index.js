@@ -1,4 +1,4 @@
-$.get("navbar.php", function (data) {
+$.get("navbar2.php", function (data) {
   $("#nav").replaceWith(data);
 });
 

@@ -13,57 +13,11 @@
   <link rel="stylesheet" href="navbar.css">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  font-family: "Lato", sans-serif;
-}
-
-.sidenav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  /* background-image: url("bg2.jpg"); */
-  background-color: #f1f1f1;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-}
-
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
-
-.sidenav a:hover {
-  /* color: #f1f1f1; */
-  color :  #064579;
-}
-
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-</style>
 
 </head>
 <body>
     
-<ul class="nav nav-bar topnav-right bg-light">
+<ul class="nav nav-bar topnav-right bg-light " >
 
     <?php if(isset($_SESSION['id']))  {?>
     <li class="nav-item">
@@ -90,15 +44,14 @@ body {
     <?php } ?>
   </ul>
 
+  
 
-
-
-<div id="mySidenav" class="sidenav">
+<div id="mySidenav" class="sidenav ">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
    
-        <img class="center" src="psu-logo.jpg" style="width:50%">
+        <img class="center img-center" src="psu-logo.jpg" style="width:50%; ">
   
-  <a href="#" style="font-size:19px">หน้าหลัก</a>
+  <a href="#" style="font-size:19px;">หน้าหลัก</a>
   <?php
          if (empty($_SESSION['role']) || $_SESSION['role'] == "user" || $_SESSION['role'] == "staff" || $_SESSION['role'] == "admin"){
             echo '
@@ -128,7 +81,6 @@ body {
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/perfect-scrollbar.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
