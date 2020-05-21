@@ -28,27 +28,27 @@
   <ul class="nav nav-bar topnav-right bg-light">
 
     <?php if(isset($_SESSION['id']))  {?>
-      <li class="nav-item">
-        <a href="#" class="nav-link"><?php echo $_SESSION['username'];?></a>
-      </li>
-      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-        aria-expanded="false"></a>
-      <div class="dropdown-menu">
+    <li class="nav-item">
+      <a href="#" class="nav-link"><?php echo $_SESSION['username'];?></a>
+    </li>
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+      aria-expanded="false"></a>
+    <div class="dropdown-menu">
 
-        <a class="dropdown-item" href="#">Profile</a>
-        <a class="dropdown-item" href="#">sssss</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="logout.php">Log out</a>
-      </div>
+      <a class="dropdown-item" href="#">Profile</a>
+      <a class="dropdown-item" href="#">sssss</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="logout.php">Log out</a>
+    </div>
 
-      <?php }else{ ?>
-          <li class="nav-item">
-          <a href="signin.php" class="nav-link">Sign in</a>
-        </li>
+    <?php }else{ ?>
+    <li class="nav-item">
+      <a href="signin.php" class="nav-link">Sign in</a>
+    </li>
 
-        <li class="nav-item">
-          <a href="register.php" class="nav-link">Register</a>
-        </li> 
+    <li class="nav-item">
+      <a href="register.php" class="nav-link">Register</a>
+    </li>
     <?php } ?>
   </ul>
 
@@ -113,79 +113,78 @@
             </div>
           </li>
 
-          <li><a class="collapsible-header waves-effect arrow-r">
-              รายชื่อโครงการทั้งหมด<i class="fas fa-angle-down rotate-icon"></i></a>
-            <div class="collapsible-body">
-              <ul>
-                <li><a href="#" class="waves-effect">
-                    <span class="sv-slim"> FB </span>
-                    <span class="sv-normal">For bloggers</span></a>
-                </li>
-                <li><a href="#" class="waves-effect">
-                    <span class="sv-slim"> FA </span>
-                    <span class="sv-normal">For authors</span></a>
-                </li>
-              </ul>
-            </div>
-          </li>
 
-<?php
-         if (empty($_SESSION['role']))
+          <?php
+         if (empty($_SESSION['role']) || $_SESSION['role'] == "user" || $_SESSION['role'] == "staff" || $_SESSION['role'] == "admin")
          {
-          echo "asdasd";
+            echo '<li><a class="collapsible-header waves-effect arrow-r">
+                      รายชื่อโครงการทั้งหมด<i class="fas fa-angle-down rotate-icon"></i></a>
+                    <div class="collapsible-body">
+                      <ul>
+                        <li><a href="#" class="waves-effect">
+                            <span class="sv-slim"> FB </span>
+                            <span class="sv-normal">For bloggers</span></a>
+                        </li>
+                        <li><a href="#" class="waves-effect">
+                            <span class="sv-slim"> FA </span>
+                            <span class="sv-normal">For authors</span></a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+
+                  <li><a class="collapsible-header waves-effect arrow-r">
+                      ขั้นตอนสมัครฝึกอบรม<i class="fas fa-angle-down rotate-icon"></i></a>
+                    <div class="collapsible-body">
+                    </div>
+                  </li>
+
+                  <li><a class="collapsible-header waves-effect arrow-r">
+                      ช่องทางการติดต่อ<i class="fas fa-angle-down rotate-icon"></i></a>
+                    <div class="collapsible-body">
+                      <ul>
+                        <li>
+                          <a href="#" class="waves-effect">
+                            <span class="sv-slim"> F </span>
+                            <span class="sv-normal">FAQ</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#" class="waves-effect">
+                            <span class="sv-slim"> W </span>
+                            <span class="sv-normal">Write a message</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>';
+
          }
            
-          if($_SESSION['role'] == "staff"){
+         if(!empty($_SESSION['role']) && ($_SESSION['role'] == "staff" || $_SESSION['role'] == "admin")){
           echo ' <li><a class="collapsible-header waves-effect arrow-r">
                 จัดการโครงการ<i class="fas fa-angle-down rotate-icon"></i></a>
-              <div class="collapsible-body">
-              </div>
-            </li>';
-          }
-          
+                  <div class="collapsible-body">
+                  </div>
+                </li>';
+              }
+     
+          if(!empty($_SESSION['role']) && $_SESSION['role'] == "admin" ){
+              echo '<li><a class="collapsible-header waves-effect arrow-r">
+                    คำร้องขอการสมัคร<i class="fas fa-angle-down rotate-icon"></i></a>
+                  <div class="collapsible-body">
+                  </div>
+                </li>
+      
+                <li><a class="collapsible-header waves-effect arrow-r"><i class="sv-slim-icon fas fa-eye"></i>
+                    Report โครงการ</a>
+                  <div class="collapsible-body">
+                  </div>
+                </li>';
+                }
           
 ?>
-          <li><a class="collapsible-header waves-effect arrow-r">
-              ขั้นตอนสมัครฝึกอบรม<i class="fas fa-angle-down rotate-icon"></i></a>
-            <div class="collapsible-body">
-            </div>
-          </li>
 
-          <li><a class="collapsible-header waves-effect arrow-r">
-              ช่องทางการติดต่อ<i class="fas fa-angle-down rotate-icon"></i></a>
-            <div class="collapsible-body">
-              <ul>
-                <li>
-                  <a href="#" class="waves-effect">
-                    <span class="sv-slim"> F </span>
-                    <span class="sv-normal">FAQ</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="waves-effect">
-                    <span class="sv-slim"> W </span>
-                    <span class="sv-normal">Write a message</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </li>
-
-          <li><a class="collapsible-header waves-effect arrow-r">
-              คำร้องขอการสมัคร<i class="fas fa-angle-down rotate-icon"></i></a>
-            <div class="collapsible-body">
-            </div>
-          </li>
-
-          <li><a class="collapsible-header waves-effect arrow-r"><i class="sv-slim-icon fas fa-eye"></i>
-              Report โครงการ</a>
-            <div class="collapsible-body">
-            </div>
-          </li>
-
-          <li><a id="toggle" class="waves-effect">Minimize
-              menu</a>
-          </li>
         </ul>
       </li>
       <!--/. Side navigation links -->
