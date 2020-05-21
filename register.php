@@ -21,15 +21,103 @@
 </head>
 
 <body>
+        <?php 
+        session_start();
+        include_once('connect.php');
+        
+
+        if(isset($_POST['back'])){ header('location:home.php');}
+
+            if(isset($_POST['submit'])){
+
+
+                    if(isset($_REQUEST['username'])){
+                        //remove back slash    
+                        $username = stripcslashes($_REQUEST['username']);
+                        //escape apecial character in string
+                        $username = mysqli_real_escape_string($conn, $username);
+                        $password = stripcslashes($_REQUEST['password']);
+                        $password = mysqli_real_escape_string($conn, $password);
+                       
+                        $sql = "INSERT INTO member (id, username, password ,role)
+                                      VALUES ( NULL,'$username', '".md5($password)."','user')";
+
+                        $result = mysqli_query($conn , $sql);
+                        echo $result;
+                        if($result){
+                            echo "Successfully";
+                        }else{}
+
+                        
+                    }
+                }
+        ?>
 
 <div class="container">
 
     <div class="row">
-        <div class="col-lg-4"></div>
-        <div class="col-lg-4 center boxexplain  "> <img src="pic.jpg" class="" style="width: 300px; padding-top: 50px; padding-bottom: 50px;" >
+        <div class="col-lg-5  mx-auto mt-5 "> 
+                <div class="card">
+                    <form action="" method="POST">
+                        <div class="card-header text-center">Sign in</div>
+                </div>
 
+                <div class="card-body">
+                        <div class="center">
+                            <img src="pic.jpg" class="" style="width: 300px; padding-top: 50px; padding-bottom: 50px;" >
+                        </div>  
+
+
+                    <div class="form-group row">
+                        <label for="username" class="col-sm-3 col-form-label">Username</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="username" class="form-control" name="username">
+                        </div>
+                    </div>
+                    <div class="formgroup row">
+                        <label for="password" class="col-sm-3 col-form-label">Password</label>
+                        <div class="col-sm-9">
+                            <input type="password" id="password" class="form-control" name="password">
+                        </div>
+                    </div>
+
+                    <div class="formgroup row">
+                        <label for="password" class="col-sm-3 col-form-label">Confirm password</label>
+                        <div class="col-sm-9">
+                            <input type="password" id="confirm_password" class="form-control" name="confirm_password">
+                        </div>
+                    </div>
+
+
+                    <!-- <div class="form-group row">
+                        <label for="username" class="col-sm-3 col-form-label">Firstname</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="firstname" class="form-control" name="firstname">
+                        </div>
+                    </div>
+                    <div class="formgroup row">
+                        <label for="password" class="col-sm-3 col-form-label">Lastname</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="lastname" class="form-control" name="lastname">
+                        </div>
+                    </div>
+
+                    <div class="formgroup row">
+                        <label for="password" class="col-sm-3 col-form-label">Email</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="email" class="form-control" name="email">
+                        </div>
+                    </div> -->
+                </div>
+                <div class="card-footer text-center">
+                    <input type="submit" name="submit" class="btn btn-success " value="Submit">
+                    <input type="submit" name="back" class="btn btn-success " value="Back">
+
+                </form>
+                </div>
+                    
         </div>
-        <div class="col-lg-4"></div>
+  
     </div>
         
 </div>

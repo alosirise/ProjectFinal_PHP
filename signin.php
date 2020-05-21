@@ -9,12 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Compiled and minified CSS -->
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
 </head>
 
 <body>
@@ -26,17 +25,18 @@
                 $username =$_POST['username'];
                 $password = $conn->real_escape_string($_POST['password']);
 
-                $sql="SELECT * FROM `member` WHERE `username` =  '".$username."' AND `password` = '".$password."' ";
+                $sql="SELECT * FROM `member` WHERE `username` =  '".$username."' AND `password` = '".md5($password)."' ";
                 $result = $conn ->query($sql); 
 
                 if($result->num_rows > 0){
                     $row = $result->fetch_assoc();                   
                     $_SESSION['id'] = $row['id'];
-                    $_SESSION['name'] = $row['name'];
+                    $_SESSION['username'] = $row['username'];
+                    $_SESSION['role'] = $row['role'];
 
                     header('location:home.php');
                     echo 'Success <br>';
-                    echo 'Username =' . $row['name'];
+                    echo 'Username =' . $row['username'];
                 }else{
                     echo 'Username or password is invalid';
                 }
@@ -49,17 +49,17 @@
 
     <div class="container">
 
-        <div class="row">
-            <div class="col-lg-5 mx-auto mt-5 ">
+        <div class="row ">
+          <div class="col-lg-5 mx-auto mt-5">
                 <div class="card">
                     <form action="" method="POST">
                         <div class="card-header text-center">Sign in</div>
                 </div>
                 <div class="card-body">
                     <div class="form-group row">
-                        <label for="username" class="col-sm-3 col-form-label">Username</label>
+                        <label for="username" class="col-sm-3 col-form-label" >Username</label>
                         <div class="col-sm-9">
-                            <input type="text" id="username" class="form-control" name="username">
+                            <input type="text" id="username" class="form-control" name="username" >
                         </div>
                     </div>
                     <div class="formgroup row">
@@ -72,14 +72,14 @@
                 <div class="card-footer text-center">
                     <input type="submit" name="submit" class="btn btn-success " value="Submit">
                     <input type="submit" name="back" class="btn btn-success " value="Back">
-
-                    <div class="text-right">
-                    </div>
-                    </form>
+               
+                </form>
                 </div>
+                <br>
+                <p>Not register yet? <a href="register.php">Register Here</a><p>
+           </div>
             </div>
-
-        </div>
+      </div>
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then minified and Bootstrap JS -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

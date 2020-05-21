@@ -1,5 +1,4 @@
 <?php session_start();
-// session_destroy();
 ?>
 
 <!doctype html>
@@ -30,7 +29,7 @@
 
     <?php if(isset($_SESSION['id']))  {?>
       <li class="nav-item">
-        <a href="#" class="nav-link"><?php echo $_SESSION['name'];?></a>
+        <a href="#" class="nav-link"><?php echo $_SESSION['username'];?></a>
       </li>
       <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
         aria-expanded="false"></a>
@@ -130,12 +129,22 @@
             </div>
           </li>
 
-          <li><a class="collapsible-header waves-effect arrow-r">
-              จัดการโครงการ<i class="fas fa-angle-down rotate-icon"></i></a>
-            <div class="collapsible-body">
-            </div>
-          </li>
-
+<?php
+         if (empty($_SESSION['role']))
+         {
+          echo "asdasd";
+         }
+           
+          if($_SESSION['role'] == "staff"){
+          echo ' <li><a class="collapsible-header waves-effect arrow-r">
+                จัดการโครงการ<i class="fas fa-angle-down rotate-icon"></i></a>
+              <div class="collapsible-body">
+              </div>
+            </li>';
+          }
+          
+          
+?>
           <li><a class="collapsible-header waves-effect arrow-r">
               ขั้นตอนสมัครฝึกอบรม<i class="fas fa-angle-down rotate-icon"></i></a>
             <div class="collapsible-body">
