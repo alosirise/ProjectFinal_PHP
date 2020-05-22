@@ -1,5 +1,4 @@
-<?php session_start();
-?>
+<?php session_start();?>
 
 <!DOCTYPE html>
 <html>
@@ -27,7 +26,7 @@
       aria-expanded="false"></a>
     <div class="dropdown-menu">
 
-      <a class="dropdown-item" href="">Profile</a>
+      <a class="dropdown-item" href="profile.php">Profile</a>
       <a class="dropdown-item" href="#">sssss</a>
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="logout.php">Log out</a>
@@ -47,29 +46,30 @@
   
 
 <div id="mySidenav" class="sidenav ">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="javascript:void(0)" class="closebtn"  onclick="closeNav()">&times;</a>
    
         <img class="center img-center" src="psu-logo.jpg" style="width:50%; ">
   
-  <a href="#" style="font-size:19px;">หน้าหลัก</a>
+  <a href="home.php" style="font-size:19px;">หน้าหลัก</a>
   <?php
          if (empty($_SESSION['role']) || $_SESSION['role'] == "user" || $_SESSION['role'] == "staff" || $_SESSION['role'] == "admin"){
             echo '
-            <a href="#" style="font-size:19px">รายชื่อโครงการทั้งหมด</a>
-            <a href="#" style="font-size:19px">ขั้นตอนการสมัครฝึกอบรม</a>
-            <a href="#" style="font-size:19px">ช่องทางการติดต่อ</a> <hr>';
+            <a href="allproject.php" style="font-size:19px">รายชื่อโครงการทั้งหมด</a>
+            <a href="procedure.php" style="font-size:19px">ขั้นตอนการสมัครฝึกอบรม</a>
+            <a href="contact.php" style="font-size:19px">ช่องทางการติดต่อ</a> <hr>';
          }
 
          if(!empty($_SESSION['role']) && ($_SESSION['role'] == "staff" || $_SESSION['role'] == "admin")){
             echo ' 
-            <a href="#" style="font-size:19px">จัดการโครงการ</a>
+            <a href="arrange.php" style="font-size:19px">จัดการโครงการ</a>
             ';
             }
             if(!empty($_SESSION['role']) && $_SESSION['role'] == "admin" ){
             echo '      
-            <a href="#" style="font-size:19px">คำร้องขอการสมัคร</a>
-            <a href="#" style="font-size:19px">Report โครงการ</a>
-            <a href="#" style="font-size:19px">จัดการบัญชี</a>';
+            <a href="request.php" style="font-size:19px">คำร้องขอการสมัคร</a>
+            <a href="report.php" style="font-size:19px">Report โครงการ</a>
+            <hr>
+            <a href="manage_account.php" style="font-size:19px">จัดการบัญชี</a>';
             }
 ?>
 

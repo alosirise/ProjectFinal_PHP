@@ -2,9 +2,6 @@
 
 /*///////////////////////////////////////////////////////////////////////*
 /*slid show*/
-.mySlides {display:none}
-.w3-left, .w3-right, .w3-badge {cursor:pointer}
-.w3-badge {height:13px;width:13px;padding:0}
 
 
 
@@ -17,8 +14,8 @@ body {
 .sidenav {
   height: 100%;
   width: 275px;
-  position:  absolute;
-  z-index: 1;
+  position:  fixed;
+  z-index: 99999;
   top: 0;
   left: 0;
   background-color: rgb(1, 65, 121);
@@ -38,14 +35,14 @@ body {
 
 .sidenav a:hover {
   /* color: #f1f1f1; */
-  color :  #567792;
+  color :  #9ab1c4;
 }
 
 .sidenav .closebtn {
   position: absolute;
   top: 0;
-  right: 25px;
-  font-size: 36px;
+  right: 27px;
+  font-size: 30px;
   margin-left: 50px;
 }
 
@@ -53,7 +50,6 @@ body {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
-
 
 .img-center {
   display: block;

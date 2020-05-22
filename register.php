@@ -29,24 +29,26 @@
         if(isset($_POST['back'])){ header('location:home.php');}
 
             if(isset($_POST['submit'])){
-
-
-                    if(isset($_REQUEST['username'])){
+                if(empty($_POST["username"]) || empty($_POST["password"]) || empty($_POST["confirm_password"])){
+                    echo '<script>alert("Both fields are required")</script>';
+              
+                }else{
                         //remove back slash    
                         $username = stripcslashes($_REQUEST['username']);
                         //escape apecial character in string
                         $username = mysqli_real_escape_string($conn, $username);
                         $password = stripcslashes($_REQUEST['password']);
                         $password = mysqli_real_escape_string($conn, $password);
-                       
+                        // $password = password_hash($password, PASSWORD_DEFAULT);
                         $sql = "INSERT INTO member (id, username, password ,role)
-                                      VALUES ( NULL,'$username', '".md5($password)."','user')";
+                                       VALUES ( NULL,'$username', '".md5($password)."','user')";
 
                         $result = mysqli_query($conn , $sql);
                         echo $result;
                         if($result){
-                            echo "Successfully";
-                        }else{}
+                            echo '<script>alert("Registration Done")</script>';
+                            
+                        }
 
                         
                     }

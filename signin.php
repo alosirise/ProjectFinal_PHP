@@ -38,7 +38,7 @@
                     echo 'Success <br>';
                     echo 'Username =' . $row['username'];
                 }else{
-                    echo 'Username or password is invalid';
+                    echo '<script>alert("Username or password is invalid")</script>';
                 }
         }
         if(isset($_POST['back'])){ header('location:home.php');}

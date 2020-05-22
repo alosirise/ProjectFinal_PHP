@@ -16,7 +16,7 @@
     <div class="" id="nav"></div>
     <div class="row">
 <div class="col-lg-4"></div>
-   <div class="col-lg-8 mx-auto" style=" font-size: 32px;">โปรไฟล์</div>
+   <div class="col-lg-8 mx-auto" style=" font-size: 32px;">โครงการทั้งหมด</div>
    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then minified and Bootstrap JS -->
