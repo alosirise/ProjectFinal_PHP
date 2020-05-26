@@ -20,7 +20,7 @@
         <div class="col-lg-3"></div>
         <div class="col-lg-9">
             <h2 class="w3-center" style="padding :35px;">โครงการแนะนำ</h2>
-
+    <!-- bew test commit -->
             <div class="w3-content w3-display-container ">
                 <img class="mySlides" src="pic.jpg" style="width:100%">
                 <img class="mySlides" src="pic2.jpg" style="width:100%">
