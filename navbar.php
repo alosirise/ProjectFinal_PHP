@@ -15,8 +15,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
   <!-- Bootstrap navbar CSS-->
   <link rel="stylesheet" href="navbar.css">
@@ -27,28 +26,27 @@
 
   <ul class="nav nav-bar topnav-right bg-light">
 
-    <?php if(isset($_SESSION['id']))  {?>
-    <li class="nav-item">
-      <a href="#" class="nav-link"><?php echo $_SESSION['username'];?></a>
-    </li>
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-      aria-expanded="false"></a>
-    <div class="dropdown-menu">
+    <?php if (isset($_SESSION['id'])) { ?>
+      <li class="nav-item">
+        <a href="#" class="nav-link"><?php echo $_SESSION['username']; ?></a>
+      </li>
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"></a>
+      <div class="dropdown-menu">
 
-      <a class="dropdown-item" href="">Profile</a>
-      <a class="dropdown-item" href="#">sssss</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="logout.php">Log out</a>
-    </div>
+        <a class="dropdown-item" href="">Profile</a>
+        <a class="dropdown-item" href="#">sssss</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="logout.php">Log out</a>
+      </div>
 
-    <?php }else{ ?>
-    <li class="nav-item">
-      <a href="signin.php" class="nav-link">Sign in</a>
-    </li>
+    <?php } else { ?>
+      <li class="nav-item">
+        <a href="signin.php" class="nav-link">Sign in</a>
+      </li>
 
-    <li class="nav-item">
-      <a href="register.php" class="nav-link">Register</a>
-    </li>
+      <li class="nav-item">
+        <a href="register.php" class="nav-link">Register</a>
+      </li>
     <?php } ?>
   </ul>
 
@@ -65,7 +63,7 @@
         <div class="logo-wrapper sn-ad-avatar-wrapper center">
           <div style="padding: 35px; center"></div>
           <img class="" src="psu-logo.jpg" style="width:50%">
-        </div>  
+        </div>
       </li>
       <!--/. Logo -->
       <!-- Side navigation links -->
@@ -80,8 +78,7 @@
 
 
           <?php
-         if (empty($_SESSION['role']) || $_SESSION['role'] == "user" || $_SESSION['role'] == "staff" || $_SESSION['role'] == "admin")
-         {
+          if (empty($_SESSION['role']) || $_SESSION['role'] == "user" || $_SESSION['role'] == "staff" || $_SESSION['role'] == "admin") {
             echo '<li><a class="collapsible-header waves-effect arrow-r">
                       รายชื่อโครงการทั้งหมด<i class="fas fa-angle-down rotate-icon"></i></a>
                     <div class="collapsible-body">
@@ -123,19 +120,18 @@
                       </ul>
                     </div>
                   </li>';
+          }
 
-         }
-           
-         if(!empty($_SESSION['role']) && ($_SESSION['role'] == "staff" || $_SESSION['role'] == "admin")){
-          echo ' <hr><li><a class="collapsible-header waves-effect arrow-r">
+          if (!empty($_SESSION['role']) && ($_SESSION['role'] == "staff" || $_SESSION['role'] == "admin")) {
+            echo ' <hr><li><a class="collapsible-header waves-effect arrow-r">
                 จัดการโครงการ<i class="fas fa-angle-down rotate-icon"></i></a>
                   <div class="collapsible-body">
                   </div>
                 </li>';
-              }
-     
-          if(!empty($_SESSION['role']) && $_SESSION['role'] == "admin" ){
-              echo '<li><a class="collapsible-header waves-effect arrow-r">
+          }
+
+          if (!empty($_SESSION['role']) && $_SESSION['role'] == "admin") {
+            echo '<li><a class="collapsible-header waves-effect arrow-r">
                     คำร้องขอการสมัคร<i class="fas fa-angle-down rotate-icon"></i></a>
                   <div class="collapsible-body">
                   </div>
@@ -152,9 +148,9 @@
                   <div class="collapsible-body">
                   </div>
                 </li>';
-                }
-          
-?>
+          }
+
+          ?>
 
         </ul>
       </li>
@@ -174,12 +170,8 @@
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/perfect-scrollbar.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
   <script src="index.js"></script>
 </body>

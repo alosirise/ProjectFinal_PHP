@@ -21,7 +21,7 @@ body {
   background-color: rgb(1, 65, 121);
   overflow-x: hidden;
   transition: 0.5s;
-  padding-top: 60px;
+  padding-top: 50px;
 }
 
 .sidenav a {
@@ -43,7 +43,7 @@ body {
   top: 0;
   right: 27px;
   font-size: 30px;
-  margin-left: 50px;
+  margin-left: 55px;
 }
 
 @media screen and (max-height: 450px) {
