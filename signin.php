@@ -22,6 +22,7 @@
     session_start();
     include_once('connect.php');
         if(isset($_POST['submit'])){
+            echo "adasd";
                 $username =$_POST['username'];
                 $password = $conn->real_escape_string($_POST['password']);
 
@@ -59,7 +60,7 @@
                     <div class="form-group row">
                         <label for="username" class="col-sm-3 col-form-label" >Username</label>
                         <div class="col-sm-9">
-                            <input type="text" id="username" class="form-control" name="username" >
+                            <input type="text" id="username" class="form-control" name="username" value="bew">
                         </div>
                     </div>
                     <div class="formgroup row">
