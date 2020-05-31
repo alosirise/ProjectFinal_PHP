@@ -38,3 +38,15 @@ $(document).ready(function () {
     }
     x[slideIndex-1].style.display = "block";
   }  }
+
+
+
+  if ( document.URL.includes("create_project.php") ) {
+    var i = 1;
+    $('.button').click(function() {
+      // $('<br/><input name="name' + (++i) + '" type="text"/>').insertAfter(this);
+
+      $('<br/> <input type="text" name ="name1' + (++i) + '" class="form-control" id="exampleFormControlInput1" placeholder="">').insertAfter(this);
+
+    });
+    }

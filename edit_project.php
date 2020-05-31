@@ -13,31 +13,33 @@
 
 <body>
     <div class="" id="nav"></div>
-
+    <form action="" method="POST">
     <?php
 
     session_start();
-
     include_once('connect.php');
+    $sql = "SELECT * FROM create_project WHERE project_id = '" . $_SESSION['project_id']. "' ";
+    $result = $conn->query($sql);
 
-
-       echo ' 
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo ' 
        <div class="row">
        <div class="col-lg-3"></div>
        <div class="w3-container col-lg-6 center" >
-       <h2 style=" padding :45px;">สร้างโครงการ</h2>
+       <h2 style=" padding :45px;">แก้ไขโครงการ</h2>
 
        <div class="card" >
       <div class="card-body style="width: 18rem;">
        
         <div class="form-group">
           <label for="exampleFormControlInput1">ชื่อโครงการ</label>
-          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+          <input type="text" class="form-control" id="name_project" name ="name_project" placeholder="" value="' . $row["name_project"] . '">
         </div>
 
         <div class="form-group">
         <label for="exampleFormControlInput1">หน่วยงานที่รับผิดชอบ</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+        <input type="text" class="form-control" id="respondsible_department" name ="respondsible_department" placeholder="" value="' . $row["respondsible_department"] . '">
         </div>
 
         <div class="form-group">
@@ -54,37 +56,37 @@
 
         <div class="form-group">
         <label for="exampleFormControlInput1">กลุ่มเป้าหมาย</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
         </div>
 
 
         <div class="form-group">
         <label for="exampleFormControlInput1">ระยะเวลาในการจัดการโครงการ</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
         </div>
 
 
         <div class="form-group">
         <label for="exampleFormControlInput1">วิทยากร</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
         </div>
 
 
         <div class="form-group">
         <label for="exampleFormControlInput1">สถานที่อบรม</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
         </div>
 
 
         <div class="form-group">
         <label for="exampleFormControlInput1">ประโยชน์ที่จะได้รับ</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
         </div>
 
 
         <div class="form-group">
         <label for="exampleFormControlInput1">ค่าลงทะเบียนอบรม</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
         </div>
 
 
@@ -94,18 +96,32 @@
 
         <div class="form-group">
         <label for="exampleFormControlInput1">คณะทำงาน</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="">
+        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
         </div>
 
-        <input type="submit" name="submitter" value="Send" />
-
-             
       </div></div>
       </div>
       </div>
-    '
+    ';
+        }
+    }
     ?>
-     
+     <div class="card-footer text-center">
+     <a href='arrange.php'> <input type="submit" name="submit" class="btn btn-success " value="Submit"></a>
+     </div>
+     </form>
+     <?php
+        if(isset($_POST["submit"])){
+       
+            $name_project =$_POST['name_project'];
+            $respondsible_department = $_POST['respondsible_department'];
+            $sql2 = "UPDATE `create_project` SET name_project = '".$name_project."', respondsible_department = '".$respondsible_department."'  WHERE project_id = '".$_SESSION['project_id']."'";
+            $result = mysqli_query($conn , $sql2);
+
+        }
+        ?>
+
+
 
 
     <!-- Optional JavaScript -->
