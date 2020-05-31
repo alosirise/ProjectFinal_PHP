@@ -17,9 +17,9 @@
 <body>
     
 <ul class="nav nav-bar topnav-right bg-light " >
-
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
     <?php if(isset($_SESSION['id']))  {?>
-    <li class="nav-item">
+    <li class="nav-item ">
       <a href="#" class="nav-link"><?php echo $_SESSION['username'];?></a>
     </li>
     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
@@ -32,7 +32,8 @@
       <a class="dropdown-item" href="logout.php">Log out</a>
     </div>
 
-    <?php }else{ ?>
+    <?php }else{ ?>  
+      <!-- <ul class="navbar-nav ml-auto"> -->
     <li class="nav-item">
       <a href="signin.php" class="nav-link">Sign in</a>
     </li>
@@ -40,7 +41,10 @@
     <li class="nav-item">
       <a href="register.php" class="nav-link">Register</a>
     </li>
+      <!-- </ul> -->
     <?php } ?>
+
+
   </ul>
 
   
@@ -76,7 +80,7 @@
 
 </div>
 
-<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
+
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

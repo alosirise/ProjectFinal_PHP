@@ -17,13 +17,13 @@
 
     <div class="row">
       <div class="col-lg-3"></div>
-      <div class="w3-container col-lg-6 center">
+      <div class="w3-container col-lg-6 center" >
         <h2 style=" padding :30px;">รายชื่อโครงการทั้งหมด</h2>
        
         <table class="w3-table-all">
           <thead>
             <tr class="w3-blue-gray">
-              <th>First Name</th>
+              <th >First Name</th>
               <th>Last Name</th>
               <th>Points</th>
             </tr>
