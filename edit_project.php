@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <!-- Bootstrap navbar CSS-->
     <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="form.css">
 </head>
 
 <body>

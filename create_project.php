@@ -21,68 +21,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <!-- Bootstrap navbar CSS-->
     <link rel="stylesheet" href="navbar.css">
-    <style>
-        .card-body {
-            width: 85%;
-        }
-
-        .text {
-            width: 350px;
-            font-size: 18px;
-            margin: 10px;
-            padding: 10px;
-            height: 40px;
-        }
-
-        .container {
-            width: 500px;
-            margin: 100px auto;
-        }
-
-        input {
-            width: 400px;
-            font-size: 18px;
-            margin: 10px;
-            padding: 10px;
-            height: 40px;
-        }
-
-        .remove {
-            width: 30px;
-            height: 30px;
-            font-size: 20px;
-            background-color: tomato;
-            color: white;
-            border: none;
-            border-radius: 15px;
-            margin: 5px;
-        }
-
-        #addRow4,
-        #addRow3,
-        #addRow2,
-        #addRow1,
-        #getValues1,
-        #getValues2,
-        #getValues3,
-        #getValues4 {
-            width: 130px;
-            height: 40px;
-            font-size: 16px;
-            background-color: lightseagreen;
-            color: white;
-            border: none;
-            margin: 20px;
-        }
-
-        button:hover {
-            cursor: pointer;
-        }
-
-        tr:hover {
-            cursor: move;
-        }
-    </style>
+    <link rel="stylesheet" href="form.css">
 </head>
 
 <body>
