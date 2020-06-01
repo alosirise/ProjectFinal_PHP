@@ -1,10 +1,14 @@
+<?php
+    session_start();
+    include('auth.php');
+?>
 <!doctype html>
 <html lang="en">
 
 <head>
     <title>Project</title>
     <!-- Required meta tags -->
-    <meta charset="tis-620">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap navbar CSS-->
@@ -19,9 +23,9 @@
         </div>
         <form action="" method="POST">
 <?php
-    session_start();
+    
     include_once('connect.php');
-    $sql = "SELECT * FROM `profile`";
+    $sql = "SELECT * FROM `profile` WHERE id = '".$_SESSION['id']."'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -30,11 +34,25 @@
            <div class="col-lg-8 mx-auto">ชื่อ <input type="text" value="'.$row["firstname"].'" name="firstname"></div> 
            <div class="col-lg-8 mx-auto">นามสกุล <input type="text" value="'.$row["surname"].'" name="surname"></div>
            <div class="col-lg-8 mx-auto">วัน/เดือน/ปีเกิด <input type="date" value="'.$row["dateofbirth"].'" name="dateofbirth"></div>
-           <div class="col-lg-8 mx-auto">ที่อยู่ <input type="text" value="'.$row["address2"].'" name="address"></div>
+           <div class="col-lg-8 mx-auto">ที่อยู่ <input type="text" value="'.$row["address2"].'" name="address2"></div>
            <div class="col-lg-8 mx-auto">เบอร์โทร <input type="text" value="'.$row["telephone"].'" name="telephone"></div>
            <div class="col-lg-8 mx-auto">อีเมลล์ <input type="text" value="'.$row["email"].'" name="email"></div>
-           <div class="col-lg-8 mx-auto">แพ้ยา/อาหาร <input type="text" value="'.$row["drug_food_allergy"].'" name="drug_food_allergy"></div>
-           <div class="col-lg-8 mx-auto">เพศ <input type="text" value="'.$row["sex"].'" name="sex"></div>';
+           <div class="col-lg-8 mx-auto">แพ้ยา/อาหาร <input type="text" value="'.$row["drug_food_allergy"].'" name="drug_food_allergy"></div>';
+           if($row["sex"] == "male"){
+            echo '<div class="col-lg-8 mx-auto">เพศ   
+                <select name="sex">
+                    <option selected="selected" value="male">ชาย</option>
+                    <option value="female">หญิง</option>
+                </select>
+            </div>;';
+            }else{
+            echo '<div class="col-lg-8 mx-auto">เพศ   
+                <select name="sex">
+                    <option value="male">ชาย</option>
+                    <option selected="selected" value="female">หญิง</option>
+                </select>
+            </div>;';
+            }
         }
     }
 ?>
@@ -51,7 +69,7 @@
         $firstname = $_POST['firstname'];
         $surname = $_POST["surname"];
         $dateofbirth = $_POST["dateofbirth"];
-        $address2 = $_POST["address"];
+        $address2 = $_POST["address2"];
         $telephone = $_POST["telephone"];
         $email = $_POST["email"];
         $drug_food_allergy = $_POST["drug_food_allergy"];
