@@ -65,7 +65,7 @@
 
          if(!empty($_SESSION['role']) && ($_SESSION['role'] == "staff" || $_SESSION['role'] == "admin")){
             echo ' 
-            <a href="arrange.php" style="font-size:19px">จัดการโครงการ</a>
+            <a href="myproject.php" style="font-size:19px">จัดการโครงการ</a>
             ';
             }
             if(!empty($_SESSION['role']) && $_SESSION['role'] == "admin" ){

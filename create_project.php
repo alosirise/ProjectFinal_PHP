@@ -177,8 +177,8 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                 VALUES ( '$user_id','$username','$name_project', '$respondsible_department','$principle','$objective','$target_group','$duration','$lecturer','$location','$benefits','$cost','$budget','$working_group')";
             $result2 = mysqli_query($conn, $sql2);
             if ($result2) {
-                echo '<script>alert("ส่งคำร้องขอแล้ว โปรดรอการอนุมัติ")</script>';
-                header('location:arrange.php');
+                echo "<script>alert('ส่งคำร้องขอแล้ว โปรดรอการอนุมัติ');
+                window.location='myproject.php';</script>";
             }
         }
     }

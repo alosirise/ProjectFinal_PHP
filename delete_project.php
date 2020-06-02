@@ -17,7 +17,7 @@ $sql = "DELETE FROM create_project WHERE project_id = '$_GET[project_id]'";
 $result = mysqli_query($conn, $sql);
 
 if($result)
-    header("location:arrange.php");
+    header("location:myproject.php");
 else
     echo "Not Deleted";
 

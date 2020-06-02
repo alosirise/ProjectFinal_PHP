@@ -173,6 +173,10 @@
             working_group = '".$working_group."'  WHERE project_id = '$_GET[project_id]'";
             $result = mysqli_query($conn , $sql2);
 
+            if ($result) {
+                echo "<script>alert('แก้ไขเรียบร้อย');
+                window.location='myproject.php';</script>";
+            }
         }
         ?>
 <!-- $budget = $_POST['budget']; -->
