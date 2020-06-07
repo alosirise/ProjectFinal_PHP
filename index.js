@@ -40,3 +40,21 @@ $(document).ready(function () {
     }
     x[slideIndex-1].style.display = "block";
   }  }
+
+
+
+  function triggerClick(){
+    console.log("click");
+    document.querySelector('#image').click();
+  }
+
+   function displayImage(e){
+    console.log("display");
+    if(e.files[0]){
+      var reader = new FileReader();
+      reader.onload = function(e){
+        document.querySelector('#profileDisplay').setAttribute('src', e.target.result);
+      }
+      reader.readAsDataURL(e.files[0]);
+    }
+  }

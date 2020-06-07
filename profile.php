@@ -13,20 +13,34 @@
 
     <!-- Bootstrap navbar CSS-->
     <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="bew.css">
 </head>
 
 <body>
-    <div class="" id="nav"></div>
-        <div class="row">
-            <div class="col-lg-4"></div>  
-            <div class="col-lg-1" style="font-size: 32px;">โปรไฟล์</div>
-            <div class="col-lg-2" style="margin-top:5px;">
-                <button type="button" class="btn btn-primary" onclick="location.href='editprofile.php'">Edit</button>  
-            </div>
-        </div>
+<div class="" id="nav"></div>
+    <div class="row">
+        <div class="col-4 offset-md-4 form-div">
+            <form action="" method="POST">
+                <div class="form-group">
+                    <label style="font-size: 32px;">โปรไฟล์</label>
+<?php 
+    include_once('connect.php');
+    $sql2 = "SELECT * FROM images WHERE id = '".$_SESSION['id']."'";
+    $result2 = $conn->query($sql2);
+
+    if ($result2->num_rows > 0) {
+        while($row = $result2->fetch_assoc()) {
+             echo '<img id="profileDisplay" src="data:image;base64,'.$row["image"].'">'; 
+        }
+    }else{
+        echo '<img src="images/placeholder_2.jpg" id="profileDisplay">';
+    }
+?>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="location.href='editprofile.php'">Edit</button>
 
 <?php
-    include_once('connect.php');
+    
     $sql = "SELECT * FROM `profile` WHERE id = '".$_SESSION['id']."'";
     $result = $conn->query($sql);
 
@@ -36,7 +50,7 @@
             echo '
            <div class="col-lg-8 mx-auto">ชื่อ : '.$row["firstname"].'</div> 
            <div class="col-lg-8 mx-auto">นามสกุล : '.$row["surname"].'</div>'.
-           '<div class="col-lg-8 mx-auto">วัด/เดือน/ปีเกิด : '.date_format($date,"d/m/Y").'</div>
+           '<div class="col-lg-8 mx-auto">วัน/เดือน/ปีเกิด : '.date_format($date,"d/m/Y").'</div>
            <div class="col-lg-8 mx-auto">ที่อยู่ : '.$row["address2"].'</div>
            <div class="col-lg-8 mx-auto">เบอร์โทร : '.$row["telephone"].'</div>
            <div class="col-lg-8 mx-auto">อีเมลล์ : '.$row["email"].'</div>
@@ -45,7 +59,10 @@
         }
     }
 ?>
-
+            </form>
+        </div>
+    </div>    
+</div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then minified and Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
