@@ -91,20 +91,19 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     <div class="" id="nav"></div>
 
     <div class="row">
-        <div class="col-3">a</div>
-        <div class="w3-container col-lg-6 center" style="border: 1px solid #e0e0e0;">
-            <h2 style=" padding :30px;">จัดการแบบฟอร์ม</h2>
-            <div style="margin-bottom:30px;">
-                <input style="font-size:30px;" class="form-control" type="text" value="ฟอร์มไม่มีชื่อ">
+        <div class="col-3"></div>
+
+        <div class="w3-container col-lg-6 center" style="background-color: white;">
+            <h2 style=" padding:30px;">จัดการแบบฟอร์ม</h2>
+            <div class="bewcard">
+                <input class="form-control" style="font-size:30px;" type="text" value="ฟอร์มไม่มีชื่อ">
             </div>
 
-            <div id="delquestion">
-                <div style="background-color:white" id="selected">
+            <div class="bewcard question0">
+                <div id="selected">
                     <div class="form-row">
-                        <div class="col-6" style="margin-right:50px">
-                            <div>
-                                <input class="form-control" type="text" placeholder="คำถามของคุณ">
-                            </div>
+                        <div class="col-7">
+                             <input class="form-control" type="text" placeholder="คำถามของคุณ">
                         </div>
                         <div class="col-5">
                             <select class="form-control" id="selectBox" onchange="selectClick()">
@@ -114,16 +113,17 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                                 <option value="4">ช่องเครื่องหมาย</option>
                             </select>
                         </div>
-                        <div style="margin-top:20px; margin-left:10px">
-                            <label>ข้อความคำตอบสั้นๆ</label>
-                        </div>
+                    </div>
+                    <div style="margin-top:20px;">
+                        <label>ข้อความคำตอบสั้นๆ</label>
                     </div>
                 </div>
 
                 <hr style="width:100%;text-align:left;margin-left:0">
                 <div style="margin-left:70%">
-                    <button type="button" class="btn-primary">คัดลอก</button>
-                    <button type="button" class="btn-danger" onclick="delQuestion()">ลบ</button>
+                    <button type="button" class="btn-primary button">คัดลอก</button>
+                    <!-- มี 0 ในฟังก์ชันเพราะต้องบอกว่า ให้ลบอันแรกก็คืออันนี้ ต่างกับใน radio เพราะว่าไม่ต้องลบอันแรก-->
+                    <button type="button" class="btn-danger" onclick="delQuestion(0)">ลบ</button>
                     <span>จำเป็น</span>
                     <label class="switch">
                         <input type="checkbox">
@@ -131,7 +131,11 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                     </label>
                 </div>
             </div>
-
+            <div id="question">
+            </div>
+        </div>
+        <div style="background-color: white;">
+            <button type="button" class="btn-primary" onclick="addQuestion()">เพิ่ม</button>
         </div>
 
         <!-- Optional JavaScript -->

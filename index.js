@@ -43,7 +43,6 @@ if (document.URL.includes("home.php")) {
 }
 
 
-
 function triggerClick() {
   console.log("click");
   document.querySelector('#image').click();
@@ -61,37 +60,83 @@ function displayImage(e) {
 }
 
 
-var i = 0;
+var num_radio = 0;
 function addRadio() {
   console.log("add radio click");
-  i += 1;
-  var addradio = '<div class="form-row radio' + i + '">' +
+  num_radio += 1;
+  var addradio = '<div class="form-row radio' + num_radio + '">' +
     '<div>' +
     '<input class="form-control" type="text" placeholder="ตัวเลือก">' +
     '</div>' +
     '<div>' +
-    '<button type="button" class="btn-danger" onclick="delRadio(' + i + ')">ลบ</button>' +
+    '<button type="button" class="btn-danger" onclick="delRadio(' + num_radio + ')">ลบ</button>' +
     '</div>' +
     '</div>';
 
   $("#addradio").append(addradio);
-  console.log("add radio" + i);
+  console.log("add radio" + num_radio);
 }
 
 
-function delRadio(i) {
-  console.log("i =" + i);
+function delRadio(num_radio) {
+  console.log("num radio = " + num_radio);
   console.log("del radio click");
   // ลบแบบ class
-  $("div").remove(".radio" + i);
+  $("div").remove(".radio" + num_radio);
 }
 
+
+var num_question = 0;
+function addQuestion() {
+  console.log("add queston click");
+  num_question += 1;
+  var question = '<div class="bewcard question'+num_question+'">' +
+    '<div id="selected">' +
+    '<div class="form-row">' +
+    '<div class="col-7">' +
+    '<input class="form-control" type="text" placeholder="คำถามของคุณ">' +
+    '</div>' +
+    '<div class="col-5">' +
+    '<select class="form-control" id="selectBox' + num_question + '" onchange="selectClick()">' +
+    '<option value="1">คำตอบสั้นๆ</option>' +
+    '<option value="2">ย่อหน้า</option>' +
+    '<option value="3">หลายตัวเลือก</option>' +
+    '<option value="4">ช่องเครื่องหมาย</option>' +
+    '</select>' +
+    '</div>' +
+    '</div>' +
+    '<div style="margin-top:20px;">' +
+    '<label>ข้อความคำตอบสั้นๆ</label>' +
+    '</div>' +
+    '</div>' +
+
+    '<hr style="width:100%;text-align:left;margin-left:0">' +
+    '<div style="margin-left:70%">' +
+    '<button type="button" class="btn-primary">คัดลอก</button>' +
+    '<button type="button" class="btn-danger" onclick="delQuestion('+num_question+')">ลบ</button>' +
+    '<span>จำเป็น</span>' +
+    '<label class="switch">' +
+    '<input type="checkbox">' +
+    '<span class="slider round"></span>' +
+    '</label>' +
+    '</div>' +
+    '</div>';
+  $("#question").append(question);
+  console.log("add question = " + num_question);
+}
+
+function delQuestion(num_question) {
+  console.log("num question =" + num_question);
+  console.log("del question click");
+
+  $("div").remove(".question"+num_question);
+}
 
 
 function selectClick() {
-  var select1 = '<div style="background-color:white" id="selected">' +
+  var select1 = '<div id="selected">' +
     '<div class="form-row">' +
-    '<div class="col-6" style="margin-right:50px">' +
+    '<div class="col-7">' +
     '<div>' +
     '<input class="form-control" type="text" placeholder="คำถามของคุณ">' +
     '</div>' +
@@ -104,14 +149,14 @@ function selectClick() {
     '<option value="4">ช่องเครื่องหมาย</option>' +
     '</select>' +
     '</div>' +
-    '<div style="margin-top:20px; margin-left:10px">' +
+    '</div>' +
+    '<div style="margin-top:20px;">' +
     '<label>ข้อความคำตอบสั้นๆ</label>' +
     '</div>' +
-    '</div>' +
     '</div>';
-  var select2 = '<div style="background-color:white" id="selected">' +
+  var select2 = '<div id="selected">' +
     '<div class="form-row">' +
-    '<div class="col-6" style="margin-right:50px">' +
+    '<div class="col-7">' +
     '<div>' +
     '<input class="form-control" type="text" placeholder="คำถามของคุณ">' +
     '</div>' +
@@ -124,14 +169,14 @@ function selectClick() {
     '<option value="4">ช่องเครื่องหมาย</option>' +
     '</select>' +
     '</div>' +
-    '<div style="margin-top:20px; margin-left:10px">' +
+    '</div>' +
+    '<div style="margin-top:20px;">' +
     '<label>ข้อความคำตอบแบบยาว</label>' +
     '</div>' +
-    '</div>' +
     '</div>';
-  var select3 = '<div style="background-color:white" id="selected">' +
+  var select3 = '<div id="selected">' +
     '<div class="form-row">' +
-    '<div class="col-6" style="margin-right:50px">' +
+    '<div class="col-7">' +
     '<div>' +
     '<input class="form-control" type="text" placeholder="คำถามของคุณ">' +
     '</div>' +
@@ -145,7 +190,7 @@ function selectClick() {
     '</select>' +
     '</div>' +
     '</div>' +
-    '<div style="margin-top:20px; margin-left:10px">' +
+    '<div style="margin-top:20px; margin-left:5px">' +
     '<div class="form-row radio">' +
     '<div>' +
     '<input class="form-control" type="text" placeholder="ตัวเลือก">' +
@@ -155,9 +200,9 @@ function selectClick() {
     '<button type="button" class="btn-primary" onclick="addRadio()">เพิ่ม</button>' +
     '</div>' +
     '</div>';
-  var select4 = '<div style="background-color:white" id="selected">' +
+  var select4 = '<div id="selected">' +
     '<div class="form-row">' +
-    '<div class="col-6" style="margin-right:50px">' +
+    '<div class="col-7">' +
     '<div>' +
     '<input class="form-control" type="text" placeholder="คำถามของคุณ">' +
     '</div>' +
@@ -171,7 +216,7 @@ function selectClick() {
     '</select>' +
     '</div>' +
     '</div>' +
-    '<div style="margin-top:20px; margin-left:10px">' +
+    '<div style="margin-top:20px; margin-left:5px">' +
     '<div class="form-row radio">' +
     '<div>' +
     '<input class="form-control" type="text" placeholder="ตัวเลือก">' +
@@ -203,11 +248,4 @@ function selectClick() {
     $("#selected").empty();
     $("#selected").append(select4);
   }
-}
-
-
-function delQuestion(){
-  console.log("del question click");
-  //ลบแบบ id
-  $("#delquestion").remove();
 }
