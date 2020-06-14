@@ -127,7 +127,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                             <tbody4>
                                 <tr>
                                     <td><input type="text" class ="form-control" name="working_group" id="working_group"></td>
-                                    <td><button class="remove">-</button></td>
+                                    <td><button class="remove">-</button></td>โโ
                                 </tr>
                
                             </tbody>

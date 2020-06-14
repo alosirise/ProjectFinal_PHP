@@ -55,7 +55,7 @@ include('auth.php');
             $number++;
             echo "<tr><td></td><td>" . $row["name_project"] . "</td>  
             <td><a href=arrange.php>    <button type='button' class='btn btn-primary' style='width:10'>จัดการโครงการ</button></a></td> 
-            <td><a href=edit_project.php?project_id=" . $row['project_id'] . ">    <button type='button' class='btn btn-warning ' disabled>จัดการแบบฟอร์ม</button></a></td> 
+            <td><a href=edit_project.php?project_id=" . $row['project_id'] . ">    <button type='button' class='btn btn-warning '>จัดการแบบฟอร์ม</button></a></td> 
             
             <td><a href=delete_project.php?project_id=" . $row['project_id'] . ">  <button type='button' name ='send' class='btn btn-success' disabled>ส่ง</button></a></td>
             <td><a href=delete_project.php?project_id=" . $row['project_id'] . ">  <button type='button' name ='delete' class='btn btn-danger' >ลบ</button></a></td>
