@@ -16,7 +16,7 @@
 </head>
 <body>
     
-<ul class="nav nav-bar topnav-right bg-light " >
+<ul class="nav nav-bar bg-light " >
 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
     <?php if(isset($_SESSION['id']))  {?>
     <li class="nav-item ">

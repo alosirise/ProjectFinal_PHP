@@ -9,7 +9,6 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
 ?>
 
-
 <!doctype html>
 <html lang="en">
 
@@ -20,6 +19,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <!-- Bootstrap navbar CSS-->
+
     <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="form.css">
 </head>
@@ -29,9 +29,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     <div class="" id="nav"></div>
     <form action="" method="POST">
         <?php
-
-
-
+        
         include_once('connect.php');
 
         echo ' 
@@ -56,17 +54,15 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                     
                     <label for="exampleFormControlInput1">วัตถุประสงค์</label>
                     <div>         
-                        <table>
-                            <tbody1>
+                        <table>  
                                 <tr>
-                                    <td><input type="text" class ="form-control" name="objective" id="objective"></td>
-                                    <td><button class="remove">-</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                <td style ="width = 25%;"><input type="text" class ="form-control" name="objective" id="objective"></td>
+                                <td><a class="remove" >-</td>
+                                </tr>      
+
+                        </table><tbody1> </tbody><br>
+                        <a class="btn btn-primary pull-left " id="addRow1" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
                     </div>
-                    <button id="addRow1">+ Add</button>
-                  
 
                     <div>
                         <label for="exampleFormControlInput1">กลุ่มเป้าหมาย</label>
@@ -81,15 +77,14 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                     <label for="exampleFormControlInput1">วิทยากร</label>
                     <div>
                         <table>
-                            <tbody2>
                                 <tr>
                                     <td><input type="text" class ="form-control" name="lecturer" id="lecturer"></td>
-                                    <td><button class="remove">-</button></td>
+                                    <td><a class="remove" >-</td>
                                 </tr>                 
-                            </tbody>
-                        </table>
+                        </table><tbody2> </tbody><br>
+                        <a class="btn btn-primary pull-left" id="addRow2" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
                     </div>
-                    <button id="addRow2">+ Add</button>
+                 
                   
 
                     <div>
@@ -99,17 +94,16 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
                     <label for="exampleFormControlInput1">ประโยชน์ที่จะได้รับ</label>
                     <div>
-                        <table>
-                            <tbody3>
+                        <table>                          
                                 <tr>
                                     <td><input type="text" class ="form-control"  name="benefits" id="benefits"></td>
-                                    <td><button class="remove">-</button></td>
+                                    <td><a class="remove" >-</td>
                                 </tr>
                           
-                            </tbody>
-                        </table>
+                        </table><tbody3> </tbody><br>
+                        <a class="btn btn-primary pull-left" id="addRow3" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
                     </div>
-                    <button id="addRow3">+ Add</button>
+                  
               
                     <div>
                         <label for="exampleFormControlInput1">ค่าลงทะเบียนอบรม</label>
@@ -124,29 +118,26 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                     <label for="exampleFormControlInput1">คณะทำงาน</label>
                     <div>
                         <table>
-                            <tbody4>
                                 <tr>
                                     <td><input type="text" class ="form-control" name="working_group" id="working_group"></td>
-                                    <td><button class="remove">-</button></td>
+                                    <td><a class="remove" >-</td>
                                 </tr>
-               
-                            </tbody>
-                        </table>
+                        </table><tbody4> </tbody><br>
+                        <a class="btn btn-primary pull-left" id="addRow4" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
                     </div>
-                    <button id="addRow4">+ Add</button>
-                    <button id="getValues4">Get Values</button>
+                   
+                  
                 </div>
             </div>
         </div>
     </div>
     ';
-
         ?>
         <div class="card-footer text-center">
             <input type="submit" name="submit" class="btn btn-success " value="Submit">
         </div>
-    </form>
 
+    </form>
     <?php
     if (isset($_POST["submit"])) {
         $user_id = $_SESSION['id'];
@@ -164,6 +155,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         $budget = $_POST['budget'];
         $working_group = $_POST['working_group'];
 
+        
 
         $sql = "SELECT name_project FROM create_project WHERE name_project='$name_project'";
         $result1 = mysqli_query($conn, $sql);
@@ -176,58 +168,49 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             $sql2 = "INSERT INTO create_project (id,creator ,name_project,respondsible_department,principle,objective,target_group,duration,lecturer,location,benefits,cost,budget,working_group ) 
                 VALUES ( '$user_id','$username','$name_project', '$respondsible_department','$principle','$objective','$target_group','$duration','$lecturer','$location','$benefits','$cost','$budget','$working_group')";
             $result2 = mysqli_query($conn, $sql2);
+
+
+            $sql3 = "INSERT INTO budget_form (no,list,quantity,rate,cost) 
+                 VALUES ( '$no','$list','$quantity','$rate','$cost_budget')";
+            $result3 = mysqli_query($conn, $sql3);
+
             if ($result2) {
                 echo "<script>alert('ส่งคำร้องขอแล้ว โปรดรอการอนุมัติ');
                 window.location='myproject.php';</script>";
             }
         }
     }
-
     ?>
-
-
-
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
-
-    <script src="index.js"></script>
-
-
+    <script src="index.js"> </script>
     <script>
-        var html = '<tr><td><input type="text" class ="form-control" name="name"></td><td><button class="remove">-</button></td></tr>';
-        // var html = "echo ".'<tr><td><input type='."text".' name='."name".'></td><td><button class='."remove".'>-</button></td></tr>'." ";
+        var html = '<tr><td><input type="text" class ="form-control" name="name"></td><td><a class="remove" >-</td></tr>';
         $(function() {
-            $("#includedContent").load("table.php");
+            $("#includedContent").load("table_create.php");
         });
+
         $(function() {
             $('tbody').sortable();
 
             $('#addRow1').click(function() {
-                $('tbody1').append(html);
+                $('tbody1').before(html);
             });
             $('#addRow2').click(function() {
-                $('tbody2').append(html);
+                $('tbody2').before(html);
             });
             $('#addRow3').click(function() {
-                $('tbody3').append(html);
+                $('tbody3').before(html);
             });
             $('#addRow4').click(function() {
-                $('tbody4').append(html);
+                $('tbody4').before(html);
             });
 
 
             $(document).on('click', '.remove', function() {
                 $(this).parents('tr').remove();
-            });
-
-            $('#getValues').click(function() {
-                var values = [];
-                $('input[name="name"]').each(function(i, elem) {
-                    values.push($(elem).val());
-                });
-                alert(values.join(', '));
             });
         });
     </script>

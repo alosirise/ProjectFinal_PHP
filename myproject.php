@@ -25,9 +25,9 @@ include('auth.php');
       <h2 style=" padding :30px; ">โครงการของฉัน</h2>
 
       <center>
-        <button type="button" onclick="location.href = 'create_project.php'" class="btn btn-primary">สร้าง</button>
+      <a href=create_project.php><button type="button"  class="btn btn-primary">สร้าง</button></a>
       </center>
-      <form action="" method="POST">
+
         <?php
 
 
@@ -38,28 +38,30 @@ include('auth.php');
         if ($result->num_rows > 0) {
 
           echo '
-            <table class="w3-table-all">
+            <table class="w3-table-all" style="width:130%">
               <thead>
                 <tr class="w3-blue-gray">
                  <th style="width:4%" ></th>
                   <th style="width:40%" >ชื่อโครงการ</th>
            
-                  <th style="width:10%"> จัดการโครงการ</th>
-                  <th style="width:10%">จัดการแบบฟอร์ม</th>
+                  <th style="width:15%"> จัดการโครงการ</th>
+                  <th style="width:20%">จัดการแบบฟอร์ม</th>
                   <th style="width:10%">ส่ง</th>
                   <th style="width:10%">ลบ</th>
+                  <th style="width:10%"> สถานะ</th>
                 </tr>
               </thead> ';
           // output data of each row
           while ($row = $result->fetch_assoc()) {
             $number++;
             echo "<tr><td></td><td>" . $row["name_project"] . "</td>  
-            <td><a href=arrange.php>    <button type='button' class='btn btn-primary' style='width:10'>จัดการโครงการ</button></a></td> 
-            <td><a href=edit_project.php?project_id=" . $row['project_id'] . ">    <button type='button' class='btn btn-warning ' disabled>จัดการแบบฟอร์ม</button></a></td> 
-            
-            <td><a href=delete_project.php?project_id=" . $row['project_id'] . ">  <button type='button' name ='send' class='btn btn-success' disabled>ส่ง</button></a></td>
-            <td><a href=delete_project.php?project_id=" . $row['project_id'] . ">  <button type='button' name ='delete' class='btn btn-danger' >ลบ</button></a></td>
+            <td><a href=edit_project.php?project_id=".$row['project_id'].">    <button type='button' class='btn btn-primary' style='width:10'>จัดการโครงการ</button></a></td> 
 
+            ","
+            <td><a href=edit_project.php?project_id=" . $row['project_id'] . ">    <button type='button' class='btn btn-warning ' disabled>จัดการแบบฟอร์ม</button></a></td> 
+            <td><a href=delete_project.php?project_id=" . $row['project_id'] . ">  <button type='button' name ='send' class='btn btn-success' disabled>ส่ง</button></a></td>
+            <td><a onClick=\"javascript: return confirm('Please confirm deletion');\" href=delete_project.php?project_id=" . $row['project_id'] . " >  <button type='button' name ='delete' class='btn btn-danger' >ลบ</button></a></td>
+            <td><div class='form-check form-check-inline'><input class='form-check-input' type='checkbox' id='inlineCheckbox1' value='option1'></td>
             </tr>";
           }
           echo "</table>";
@@ -67,7 +69,6 @@ include('auth.php');
           echo "0 results";
         }
         ?>
-      </form>
 
 
       <!-- Optional JavaScript -->

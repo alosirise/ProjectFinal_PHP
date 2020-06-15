@@ -23,35 +23,34 @@ input {
     height: 40px;
 }
 
+label {
+
+   padding-top: 25px;
+   padding-left: 30px;
+  }
+ 
 .remove {
-    width: 30px;
-    height: 30px;
+
+    display: inline-block;
+    width: 23px;
+    height: 23px;
     font-size: 20px;
     background-color: tomato;
     color: white;
     border: none;
     border-radius: 15px;
     margin: 5px;
+    text-align: center;
+    cursor: pointer;
 }
+table tr:hover{cursor:context-menu;}
 
-#addRow4,
-#addRow3,
-#addRow2,
-#addRow1,
-#getValues1,
-#getValues2,
-#getValues3,
-#getValues4 {
-    width: 130px;
-    height: 40px;
-    font-size: 16px;
-    background-color: lightseagreen;
-    color: white;
-    border: none;
-    margin: 20px;
-}
 
 button:hover {
+    cursor: pointer;
+}
+
+i:hover {
     cursor: pointer;
 }
 
