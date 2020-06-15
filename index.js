@@ -60,38 +60,12 @@ function displayImage(e) {
 }
 
 
-var num_radio = 0;
-function addRadio() {
-  console.log("add radio click");
-  num_radio += 1;
-  var addradio = '<div class="form-row radio' + num_radio + '">' +
-    '<div>' +
-    '<input class="form-control" type="text" placeholder="ตัวเลือก">' +
-    '</div>' +
-    '<div>' +
-    '<button type="button" class="btn-danger" onclick="delRadio(' + num_radio + ')">ลบ</button>' +
-    '</div>' +
-    '</div>';
-
-  $("#addradio").append(addradio);
-  console.log("add radio" + num_radio);
-}
-
-
-function delRadio(num_radio) {
-  console.log("num radio = " + num_radio);
-  console.log("del radio click");
-  // ลบแบบ class
-  $("div").remove(".radio" + num_radio);
-}
-
-
 var num_question = 0;
 function addQuestion() {
   console.log("add queston click");
   num_question += 1;
-  var question = '<div class="bewcard question'+num_question+'">' +
-    '<div id="selected'+num_question+'">' +
+  var question = '<div class="bewcard question' + num_question + '">' +
+    '<div id="selected' + num_question + '">' +
     '<div class="form-row">' +
     '<div class="col-7">' +
     '<input class="form-control" type="text" placeholder="คำถามของคุณ">' +
@@ -112,8 +86,8 @@ function addQuestion() {
 
     '<hr style="width:100%;text-align:left;margin-left:0">' +
     '<div style="margin-left:70%">' +
-    '<button type="button" class="btn-primary">คัดลอก</button>' +
-    '<button type="button" class="btn-danger" onclick="delQuestion('+num_question+')">ลบ</button>' +
+    '<button style="margin-right:4px" type="button" class="btn-primary">คัดลอก</button>' +
+    '<button style="margin-right:4px" type="button" class="btn-danger" onclick="delQuestion(' + num_question + ')">ลบ</button>' +
     '<span>จำเป็น</span>' +
     '<label class="switch">' +
     '<input type="checkbox">' +
@@ -129,11 +103,19 @@ function delQuestion(num_question) {
   console.log("num question =" + num_question);
   console.log("del question click");
 
-  $("div").remove(".question"+num_question);
+  $("div").remove(".question" + num_question);
 }
 
 
 function selectClick(num_select) {
+  console.log(num_select);
+  console.log(typeof num_select);
+
+  var selectBox = document.getElementById(num_select);
+  var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+  var digitSelect = num_select.charAt(9);
+
+
   var select1 = '<div class="form-row">' +
     '<div class="col-7">' +
     '<div>' +
@@ -141,7 +123,7 @@ function selectClick(num_select) {
     '</div>' +
     '</div>' +
     '<div class="col-5">' +
-    '<select class="form-control" id="'+num_select+'" onchange="selectClick(id)">' +
+    '<select class="form-control" id="' + num_select + '" onchange="selectClick(id)">' +
     '<option value="1" selected="selected">คำตอบสั้นๆ</option>' +
     '<option value="2">ย่อหน้า</option>' +
     '<option value="3">หลายตัวเลือก</option>' +
@@ -152,14 +134,14 @@ function selectClick(num_select) {
     '<div style="margin-top:20px;">' +
     '<label>ข้อความคำตอบสั้นๆ</label>' +
     '</div>';
-  var select2 ='<div class="form-row">' +
+  var select2 = '<div class="form-row">' +
     '<div class="col-7">' +
     '<div>' +
     '<input class="form-control" type="text" placeholder="คำถามของคุณ">' +
     '</div>' +
     '</div>' +
     '<div class="col-5">' +
-    '<select class="form-control" id="'+num_select+'" onchange="selectClick(id)">' +
+    '<select class="form-control" id="' + num_select + '" onchange="selectClick(id)">' +
     '<option value="1">คำตอบสั้นๆ</option>' +
     '<option value="2" selected="selected">ย่อหน้า</option>' +
     '<option value="3">หลายตัวเลือก</option>' +
@@ -170,14 +152,14 @@ function selectClick(num_select) {
     '<div style="margin-top:20px;">' +
     '<label>ข้อความคำตอบแบบยาว</label>' +
     '</div>';
-  var select3 ='<div class="form-row">' +
+  var select3 = '<div class="form-row">' +
     '<div class="col-7">' +
     '<div>' +
     '<input class="form-control" type="text" placeholder="คำถามของคุณ">' +
     '</div>' +
     '</div>' +
     '<div class="col-5">' +
-    '<select class="form-control" id="'+num_select+'" onchange="selectClick(id)">' +
+    '<select class="form-control" id="' + num_select + '" onchange="selectClick(id)">' +
     '<option value="1">คำตอบสั้นๆ</option>' +
     '<option value="2">ย่อหน้า</option>' +
     '<option value="3" selected="selected">หลายตัวเลือก</option>' +
@@ -191,17 +173,17 @@ function selectClick(num_select) {
     '<input class="form-control" type="text" placeholder="ตัวเลือก">' +
     '</div>' +
     '</div>' +
-    '<div id="addradio"></div>' +
-    '<button type="button" class="btn-primary" onclick="addRadio()">เพิ่ม</button>' +
+    '<div id="addradio'+digitSelect+'"></div>' +
+    '<button type="button" class="btn-primary" onclick="addRadio('+digitSelect+')">เพิ่ม</button>' +
     '</div>';
-  var select4 ='<div class="form-row">' +
+  var select4 = '<div class="form-row">' +
     '<div class="col-7">' +
     '<div>' +
     '<input class="form-control" type="text" placeholder="คำถามของคุณ">' +
     '</div>' +
     '</div>' +
     '<div class="col-5">' +
-    '<select class="form-control" id="'+num_select+'" onchange="selectClick(id)">' +
+    '<select class="form-control" id="' + num_select + '" onchange="selectClick(id)">' +
     '<option value="1">คำตอบสั้นๆ</option>' +
     '<option value="2">ย่อหน้า</option>' +
     '<option value="3">หลายตัวเลือก</option>' +
@@ -218,26 +200,56 @@ function selectClick(num_select) {
     '<div id="addradio"></div>' +
     '<button type="button" class="btn-primary" onclick="addRadio()">เพิ่ม</button>' +
     '</div>';
-  var selectBox = document.getElementById(num_select);
-  var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-  var digitSelect = num_select.charAt(9);
 
-  console.log(num_select+" has select "+selectedValue+" | digit selectbox is "+digitSelect);
+  console.log(num_select + " has select " + selectedValue + " | digit selectbox is " + digitSelect);
+
   if (selectedValue == "1") {
     console.log("select-1");
-    $("#selected"+digitSelect).empty();
-    $("#selected"+digitSelect).append(select1);
+    $("#selected" + digitSelect).empty();
+    $("#selected" + digitSelect).append(select1);
   } else if (selectedValue == "2") {
     console.log("select-2");
-    $("#selected"+digitSelect).empty();
-    $("#selected"+digitSelect).append(select2);
+    $("#selected" + digitSelect).empty();
+    $("#selected" + digitSelect).append(select2);
   } else if (selectedValue == "3") {
     console.log("select-3");
-    $("#selected"+digitSelect).empty();
-    $("#selected"+digitSelect).append(select3);
+    $("#selected" + digitSelect).empty();
+    $("#selected" + digitSelect).append(select3);
   } else if (selectedValue == "4") {
     console.log("select-4");
-    $("#selected"+digitSelect).empty();
-    $("#selected"+digitSelect).append(select4);
+    $("#selected" + digitSelect).empty();
+    $("#selected" + digitSelect).append(select4);
   }
+}
+
+var num_radio = 0;
+
+function addRadio(order_radio) {
+  console.log("add radio click");
+  console.log(order_radio);
+
+  num_radio += 1;
+  var addradio = '<div class="form-row radio' + num_radio + '">' +
+    '<div>' +
+    '<input class="form-control" type="text" placeholder="ตัวเลือก">' +
+    '</div>' +
+    '<div>' +
+    '<button type="button" class="btn-danger" onclick="delRadio(' + num_radio + ')">ลบ</button>' +
+    '</div>' +
+    '</div>';
+
+  console.log("add radio" + num_radio);
+  $("#addradio"+order_radio).append(addradio);
+}
+
+function delRadio(num_radio) {
+  console.log("num radio = " + num_radio);
+  console.log("del radio click");
+  // ลบแบบ class
+  $("div").remove(".radio" + num_radio);
+}
+
+function copyQuestion(){
+  // var texttest =$("#texttest").val();
+  // console.log(texttest);
 }
