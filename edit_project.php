@@ -100,13 +100,13 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             </div>
 
             <div class="bewcard question0">
-                <div id="selected">
+                <div id="selected0">
                     <div class="form-row">
                         <div class="col-7">
                              <input class="form-control" type="text" placeholder="คำถามของคุณ">
                         </div>
                         <div class="col-5">
-                            <select class="form-control" id="selectBox" onchange="selectClick()">
+                            <select class="form-control" id="selectBox0" onchange="selectClick(id)">
                                 <option value="1">คำตอบสั้นๆ</option>
                                 <option value="2">ย่อหน้า</option>
                                 <option value="3">หลายตัวเลือก</option>
@@ -121,7 +121,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
                 <hr style="width:100%;text-align:left;margin-left:0">
                 <div style="margin-left:70%">
-                    <button type="button" class="btn-primary button">คัดลอก</button>
+                    <button type="button" class="btn-primary">คัดลอก</button>
                     <!-- มี 0 ในฟังก์ชันเพราะต้องบอกว่า ให้ลบอันแรกก็คืออันนี้ ต่างกับใน radio เพราะว่าไม่ต้องลบอันแรก-->
                     <button type="button" class="btn-danger" onclick="delQuestion(0)">ลบ</button>
                     <span>จำเป็น</span>

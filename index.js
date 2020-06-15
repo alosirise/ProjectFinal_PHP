@@ -91,13 +91,13 @@ function addQuestion() {
   console.log("add queston click");
   num_question += 1;
   var question = '<div class="bewcard question'+num_question+'">' +
-    '<div id="selected">' +
+    '<div id="selected'+num_question+'">' +
     '<div class="form-row">' +
     '<div class="col-7">' +
     '<input class="form-control" type="text" placeholder="คำถามของคุณ">' +
     '</div>' +
     '<div class="col-5">' +
-    '<select class="form-control" id="selectBox' + num_question + '" onchange="selectClick()">' +
+    '<select class="form-control" id="selectBox' + num_question + '" onchange="selectClick(id)">' +
     '<option value="1">คำตอบสั้นๆ</option>' +
     '<option value="2">ย่อหน้า</option>' +
     '<option value="3">หลายตัวเลือก</option>' +
@@ -133,16 +133,15 @@ function delQuestion(num_question) {
 }
 
 
-function selectClick() {
-  var select1 = '<div id="selected">' +
-    '<div class="form-row">' +
+function selectClick(num_select) {
+  var select1 = '<div class="form-row">' +
     '<div class="col-7">' +
     '<div>' +
     '<input class="form-control" type="text" placeholder="คำถามของคุณ">' +
     '</div>' +
     '</div>' +
     '<div class="col-5">' +
-    '<select class="form-control" id="selectBox" onchange="selectClick()">' +
+    '<select class="form-control" id="'+num_select+'" onchange="selectClick(id)">' +
     '<option value="1" selected="selected">คำตอบสั้นๆ</option>' +
     '<option value="2">ย่อหน้า</option>' +
     '<option value="3">หลายตัวเลือก</option>' +
@@ -152,17 +151,15 @@ function selectClick() {
     '</div>' +
     '<div style="margin-top:20px;">' +
     '<label>ข้อความคำตอบสั้นๆ</label>' +
-    '</div>' +
     '</div>';
-  var select2 = '<div id="selected">' +
-    '<div class="form-row">' +
+  var select2 ='<div class="form-row">' +
     '<div class="col-7">' +
     '<div>' +
     '<input class="form-control" type="text" placeholder="คำถามของคุณ">' +
     '</div>' +
     '</div>' +
     '<div class="col-5">' +
-    '<select class="form-control" id="selectBox" onchange="selectClick()">' +
+    '<select class="form-control" id="'+num_select+'" onchange="selectClick(id)">' +
     '<option value="1">คำตอบสั้นๆ</option>' +
     '<option value="2" selected="selected">ย่อหน้า</option>' +
     '<option value="3">หลายตัวเลือก</option>' +
@@ -172,17 +169,15 @@ function selectClick() {
     '</div>' +
     '<div style="margin-top:20px;">' +
     '<label>ข้อความคำตอบแบบยาว</label>' +
-    '</div>' +
     '</div>';
-  var select3 = '<div id="selected">' +
-    '<div class="form-row">' +
+  var select3 ='<div class="form-row">' +
     '<div class="col-7">' +
     '<div>' +
     '<input class="form-control" type="text" placeholder="คำถามของคุณ">' +
     '</div>' +
     '</div>' +
     '<div class="col-5">' +
-    '<select class="form-control" id="selectBox" onchange="selectClick()">' +
+    '<select class="form-control" id="'+num_select+'" onchange="selectClick(id)">' +
     '<option value="1">คำตอบสั้นๆ</option>' +
     '<option value="2">ย่อหน้า</option>' +
     '<option value="3" selected="selected">หลายตัวเลือก</option>' +
@@ -198,17 +193,15 @@ function selectClick() {
     '</div>' +
     '<div id="addradio"></div>' +
     '<button type="button" class="btn-primary" onclick="addRadio()">เพิ่ม</button>' +
-    '</div>' +
     '</div>';
-  var select4 = '<div id="selected">' +
-    '<div class="form-row">' +
+  var select4 ='<div class="form-row">' +
     '<div class="col-7">' +
     '<div>' +
     '<input class="form-control" type="text" placeholder="คำถามของคุณ">' +
     '</div>' +
     '</div>' +
     '<div class="col-5">' +
-    '<select class="form-control" id="selectBox" onchange="selectClick()">' +
+    '<select class="form-control" id="'+num_select+'" onchange="selectClick(id)">' +
     '<option value="1">คำตอบสั้นๆ</option>' +
     '<option value="2">ย่อหน้า</option>' +
     '<option value="3">หลายตัวเลือก</option>' +
@@ -224,28 +217,27 @@ function selectClick() {
     '</div>' +
     '<div id="addradio"></div>' +
     '<button type="button" class="btn-primary" onclick="addRadio()">เพิ่ม</button>' +
-    '</div>' +
     '</div>';
-
-  var selectBox = document.getElementById("selectBox");
+  var selectBox = document.getElementById(num_select);
   var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-  //alert(selectedValue);
+  var digitSelect = num_select.charAt(9);
+
+  console.log(num_select+" has select "+selectedValue+" | digit selectbox is "+digitSelect);
   if (selectedValue == "1") {
     console.log("select-1");
-    $("#selected").empty();
-    $("#selected").append(select1);
-  }
-  if (selectedValue == "2") {
+    $("#selected"+digitSelect).empty();
+    $("#selected"+digitSelect).append(select1);
+  } else if (selectedValue == "2") {
     console.log("select-2");
-    $("#selected").empty();
-    $("#selected").append(select2);
+    $("#selected"+digitSelect).empty();
+    $("#selected"+digitSelect).append(select2);
   } else if (selectedValue == "3") {
     console.log("select-3");
-    $("#selected").empty();
-    $("#selected").append(select3);
+    $("#selected"+digitSelect).empty();
+    $("#selected"+digitSelect).append(select3);
   } else if (selectedValue == "4") {
     console.log("select-4");
-    $("#selected").empty();
-    $("#selected").append(select4);
+    $("#selected"+digitSelect).empty();
+    $("#selected"+digitSelect).append(select4);
   }
 }
