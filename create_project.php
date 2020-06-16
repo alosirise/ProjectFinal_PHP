@@ -242,9 +242,9 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                 $stored =$row['project_id'];
              }
 
-             
+                $count = max(count($objective),count($lecturer),count($benefits),count($working_group)); 
                 $sql4 = "INSERT INTO mutiple_text (project_id ,objective,lecturer,benefits,working_group)   VALUES";
-                for ($x = 0; $x < count($objective); $x++) {
+                for ($x = 0; $x < $count; $x++) {
                     echo " round = ", $x;
                          $sql4 .="('$stored','".$_POST['objective'][$x]."','".$_POST['lecturer'][$x]."','".$_POST['benefits'][$x]."','".$_POST['working_group'][$x]."'),";                 
                 }
