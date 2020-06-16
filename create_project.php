@@ -60,7 +60,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                         <table>  
                                 <tr>
                                 <td ><input type="text" class ="form-control" name="objective[]" id="objective"></td>
-                                <td><a class="remove " >-</td>
+                                <td><a class="remove " >-</td><input type="hidden" class ="form-control"  name = "test" id="test">
                                 </tr>      
 
                         </table><tbody1> </tbody><br>
@@ -122,7 +122,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                     <div>
                         <table>
                                 <tr>
-                                    <td><input type="text" class ="form-control" name="working_group" id="working_group"></td>
+                                    <td><input type="text" class ="form-control" name="working_group[]" id="working_group"></td>
                                     <td><a class="remove" >-</td>
                                 </tr>
                         </table><tbody4> </tbody><br>
@@ -150,7 +150,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                 console.log(sessionStorage.getItem("objective"));
                 console.log("object_length : ", objective.length);
 
-
+                document.getElementById("test").value = sessionStorage.getItem("objective_length", objective.length);;
 
 
                 var lecturer = $("input[name='lecturer[]']")
@@ -192,25 +192,29 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
 
         echo '<script> console.log(sessionStorage.getItem("objective"));</script>';
-         echo $objective_length = '<script> console.log(sessionStorage.getItem("objective_length"));</script>';
+        echo $objective_length = '<script> console.log(sessionStorage.getItem("objective_length"));</script>';
+        // echo $objective_length = '<script> document.write(sessionStorage.getItem("objective_length"));</script>';
 
-        echo $objective_length = '<script> parseInt(sessionStorage.getItem("objective_length"), 10);</script>';
+
+        $objective = $_POST['objective'];
+        print_r($objective);
+        $lecturer = $_POST['lecturer'];
+        print_r($lecturer);
+
+        $test = $_POST['test'];
+        echo "ojective_length",$test;
+
         
-        for ($x = 0; $x < $objective_length ; $x++) {echo "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",$x;
-        //     $sql4 = "INSERT INTO mutiple_text (objective,lecturer,benefits,working_group) 
-        // VALUES ( '$objective[$x]','$lecturer[$x]','$benefits[$x]','$working_group[$x]')";
-        //     $result4 = mysqli_query($conn, $sql4);
-        }
 
         $user_id = $_SESSION['id'];
         $username = $_SESSION['username'];
         $name_project = $_POST['name_project'];
         $respondsible_department = $_POST['respondsible_department'];
         $principle = $_POST['principle'];
-        $objective = $_POST['objective'];
+        // $objective = $_POST['objective'];
         $target_group = $_POST['target_group'];
         $duration = $_POST['duration'];
-        $lecturer = $_POST['lecturer'];
+        // $lecturer = $_POST['lecturer'];
         $location = $_POST['location'];
         $benefits = $_POST['benefits'];
         $cost = $_POST['cost'];
@@ -231,17 +235,40 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             $result2 = mysqli_query($conn, $sql2);
 
 
+            $stored;
+            $sql_test = "SELECT * FROM create_project WHERE id = '" . $_SESSION['id'] . "' ";
+            $result_test = $conn->query($sql_test);
+             while ($row = $result_test->fetch_assoc()) {
+                $stored =$row['project_id'];
+             }
 
-            $sql3 = "INSERT INTO budget_form (no,list,quantity,rate,cost) 
-                 VALUES ( '$no','$list','$quantity','$rate','$cost_budget')";
-            $result3 = mysqli_query($conn, $sql3);
+             
+                $sql4 = "INSERT INTO mutiple_text (project_id ,objective,lecturer,benefits,working_group)   VALUES";
+                for ($x = 0; $x < count($objective); $x++) {
+                    echo " round = ", $x;
+                         $sql4 .="('$stored','".$_POST['objective'][$x]."','".$_POST['lecturer'][$x]."','".$_POST['benefits'][$x]."','".$_POST['working_group'][$x]."'),";                 
+                }
+                
+                 $sql4  = rtrim($sql4,",");
+                //  echo $sql4;
+                 $result4 = mysqli_query($conn, $sql4);
+
+             
+            // $sql4 = "INSERT INTO mutiple_text (project_id ,objective,lecturer,benefits,working_group)  
+            //     VALUES ( '$stored','test','test', 'test','test')";
+            // $result4 = mysqli_query($conn, $sql4);
 
 
 
-            if ($result2) {
-                echo "<script>alert('ส่งคำร้องขอแล้ว โปรดรอการอนุมัติ');
-                window.location='myproject.php';</script>";
-            }
+            // $sql3 = "INSERT INTO budget_form (no,list,quantity,rate,cost) 
+            //      VALUES ( '$no','$list','$quantity','$rate','$cost_budget')";
+            // $result3 = mysqli_query($conn, $sql3);
+
+
+            // if ($result2) {
+            //     echo "<script>alert('ส่งคำร้องขอแล้ว โปรดรอการอนุมัติ');
+            //     window.location='myproject.php';</script>";
+            // }
         }
     }
     ?>
