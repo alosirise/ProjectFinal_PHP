@@ -6,7 +6,6 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     header('location: home.php');
     exit();
 }
-
 ?>
 
 <!doctype html>
@@ -22,14 +21,18 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
     <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="form.css">
+
 </head>
 
 <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="index.js"> </script>
 
     <div class="" id="nav"></div>
-    <form action="" method="POST">
+    <form action="" method="POST" onsubmit="return save()">
         <?php
-        
+
         include_once('connect.php');
 
         echo ' 
@@ -56,8 +59,8 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                     <div>         
                         <table>  
                                 <tr>
-                                <td style ="width = 25%;"><input type="text" class ="form-control" name="objective" id="objective"></td>
-                                <td><a class="remove" >-</td>
+                                <td ><input type="text" class ="form-control" name="objective[]" id="objective"></td>
+                                <td><a class="remove " >-</td>
                                 </tr>      
 
                         </table><tbody1> </tbody><br>
@@ -78,7 +81,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                     <div>
                         <table>
                                 <tr>
-                                    <td><input type="text" class ="form-control" name="lecturer" id="lecturer"></td>
+                                    <td><input type="text" class ="form-control" name="lecturer[]" id="lecturer"></td>
                                     <td><a class="remove" >-</td>
                                 </tr>                 
                         </table><tbody2> </tbody><br>
@@ -96,7 +99,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                     <div>
                         <table>                          
                                 <tr>
-                                    <td><input type="text" class ="form-control"  name="benefits" id="benefits"></td>
+                                    <td><input type="text" class ="form-control"  name="benefits[]" id="benefits"></td>
                                     <td><a class="remove" >-</td>
                                 </tr>
                           
@@ -133,6 +136,52 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     </div>
     ';
         ?>
+
+        <script>
+            function save() {
+                var objective = $("input[name='objective[]']")
+                    .map(function() {
+                        return $(this).val();
+                    }).get();
+
+
+                sessionStorage.setItem("objective_length", objective.length);
+                sessionStorage.setItem("objective", JSON.stringify(objective));
+                console.log(sessionStorage.getItem("objective"));
+                console.log("object_length : ", objective.length);
+
+
+
+
+                var lecturer = $("input[name='lecturer[]']")
+                    .map(function() {
+                        return $(this).val();
+                    }).get();
+
+                sessionStorage.setItem("lecturer", JSON.stringify(lecturer));
+                console.log(sessionStorage.getItem("lecturer"));
+
+
+
+                var benefits = $("input[name='benefits[]']")
+                    .map(function() {
+                        return $(this).val();
+                    }).get();
+
+                sessionStorage.setItem("benefits", JSON.stringify(benefits));
+                console.log(sessionStorage.getItem("benefits"));
+
+
+
+                var working_group = $("input[name='working_group[]']")
+                    .map(function() {
+                        return $(this).val();
+                    }).get();
+
+                sessionStorage.setItem("working_group", JSON.stringify(working_group));
+                console.log(sessionStorage.getItem("working_group"));
+            }
+        </script>
         <div class="card-footer text-center">
             <input type="submit" name="submit" class="btn btn-success " value="Submit">
         </div>
@@ -140,6 +189,19 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     </form>
     <?php
     if (isset($_POST["submit"])) {
+
+
+        echo '<script> console.log(sessionStorage.getItem("objective"));</script>';
+         echo $objective_length = '<script> console.log(sessionStorage.getItem("objective_length"));</script>';
+
+        echo $objective_length = '<script> parseInt(sessionStorage.getItem("objective_length"), 10);</script>';
+        
+        for ($x = 0; $x < $objective_length ; $x++) {echo "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",$x;
+        //     $sql4 = "INSERT INTO mutiple_text (objective,lecturer,benefits,working_group) 
+        // VALUES ( '$objective[$x]','$lecturer[$x]','$benefits[$x]','$working_group[$x]')";
+        //     $result4 = mysqli_query($conn, $sql4);
+        }
+
         $user_id = $_SESSION['id'];
         $username = $_SESSION['username'];
         $name_project = $_POST['name_project'];
@@ -152,10 +214,8 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         $location = $_POST['location'];
         $benefits = $_POST['benefits'];
         $cost = $_POST['cost'];
-        $budget = $_POST['budget'];
+        $budget = 'sss';
         $working_group = $_POST['working_group'];
-
-        
 
         $sql = "SELECT name_project FROM create_project WHERE name_project='$name_project'";
         $result1 = mysqli_query($conn, $sql);
@@ -165,14 +225,18 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         } else if ($name_project == "") {
             echo '<script>alert("กรุณาตั้งชื่อโปรเจ็ค")</script>';
         } else {
-            $sql2 = "INSERT INTO create_project (id,creator ,name_project,respondsible_department,principle,objective,target_group,duration,lecturer,location,benefits,cost,budget,working_group ) 
-                VALUES ( '$user_id','$username','$name_project', '$respondsible_department','$principle','$objective','$target_group','$duration','$lecturer','$location','$benefits','$cost','$budget','$working_group')";
+
+            $sql2 = "INSERT INTO create_project (id,creator ,name_project,respondsible_department,principle,target_group,duration,location,cost,budget) 
+                VALUES ( '$user_id','$username','$name_project', '$respondsible_department','$principle','$target_group','$duration','$location','$cost','$budget')";
             $result2 = mysqli_query($conn, $sql2);
+
 
 
             $sql3 = "INSERT INTO budget_form (no,list,quantity,rate,cost) 
                  VALUES ( '$no','$list','$quantity','$rate','$cost_budget')";
             $result3 = mysqli_query($conn, $sql3);
+
+
 
             if ($result2) {
                 echo "<script>alert('ส่งคำร้องขอแล้ว โปรดรอการอนุมัติ');
@@ -182,12 +246,14 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     }
     ?>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
-    <script src="index.js"> </script>
+
     <script>
-        var html = '<tr><td><input type="text" class ="form-control" name="name"></td><td><a class="remove" >-</td></tr>';
+        var objective_replace = '<tr><td style ="width = 25%;"><input type="text" class ="form-control" name="objective[]" id="objective"></td><td><a class="remove" >-</td></tr>';
+        var lecturer_replace = '<tr><td><input type="text" class ="form-control" name="lecturer[]" id="lecturer"></td><td><a class="remove" >-</td></tr>';
+        var benefits_replace = '<tr> <td><input type="text" class ="form-control"  name="benefits[]" id="benefits"></td><td><a class="remove" >-</td></tr>';
+        var working_group_replace = '<tr><td><input type="text" class ="form-control" name="working_group[]" id="working_group"></td><td><a class="remove" >-</td></tr>';
+
         $(function() {
             $("#includedContent").load("table_create.php");
         });
@@ -196,16 +262,16 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             $('tbody').sortable();
 
             $('#addRow1').click(function() {
-                $('tbody1').before(html);
+                $('tbody1').before(objective_replace);
             });
             $('#addRow2').click(function() {
-                $('tbody2').before(html);
+                $('tbody2').before(lecturer_replace);
             });
             $('#addRow3').click(function() {
-                $('tbody3').before(html);
+                $('tbody3').before(benefits_replace);
             });
             $('#addRow4').click(function() {
-                $('tbody4').before(html);
+                $('tbody4').before(working_group_replace);
             });
 
 

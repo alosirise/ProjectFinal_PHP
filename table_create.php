@@ -10,6 +10,8 @@ include_once('connect.php');
 ?>
 
 <html>
+
+
 <table class="table table-bordered" id="table">
     <thead>
         <tr>
@@ -24,14 +26,14 @@ include_once('connect.php');
     </thead>
 
     <?php
-    $_SESSION['line'] = 1;
+
     echo '<tbody>
         <tr>
-        <td><input type="text"  style="width: 99%;"   class="edit" name ="no' . $_SESSION['line']  . '"      id="no"  ></td>
-        <td><input type="text"  style="width: 99%;"   class="edit" name ="list' . $_SESSION['line']  . '"    id="list" ></td>
-        <td><input type="text"  style="width: 99%;"   class="edit" name ="quantity' . $_SESSION['line']  . '"  id="quantity"></td>
-        <td><input type="text"  style="width: 99%;"   class="edit" name ="rate' . $_SESSION['line']  . '"      id="rate" ></td>
-        <td><input type="text"  style="width: 99%;"   class="edit" name = "cost1' . $_SESSION['line']  . '"    id="cost1"></td>
+        <td><input type="text"  style="width: 99%;"   class="edit" name ="no[]"      id="edit" ></td>
+        <td><input type="text"  style="width: 99%;"   class="edit" name ="list[]"    id="edit" ></td>
+        <td><input type="text"  style="width: 99%;"   class="edit" name ="quantity[]"  id="edit"></td>
+        <td><input type="text"  style="width: 99%;"   class="edit" name ="rate[]"      id="edit" ></td>
+        <td><input type="text"  style="width: 99%;"   class="edit" name = "cost1[]"    id="edit"></td>
         <td> <i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> </td>
         <td> <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction()"></td>
         </tr>
@@ -40,23 +42,17 @@ include_once('connect.php');
     ?>
     </tbody>
 </table>
-<a class="btn btn-primary pull-right" onclick='myCreateFunction()' data-added="0"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
-
-<script>
-    var i = 1;
-
-    function myCreateFunction() {
-        <?php $_SESSION['line']++;;
-        $line = $_SESSION['line'];
-        ?>
+</form>   
 
 
+<a class="btn btn-primary pull-right"  onclick='myCreateFunction()' data-added="0"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
 
-        var sss = "<?php echo $line ?>"
+<script> 
 
+    var i =0;
+
+    function myCreateFunction() {   
         i++;
-        console.log(i);
-
         var table = document.getElementById("table");
         var row = table.insertRow(-1);
         var cell1 = row.insertCell(0);
@@ -67,18 +63,53 @@ include_once('connect.php');
         var cell6 = row.insertCell(5);
         var cell7 = row.insertCell(6);
 
-        cell1.innerHTML = "<input type='text' class='edit' name ='no" + <?php echo $line ?> + "'   id='no' style='width: 99%; cursor: auto;' >";
-        cell2.innerHTML = "<input type='text' class='edit' name ='list<?php echo $line ?>'     id='list' style='width: 99%; cursor: auto;'>";
-        cell3.innerHTML = "<input type='text' class='edit' name ='quantity<?php echo $line ?>'  id='quantity' style='width: 99%; cursor: auto;'> ";
-        cell4.innerHTML = "<input type='text' class='edit' name='rate<?php echo $line ?>'  id='rate' style='width: 99%; cursor: auto;'> ";
-        cell5.innerHTML = "<input type='text' class='edit' name = 'cost1<?php echo $line ?>'  id='cost1'  style='width: 99%; cursor: auto;'>";
+        cell1.innerHTML = "<input type='text' class='edit' name ='no[]'   id='edit' style='width: 99%; cursor: auto;' >";
+        cell2.innerHTML = "<input type='text' class='edit' name ='list[]'     id='edit' style='width: 99%; cursor: auto;'>";
+        cell3.innerHTML = "<input type='text' class='edit' name ='quantity[]'  id='edit' style='width: 99%; cursor: auto;'> ";
+        cell4.innerHTML = "<input type='text' class='edit' name='rate[]'  id='edit' style='width: 99%; cursor: auto;'> ";
+        cell5.innerHTML = "<input type='text' class='edit' name = 'cost1[]'  id='edit'  style='width: 99%; cursor: auto;'>";
 
         cell6.innerHTML = '<i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> ';
         cell7.innerHTML = ' <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction()">';
 
+
         myEditFunction();
 
     }
+
+    function saveData(){
+        var no = $("input[name='no[]']")
+              .map(function(){return $(this).val();}).get();
+
+        // var no =document.querySelectorAll('input[name$="ns"]');
+          
+        sessionStorage.setItem("no", JSON.stringify(no));
+        console.log(sessionStorage.getItem("no"))
+
+
+        var list = $("input[name='list[]']")
+              .map(function(){return $(this).val();}).get();
+     
+        sessionStorage.setItem("list", JSON.stringify(list));
+        console.log(sessionStorage.getItem("list"))
+
+
+        var quantity = $("input[name='quantity[]']")
+              .map(function(){return $(this).val();}).get();
+     
+        sessionStorage.setItem("quantity", JSON.stringify(quantity));
+        console.log(sessionStorage.getItem("quantity"))
+
+
+        var rate = $("input[name='rate[]']")
+              .map(function(){return $(this).val();}).get();
+     
+        sessionStorage.setItem("rate", JSON.stringify(rate));
+        console.log(sessionStorage.getItem("rate"))
+
+    }
+
+
 
     function myDeleteFunction() {
         var index, table = document.getElementById('table');
@@ -88,10 +119,12 @@ include_once('connect.php');
                 if (c === true) {
                     index = this.parentElement.rowIndex;
                     table.deleteRow(index);
+                    saveData();
                 }
-                console.log(index);
+                console.log("Index deleted: " + index);
             };
         }
+        
     }
 
     function myEditFunction() {
@@ -100,16 +133,19 @@ include_once('connect.php');
             table.rows[i].cells[5].onclick = function() {
 
                 index = this.parentElement.rowIndex;
-                console.log("index " + index);
-                //    document.getElementById("no").disabled = false;
-                if ($('input[name=edit]').is(':disabled')) {
-                    $('input[name=edit]').attr('disabled', false);
+                console.log("This is index : " + index);
+                ////    document.getElementById("no").disabled = false;
+                if ($('input[id=edit]').is(':disabled')) {
+                    $('input[id=edit]').attr('disabled', false);
                     // console.log("table id " +table_id);
                 } else {
-                    $('input[name=edit]').attr('disabled', true);
+                    $('input[id=edit]').attr('disabled', true);
                 }
+
             };
         }
+        
+        saveData();
     }
 </script>
 
