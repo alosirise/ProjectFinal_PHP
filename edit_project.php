@@ -27,10 +27,20 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 <body>
     <div class="" id="nav"></div>
     <form action="" method="POST">
+          <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="w3-container col-lg-6 center">
+                <h2 style=" padding :45px;">แก้ไขโครงการ</h2>
+                <div class="card">
+                    <div class="card-body">
+
         <?php
         include_once('connect.php');
         $sql = "SELECT * FROM create_project WHERE project_id = '$_GET[project_id]'";
         $result = $conn->query($sql);
+
+        $sql_mutiple_text = "SELECT * FROM mutiple_text WHERE project_id = '$_GET[project_id]'";
+        $result_mutiple_text = $conn->query($sql_mutiple_text);
 
         if ($result->num_rows > 0) {
 
@@ -38,12 +48,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             while ($row = $result->fetch_assoc()) {
                 $_SESSION['project_id'] = $row['project_id'];
                 echo ' 
-            <div class="row">
-            <div class="col-lg-3"></div>
-            <div class="w3-container col-lg-6 center">
-                <h2 style=" padding :45px;">แก้ไขโครงการ</h2>
-                <div class="card">
-                    <div class="card-body">
+          
                         <div>
                             <label for="exampleFormControlInput1">ชื่อโครงการ</label>
                             <input type="text" class="form-control text" id="name_project" name="name_project"  value="' . $row["name_project"] . '"></td>
@@ -52,24 +57,31 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                             <label for="exampleFormControlInput1">หน่วยงานที่รับผิดชอบ</label>
                             <input type="text" class="form-control text" id="respondsible_department" name="respondsible_department"   value="' . $row["respondsible_department"] . '"></td>
                         </div>
-                        <div>
-                            <label for="exampleFormControlInput1">หลักการและเหตุผล</label>
+                        <div><label for="exampleFormControlInput1">หลักการและเหตุผล</label>
                             <textarea class="form-control text" id="principle" name="principle" rows="3" > ' . $row["principle"] . '</textarea>
-                        </div>
+                        </div> 
                         
                         <label >วัตถุประสงค์</label>
                         <div>         
-                            <table>            
-                                    <tr>
-                                    <td><input type="text" class ="form-control" name="objective" id="objective"></td>
-                                    <td><a class="remove" >-</td>
-                                    </tr>           
-                            </table>  
+                            <table>';
+                      
+                            foreach ($result_mutiple_text as $value){  
+                                if($value["objective"] != ""){
+                echo        '            
+                            <tr>
+                            <td><input type="text" class ="form-control" name="objective[]" id="objective" value="' . $value["objective"]. '"></td>
+                            <td><a class="remove" >-</td>
+                            </tr>';   
+                                }
+                            }
+
+                                   
+                echo  '</table>
                             <tbody1></tbody><br>
-                         
                             <a class="btn btn-primary pull-left" id="addRow1" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
                         </div>
-                      
+                        
+
                         <div>
                         <label for="exampleFormControlInput1">กลุ่มเป้าหมาย</label>
                             <input type="text" class="form-control text" id="target_group" name="target_group"   value="' . $row["target_group"] . '"></td>
@@ -82,12 +94,21 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     
                         <label for="exampleFormControlInput1">วิทยากร</label>
                         <div>
-                            <table>
+                            <table>';
+                         
+                            foreach ($result_mutiple_text as $value){  
+                                if($value["lecturer"] != ""){
+                echo        '      
                                
                                     <tr>
-                                    <td><input type="text" class ="form-control" name="lecturer" id="lecturer"></td>
+                                    <td><input type="text" class ="form-control" name="lecturer[]" id="lecturer" value="' . $value["lecturer"]. '"></td>
                                     <td><a class="remove" >-</td>
-                                    </tr>                 
+                                    </tr>';   
+                                      }
+                                 }
+        
+                                           
+                        echo  '                 
                                 
                             </table> <tbody2></tbody><br>
                             <a class="btn btn-primary pull-left" id="addRow2" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
@@ -101,11 +122,20 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     
                         <label for="exampleFormControlInput1">ประโยชน์ที่จะได้รับ</label>
                         <div>
-                            <table>                   
+                            <table> ';
+                         
+                            foreach ($result_mutiple_text as $value){  
+                                if($value["benefits"] != ""){
+                echo        '                    
                                     <tr>
-                                    <td><input type="text" class ="form-control"  name="benefits" id="benefits"></td>
+                                    <td><input type="text" class ="form-control"  name="benefits[]" id="benefits" value="' . $value["benefits"]. '"></td>
                                     <td><a class="remove" >-</td>
-                                    </tr>
+                                    </tr>';   
+                                         }
+                                   }
+        
+                                           
+                        echo  '            
 
                             </table><tbody3></tbody><br>   
                             <a class="btn btn-primary pull-left" id="addRow3" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
@@ -124,11 +154,20 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     
                         <label for="exampleFormControlInput1">คณะทำงาน</label>
                         <div>
-                            <table>
+                            <table>';
+                         
+                            foreach ($result_mutiple_text as $value){  
+                                if($value["working_group"] != ""){
+                echo        '               
                                     <tr>
-                                    <td><input type="text" class ="form-control" name="working_group" id="working_group"></td>
+                                    <td><input type="text" class ="form-control" name="working_group[]" id="working_group"  value="' . $value["working_group"]. '"></td>
                                     <td><a class="remove" >-</td>
-                                    </tr>
+                                    </tr>';   
+
+                                          }
+                                    }
+                                           
+                        echo  '            
                             </table> <tbody4></tbody><br>
                             <a class="btn btn-primary pull-left" id="addRow4" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
                         </div>
@@ -169,10 +208,35 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             working_group = '" . $working_group . "'  WHERE project_id = '$_GET[project_id]'";
         $result = mysqli_query($conn, $sql2);
 
-        if ($result) {
+        $objective = $_POST['objective'];
+        $lecturer = $_POST['lecturer'];
+        $benefits = $_POST['benefits'];
+        $working_group = $_POST['working_group'];
+
+        
+        $project_id;
+        $sql_check = "SELECT * FROM create_project WHERE id = '" . $_SESSION['id'] . "' ";
+        $result_check = $conn->query($sql_check);
+         while ($row = $result_check->fetch_assoc()) {
+            $project_id =$row['project_id'];
+         }
+
+            $count = max(count($objective),count($lecturer),count($benefits),count($working_group)); 
+            $sql4 = "INSERT INTO mutiple_text (project_id ,objective,lecturer,benefits,working_group)   VALUES";
+            for ($x = 0; $x < $count; $x++) {
+                echo " round = ", $x;
+                     $sql4 .="('$project_id','".$_POST['objective'][$x]."','".$_POST['lecturer'][$x]."','".$_POST['benefits'][$x]."','".$_POST['working_group'][$x]."'),";                 
+            }
+            
+             $sql4  = rtrim($sql4,",");
+            //  echo $sql4;
+             $result4 = mysqli_query($conn, $sql4);
+
+
+      
             echo "<script>alert('แก้ไขเรียบร้อย');
                 window.location='myproject.php';</script>";
-        }
+        
     }
     ?>
 
@@ -184,25 +248,29 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
     <script src="index.js"> </script>
     <script>
-        var html = '<tr><td><input type="text" class ="form-control" name="name"></td><td><a class="remove" >-</td></tr>';
-        // var html = "echo ".'<tr><td><input type='."text".' name='."name".'></td><td><button class='."remove".'>-</button></td></tr>'." ";
+        var objective_replace = '<tr><td style ="width = 25%;"><input type="text" class ="form-control" name="objective[]" id="objective"></td><td><a class="remove" >-</td></tr>';
+        var lecturer_replace = '<tr><td><input type="text" class ="form-control" name="lecturer[]" id="lecturer"></td><td><a class="remove" >-</td></tr>';
+        var benefits_replace = '<tr> <td><input type="text" class ="form-control"  name="benefits[]" id="benefits"></td><td><a class="remove" >-</td></tr>';
+        var working_group_replace = '<tr><td><input type="text" class ="form-control" name="working_group[]" id="working_group"></td><td><a class="remove" >-</td></tr>';
+
         $(function() {
             $("#includedContent").load("table_edit.php");
         });
+
         $(function() {
             $('tbody').sortable();
 
             $('#addRow1').click(function() {
-                $('tbody1').before(html);
+                $('tbody1').before(objective_replace);
             });
             $('#addRow2').click(function() {
-                $('tbody2').before(html);
+                $('tbody2').before(lecturer_replace);
             });
             $('#addRow3').click(function() {
-                $('tbody3').before(html);
+                $('tbody3').before(benefits_replace);
             });
             $('#addRow4').click(function() {
-                $('tbody4').before(html);
+                $('tbody4').before(working_group_replace);
             });
 
 
