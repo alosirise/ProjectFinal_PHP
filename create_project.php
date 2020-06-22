@@ -137,51 +137,52 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     ';
         ?>
 
-        <script>
+        <!-- <script>
             function save() {
-            //     var objective = $("input[name='objective[]']")
-            //         .map(function() {
-            //             return $(this).val();
-            //         }).get();
+                var objective = $("input[name='objective[]']")
+                    .map(function() {
+                        return $(this).val();
+                    }).get();
 
 
-            //     sessionStorage.setItem("objective_length", objective.length);
-            //     sessionStorage.setItem("objective", JSON.stringify(objective));
-            //     console.log(sessionStorage.getItem("objective"));
-            //     console.log("object_length : ", objective.length);
+                sessionStorage.setItem("objective_length", objective.length);
+                sessionStorage.setItem("objective", JSON.stringify(objective));
+                console.log(sessionStorage.getItem("objective"));
+                console.log("object_length : ", objective.length);
 
-            //     document.getElementById("test").value = sessionStorage.getItem("objective_length", objective.length);;
-
-
-            //     var lecturer = $("input[name='lecturer[]']")
-            //         .map(function() {
-            //             return $(this).val();
-            //         }).get();
-
-            //     sessionStorage.setItem("lecturer", JSON.stringify(lecturer));
-            //     console.log(sessionStorage.getItem("lecturer"));
+                document.getElementById("test").value = sessionStorage.getItem("objective_length", objective.length);;
 
 
+                var lecturer = $("input[name='lecturer[]']")
+                    .map(function() {
+                        return $(this).val();
+                    }).get();
 
-            //     var benefits = $("input[name='benefits[]']")
-            //         .map(function() {
-            //             return $(this).val();
-            //         }).get();
-
-            //     sessionStorage.setItem("benefits", JSON.stringify(benefits));
-            //     console.log(sessionStorage.getItem("benefits"));
+                sessionStorage.setItem("lecturer", JSON.stringify(lecturer));
+                console.log(sessionStorage.getItem("lecturer"));
 
 
 
-            //     var working_group = $("input[name='working_group[]']")
-            //         .map(function() {
-            //             return $(this).val();
-            //         }).get();
+                var benefits = $("input[name='benefits[]']")
+                    .map(function() {
+                        return $(this).val();
+                    }).get();
 
-            //     sessionStorage.setItem("working_group", JSON.stringify(working_group));
-            //     console.log(sessionStorage.getItem("working_group"));
-            // }
-        </script>
+                sessionStorage.setItem("benefits", JSON.stringify(benefits));
+                console.log(sessionStorage.getItem("benefits"));
+
+
+
+                var working_group = $("input[name='working_group[]']")
+                    .map(function() {
+                        return $(this).val();
+                    }).get();
+
+                sessionStorage.setItem("working_group", JSON.stringify(working_group));
+                console.log(sessionStorage.getItem("working_group"));
+            }
+        </script> -->
+
         <div class="card-footer text-center">
             <input type="submit" name="submit" class="btn btn-success " value="Submit">
         </div>
@@ -189,7 +190,6 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     </form>
     <?php
     if (isset($_POST["submit"])) {
-
 
         echo '<script> console.log(sessionStorage.getItem("objective"));</script>';
         echo $objective_length = '<script> console.log(sessionStorage.getItem("objective_length"));</script>';
@@ -216,9 +216,9 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         $target_group = $_POST['target_group'];
         $duration = $_POST['duration'];
         $location = $_POST['location'];
-      
+        
         $cost = $_POST['cost'];
-        $budget = 'sss';
+        $status = "กำลังดำเนินการ";
        
 
         $sql = "SELECT name_project FROM create_project WHERE name_project='$name_project'";
@@ -230,8 +230,8 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             echo '<script>alert("กรุณาตั้งชื่อโปรเจ็ค")</script>';
         } else {
 
-            $sql2 = "INSERT INTO create_project (id,creator ,name_project,respondsible_department,principle,target_group,duration,location,cost,budget) 
-                VALUES ( '$user_id','$username','$name_project', '$respondsible_department','$principle','$target_group','$duration','$location','$cost','$budget')";
+            $sql2 = "INSERT INTO create_project (id,creator ,name_project,respondsible_department,principle,target_group,duration,location,cost,status) 
+                VALUES ( '$user_id','$username','$name_project', '$respondsible_department','$principle','$target_group','$duration','$location','$cost','$status')";
             $result2 = mysqli_query($conn, $sql2);
 
 
@@ -250,19 +250,21 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                 }
                 
                  $sql4  = rtrim($sql4,",");
-                //  echo $sql4;
                  $result4 = mysqli_query($conn, $sql4);
 
-             
 
+                 
+                 $count_table = max(count($_POST['no']),count($_POST['list']),count($_POST['quantity']),count($_POST['rate']),count($_POST['cost1'])); 
+                 $sql5 = "INSERT INTO budget_form (project_id ,no,list,quantity,rate,cost)   VALUES";
+                 for ($x = 0; $x < $count_table; $x++) {
+                     echo " round = ", $x;
+                          $sql5 .="('$project_id','".$_POST['no'][$x]."','".$_POST['list'][$x]."','".$_POST['quantity'][$x]."','".$_POST['rate'][$x]."','".$_POST['cost1'][$x]."'),";                 
+                 }
+                 
+                  $sql5  = rtrim($sql5,",");
+                  $result5 = mysqli_query($conn, $sql5);
 
-            // $sql3 = "INSERT INTO budget_form (project_id,no,list,quantity,rate,cost) 
-            //      VALUES ( 3,'no','list','quantity','rate','cost_budget')";
-            // $result3 = mysqli_query($conn, $sql3);
-
-
-            
-                echo "<script>alert('ส่งคำร้องขอแล้ว โปรดรอการอนุมัติ');
+                echo "<script>alert('สร้างโครงการแล้ว ขั้นตอนถัดไป กรุณาสร้างแบบฟอร์ม');
                 window.location='myproject.php';</script>";
             
         }

@@ -27,27 +27,27 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 <body>
     <div class="" id="nav"></div>
     <form action="" method="POST">
-          <div class="row">
+        <div class="row">
             <div class="col-lg-3"></div>
             <div class="w3-container col-lg-6 center">
                 <h2 style=" padding :45px;">แก้ไขโครงการ</h2>
                 <div class="card">
                     <div class="card-body">
 
-        <?php
-        include_once('connect.php');
-        $sql = "SELECT * FROM create_project WHERE project_id = '$_GET[project_id]'";
-        $result = $conn->query($sql);
+                        <?php
+                        include_once('connect.php');
+                        $sql = "SELECT * FROM create_project WHERE project_id = '$_GET[project_id]'";
+                        $result = $conn->query($sql);
 
-        $sql_mutiple_text = "SELECT * FROM mutiple_text WHERE project_id = '$_GET[project_id]'";
-        $result_mutiple_text = $conn->query($sql_mutiple_text);
+                        $sql_mutiple_text = "SELECT * FROM mutiple_text WHERE project_id = '$_GET[project_id]'";
+                        $result_mutiple_text = $conn->query($sql_mutiple_text);
 
-        if ($result->num_rows > 0) {
+                        if ($result->num_rows > 0) {
 
 
-            while ($row = $result->fetch_assoc()) {
-                $_SESSION['project_id'] = $row['project_id'];
-                echo ' 
+                            while ($row = $result->fetch_assoc()) {
+                                $_SESSION['project_id'] = $row['project_id'];
+                                echo ' 
           
                         <div>
                             <label for="exampleFormControlInput1">ชื่อโครงการ</label>
@@ -64,19 +64,18 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                         <label >วัตถุประสงค์</label>
                         <div>         
                             <table>';
-                      
-                            foreach ($result_mutiple_text as $value){  
-                                if($value["objective"] != ""){
-                echo        '            
-                            <tr>
-                            <td><input type="text" class ="form-control" name="objective[]" id="objective" value="' . $value["objective"]. '"></td>
-                            <td><a class="remove" >-</td>
-                            </tr>';   
-                                }
-                            }
 
-                                   
-                echo  '</table>
+                                foreach ($result_mutiple_text as $value) {
+                                    if ($value["objective"] != "") {
+                                        echo        '            
+                            <tr>
+                            <td><input type="text" class ="form-control" name="objective[]" id="objective" value="' . $value["objective"] . '"></td>
+                            <td><a class="remove" >-</td>
+                            </tr>';
+                                    }
+                                }
+
+                                echo  '</table>
                             <tbody1></tbody><br>
                             <a class="btn btn-primary pull-left" id="addRow1" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
                         </div>
@@ -95,20 +94,20 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                         <label for="exampleFormControlInput1">วิทยากร</label>
                         <div>
                             <table>';
-                         
-                            foreach ($result_mutiple_text as $value){  
-                                if($value["lecturer"] != ""){
-                echo        '      
+
+                                foreach ($result_mutiple_text as $value) {
+                                    if ($value["lecturer"] != "") {
+                                        echo        '      
                                
                                     <tr>
-                                    <td><input type="text" class ="form-control" name="lecturer[]" id="lecturer" value="' . $value["lecturer"]. '"></td>
+                                    <td><input type="text" class ="form-control" name="lecturer[]" id="lecturer" value="' . $value["lecturer"] . '"></td>
                                     <td><a class="remove" >-</td>
-                                    </tr>';   
-                                      }
-                                 }
-        
-                                           
-                        echo  '                 
+                                    </tr>';
+                                    }
+                                }
+
+
+                                echo  '                 
                                 
                             </table> <tbody2></tbody><br>
                             <a class="btn btn-primary pull-left" id="addRow2" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
@@ -123,19 +122,19 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                         <label for="exampleFormControlInput1">ประโยชน์ที่จะได้รับ</label>
                         <div>
                             <table> ';
-                         
-                            foreach ($result_mutiple_text as $value){  
-                                if($value["benefits"] != ""){
-                echo        '                    
+
+                                foreach ($result_mutiple_text as $value) {
+                                    if ($value["benefits"] != "") {
+                                        echo        '                    
                                     <tr>
-                                    <td><input type="text" class ="form-control"  name="benefits[]" id="benefits" value="' . $value["benefits"]. '"></td>
+                                    <td><input type="text" class ="form-control"  name="benefits[]" id="benefits" value="' . $value["benefits"] . '"></td>
                                     <td><a class="remove" >-</td>
-                                    </tr>';   
-                                         }
-                                   }
-        
-                                           
-                        echo  '            
+                                    </tr>';
+                                    }
+                                }
+
+
+                                echo  '            
 
                             </table><tbody3></tbody><br>   
                             <a class="btn btn-primary pull-left" id="addRow3" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
@@ -149,25 +148,24 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     
                         <div>
                             <label for="exampleFormControlInput1">งบประมาณค่าใช้จ่าย</label>
-                            <div id="includedContent" name ="budget"   value="' . $row["budget"] . '"></div>
+                            <div id="includedContent" name ="budget"></div>
                         </div>
     
                         <label for="exampleFormControlInput1">คณะทำงาน</label>
                         <div>
                             <table>';
-                         
-                            foreach ($result_mutiple_text as $value){  
-                                if($value["working_group"] != ""){
-                echo        '               
-                                    <tr>
-                                    <td><input type="text" class ="form-control" name="working_group[]" id="working_group"  value="' . $value["working_group"]. '"></td>
-                                    <td><a class="remove" >-</td>
-                                    </tr>';   
 
-                                          }
+                                foreach ($result_mutiple_text as $value) {
+                                    if ($value["working_group"] != "") {
+                                        echo '               
+                                    <tr>
+                                    <td><input type="text" class ="form-control" name="working_group[]" id="working_group"  value="' . $value["working_group"] . '"></td>
+                                    <td><a class="remove" >-</td>
+                                    </tr>';
                                     }
-                                           
-                        echo  '            
+                                }
+
+                                echo  '            
                             </table> <tbody4></tbody><br>
                             <a class="btn btn-primary pull-left" id="addRow4" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
                         </div>
@@ -178,12 +176,12 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             </div>
         </div>
     ';
-            }
-        }
-        ?>
-        <div class="card-footer text-center">
-            <a href='arrange.php'> <input type="submit" name="submit" class="btn btn-success " value="Submit"></a>
-        </div>
+                            }
+                        }
+                        ?>
+                        <div class="card-footer text-center">
+                            <input type="submit" name="submit" class="btn btn-success " value="บันทึก">
+                        </div>
     </form>
     <?php
 
@@ -192,54 +190,66 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         $name_project = $_POST['name_project'];
         $respondsible_department = $_POST['respondsible_department'];
         $principle = $_POST['principle'];
-        $objective = $_POST['objective'];
         $target_group = $_POST['target_group'];
         $duration = $_POST['duration'];
-        $lecturer = $_POST['lecturer'];
         $location = $_POST['location'];
-        $benefits = $_POST['benefits'];
         $cost = $_POST['cost'];
 
-        $working_group = $_POST['working_group'];
 
         $sql2 = "UPDATE `create_project` SET name_project = '" . $name_project . "', respondsible_department = '" . $respondsible_department . "'  
-            ,principle = '" . $principle . "',objective = '" . $objective . "',target_group = '" . $target_group . "',duration = '" . $duration . "',
-            lecturer = '" . $lecturer . "',location = '" . $location . "',benefits = '" . $benefits . "',cost = '" . $cost . "',
-            working_group = '" . $working_group . "'  WHERE project_id = '$_GET[project_id]'";
+                    ,principle = '" . $principle . "',target_group = '" . $target_group . "',duration = '" . $duration . "',
+                    location = '" . $location . "',cost = '" . $cost . "'  WHERE project_id = '$_GET[project_id]'";
         $result = mysqli_query($conn, $sql2);
+
 
         $objective = $_POST['objective'];
         $lecturer = $_POST['lecturer'];
         $benefits = $_POST['benefits'];
         $working_group = $_POST['working_group'];
 
-        
-        $project_id;
-        $sql_check = "SELECT * FROM create_project WHERE id = '" . $_SESSION['id'] . "' ";
-        $result_check = $conn->query($sql_check);
-         while ($row = $result_check->fetch_assoc()) {
-            $project_id =$row['project_id'];
-         }
-
-            $count = max(count($objective),count($lecturer),count($benefits),count($working_group)); 
-            $sql4 = "INSERT INTO mutiple_text (project_id ,objective,lecturer,benefits,working_group)   VALUES";
-            for ($x = 0; $x < $count; $x++) {
-                echo " round = ", $x;
-                     $sql4 .="('$project_id','".$_POST['objective'][$x]."','".$_POST['lecturer'][$x]."','".$_POST['benefits'][$x]."','".$_POST['working_group'][$x]."'),";                 
-            }
-            
-             $sql4  = rtrim($sql4,",");
-            //  echo $sql4;
-             $result4 = mysqli_query($conn, $sql4);
+        $count = max(count($objective), count($lecturer), count($benefits), count($working_group));
 
 
-      
-            echo "<script>alert('แก้ไขเรียบร้อย');
-                window.location='myproject.php';</script>";
-        
+        $sql5 = "DELETE FROM mutiple_text
+                    WHERE project_id = '$_GET[project_id]'";
+        $result5 = mysqli_query($conn, $sql5);
+
+
+        $sql4 = "INSERT INTO mutiple_text (project_id ,objective,lecturer,benefits,working_group)   VALUES";
+        for ($x = 0; $x < $count; $x++) {
+            echo " round = ", $x;
+            $sql4 .= "('" . $_GET['project_id'] . "','" . $_POST['objective'][$x] . "','" . $_POST['lecturer'][$x] . "','" . $_POST['benefits'][$x] . "','" . $_POST['working_group'][$x] . "'),";
+        }
+
+        $sql4  = rtrim($sql4, ",");
+        $result4 = mysqli_query($conn, $sql4);
+
+
+        $sql6 = "DELETE FROM budget_form
+                WHERE project_id = '$_GET[project_id]'";
+        $result6 = mysqli_query($conn, $sql6);
+
+        // print_r($_POST['no']);
+        // print_r($_POST['list']);
+        // print_r($_POST['quantity']);
+        // print_r($_POST['rate']);
+        // print_r($_POST['cost1']);
+
+        $count_table = max(count($_POST['no']), count($_POST['list']), count($_POST['quantity']), count($_POST['rate']), count($_POST['cost1']));
+        $sql7 = "INSERT INTO budget_form (project_id,no,list,quantity,rate,cost)   VALUES";
+        for ($x = 0; $x < $count_table; $x++) {
+            echo " round = ", $x;
+            $sql7 .= "('" . $_GET['project_id'] . "','" . $_POST['no'][$x] . "','" . $_POST['list'][$x] . "','" . $_POST['quantity'][$x] . "','" . $_POST['rate'][$x] . "','" . $_POST['cost1'][$x] . "'),";
+        }
+
+        $sql7  = rtrim($sql7, ",");
+        $result7 = mysqli_query($conn, $sql7);
+
+
+        echo "<script>alert('บันทึกเรียบร้อย');
+                    window.location='myproject.php';</script>";
     }
     ?>
-
 
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 
@@ -257,6 +267,14 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             $("#includedContent").load("table_edit.php");
         });
 
+        if ($('input[id=edit_form]').is('[readonly]')) {
+
+            $('input[id=edit_form]').attr('readonly', false);
+            // console.log("table id " +table_id);
+        } else {
+
+            $('input[id=edit_form]').attr('readonly', true);
+        }
         $(function() {
             $('tbody').sortable();
 

@@ -22,7 +22,7 @@
   <div class="row">
     <div class="col-lg-3"></div>
     <div class="w3-container col-lg-6 center ">
-      <h2 style=" padding :30px; ">โครงการของฉัน</h2>
+      <h2 style=" padding :30px; ">++++++ARRANGE ไม่ได้ใช้แล้ว+++++</h2>
 
       <center>
         <button type="button" onclick="location.href = 'create_project.php'" class="btn btn-primary">สร้าง</button>

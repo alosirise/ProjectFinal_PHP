@@ -10,7 +10,14 @@ include_once('connect.php');
 ?>
 
 <html>
+<style>
+    input:read-only,
+    textarea:read-only {
 
+        border-color: transparent;
+        cursor: context-menu;
+    }
+</style>
 <?php
 $sql = "SELECT * FROM budget_form WHERE project_id = '" . $_SESSION['project_id'] . "'";
 $result = $conn->query($sql);
@@ -33,11 +40,11 @@ $result = $conn->query($sql);
     while ($row = $result->fetch_assoc()) {
         echo '<tbody>
         <tr>
-        <td><input type="text"  style="width: 99%;"   name="edit" class ="no"      id="no" value ="' . $row["no"] . '" disabled></td>
-        <td><input type="text"  style="width: 99%;"   name="edit" class ="list"    id="list" value ="' . $row["list"] . '" disabled></td>
-        <td><input type="text"  style="width: 99%;"   name="edit"class ="quantity"  id="quantity" value ="' . $row["quantity"] . '" disabled></td>
-        <td><input type="text"  style="width: 99%;"   name="edit" class="rate"      id="rate" value ="' . $row["rate"] . '" disabled></td>
-        <td><input type="text"  style="width: 99%;"   name="edit" class = "cost1"    id="cost1" value ="' . $row["cost"] . '" disabled></td>
+        <td><input type="text"  style="width: 99%;"   name="no[]" class ="no"      id="edit" value ="' . $row["no"] . '" readonly></td>
+        <td><input type="text"  style="width: 99%;"   name="list[]" class ="list"    id="edit" value ="' . $row["list"] . '" readonly></td>
+        <td><input type="text"  style="width: 99%;"   name="quantity[]"class ="quantity"  id="edit" value ="' . $row["quantity"] . '" readonly></td>
+        <td><input type="text"  style="width: 99%;"   name="rate[]" class="rate"      id="edit" value ="' . $row["rate"] . '" readonly></td>
+        <td><input type="text"  style="width: 99%;"   name="cost1[]" class = "cost1"    id="edit" value ="' . $row["cost"] . '" readonly></td>
         <td> <i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> </td>
         <td> <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction()"></td>
         </tr>
@@ -61,11 +68,11 @@ $result = $conn->query($sql);
         var cell6 = row.insertCell(5);
         var cell7 = row.insertCell(6);
 
-        cell1.innerHTML = "<input type='text' name='edit' class ='no'  id='no' style='width: 99%; cursor: auto;' >";
-        cell2.innerHTML = "<input type='text' name='edit' class ='list'  id='list' style='width: 99%; cursor: auto;'>";
-        cell3.innerHTML = "<input type='text' name='edit' class ='quantity' id='quantity' style='width: 99%; cursor: auto;'> ";
-        cell4.innerHTML = "<input type='text'  name='edit' class='rate'  id='rate' style='width: 99%; cursor: auto;'> ";
-        cell5.innerHTML = "<input type='text' name='edit' class = 'cost1'  id='cost1'  style='width: 99%; cursor: auto;'>";
+        cell1.innerHTML = "<input type='text' name='no[]' class ='no'  id='edit' style='width: 99%; cursor: auto;' >";
+        cell2.innerHTML = "<input type='text' name='list[]' class ='list'  id='edit' style='width: 99%; cursor: auto;'>";
+        cell3.innerHTML = "<input type='text' name='quantity[]' class ='quantity' id='edit' style='width: 99%; cursor: auto;'> ";
+        cell4.innerHTML = "<input type='text'  name='rate[]' class='rate'  id='edit' style='width: 99%; cursor: auto;'> ";
+        cell5.innerHTML = "<input type='text' name='cost1[]' class = 'cost1'  id='edit'  style='width: 99%; cursor: auto;'>";
 
         cell6.innerHTML = '<i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> ';
         cell7.innerHTML = ' <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction()">';
@@ -73,6 +80,52 @@ $result = $conn->query($sql);
         myEditFunction();
 
     }
+
+    // function session() {
+
+
+    // var no = $("input[name='no[]']")
+    //     .map(function() {
+    //         return $(this).val();
+    //     }).get();
+
+    // var list = $("input[name='list[]']")
+    //     .map(function() {
+    //         return $(this).val();
+    //     }).get();
+
+    // var quantity = $("input[name='quantity[]']")
+    //     .map(function() {
+    //         return $(this).val();
+    //     }).get();
+
+
+    // var rate = $("input[name='rate[]']")
+    //     .map(function() {
+    //         return $(this).val();
+    //     }).get();
+
+    // var cost1 = $("input[name='cost1[]']")
+    //     .map(function() {
+    //         return $(this).val();
+    //     }).get();
+
+    // console.log(no);
+
+    // $.ajax({
+    //     url: 'edit_project.php',
+    //     type: 'POST',
+    //     data: {
+    //         'no[]': no,
+    //         'list[]': list,
+    //         'quantity[]': quantity,
+    //         'rate[]': rate,
+    //         'cost1[]': cost1
+
+    //     }
+    // });
+
+    // }
 
 
     function myDeleteFunction() {
@@ -86,9 +139,7 @@ $result = $conn->query($sql);
                 }
                 console.log(index);
             };
-
         }
-
     }
 
 
@@ -101,13 +152,13 @@ $result = $conn->query($sql);
                 console.log("index " + index);
                 //    document.getElementById("no").disabled = false;
 
-                if ($('input[name=edit]').is(':disabled')) {
-                    $('input[name=edit]').attr('disabled', false);
+                if ($('input[id=edit]').is('[readonly]')) {
 
+                    $('input[id=edit]').attr('readonly', false);
                     // console.log("table id " +table_id);
-
                 } else {
-                    $('input[name=edit]').attr('disabled', true);
+
+                    $('input[id=edit]').attr('readonly', true);
                 }
             };
 

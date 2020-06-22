@@ -10,7 +10,13 @@ include_once('connect.php');
 ?>
 
 <html>
+<style>
+   input:read-only, textarea:read-only {
 
+        border-color: transparent;
+        cursor: context-menu;
+    }
+</style>
 
 <table class="table table-bordered" id="table">
     <thead>
@@ -42,16 +48,15 @@ include_once('connect.php');
     ?>
     </tbody>
 </table>
-</form>   
 
 
-<a class="btn btn-primary pull-right"  onclick='myCreateFunction()' data-added="0"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
 
-<script> 
+<a class="btn btn-primary pull-right" onclick='myCreateFunction()' data-added="0"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
 
-    var i =0;
+<script>
+    var i = 0;
 
-    function myCreateFunction() {   
+    function myCreateFunction() {
         i++;
         var table = document.getElementById("table");
         var row = table.insertRow(-1);
@@ -77,35 +82,51 @@ include_once('connect.php');
 
     }
 
-    function saveData(){
+    function session() {
+
+
         var no = $("input[name='no[]']")
-              .map(function(){return $(this).val();}).get();
-
-        // var no =document.querySelectorAll('input[name$="ns"]');
-          
-        sessionStorage.setItem("no", JSON.stringify(no));
-        console.log(sessionStorage.getItem("no"))
-
+            .map(function() {
+                return $(this).val();
+            }).get();
 
         var list = $("input[name='list[]']")
-              .map(function(){return $(this).val();}).get();
-     
-        sessionStorage.setItem("list", JSON.stringify(list));
-        console.log(sessionStorage.getItem("list"))
-
+            .map(function() {
+                return $(this).val();
+            }).get();
 
         var quantity = $("input[name='quantity[]']")
-              .map(function(){return $(this).val();}).get();
-     
-        sessionStorage.setItem("quantity", JSON.stringify(quantity));
-        console.log(sessionStorage.getItem("quantity"))
+            .map(function() {
+                return $(this).val();
+            }).get();
 
 
         var rate = $("input[name='rate[]']")
-              .map(function(){return $(this).val();}).get();
-     
-        sessionStorage.setItem("rate", JSON.stringify(rate));
-        console.log(sessionStorage.getItem("rate"))
+            .map(function() {
+                return $(this).val();
+            }).get();
+
+        var cost1 = $("input[name='cost1[]']")
+            .map(function() {
+                return $(this).val();
+            }).get();
+
+        console.log(no);
+
+        $.ajax({
+            url: 'create_project.php',
+            type: 'POST',
+            data: {
+                'no[]': no,
+                'list[]': list,
+                'quantity[]': quantity,
+                'rate[]': rate,
+                'cost1[]': cost1
+
+            },
+            success: function(msg) {
+            }
+        });
 
     }
 
@@ -119,12 +140,12 @@ include_once('connect.php');
                 if (c === true) {
                     index = this.parentElement.rowIndex;
                     table.deleteRow(index);
-                    saveData();
+
                 }
                 console.log("Index deleted: " + index);
             };
         }
-        
+
     }
 
     function myEditFunction() {
@@ -135,17 +156,18 @@ include_once('connect.php');
                 index = this.parentElement.rowIndex;
                 console.log("This is index : " + index);
                 ////    document.getElementById("no").disabled = false;
-                if ($('input[id=edit]').is(':disabled')) {
-                    $('input[id=edit]').attr('disabled', false);
+                if ($('input[id=edit]').is('[readonly]')) {
+
+                    $('input[id=edit]').attr('readonly', false);
                     // console.log("table id " +table_id);
                 } else {
-                    $('input[id=edit]').attr('disabled', true);
+
+                    $('input[id=edit]').attr('readonly', true);
                 }
 
             };
         }
-        
-        saveData();
+
     }
 </script>
 
