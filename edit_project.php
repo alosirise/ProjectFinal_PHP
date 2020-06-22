@@ -10,7 +10,6 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
 ?>
 
-
 <!doctype html>
 <html lang="en">
 
@@ -89,62 +88,92 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
 <body>
     <div class="" id="nav"></div>
+    <form action="" method="POST" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-3"></div>
 
-    <div class="row">
-        <div class="col-3"></div>
-
-        <div class="w3-container col-lg-6 center" style="background-color: white;">
-            <h2 style=" padding:30px;">จัดการแบบฟอร์ม</h2>
-            <div class="bewcard">
-                <input class="form-control" style="font-size:30px;" type="text" value="ฟอร์มไม่มีชื่อ">
-            </div>
-
-            <div class="bewcard question0">
-                <div id="selected0">
-                    <div class="form-row">
-                        <div class="col-7">
-                            <!-- ทำ copy -->
-                             <input class="form-control" type="text" placeholder="คำถามของคุณ">
-                        </div>
-                        <div class="col-5">
-                            <select class="form-control" id="selectBox0" onchange="selectClick(id)">
-                                <option value="1">คำตอบสั้นๆ</option>
-                                <option value="2">ย่อหน้า</option>
-                                <option value="3">หลายตัวเลือก</option>
-                                <option value="4">ช่องเครื่องหมาย</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div style="margin-top:20px;">
-                        <label>ข้อความคำตอบสั้นๆ</label>
-                    </div>
+            <div class="w3-container col-lg-6 center" style="background-color: white;">
+                <h2 style=" padding:30px;">จัดการแบบฟอร์ม</h2>
+                <div class="bewcard">
+                    <input class="form-control" style="font-size:30px;" id="fn1" type="text" value="ฟอร์มไม่มีชื่อ">
                 </div>
 
-                <hr style="width:100%;text-align:left;margin-left:0">
-                <div style="margin-left:70%">
-                    <button type="button" class="btn-primary" onclick="copyQuestion()">คัดลอก</button>
-                    
-                    <button type="button" class="btn-danger" onclick="delQuestion(0)">ลบ</button>
-                    <span>จำเป็น</span>
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider round"></span>
-                    </label>
+                <div class="bewcard question0">
+                    <div id="selected0">
+                        <div class="form-row">
+                            <div class="col-7">
+                                <!-- ทำ copy -->
+                                <input class="form-control" id="q1" type="text" placeholder="คำถามของคุณ">
+                            </div>
+                            <div class="col-5">
+                                <select class="form-control" id="selectBox0" onchange="selectClick(id)">
+                                    <option value="1">คำตอบสั้นๆ</option>
+                                    <option value="2">ย่อหน้า</option>
+                                    <option value="3">หลายตัวเลือก</option>
+                                    <option value="4">ช่องเครื่องหมาย</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div style="margin-top:20px;">
+                            <label>ข้อความคำตอบสั้นๆ</label>
+                        </div>
+                    </div>
+
+                    <hr style="width:100%;text-align:left;margin-left:0">
+                    <div style="margin-left:70%">
+                        <button type="button" class="btn-primary" onclick="copyQuestion()">คัดลอก</button>
+
+                        <button type="button" class="btn-danger" onclick="delQuestion(0)">ลบ</button>
+                        <span>จำเป็น</span>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+                <div id="question">
                 </div>
             </div>
-            <div id="question">
+            <div style="background-color: white;">
+                <button type="button" class="btn-primary" onclick="addQuestion()">เพิ่ม</button>
             </div>
-        </div>
-        <div style="background-color: white;">
-            <button type="button" class="btn-primary" onclick="addQuestion()">เพิ่ม</button>
-        </div>
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then minified and Bootstrap JS -->
-        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <!-- Compiled and minified JavaScript -->
+            <div class="w3-container col-lg-3">
+            </div>
+            <div class="w3-container col-lg-2">
+                <button type="submit" class="btn-primary" name="addQ">บันทึก</button>
+            </div>
+    </form>
 
-        <script src="index.js"></script>
+    <?php
+    if (isset($_POST['addQ'])) {
+        // print_r($test);
+        var_dump($_POST);
+        $project_id = $_GET['project_id'];
+
+        $count_radio = count($_POST['test']);
+
+        include_once('connect.php');
+
+        $sql = "INSERT INTO question (project_id,text_radio) VALUES ('$project_id','";
+        for($i = 0;$i < $count_radio;$i++){
+            $sql .= "".$_POST['test'][$i].",";
+        }
+        $sql = rtrim($sql,",");
+        $sql .="')";
+        // echo $sql;
+        $result = mysqli_query($conn, $sql);
+
+        // echo "<script>window.location='myproject.php';</script>";
+    }
+     ?>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then minified and Bootstrap JS -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+
+    <script src="index.js"></script>
 </body>
 
 </html>

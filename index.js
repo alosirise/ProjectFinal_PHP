@@ -115,7 +115,6 @@ function selectClick(num_select) {
   var selectedValue = selectBox.options[selectBox.selectedIndex].value;
   var digitSelect = num_select.charAt(9);
 
-
   var select1 = '<div class="form-row">' +
     '<div class="col-7">' +
     '<div>' +
@@ -168,13 +167,13 @@ function selectClick(num_select) {
     '</div>' +
     '</div>' +
     '<div style="margin-top:20px; margin-left:5px">' +
-    '<div class="form-row radio">' +
+    '<div class="form-row radio0">' +
     '<div>' +
     '<input class="form-control" type="text" placeholder="ตัวเลือก">' +
     '</div>' +
     '</div>' +
-    '<div id="addradio'+digitSelect+'"></div>' +
-    '<button type="button" class="btn-primary" onclick="addRadio('+digitSelect+')">เพิ่ม</button>' +
+    '<div id="addradio' + digitSelect + '"></div>' +
+    '<button type="button" class="btn-primary" onclick="addRadio(' + digitSelect + ')">เพิ่ม</button>' +
     '</div>';
   var select4 = '<div class="form-row">' +
     '<div class="col-7">' +
@@ -198,7 +197,7 @@ function selectClick(num_select) {
     '</div>' +
     '</div>' +
     '<div id="addradio"></div>' +
-    '<button type="button" class="btn-primary" onclick="addRadio()">เพิ่ม</button>' +
+    '<button type="button" class="btn-primary" onclick="addRadio(' + digitSelect + ')">เพิ่ม</button>' +
     '</div>';
 
   console.log(num_select + " has select " + selectedValue + " | digit selectbox is " + digitSelect);
@@ -223,33 +222,31 @@ function selectClick(num_select) {
 }
 
 var num_radio = 0;
-
-function addRadio(order_radio) {
+function addRadio(digitSelect) {
   console.log("add radio click");
-  console.log(order_radio);
+  console.log("digit " + digitSelect);
 
   num_radio += 1;
   var addradio = '<div class="form-row radio' + num_radio + '">' +
     '<div>' +
-    '<input class="form-control" type="text" placeholder="ตัวเลือก">' +
+    '<input name="test[]" class="form-control" type="text" placeholder="ตัวเลือก">' +
     '</div>' +
     '<div>' +
-    '<button type="button" class="btn-danger" onclick="delRadio(' + num_radio + ')">ลบ</button>' +
+    '<button type="button" class="btn-danger" onclick="delRadio(' + num_radio + ',' + digitSelect + ')">ลบ</button>' +
     '</div>' +
     '</div>';
 
-  console.log("add radio" + num_radio);
-  $("#addradio"+order_radio).append(addradio);
+  console.log("addradio" + num_radio);
+  $("#addradio" + digitSelect).append(addradio);
+  var count_radio_each_question = $("#addradio" + digitSelect + " .form-row").length;
+  console.log("Question"+digitSelect+" = "+count_radio_each_question+" radio");
 }
 
-function delRadio(num_radio) {
+function delRadio(num_radio, digitSelect) {
   console.log("num radio = " + num_radio);
   console.log("del radio click");
   // ลบแบบ class
   $("div").remove(".radio" + num_radio);
-}
-
-function copyQuestion(){
-  // var texttest =$("#texttest").val();
-  // console.log(texttest);
+  var count_radio_each_question = $("#addradio" + digitSelect + " .form-row").length;
+  console.log("Question"+digitSelect+" = "+count_radio_each_question+" radio");
 }

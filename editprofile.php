@@ -112,7 +112,6 @@ include('auth.php');
         $sql2 = "UPDATE `profile` SET firstname = '" . $firstname . "' ,surname = '" . $surname . "' ,dateofbirth = '" . $dateofbirth . "' ,address2 = '" . $address2 . "'
         ,telephone = '" . $telephone . "' ,email = '" . $email . "' ,drug_food_allergy = '" . $drug_food_allergy . "' ,sex = '" . $sex . "' WHERE id='" . $session . "'";
         $result = mysqli_query($conn, $sql2);
-        // header('location:profile.php');
         echo "<script>window.location='profile.php';</script>";
         if (empty($_FILES['image']['tmp_name'])) {
             echo "Please select image.";
