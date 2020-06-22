@@ -1,3 +1,5 @@
+<script src="testjs.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <head>
     <title>Project</title>
     <!-- Required meta tags -->
@@ -8,18 +10,13 @@
 
 <body>
 
-    <form action="" method="POST" onclick ="test()" enctype="multipart/form-data">
-        <button type="submit" name="add">test</button>
+    <form action="" method="POST"  enctype="multipart/form-data">
+        <button type="button" onclick ="test()" name="add">test</button>
     </form>
     <?php
     echo "aaaaa";
-    if (isset($_POST['add'])) {
-        var_dump($_POST);
-        echo "adassdasd".$_POST['bew'];
-    }
     ?>
-    <script src="testjs.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
 </body>
 
 </html>
