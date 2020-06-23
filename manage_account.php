@@ -23,7 +23,6 @@ if ($_SESSION['role'] != "admin") {
 
 <body>
     <div class="" id="nav"></div>
-
     <div class="row">
         <div class="col-lg-3"></div>
         <div class="w3-container col-lg-6 center ">

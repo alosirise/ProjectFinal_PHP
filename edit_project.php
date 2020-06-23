@@ -21,19 +21,21 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap navbar CSS-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="form.css">
+    <link rel="stylesheet" href="form.css"> 
 </head>
 
 <body>
     <div class="" id="nav"></div>
     <form action="" method="POST">
+ 
         <div class="row">
             <div class="col-lg-3"></div>
             <div class="w3-container col-lg-6 center">
                 <h2 style=" padding :45px;">แก้ไขโครงการ</h2>
+               
                 <div class="card">
                     <div class="card-body">
-
+                 
                         <?php
                         include_once('connect.php');
                         $sql = "SELECT * FROM create_project WHERE project_id = '$_GET[project_id]'";
@@ -41,27 +43,27 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
                         $sql_mutiple_text = "SELECT * FROM mutiple_text WHERE project_id = '$_GET[project_id]'";
                         $result_mutiple_text = $conn->query($sql_mutiple_text);
-
+                            
                         if ($result->num_rows > 0) {
 
 
                             while ($row = $result->fetch_assoc()) {
                                 $_SESSION['project_id'] = $row['project_id'];
-                                echo ' 
+                                echo '   
           
                         <div>
-                            <label for="exampleFormControlInput1">ชื่อโครงการ</label>
-                            <input type="text" class="form-control text" id="name_project" name="name_project"  value="' . $row["name_project"] . '"></td>
+                            <label for="exampleFormControlInput1">ชื่อโครงการ</label>  <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'name_project\')"></i>
+                            <input type="text" class="form-control text" id=edit_name_project name="name_project"  readonly value="' . $row["name_project"] . '"></td>
                         </div>
                         <div>
-                            <label for="exampleFormControlInput1">หน่วยงานที่รับผิดชอบ</label>
-                            <input type="text" class="form-control text" id="respondsible_department" name="respondsible_department"   value="' . $row["respondsible_department"] . '"></td>
+                            <label for="exampleFormControlInput1">หน่วยงานที่รับผิดชอบ</label>  <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'respond\')"></i>
+                            <input type="text" class="form-control text" id=edit_respond name="respondsible_department" readonly  value="' . $row["respondsible_department"] . '"></td>
                         </div>
-                        <div><label for="exampleFormControlInput1">หลักการและเหตุผล</label>
-                            <textarea class="form-control text" id="principle" name="principle" rows="3" > ' . $row["principle"] . '</textarea>
+                        <div><label for="exampleFormControlInput1">หลักการและเหตุผล</label>  <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'principle\')"></i>
+                            <textarea class="form-control text" id=edit_principle name="principle" readonly rows="3" > ' . $row["principle"] . '</textarea>
                         </div> 
                         
-                        <label >วัตถุประสงค์</label>
+                        <label >วัตถุประสงค์</label>  <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'objective\')"></i>
                         <div>         
                             <table>';
 
@@ -69,7 +71,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                                     if ($value["objective"] != "") {
                                         echo        '            
                             <tr>
-                            <td><input type="text" class ="form-control" name="objective[]" id="objective" value="' . $value["objective"] . '"></td>
+                            <td><input type="text" class ="form-control" name="objective[]" readonly id=edit_objective value="' . $value["objective"] . '"></td>
                             <td><a class="remove" >-</td>
                             </tr>';
                                     }
@@ -77,21 +79,21 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
                                 echo  '</table>
                             <tbody1></tbody><br>
-                            <a class="btn btn-primary pull-left" id="addRow1" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
+                            <a class="btn btn-primary pull-left" id="addRow1" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
                         </div>
                         
 
                         <div>
-                        <label for="exampleFormControlInput1">กลุ่มเป้าหมาย</label>
-                            <input type="text" class="form-control text" id="target_group" name="target_group"   value="' . $row["target_group"] . '"></td>
+                        <label for="exampleFormControlInput1">กลุ่มเป้าหมาย</label> <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'target_group\')"></i>
+                            <input type="text" class="form-control text" readonly id=edit_target_group name="target_group"   value="' . $row["target_group"] . '"></td>
                         </div>
     
                         <div>
-                            <label for="exampleFormControlInput1">ระยะเวลาในการจัดการโครงการ</label>
-                            <input type="text" class="form-control text" id="duration" name="duration"   value="' . $row["duration"] . '"></td>
+                            <label for="exampleFormControlInput1">ระยะเวลาในการจัดการโครงการ</label> <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'duration\')"></i>
+                            <input type="text" class="form-control text" readonly id=edit_duration name="duration"   value="' . $row["duration"] . '"></td>
                         </div>
     
-                        <label for="exampleFormControlInput1">วิทยากร</label>
+                        <label for="exampleFormControlInput1">วิทยากร</label> <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'lecturer\')"></i>
                         <div>
                             <table>';
 
@@ -100,7 +102,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                                         echo        '      
                                
                                     <tr>
-                                    <td><input type="text" class ="form-control" name="lecturer[]" id="lecturer" value="' . $value["lecturer"] . '"></td>
+                                    <td><input type="text" class ="form-control" name="lecturer[]" readonly  id=edit_lecturer value="' . $value["lecturer"] . '"></td>
                                     <td><a class="remove" >-</td>
                                     </tr>';
                                     }
@@ -110,16 +112,16 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                                 echo  '                 
                                 
                             </table> <tbody2></tbody><br>
-                            <a class="btn btn-primary pull-left" id="addRow2" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
+                            <a class="btn btn-primary pull-left" id="addRow2" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
                         </div>
                       
     
                         <div>
-                            <label for="exampleFormControlInput1">สถานที่อบรม</label>
-                            <input type="text" class="form-control text" id="location" name="location"   value="' . $row["location"] . '"></td>
+                            <label for="exampleFormControlInput1">สถานที่อบรม</label> <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'location\')"></i>
+                            <input type="text" class="form-control text" readonly id=edit_location name="location"   value="' . $row["location"] . '"></td>
                         </div>
     
-                        <label for="exampleFormControlInput1">ประโยชน์ที่จะได้รับ</label>
+                        <label for="exampleFormControlInput1">ประโยชน์ที่จะได้รับ</label>  <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'benefits\')"></i>
                         <div>
                             <table> ';
 
@@ -127,7 +129,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                                     if ($value["benefits"] != "") {
                                         echo        '                    
                                     <tr>
-                                    <td><input type="text" class ="form-control"  name="benefits[]" id="benefits" value="' . $value["benefits"] . '"></td>
+                                    <td><input type="text" class ="form-control"  readonly name="benefits[]" id=edit_benefits value="' . $value["benefits"] . '"></td>
                                     <td><a class="remove" >-</td>
                                     </tr>';
                                     }
@@ -142,8 +144,8 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                      
                   
                         <div>
-                            <label for="exampleFormControlInput1">ค่าลงทะเบียนอบรม</label>
-                            <input type="text" class="form-control text" id="cost" name="cost"   value="' . $row["cost"] . '"></td>
+                            <label for="exampleFormControlInput1">ค่าลงทะเบียนอบรม</label>  <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'cost\')"></i>
+                            <input type="text" class="form-control text" id=edit_cost name="cost"  readonly  value="' . $row["cost"] . '"></td>
                         </div>
     
                         <div>
@@ -151,7 +153,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                             <div id="includedContent" name ="budget"></div>
                         </div>
     
-                        <label for="exampleFormControlInput1">คณะทำงาน</label>
+                        <label for="exampleFormControlInput1">คณะทำงาน</label>  <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'working_group\')"></i>
                         <div>
                             <table>';
 
@@ -159,7 +161,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                                     if ($value["working_group"] != "") {
                                         echo '               
                                     <tr>
-                                    <td><input type="text" class ="form-control" name="working_group[]" id="working_group"  value="' . $value["working_group"] . '"></td>
+                                    <td><input type="text" class ="form-control" readonly name="working_group[]" id=edit_working_group value="' . $value["working_group"] . '"></td>
                                     <td><a class="remove" >-</td>
                                     </tr>';
                                     }
@@ -182,6 +184,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                         <div class="card-footer text-center">
                             <input type="submit" name="submit" class="btn btn-success " value="บันทึก">
                         </div>
+                       
     </form>
     <?php
 
@@ -257,23 +260,25 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
     <script src="index.js"> </script>
-    <script>
-        var objective_replace = '<tr><td style ="width = 25%;"><input type="text" class ="form-control" name="objective[]" id="objective"></td><td><a class="remove" >-</td></tr>';
-        var lecturer_replace = '<tr><td><input type="text" class ="form-control" name="lecturer[]" id="lecturer"></td><td><a class="remove" >-</td></tr>';
-        var benefits_replace = '<tr> <td><input type="text" class ="form-control"  name="benefits[]" id="benefits"></td><td><a class="remove" >-</td></tr>';
-        var working_group_replace = '<tr><td><input type="text" class ="form-control" name="working_group[]" id="working_group"></td><td><a class="remove" >-</td></tr>';
+    <script>  
+        var objective_replace = '<tr><td style ="width = 25%;"><input type="text" class ="form-control" name="objective[]" id=edit_objective></td><td><a class="remove" >-</td></tr>';
+        var lecturer_replace = '<tr><td><input type="text" class ="form-control" name="lecturer[]" id=edit_lecturer></td><td><a class="remove" >-</td></tr>';
+        var benefits_replace = '<tr> <td><input type="text" class ="form-control"  name="benefits[]" id=edit_benefits></td><td><a class="remove" >-</td></tr>';
+        var working_group_replace = '<tr><td><input type="text" class ="form-control" name="working_group[]" id=edit_working_group></td><td><a class="remove" >-</td></tr>';
 
         $(function() {
             $("#includedContent").load("table_edit.php");
         });
 
-        if ($('input[id=edit_form]').is('[readonly]')) {
+        function edit(type) {
+            if ($('input[id=edit_'+type+'], textarea[id=edit_'+type+']').is('[readonly]')) {
 
-            $('input[id=edit_form]').attr('readonly', false);
-            // console.log("table id " +table_id);
-        } else {
+                $('input[id=edit_'+type+'], textarea[id=edit_'+type+']').attr('readonly', false);
+                // console.log("table id " +table_id);
+            } else {
 
-            $('input[id=edit_form]').attr('readonly', true);
+                $('input[id=edit_'+type+'], textarea[id=edit_'+type+']').attr('readonly', true);
+            }
         }
         $(function() {
             $('tbody').sortable();
