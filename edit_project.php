@@ -461,15 +461,15 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             $count_radio = count($_POST['text_radio']);
         }
         echo "num_radio = " . $count_radio;
-        
+
 
         include_once('connect.php');
         $sql2 = "SELECT * from question where project_id = $project_id";
         $result2 = mysqli_query($conn, $sql2);
         if ($result2->num_rows > 0) {
-            $sql1 = "UPDATE question SET form_name ='" . $formname . "'";
+            $sql1 = "UPDATE question SET form_name ='" . $formname . "' WHERE project_id='".$project_id."'";
 
-            $sql2 = "UPDATE question SET num_question ='" . $count_question . "'";
+            $sql2 = "UPDATE question SET num_question ='" . $count_question . "' WHERE project_id='".$project_id."'";
 
             $sql3 = "UPDATE question SET question ='";
             for ($i = 0; $i < $count_question; $i++) {
@@ -479,7 +479,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                 $sql3 .="".$_POST['question'][$i].",";
             }
             $sql3 = rtrim($sql3, ",");
-            $sql3 .= "'";
+            $sql3 .= "' WHERE project_id='".$project_id."'";
 
             $sql4 = "UPDATE question SET type ='";
             for ($i = 0; $i <= $addquestion; $i++) {
@@ -488,7 +488,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                 }
             }
             $sql4 = rtrim($sql4, ",");
-            $sql4 .= "'";
+            $sql4 .= "' WHERE project_id='".$project_id."'";
 
             $sql5 = "UPDATE question SET num_radio ='";
             for ($i = 0; $i <= $addquestion; $i++) {
@@ -497,7 +497,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                 }
             }
             $sql5 = rtrim($sql5, ",");
-            $sql5 .= "'";
+            $sql5 .= "' WHERE project_id='".$project_id."'";
 
             $sql6 = "UPDATE question SET text_radio ='";
             for ($i = 0; $i < $count_radio; $i++) {
@@ -507,7 +507,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                 $sql6 .= "" . $_POST['text_radio'][$i] . ",";
             }
             $sql6 = rtrim($sql6, ",");
-            $sql6 .= "'";
+            $sql6 .= "' WHERE project_id='".$project_id."'";
             echo $sql6;
 
             $result1 = mysqli_query($conn, $sql1);
