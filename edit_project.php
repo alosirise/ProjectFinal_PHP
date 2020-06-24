@@ -14,67 +14,6 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 <html lang="en">
 
 <head>
-    <style>
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 50px;
-            height: 30px;
-        }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 23px;
-            width: 23px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-        input:checked+.slider {
-            background-color: #2196F3;
-        }
-
-        input:focus+.slider {
-            box-shadow: 0 0 1px #2196F3;
-        }
-
-        input:checked+.slider:before {
-            -webkit-transform: translateX(23px);
-            -ms-transform: translateX(23px);
-            transform: translateX(19px);
-        }
-
-        /* Rounded sliders */
-        .slider.round {
-            border-radius: 34px;
-        }
-
-        .slider.round:before {
-            border-radius: 50%;
-        }
-    </style>
 
     <title>Project</title>
     <!-- Required meta tags -->
@@ -94,44 +33,189 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
             <div class="w3-container col-lg-6 center" style="background-color: white;">
                 <h2 style=" padding:30px;">จัดการแบบฟอร์ม</h2>
-                <div class="bewcard">
-                    <input class="form-control" style="font-size:30px;" name="formname" type="text" value="ฟอร์มไม่มีชื่อ">
-                </div>
 
-                <div class="bewcard question0">
-                    <div id="selected0">
-                        <div class="form-row">
-                            <div class="col-7">
-                                <input class="form-control" name="question[]" type="text" placeholder="คำถามของคุณ">
+<script>
+var num_question = 0;
+</script>
+<?php
+    $value_php = 0;
+
+    $project_id = $_GET['project_id'];
+
+    include_once('connect.php');
+    $sqlselect = "SELECT * from question where project_id = $project_id";
+    $resultselect = mysqli_query($conn, $sqlselect);
+
+
+    if($resultselect->num_rows > 0){
+        while ($row = $resultselect->fetch_assoc()) {
+            echo '<div class="bewcard">
+                        <input class="form-control" style="font-size:30px;" name="formname" type="text" value="'.$row['form_name'].'" placeholder="ชื่อแบบฟอร์ม">
+                </div>';
+            $count_will_appendquestion = $row['num_question'];
+
+            $question_explode = explode (",",$row['question']);
+            $type_explode = explode (",",$row['type']);
+            $num_radio_explode = explode (",",$row['num_radio']);
+            $text_radio_explode = explode (",",$row['text_radio']);
+
+            //ใช้กำหนด index ตอนวาง num_radio
+            $z = 0;
+            //ใช้กำหนด index ตอนวาง text_radio
+            $x = 0;
+            for($i =0;$i< $count_will_appendquestion;$i++){
+                echo '<div class="bewcard question'.$i.'">
+                <div id="selected'.$i.'">
+                <div class="form-row">
+                    <div class="col-7">';
+                        if($question_explode[$i] == "null"){
+                            echo '<input class="form-control" name="question[]" type="text" placeholder="คำถามของคุณ">';
+                        }else{
+                            echo '<input class="form-control" name="question[]" type="text" value="'.$question_explode[$i].'" placeholder="คำถามของคุณ">';
+                        }
+                    echo '</div>
+                    <div class="col-5">
+                        <select class="form-control" id="selectBox'.$i.'" onchange="selectClick(id)">';
+                        if($type_explode[$i]==1){
+                            echo '<option value="1" selected="selected">คำตอบสั้นๆ</option>
+                            <option value="2">ย่อหน้า</option>
+                            <option value="3">หลายตัวเลือก</option>
+                            <option value="4">ช่องเครื่องหมาย</option>
+                            </select>
                             </div>
-                            <div class="col-5">
-                                <select class="form-control" id="selectBox0" onchange="selectClick(id)">
-                                    <option value="1">คำตอบสั้นๆ</option>
-                                    <option value="2">ย่อหน้า</option>
-                                    <option value="3">หลายตัวเลือก</option>
-                                    <option value="4">ช่องเครื่องหมาย</option>
-                                </select>
                             </div>
-                        </div>
-                        <div style="margin-top:20px;">
-                            <label>ข้อความคำตอบสั้นๆ</label>
-                        </div>
-                    </div>
+                            <div style="margin-top:20px;">
+                                <label>ข้อความคำตอบสั้นๆ</label>
+                            </div>
+                            </div>';
+                        }else if($type_explode[$i]==2){
+                            echo '<option value="1">คำตอบสั้นๆ</option>
+                            <option value="2" selected="selected">ย่อหน้า</option>
+                            <option value="3">หลายตัวเลือก</option>
+                            <option value="4">ช่องเครื่องหมาย</option>
+                            </select>
+                            </div>
+                            </div>
+                            <div style="margin-top:20px;">
+                                <label>ข้อความคำตอบสั้นๆ</label>
+                            </div>
+                            </div>';
+                        }else if($type_explode[$i]==3){
+                            echo '<option value="1">คำตอบสั้นๆ</option>
+                            <option value="2">ย่อหน้า</option>
+                            <option value="3" selected="selected">หลายตัวเลือก</option>
+                            <option value="4">ช่องเครื่องหมาย</option>
+                            </select>
+                            </div>
+                            </div>
+                            <div style="margin-top:20px; margin-left:5px">
+                            <div id="addradio'.$i.'"">';
+                                for($y=0; $y < (int)$num_radio_explode[$z]; $y++){
+                                    echo '<div class="form-row radio'.$y.'">
+                                            <div>';
+                                            if($text_radio_explode[$x] == "null"){
+                                                echo '<input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก">';
+                                            }else{
+                                                echo '<input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก">';
+                                            }
+                                            echo '</div>
+                                            <div>
+                                                <button type="button" class="btn-danger" onclick="delRadio('.$y.','.$i.')">ลบ</button>
+                                            </div>
+                                        </div>';
+                                    $x++;
+                                }
+                                $z++;
 
-                    <hr style="width:100%;text-align:left;margin-left:0">
-                    <div style="margin-left:70%">
-                        <button type="button" class="btn-primary" onclick="copyQuestion()">คัดลอก</button>
+                                echo '</div>
+                                <button type="button" class="btn-primary" onclick="addRadio('.$i.')">เพิ่ม</button>
+                            </div>
+                            </div>';
+                        }else if($type_explode[$i]==4){
+                            echo '<option value="1">คำตอบสั้นๆ</option>
+                            <option value="2">ย่อหน้า</option>
+                            <option value="3">หลายตัวเลือก</option>
+                            <option value="4" selected="selected">ช่องเครื่องหมาย</option>
+                            </select>
+                            </div>
+                            </div>
+                            <div style="margin-top:20px; margin-left:5px">
+                            <div id="addradio'.$i.'"">';
+                                for($y=0; $y < (int)$num_radio_explode[$z]; $y++){
+                                    echo '<div class="form-row radio'.$y.'">
+                                            <div>';
+                                            if($text_radio_explode[$x] == "null"){
+                                                echo '<input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก">';
+                                            }else{
+                                                echo '<input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก">';
+                                            }
+                                            echo '</div>
+                                            <div>
+                                                <button type="button" class="btn-danger" onclick="delRadio('.$y.','.$i.')">ลบ</button>
+                                            </div>
+                                        </div>';
+                                    $x++;
+                                }
+                                $z++;
 
-                        <button type="button" class="btn-danger" onclick="delQuestion(0)">ลบ</button>
-                        <span>จำเป็น</span>
-                        <label class="switch">
-                            <input type="checkbox">
-                            <span class="slider round"></span>
-                        </label>
-                    </div>
+                                echo '</div>
+                                <button type="button" class="btn-primary" onclick="addRadio('.$i.')">เพิ่ม</button>
+                            </div>
+                            </div>';     
+                        }
+                 
+                echo '<hr style="width:100%;">
+                <div style="margin-left:95%">
+                    <button type="button" class="btn-danger" onclick="delQuestion('.$i.')">ลบ</button>
                 </div>
-                <div id="question">
+                </div>';
+            $value_php = $i;
+            }
+
+        //แก้บัคเรื่องหลังจากดึงข้อมูลมา function ทำงานผิดเพราะเวลากด add ชื่อตัวแปรเริ่ม 1 ใหม่ แต่ตอนวางมัน 3-4 ไปแล้ว
+         echo '<div id="question">
+            </div>';
+        }
+
+
+
+
+
+
+    }else{
+        echo '<div class="bewcard">
+        <input class="form-control" style="font-size:30px;" name="formname" type="text" value="ฟอร์มไม่มีชื่อ" placeholder="ชื่อแบบฟอร์ม">
+    </div>
+    <div class="bewcard question0">
+        <div id="selected0">
+            <div class="form-row">
+                <div class="col-7">
+                    <input class="form-control" name="question[]" type="text" placeholder="คำถามของคุณ">
                 </div>
+                <div class="col-5">
+                    <select class="form-control" id="selectBox0" onchange="selectClick(id)">
+                        <option value="1" selected="selected">คำตอบสั้นๆ</option>
+                        <option value="2">ย่อหน้า</option>
+                        <option value="3">หลายตัวเลือก</option>
+                        <option value="4">ช่องเครื่องหมาย</option>
+                    </select>
+                </div>
+            </div>
+            <div style="margin-top:20px;">
+                <label>ข้อความคำตอบสั้นๆ</label>
+            </div>
+        </div>
+        <hr style="width:100%;">
+        <div style="margin-left:95%">
+            <button type="button" class="btn-danger" onclick="delQuestion(0)">ลบ</button>
+        </div>
+    </div>
+    <div id="question">
+    </div>';
+    }
+
+?>
+
             </div>
             <div style="background-color: white;">
                 <button type="button" class="btn-primary" onclick="addQuestion()">เพิ่ม</button>
@@ -144,7 +228,6 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     </form>
 
     <script>
-        var num_question = 0;
         var type = [];
         //ให้อินเด็กแรกเป็นค่า 1 เพราะค่าเป็นเริ่มต้นของ selected
         type[0] = "1";
@@ -158,15 +241,23 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         document.cookie = 'addquestion=' + num_question;
         document.cookie = 'numradio=' + numradio.toString();
 
+        var value_php = <?php echo json_encode($value_php); ?>;
+        console.log("value php = "+value_php);
+
+        //ปรับค่า num_question ให้ตามค่าที่ดึงจาก DTB มาก่อน
+        num_question = value_php;
+
         function addQuestion() {
             console.log("add queston click");
+
             //ให้ num_question ไปทำอินเด็กไว้ตอนสร้างเพื่อระบุตอนใช้ฟังก์ชัน delQuestion
-            num_question += 1;
+            num_question+=1;
+
             //ให้เมื่อกดเพิ่มคำถาม selected ในอันนั้นๆจะเป็นค่าเริ่มต้นที่ 1
             type[num_question] = "1";
             console.log(type);
-            document.cookie = 'type=' + type;
 
+            document.cookie = 'type=' + type;
             var question = '<div class="bewcard question' + num_question + '">' +
                 '<div id="selected' + num_question + '">' +
                 '<div class="form-row">' +
@@ -186,16 +277,9 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                 '<label>ข้อความคำตอบสั้นๆ</label>' +
                 '</div>' +
                 '</div>' +
-
-                '<hr style="width:100%;text-align:left;margin-left:0">' +
-                '<div style="margin-left:70%">' +
-                '<button style="margin-right:4px" type="button" class="btn-primary">คัดลอก</button>' +
+                '<hr style="width:100%">' +
+                '<div style="margin-left:95%">' +
                 '<button style="margin-right:4px" type="button" class="btn-danger" onclick="delQuestion(' + num_question + ')">ลบ</button>' +
-                '<span>จำเป็น</span>' +
-                '<label class="switch">' +
-                '<input type="checkbox">' +
-                '<span class="slider round"></span>' +
-                '</label>' +
                 '</div>' +
                 '</div>';
             $("#question").append(question);
@@ -213,12 +297,10 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             console.log("del question = " + num_question);
             if (num_question == 0) {
                 //if นี้ใช้หั่นคำถามแรก เพราะต้องเป็น 0,1
-                // type.splice(num_question,1);
                 type.splice(0, 1, "null");
                 document.cookie = 'type=' + type;
                 console.log(type);
             } else {
-                // type.splice(num_question,num_question);
                 type.splice(num_question, 1, "null");
                 document.cookie = 'type=' + type;
                 console.log(type);
@@ -232,11 +314,8 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                 document.cookie = 'numradio=' + numradio.toString();
                 console.log(numradio);
             }
-
+            //เป็นส่วนลบคำถามโดยลบ div
             $("div").remove(".question" + num_question);
-
-
-
         }
 
 
@@ -424,13 +503,11 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     <?php
     if (isset($_POST['addQ'])) {
 
+        $formname = $_POST['formname'];
+
         //addquestion คือจำนวนที่มีการสร้าง
         $addquestion = $_COOKIE['addquestion'];
         echo " all_question = " . $addquestion;
-
-
-        $project_id = $_GET['project_id'];
-        $formname = $_POST['formname'];
 
 
         //count_question คือจำนวนคำถามที่มีอยู่จริงๆ
@@ -467,19 +544,19 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         $sql2 = "SELECT * from question where project_id = $project_id";
         $result2 = mysqli_query($conn, $sql2);
         if ($result2->num_rows > 0) {
-            $sql1 = "UPDATE question SET form_name ='" . $formname . "' WHERE project_id='".$project_id."'";
+            $sql1 = "UPDATE question SET form_name ='" . $formname . "' WHERE project_id='" . $project_id . "'";
 
-            $sql2 = "UPDATE question SET num_question ='" . $count_question . "' WHERE project_id='".$project_id."'";
+            $sql2 = "UPDATE question SET num_question ='" . $count_question . "' WHERE project_id='" . $project_id . "'";
 
             $sql3 = "UPDATE question SET question ='";
             for ($i = 0; $i < $count_question; $i++) {
                 if ($_POST['question'][$i] == "") {
                     $_POST['question'][$i] = "null";
                 }
-                $sql3 .="".$_POST['question'][$i].",";
+                $sql3 .= "" . $_POST['question'][$i] . ",";
             }
             $sql3 = rtrim($sql3, ",");
-            $sql3 .= "' WHERE project_id='".$project_id."'";
+            $sql3 .= "' WHERE project_id='" . $project_id . "'";
 
             $sql4 = "UPDATE question SET type ='";
             for ($i = 0; $i <= $addquestion; $i++) {
@@ -488,7 +565,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                 }
             }
             $sql4 = rtrim($sql4, ",");
-            $sql4 .= "' WHERE project_id='".$project_id."'";
+            $sql4 .= "' WHERE project_id='" . $project_id . "'";
 
             $sql5 = "UPDATE question SET num_radio ='";
             for ($i = 0; $i <= $addquestion; $i++) {
@@ -497,7 +574,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                 }
             }
             $sql5 = rtrim($sql5, ",");
-            $sql5 .= "' WHERE project_id='".$project_id."'";
+            $sql5 .= "' WHERE project_id='" . $project_id . "'";
 
             $sql6 = "UPDATE question SET text_radio ='";
             for ($i = 0; $i < $count_radio; $i++) {
@@ -507,7 +584,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                 $sql6 .= "" . $_POST['text_radio'][$i] . ",";
             }
             $sql6 = rtrim($sql6, ",");
-            $sql6 .= "' WHERE project_id='".$project_id."'";
+            $sql6 .= "' WHERE project_id='" . $project_id . "'";
             echo $sql6;
 
             $result1 = mysqli_query($conn, $sql1);
@@ -516,18 +593,6 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             $result4 = mysqli_query($conn, $sql4);
             $result5 = mysqli_query($conn, $sql5);
             $result6 = mysqli_query($conn, $sql6);
-
-            // while ($row = $result2->fetch_assoc()) {
-            //     echo "aaaaaaaaaaaaaaaaaaaaa = ";
-            //     echo $row['id'];
-            //     echo $row['project_id'];
-            //     echo $row['form_name'];
-            //     echo $row['num_question'];
-            //     echo $row['question'];
-            //     echo $row['type'];
-            //     echo $row['num_radio'];
-            //     echo $row['text_radio'];
-            // }
 
         } else {
             $sql = "INSERT INTO question (project_id,form_name,num_question,question,type,num_radio,text_radio) VALUES ('$project_id','$formname','$count_question','";
