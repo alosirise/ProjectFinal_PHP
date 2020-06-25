@@ -113,16 +113,25 @@ var num_question = 0;
                                 for($y=0; $y < (int)$num_radio_explode[$z]; $y++){
                                     echo '<div class="form-row radio'.$y.'">
                                             <div>';
-                                            if($text_radio_explode[$x] == "null"){
-                                                echo '<input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก">';
+                                            if($y== 0){
+                                                if($text_radio_explode[$x] == "null"){
+                                                    echo '<input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก">';
+                                                }else{
+                                                    echo '<input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก">';
+                                                }
+                                                echo '</div></div>';
                                             }else{
-                                                echo '<input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก">';
+                                                if($text_radio_explode[$x] == "null"){
+                                                    echo '<input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก">';
+                                                }else{
+                                                    echo '<input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก">';
+                                                }
+                                                echo '</div>
+                                                <div>
+                                                    <button type="button" class="btn-danger" onclick="delRadio('.$y.','.$i.')">ลบ</button>
+                                                </div>
+                                            </div>';
                                             }
-                                            echo '</div>
-                                            <div>
-                                                <button type="button" class="btn-danger" onclick="delRadio('.$y.','.$i.')">ลบ</button>
-                                            </div>
-                                        </div>';
                                     $x++;
                                 }
                                 $z++;
@@ -143,17 +152,26 @@ var num_question = 0;
                             <div id="addradio'.$i.'"">';
                                 for($y=0; $y < (int)$num_radio_explode[$z]; $y++){
                                     echo '<div class="form-row radio'.$y.'">
-                                            <div>';
-                                            if($text_radio_explode[$x] == "null"){
-                                                echo '<input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก">';
-                                            }else{
-                                                echo '<input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก">';
-                                            }
-                                            echo '</div>
-                                            <div>
-                                                <button type="button" class="btn-danger" onclick="delRadio('.$y.','.$i.')">ลบ</button>
-                                            </div>
-                                        </div>';
+                                    <div>';
+                                    if($y== 0){
+                                        if($text_radio_explode[$x] == "null"){
+                                            echo '<input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก">';
+                                        }else{
+                                            echo '<input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก">';
+                                        }
+                                        echo '</div></div>';
+                                    }else{
+                                        if($text_radio_explode[$x] == "null"){
+                                            echo '<input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก">';
+                                        }else{
+                                            echo '<input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก">';
+                                        }
+                                        echo '</div>
+                                        <div>
+                                            <button type="button" class="btn-danger" onclick="delRadio('.$y.','.$i.')">ลบ</button>
+                                        </div>
+                                    </div>';
+                                    }
                                     $x++;
                                 }
                                 $z++;
