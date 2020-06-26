@@ -47,13 +47,24 @@ var num_question = 0;
     $resultselect = mysqli_query($conn, $sqlselect);
 
 
+    $update_type = array();
+    //กำหนดค่าเริ่มต้น
+    $update_type[0] = "1";
+
+    $update_numradio = array();
+    //กำหนดค่าเริ่มต้น
+    $update_numradio[0] = "null";
+
+    $max_value_numradio = 0;
+
+
     if($resultselect->num_rows > 0){
         while ($row = $resultselect->fetch_assoc()) {
             echo '<div class="bewcard">
                         <input class="form-control" style="font-size:30px;" name="formname" type="text" value="'.$row['form_name'].'" placeholder="ชื่อแบบฟอร์ม">
                 </div>';
-            $count_will_appendquestion = $row['num_question'];
 
+            $count_will_appendquestion = $row['num_question'];
             $question_explode = explode (",",$row['question']);
             $type_explode = explode (",",$row['type']);
             $num_radio_explode = explode (",",$row['num_radio']);
@@ -63,6 +74,10 @@ var num_question = 0;
             $z = 0;
             //ใช้กำหนด index ตอนวาง text_radio
             $x = 0;
+            //ใช้กำหนด index เพิ่มขึ้นเรื่อยๆของ addradio
+            $c = 0;
+
+
             for($i =0;$i< $count_will_appendquestion;$i++){
                 echo '<div class="bewcard question'.$i.'">
                 <div id="selected'.$i.'">
@@ -88,6 +103,10 @@ var num_question = 0;
                                 <label>ข้อความคำตอบสั้นๆ</label>
                             </div>
                             </div>';
+                            $update_type[$i] = "1";
+
+                            //ใส่่ 0 ให้เพื่อมีค่าไว้จะได้ไม่ undefined index
+                            $update_numradio[$i] = 0;
                         }else if($type_explode[$i]==2){
                             echo '<option value="1">คำตอบสั้นๆ</option>
                             <option value="2" selected="selected">ย่อหน้า</option>
@@ -100,46 +119,57 @@ var num_question = 0;
                                 <label>ข้อความคำตอบสั้นๆ</label>
                             </div>
                             </div>';
+                            $update_type[$i] = "2";
+
+                            //ใส่่ 0 ให้เพื่อมีค่าไว้จะได้ไม่ undefined index
+                            $update_numradio[$i] = 0;
                         }else if($type_explode[$i]==3){
                             echo '<option value="1">คำตอบสั้นๆ</option>
-                            <option value="2">ย่อหน้า</option>
+                            <option value="2">ย่อหน้า</option> 
                             <option value="3" selected="selected">หลายตัวเลือก</option>
                             <option value="4">ช่องเครื่องหมาย</option>
                             </select>
                             </div>
                             </div>
                             <div style="margin-top:20px; margin-left:5px">
+                            <div class="form-row">
+                            <div>';
+                            if($text_radio_explode[$x] == "null"){
+                                echo '<input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก">';
+                            }else{
+                                echo '<input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก">';
+                            }
+                            //ถ้าเข้า select 3-4 จะมี radio 1 อันเริ่มต้นเลยต้องให้ = 1
+                            $update_numradio[$i] = 1;
+                            $x++;
+                            echo '</div>
+                                </div>
                             <div id="addradio'.$i.'"">';
-                                for($y=0; $y < (int)$num_radio_explode[$z]; $y++){
-                                    echo '<div class="form-row radio'.$y.'">
-                                            <div>';
-                                            if($y== 0){
-                                                if($text_radio_explode[$x] == "null"){
-                                                    echo '<input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก">';
-                                                }else{
-                                                    echo '<input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก">';
-                                                }
-                                                echo '</div></div>';
-                                            }else{
-                                                if($text_radio_explode[$x] == "null"){
-                                                    echo '<input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก">';
-                                                }else{
-                                                    echo '<input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก">';
-                                                }
-                                                echo '</div>
-                                                <div>
-                                                    <button type="button" class="btn-danger" onclick="delRadio('.$y.','.$i.')">ลบ</button>
-                                                </div>
-                                            </div>';
-                                            }
+                                for($y=0; $y < (int)($num_radio_explode[$z]-1); $y++){
+                                    echo '<div class="form-row radio'.$c.'">
+                                    <div>';
+                                    if($text_radio_explode[$x] == "null"){
+                                        echo '<input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก">';
+                                    }else{
+                                        echo '<input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก">';
+                                    }
+                                    echo '</div>
+                                        <div>
+                                            <button type="button" class="btn-danger" onclick="delRadio('.$c.','.$i.')">ลบ</button>
+                                        </div>
+                                    </div>';
                                     $x++;
+
+                                    //y+2 เพราะมีสร้างอันแรกไว้นอกลูปอยู่แล้ว และบวกอีก 1 เพราะค่าเริ่มต้นของ y เป็น 0 พอจะใช้นับเลยต้องบวกอีก 1
+                                    $update_numradio[$i] = ($y+2);
+                                    $c++;
                                 }
                                 $z++;
-
                                 echo '</div>
-                                <button type="button" class="btn-primary" onclick="addRadio('.$i.')">เพิ่ม</button>
-                            </div>
-                            </div>';
+                                        <button type="button" class="btn-primary" onclick="addRadio('.$i.')">เพิ่ม</button>
+                                    </div>
+                                </div>';
+                            $update_type[$i] = "3";
                         }else if($type_explode[$i]==4){
                             echo '<option value="1">คำตอบสั้นๆ</option>
                             <option value="2">ย่อหน้า</option>
@@ -149,37 +179,45 @@ var num_question = 0;
                             </div>
                             </div>
                             <div style="margin-top:20px; margin-left:5px">
+                            <div class="form-row">
+                            <div>';
+                            if($text_radio_explode[$x] == "null"){
+                                echo '<input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก">';
+                            }else{
+                                echo '<input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก">';
+                            }
+                            //ถ้าเข้า select 3-4 จะมี radio 1 อันเริ่มต้นเลยต้องให้ = 1
+                            $update_numradio[$i] = 1;
+                            $x++;
+                            echo '</div>
+                                </div>
                             <div id="addradio'.$i.'"">';
-                                for($y=0; $y < (int)$num_radio_explode[$z]; $y++){
-                                    echo '<div class="form-row radio'.$y.'">
+                                for($y=0; $y < (int)($num_radio_explode[$z]-1); $y++){
+                                    echo '<div class="form-row radio'.$c.'">
                                     <div>';
-                                    if($y== 0){
-                                        if($text_radio_explode[$x] == "null"){
-                                            echo '<input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก">';
-                                        }else{
-                                            echo '<input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก">';
-                                        }
-                                        echo '</div></div>';
+                                    if($text_radio_explode[$x] == "null"){
+                                        echo '<input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก">';
                                     }else{
-                                        if($text_radio_explode[$x] == "null"){
-                                            echo '<input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก">';
-                                        }else{
-                                            echo '<input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก">';
-                                        }
-                                        echo '</div>
+                                        echo '<input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก">';
+                                    }
+                                    echo '</div>
                                         <div>
-                                            <button type="button" class="btn-danger" onclick="delRadio('.$y.','.$i.')">ลบ</button>
+                                            <button type="button" class="btn-danger" onclick="delRadio('.$c.','.$i.')">ลบ</button>
                                         </div>
                                     </div>';
-                                    }
                                     $x++;
+
+                                    //y+2 เพราะมีสร้างอันแรกไว้นอกลูปอยู่แล้ว และบวกอีก 1 เพราะค่าเริ่มต้นของ y เป็น 0 พอจะใช้นับเลยต้องบวกอีก 1
+                                    $update_numradio[$i] = ($y+2);
+                                    $c++;
                                 }
                                 $z++;
 
                                 echo '</div>
-                                <button type="button" class="btn-primary" onclick="addRadio('.$i.')">เพิ่ม</button>
-                            </div>
-                            </div>';     
+                                        <button type="button" class="btn-primary" onclick="addRadio('.$i.')">เพิ่ม</button>
+                                    </div>
+                                </div>';
+                            $update_type[$i] = "4";   
                         }
                  
                 echo '<hr style="width:100%;">
@@ -194,6 +232,16 @@ var num_question = 0;
          echo '<div id="question">
             </div>';
         }
+
+
+
+
+
+        //ใส่ 0 ให้ในกรณีที่ไม่มีค่าจะได้ไม่ error (At least one element)
+        $max_value_numradio = max($update_numradio,0);
+        var_dump($max_value_numradio);
+
+
 
 
 
@@ -255,15 +303,46 @@ var num_question = 0;
         numradio[0] = "null";
         console.log(numradio);
 
+
+        var value_php = <?php echo json_encode($value_php); ?>;
+        console.log("value php = "+value_php);
+        //ปรับค่า num_question ให้ตามค่าที่ดึงจาก DTB มาก่อนเพื่อตอนวางจะได้เรียงตาม index
+        num_question = value_php;
+        console.log("numquestion = "+num_question);
+
+
+        var update_type = <?php echo json_encode($update_type); ?>;
+        console.log("update_type = "+update_type);
+        type = update_type;
+
+
+        var update_numradio = <?php echo json_encode($update_numradio); ?>;
+        console.log("update_numradio = "+update_numradio);
+        numradio = update_numradio;
+
+
+
+
+
+
+
+
+        var max_value_numradio = <?php echo json_encode($max_value_numradio); ?>;
+        console.log("max_value_numradio = "+max_value_numradio);
+
+
+
+
+
+
+
+
+
         document.cookie = 'type=' + type;
         document.cookie = 'addquestion=' + num_question;
         document.cookie = 'numradio=' + numradio.toString();
 
-        var value_php = <?php echo json_encode($value_php); ?>;
-        console.log("value php = "+value_php);
-
-        //ปรับค่า num_question ให้ตามค่าที่ดึงจาก DTB มาก่อน
-        num_question = value_php;
+        
 
         function addQuestion() {
             console.log("add queston click");
@@ -273,6 +352,7 @@ var num_question = 0;
 
             //ให้เมื่อกดเพิ่มคำถาม selected ในอันนั้นๆจะเป็นค่าเริ่มต้นที่ 1
             type[num_question] = "1";
+            console.log("type");
             console.log(type);
 
             document.cookie = 'type=' + type;
@@ -304,9 +384,11 @@ var num_question = 0;
             console.log("add question = " + num_question);
 
             numradio[num_question] = "null";
+            console.log("numradio");
             console.log(numradio);
             document.cookie = 'numradio=' + numradio.toString();
             document.cookie = 'addquestion=' + num_question;
+            console.log("numquestion = "+num_question);
         }
 
 
@@ -474,13 +556,13 @@ var num_question = 0;
         }
 
 
-
-        var num_radio = 0;
+        //ต้องเป็นค่ามากที่สุดเพราะ เดี๋ยวชื่อซ้ำกับอันที่ดึงมาจาก DTB
+        var num_radio = max_value_numradio;
 
         function addRadio(digitSelect) {
             console.log("add radio click");
             console.log("digit " + digitSelect);
-
+            console.log("num_radio = " + num_radio);
             num_radio += 1;
             var addradio = '<div class="form-row radio' + num_radio + '">' +
                 '<div>' +
@@ -493,6 +575,7 @@ var num_question = 0;
 
             console.log("addradio" + num_radio);
             $("#addradio" + digitSelect).append(addradio);
+            
             var count_radio_each_question = $("#addradio" + digitSelect + " .form-row").length;
             console.log("Question" + digitSelect + " = " + count_radio_each_question + " radio");
 
@@ -521,47 +604,54 @@ var num_question = 0;
     <?php
     if (isset($_POST['addQ'])) {
 
-        $formname = $_POST['formname'];
+            $formname = $_POST['formname'];
 
-        //addquestion คือจำนวนที่มีการสร้าง
-        $addquestion = $_COOKIE['addquestion'];
-        echo " all_question = " . $addquestion;
-
-
-        //count_question คือจำนวนคำถามที่มีอยู่จริงๆ
-        $count_question = 0;
-        if (empty($_POST['question'])) {
+            //addquestion คือจำนวนที่มีการสร้าง
+            $addquestion = $_COOKIE['addquestion'];
+            echo " all_question = " . $addquestion;
+    
+    
+            //count_question คือจำนวนคำถามที่มีอยู่จริงๆ
             $count_question = 0;
-        } else {
-            $count_question = count($_POST['question']);
-        }
-        echo " true_num_question = " . $count_question;
-
-
-        var_dump($_COOKIE['type']);
-        $type = $_COOKIE['type'];
-        //ตัด comma ออกเพราะติดมาตอนใช้ cookie แล้วทำให้ค่ามันเป็น string
-        $type = explode(",", $type);
-
-
-        var_dump($_COOKIE['numradio']);
-        $numradio = $_COOKIE['numradio'];
-        $numradio = explode(",", $numradio);
-
-
-        $count_radio = 0;
-        if (empty($_POST['text_radio'])) {
+            if (empty($_POST['question'])) {
+                $count_question = 0;
+            } else {
+                $count_question = count($_POST['question']);
+            }
+            echo " true_num_question = " . $count_question;
+    
+    
+            var_dump($_COOKIE['type']);
+            $type = $_COOKIE['type'];
+            //ตัด comma ออกเพราะติดมาตอนใช้ cookie แล้วทำให้ค่ามันเป็น string
+            $type = explode(",", $type);
+    
+    
+            var_dump($_COOKIE['numradio']);
+            $numradio = $_COOKIE['numradio'];
+            $numradio = explode(",", $numradio);
+    
+    
             $count_radio = 0;
-        } else {
-            $count_radio = count($_POST['text_radio']);
-        }
-        echo "num_radio = " . $count_radio;
+            if (empty($_POST['text_radio'])) {
+                $count_radio = 0;
+            } else {
+                $count_radio = count($_POST['text_radio']);
+            }
+            echo "num_radio = " . $count_radio;
+
+            
+            include_once('connect.php');
+            $sql2 = "SELECT * from question where project_id = $project_id";
+            $result2 = mysqli_query($conn, $sql2);
 
 
-        include_once('connect.php');
-        $sql2 = "SELECT * from question where project_id = $project_id";
-        $result2 = mysqli_query($conn, $sql2);
         if ($result2->num_rows > 0) {
+
+            
+            //ต้องกำหนดค่าก่อนตอนจะทำการ update ว่ามีการวาง(ดึงจาก dtb) ไปแล้วกี่อันจากนั้นต้องทำงานต่อให้ได้(เพิ่มทีหลัง)
+
+
             $sql1 = "UPDATE question SET form_name ='" . $formname . "' WHERE project_id='" . $project_id . "'";
 
             $sql2 = "UPDATE question SET num_question ='" . $count_question . "' WHERE project_id='" . $project_id . "'";
@@ -576,6 +666,8 @@ var num_question = 0;
             $sql3 = rtrim($sql3, ",");
             $sql3 .= "' WHERE project_id='" . $project_id . "'";
 
+
+
             $sql4 = "UPDATE question SET type ='";
             for ($i = 0; $i <= $addquestion; $i++) {
                 if ($type[$i] != "null") {
@@ -585,14 +677,19 @@ var num_question = 0;
             $sql4 = rtrim($sql4, ",");
             $sql4 .= "' WHERE project_id='" . $project_id . "'";
 
+
+
             $sql5 = "UPDATE question SET num_radio ='";
             for ($i = 0; $i <= $addquestion; $i++) {
-                if ($numradio[$i] != "null") {
+                echo "round = ".$i;
+                if ($numradio[$i] != "0" && $numradio[$i] != "null") {
                     $sql5 .= "" . $numradio[$i] . ",";
                 }
             }
             $sql5 = rtrim($sql5, ",");
             $sql5 .= "' WHERE project_id='" . $project_id . "'";
+
+
 
             $sql6 = "UPDATE question SET text_radio ='";
             for ($i = 0; $i < $count_radio; $i++) {
@@ -603,7 +700,14 @@ var num_question = 0;
             }
             $sql6 = rtrim($sql6, ",");
             $sql6 .= "' WHERE project_id='" . $project_id . "'";
+
+            echo $sql1." | ";
+            echo $sql2." | ";
+            echo $sql3." | ";
+            echo $sql4." | ";
+            echo $sql5." | ";
             echo $sql6;
+
 
             $result1 = mysqli_query($conn, $sql1);
             $result2 = mysqli_query($conn, $sql2);
@@ -648,7 +752,7 @@ var num_question = 0;
             echo $sql;
             $result = mysqli_query($conn, $sql);
         }
-        echo "<script>window.location='myproject.php';</script>";
+        // echo "<script>window.location='myproject.php';</script>";
     }
     ?>
 
