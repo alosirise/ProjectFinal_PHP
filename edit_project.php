@@ -132,28 +132,26 @@ var num_question = 0;
                             </div>
                             </div>
                             <div style="margin-top:20px; margin-left:5px">
-                            <div class="form-row">
-                            <div>';
+                            <div class="form-row">';
                             if($text_radio_explode[$x] == "null"){
-                                echo '<input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก">';
+                                echo '<div><img src="images/radio-off-512.png" width="42" height="42"></div><div><input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก"></div>';
                             }else{
-                                echo '<input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก">';
+                                echo '<div><img src="images/radio-off-512.png" width="42" height="42"></div><div><input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก"></div>';
                             }
                             //ถ้าเข้า select 3-4 จะมี radio 1 อันเริ่มต้นเลยต้องให้ = 1
                             $update_numradio[$i] = 1;
                             $x++;
                             echo '</div>
-                                </div>
                             <div id="addradio'.$i.'"">';
                                 for($y=0; $y < (int)($num_radio_explode[$z]-1); $y++){
-                                    echo '<div class="form-row radio'.$c.'">
-                                    <div>';
+                                    echo '<div class="form-row radio'.$c.'">';
+                                    
                                     if($text_radio_explode[$x] == "null"){
-                                        echo '<input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก">';
+                                        echo '<div><img src="images/radio-off-512.png" width="42" height="42"></div><div><input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก"></div>';
                                     }else{
-                                        echo '<input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก">';
+                                        echo '<div><img src="images/radio-off-512.png" width="42" height="42"></div><div><input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก"></div>';
                                     }
-                                    echo '</div>
+                                    echo '
                                         <div>
                                             <button type="button" class="btn-danger" onclick="delRadio('.$c.','.$i.')">ลบ</button>
                                         </div>
@@ -179,29 +177,25 @@ var num_question = 0;
                             </div>
                             </div>
                             <div style="margin-top:20px; margin-left:5px">
-                            <div class="form-row">
-                            <div>';
+                            <div class="form-row">';
                             if($text_radio_explode[$x] == "null"){
-                                echo '<input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก">';
+                                echo '<div><img src="images/radio-off-512.png" width="42" height="42"></div><div><input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก"></div>';
                             }else{
-                                echo '<input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก">';
+                                echo '<div><img src="images/radio-off-512.png" width="42" height="42"></div><div><input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก"></div>';
                             }
                             //ถ้าเข้า select 3-4 จะมี radio 1 อันเริ่มต้นเลยต้องให้ = 1
                             $update_numradio[$i] = 1;
                             $x++;
                             echo '</div>
-                                </div>
                             <div id="addradio'.$i.'"">';
                                 for($y=0; $y < (int)($num_radio_explode[$z]-1); $y++){
-                                    echo '<div class="form-row radio'.$c.'">
-                                    <div>';
+                                    echo '<div class="form-row radio'.$c.'">';
                                     if($text_radio_explode[$x] == "null"){
-                                        echo '<input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก">';
+                                        echo '<div><img src="images/radio-off-512.png" width="42" height="42"></div><div><input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก"></div>';
                                     }else{
-                                        echo '<input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก">';
+                                        echo '<div><img src="images/radio-off-512.png" width="42" height="42"></div><div><input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก"></div>';
                                     }
-                                    echo '</div>
-                                        <div>
+                                    echo '<div>
                                             <button type="button" class="btn-danger" onclick="delRadio('.$c.','.$i.')">ลบ</button>
                                         </div>
                                     </div>';
@@ -472,6 +466,7 @@ var num_question = 0;
                 '</div>' +
                 '<div style="margin-top:20px; margin-left:5px">' +
                 '<div class="form-row">' +
+                '<div><img src="images/radio-off-512.png" width="42" height="42"></div>'+
                 '<div>' +
                 '<input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก">' +
                 '</div>' +
@@ -496,6 +491,7 @@ var num_question = 0;
                 '</div>' +
                 '<div style="margin-top:20px; margin-left:5px">' +
                 '<div class="form-row">' +
+                '<div><img src="images/radio-off-512.png" width="42" height="42"></div>'+
                 '<div>' +
                 '<input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก">' +
                 '</div>' +
@@ -551,6 +547,7 @@ var num_question = 0;
             console.log("num_radio = " + num_radio);
             num_radio += 1;
             var addradio = '<div class="form-row radio' + num_radio + '">' +
+                '<div><img src="images/radio-off-512.png" width="42" height="42"></div>'+
                 '<div>' +
                 '<input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก">' +
                 '</div>' +
