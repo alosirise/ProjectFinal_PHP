@@ -232,22 +232,8 @@ var num_question = 0;
          echo '<div id="question">
             </div>';
         }
-
-
-
-
-
-        //ใส่ 0 ให้ในกรณีที่ไม่มีค่าจะได้ไม่ error (At least one element)
-        $max_value_numradio = max($update_numradio,0);
-        var_dump($max_value_numradio);
-
-
-
-
-
-
-
-
+        //หาค่าที่มากที่สุดไปตั้งชื่อ index จะได้ไม่ซ้ำกัน
+        $max_value_numradio = max($update_numradio);
     }else{
         echo '<div class="bewcard">
         <input class="form-control" style="font-size:30px;" name="formname" type="text" value="ฟอร์มไม่มีชื่อ" placeholder="ชื่อแบบฟอร์ม">

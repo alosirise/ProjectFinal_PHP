@@ -14,7 +14,13 @@
         <button type="button" onclick ="test()" name="add">test</button>
     </form>
     <?php
-    echo "aaaaa";
+        $update_numradio = array(1,2,3);
+
+        $max_value_numradio = 0;
+
+        $max_value_numradio = max($update_numradio);
+        echo $max_value_numradio;
+
     ?>
     
 </body>
