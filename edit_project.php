@@ -301,21 +301,8 @@ var num_question = 0;
         numradio = update_numradio;
 
 
-
-
-
-
-
-
         var max_value_numradio = <?php echo json_encode($max_value_numradio); ?>;
         console.log("max_value_numradio = "+max_value_numradio);
-
-
-
-
-
-
-
 
 
         document.cookie = 'type=' + type;
