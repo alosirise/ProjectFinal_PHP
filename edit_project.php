@@ -164,7 +164,7 @@ var num_question = 0;
                                 }
                                 $z++;
                                 echo '</div>
-                                        <button type="button" class="btn-primary" onclick="addRadio('.$i.')">เพิ่ม</button>
+                                        <button type="button" class="btn-primary" onclick="addRadio('.$i.',1)">เพิ่ม</button>
                                     </div>
                                 </div>';
                             $update_type[$i] = "3";
@@ -179,9 +179,9 @@ var num_question = 0;
                             <div style="margin-top:20px; margin-left:5px">
                             <div class="form-row">';
                             if($text_radio_explode[$x] == "null"){
-                                echo '<div><img src="images/radio-off-512.png" width="42" height="42"></div><div><input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก"></div>';
+                                echo '<div><img src="images/square_blank_check_empty-512.png" width="42" height="42"></div><div><input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก"></div>';
                             }else{
-                                echo '<div><img src="images/radio-off-512.png" width="42" height="42"></div><div><input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก"></div>';
+                                echo '<div><img src="images/square_blank_check_empty-512.png" width="42" height="42"></div><div><input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก"></div>';
                             }
                             //ถ้าเข้า select 3-4 จะมี radio 1 อันเริ่มต้นเลยต้องให้ = 1
                             $update_numradio[$i] = 1;
@@ -191,9 +191,9 @@ var num_question = 0;
                                 for($y=0; $y < (int)($num_radio_explode[$z]-1); $y++){
                                     echo '<div class="form-row radio'.$c.'">';
                                     if($text_radio_explode[$x] == "null"){
-                                        echo '<div><img src="images/radio-off-512.png" width="42" height="42"></div><div><input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก"></div>';
+                                        echo '<div><img src="images/square_blank_check_empty-512.png" width="42" height="42"></div><div><input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก"></div>';
                                     }else{
-                                        echo '<div><img src="images/radio-off-512.png" width="42" height="42"></div><div><input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก"></div>';
+                                        echo '<div><img src="images/square_blank_check_empty-512.png" width="42" height="42"></div><div><input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก"></div>';
                                     }
                                     echo '<div>
                                             <button type="button" class="btn-danger" onclick="delRadio('.$c.','.$i.')">ลบ</button>
@@ -208,7 +208,7 @@ var num_question = 0;
                                 $z++;
 
                                 echo '</div>
-                                        <button type="button" class="btn-primary" onclick="addRadio('.$i.')">เพิ่ม</button>
+                                        <button type="button" class="btn-primary" onclick="addRadio('.$i.',2)">เพิ่ม</button>
                                     </div>
                                 </div>';
                             $update_type[$i] = "4";   
@@ -459,7 +459,8 @@ var num_question = 0;
                 '</div>' +
                 '</div>' +
                 '<div id="addradio' + digitSelect + '"></div>' +
-                '<button type="button" class="btn-primary" onclick="addRadio(' + digitSelect + ')">เพิ่ม</button>' +
+                //ใน parameter ใหมี 1 ไว้เพื่อเช็คตอนวาง icon
+                '<button type="button" class="btn-primary" onclick="addRadio(' + digitSelect + ',1)">เพิ่ม</button>' +
                 '</div>';
             var select4 = '<div class="form-row">' +
                 '<div class="col-7">' +
@@ -478,13 +479,14 @@ var num_question = 0;
                 '</div>' +
                 '<div style="margin-top:20px; margin-left:5px">' +
                 '<div class="form-row">' +
-                '<div><img src="images/radio-off-512.png" width="42" height="42"></div>'+
+                '<div><img src="images/square_blank_check_empty-512.png" width="42" height="42"></div>'+
                 '<div>' +
                 '<input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก">' +
                 '</div>' +
                 '</div>' +
+                //ใน parameter ใหมี 2 ไว้เพื่อเช็คตอนวาง icon
                 '<div id="addradio' + digitSelect + '"></div>' +
-                '<button type="button" class="btn-primary" onclick="addRadio(' + digitSelect + ')">เพิ่ม</button>' +
+                '<button type="button" class="btn-primary" onclick="addRadio(' + digitSelect + ',2)">เพิ่ม</button>' +
                 '</div>';
 
             console.log(num_select + " has select " + selectedValue + " | digit selectbox is " + digitSelect);
@@ -528,12 +530,14 @@ var num_question = 0;
         //ต้องเป็นค่ามากที่สุดเพราะ เดี๋ยวชื่อซ้ำกับอันที่ดึงมาจาก DTB
         var num_radio = max_value_numradio;
 
-        function addRadio(digitSelect) {
+        function addRadio(digitSelect,checkIcon) {
             console.log("add radio click");
             console.log("digit " + digitSelect);
+            console.log("icon " + checkIcon);
             console.log("num_radio = " + num_radio);
             num_radio += 1;
-            var addradio = '<div class="form-row radio' + num_radio + '">' +
+
+            var addradio1 = '<div class="form-row radio' + num_radio + '">' +
                 '<div><img src="images/radio-off-512.png" width="42" height="42"></div>'+
                 '<div>' +
                 '<input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก">' +
@@ -543,9 +547,23 @@ var num_question = 0;
                 '</div>' +
                 '</div>';
 
+            var addradio2 = '<div class="form-row radio' + num_radio + '">' +
+                '<div><img src="images/square_blank_check_empty-512.png" width="42" height="42"></div>'+
+                '<div>' +
+                '<input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก">' +
+                '</div>' +
+                '<div>' +
+                '<button type="button" class="btn-danger" onclick="delRadio(' + num_radio + ',' + digitSelect + ')">ลบ</button>' +
+                '</div>' +
+                '</div>';
+
             console.log("addradio" + num_radio);
-            $("#addradio" + digitSelect).append(addradio);
-            
+            if(checkIcon == "1"){
+                $("#addradio" + digitSelect).append(addradio1);
+            }else if(checkIcon == "2"){
+                $("#addradio" + digitSelect).append(addradio2);
+            }
+
             var count_radio_each_question = $("#addradio" + digitSelect + " .form-row").length;
             console.log("Question" + digitSelect + " = " + count_radio_each_question + " radio");
 
