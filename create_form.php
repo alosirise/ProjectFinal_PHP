@@ -740,7 +740,7 @@ var num_question = 0;
             echo $sql;
             $result = mysqli_query($conn, $sql);
         }
-        // echo "<script>window.location='myproject.php';</script>";
+        echo "<script>window.location='myproject.php';</script>";
     }
     ?>
 

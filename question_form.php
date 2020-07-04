@@ -64,24 +64,24 @@ include('auth.php');
                                 </div>';
                             if ($type_explode[$i] == 1) {
                                 echo '<div>
-                                        <input class="form-control" name="ans_question[]" type="text" placeholder="คำตอบของคุณ">
+                                        <input class="form-control" name="ans_question' . $i . '" type="text" placeholder="คำตอบของคุณ">
                                     </div>';
                                 $type_question[$i] = 1;
                             } else if ($type_explode[$i] == 2) {
                                 echo '<div>
-                                    <textarea class="form-control" name="ans_question[]" type="text" placeholder="คำตอบของคุณ"></textarea>
+                                    <textarea class="form-control" name="ans_question' . $i . '" type="text" placeholder="คำตอบของคุณ"></textarea>
                                 </div>';
                                 $type_question[$i] = 2;
                             } else if ($type_explode[$i] == 3) {
                                 for ($y = 0; $y < $num_radio_explode[$x]; $y++, $z++) {
-                                    echo '<input type="radio" name="ans_question[]" value="' . $text_radio_explode[$z] . '">
+                                    echo '<input type="radio" name="ans_question' . $i . '" value="' . $text_radio_explode[$z] . '">
                                         <label>' . $text_radio_explode[$z] . '</label><br>';
                                 }
                                 $x++;
                                 $type_question[$i] = 3;
                             } else if ($type_explode[$i] == 4) {
                                 for ($y = 0; $y < $num_radio_explode[$x]; $y++, $z++) {
-                                    echo '<input type="checkbox" name="ans_question[]" value="' . $text_radio_explode[$z] . '">
+                                    echo '<input type="checkbox" name="ans_question' . $i . '[]" value="' . $text_radio_explode[$z] . '">
                                         <label>' . $text_radio_explode[$z] . '</label><br>';
                                 }
                                 $x++;
@@ -107,76 +107,27 @@ include('auth.php');
     <?php
     if (isset($_POST['sendAnswer'])) {
         var_dump($type_question);
-        var_dump($_POST['ans_question']);
+        var_dump($_POST['ans_question3']);
 
-        // $sql1 = "INSERT INTO id_question (project_id,question_id) VALUES ('$project_id','";
-        // for($i = 0;$i<$count_question;$i++){
-        //     $sql1 .= "" . ($i+1) . ",";
-        // }
-        // $sql1 = rtrim($sql1, ",");
-        // $sql1 .= "')";
-        // echo $sql1;
-        // $result1 = mysqli_query($conn, $sql1);
+        $count_checkbox_check = array();
+        $username = $_SESSION['username'];
 
-
-
-
-        // if ($type_question[0] == 1) {
-        //     $first_sql1 = "INSERT INTO answer (project_id,question_type_1) VALUES ('$project_id','".$_POST['ans_question'][0]."')";
-        //     $result_first_sql1 = mysqli_query($conn, $first_sql1);
-        // } else if ($type_question[0] == 2) {
-        //     $first_sql2 = "INSERT INTO answer (project_id,question_type_2) VALUES ('$project_id','".$_POST['ans_question'][0]."')";
-        //     $result_first_sql2 = mysqli_query($conn, $first_sql2);
-        // } else if ($type_question[0] == 3) {
-        //     $first_sql3 = "INSERT INTO answer (project_id,question_type_3) VALUES ('$project_id','".$_POST['ans_question'][0]."')";
-        //     $result_first_sql3 = mysqli_query($conn, $first_sql3);
-        // } else if ($type_question[0] == 4) {
-        //     $first_sql4 = "INSERT INTO answer (project_id,question_type_4) VALUES ('$project_id','".$_POST['ans_question'][0]."')";
-        //     $result_first_sql4 = mysqli_query($conn, $first_sql4);
-        // }
-
-
-
-        // $sql1 = "UPDATE answer SET question_type_1 = '";
-        // $sql2 = "UPDATE answer SET question_type_2 = '";
-        // $sql3 = "UPDATE answer SET question_type_3 = '";
-        // $sql4 = "UPDATE answer SET question_type_4 = '";
-        
-
-        // for ($i = 0; $i < $count_question; $i++) {
-
-        //     if ($type_question[$i] == 1) {
-        //         $sql1 .= "" . $_POST['ans_question'][$i] . ",";
-        //     } else if ($type_question[$i] == 2) {
-        //         $sql2 .= "" . $_POST['ans_question'][$i] . ",";
-        //     } else if ($type_question[$i] == 3) {
-        //         $sql3 .= "" . $_POST['ans_question'][$i] . ",";
-        //     } else if ($type_question[$i] == 4) {
-        //         $sql4 .= "" . $_POST['ans_question'][$i] . ",";
-        //     }
-        // }
-
-        // $sql1 = rtrim($sql1, ",");
-        // $sql1 .= "' WHERE project_id='" . $project_id . "'";
-
-        // $sql2 = rtrim($sql2, ",");
-        // $sql2 .= "' WHERE project_id='" . $project_id . "'";
-
-        // $sql3 = rtrim($sql3, ",");
-        // $sql3 .= "' WHERE project_id='" . $project_id . "'";
-
-        // $sql4 = rtrim($sql4, ",");
-        // $sql4 .= "' WHERE project_id='" . $project_id . "'";
-
-        // echo $sql1 . " | ";
-        // echo $sql2 . " | ";
-        // echo $sql3 . " | ";
-        // echo $sql4 . " | ";
-
-        // $result1 = mysqli_query($conn, $sql1);
-        // $result2 = mysqli_query($conn, $sql2);
-        // $result3 = mysqli_query($conn, $sql3);
-        // $result4 = mysqli_query($conn, $sql4);
+        for ($i = 0; $i < $count_question; $i++) {
+            $sql1 = "INSERT INTO answer (project_id,username,question,answer) VALUES ('$project_id','$username','$question_explode[$i]','";
+            if (gettype($_POST['ans_question' . $i]) == "array") {
+                $count_checkbox_check[$i] = count($_POST['ans_question' . $i]);
+                for ($y = 0; $y < $count_checkbox_check[$i]; $y++) {
+                    $sql1 .= "".$_POST['ans_question' . $i][$y].",";
+                }
+                $sql1 = rtrim($sql1, ",");
+                $sql1 .= "')";
+            }else{
+                $sql1 .= "".$_POST['ans_question' . $i]."')";
+            }
+            $result1 = mysqli_query($conn, $sql1);
+            // echo $sql1.'<br>';
+        }
+        echo "<script>window.location='myproject.php';</script>";
     }
     ?>
 
