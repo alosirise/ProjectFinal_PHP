@@ -25,12 +25,12 @@ include('auth.php');
             <div class="col-4"></div>
 
             <div class="w3-container col-lg-5 center" style="background-color: white;">
-                <h2 style=" padding:30px;">คำถาม</h2>
+                <!-- <h2 style=" padding:30px;">คำถาม</h2> -->
 
 
                 <?php
                 // $project_id = $_GET['project_id'];
-                $project_id = "16";
+                $project_id = "29";
 
                 $count_question = 0;
 
