@@ -54,9 +54,23 @@ $result = $conn->query($sql);
     </tbody>
 </table>
 <a class="btn btn-primary pull-right" onclick='myCreateFunction()' data-added="0"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
-
-
+<!-- 
+<input type=button value=pdf onclick="generatePdf()">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/"
+    crossorigin="anonymous"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script>
+    function download() {
+        let pdf = new jsPDF('l', 'pt', [1920, 640]);
+        pdf.html(document.getElementById('tb_Logbook'), {
+            callback: function (pdf) {
+                pdf.save('test.pdf');
+            }
+        });
+    }
+</script> -->
 <script type="text/javascript">
+
     function myCreateFunction() {
         var table = document.getElementById("table");
         var row = table.insertRow(-1);
@@ -80,52 +94,6 @@ $result = $conn->query($sql);
         myEditFunction();
 
     }
-
-    // function session() {
-
-
-    // var no = $("input[name='no[]']")
-    //     .map(function() {
-    //         return $(this).val();
-    //     }).get();
-
-    // var list = $("input[name='list[]']")
-    //     .map(function() {
-    //         return $(this).val();
-    //     }).get();
-
-    // var quantity = $("input[name='quantity[]']")
-    //     .map(function() {
-    //         return $(this).val();
-    //     }).get();
-
-
-    // var rate = $("input[name='rate[]']")
-    //     .map(function() {
-    //         return $(this).val();
-    //     }).get();
-
-    // var cost1 = $("input[name='cost1[]']")
-    //     .map(function() {
-    //         return $(this).val();
-    //     }).get();
-
-    // console.log(no);
-
-    // $.ajax({
-    //     url: 'edit_project.php',
-    //     type: 'POST',
-    //     data: {
-    //         'no[]': no,
-    //         'list[]': list,
-    //         'quantity[]': quantity,
-    //         'rate[]': rate,
-    //         'cost1[]': cost1
-
-    //     }
-    // });
-
-    // }
 
 
     function myDeleteFunction() {

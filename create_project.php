@@ -137,52 +137,6 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     ';
         ?>
 
-        <!-- <script>
-            function save() {
-                var objective = $("input[name='objective[]']")
-                    .map(function() {
-                        return $(this).val();
-                    }).get();
-
-
-                sessionStorage.setItem("objective_length", objective.length);
-                sessionStorage.setItem("objective", JSON.stringify(objective));
-                console.log(sessionStorage.getItem("objective"));
-                console.log("object_length : ", objective.length);
-
-                document.getElementById("test").value = sessionStorage.getItem("objective_length", objective.length);;
-
-
-                var lecturer = $("input[name='lecturer[]']")
-                    .map(function() {
-                        return $(this).val();
-                    }).get();
-
-                sessionStorage.setItem("lecturer", JSON.stringify(lecturer));
-                console.log(sessionStorage.getItem("lecturer"));
-
-
-
-                var benefits = $("input[name='benefits[]']")
-                    .map(function() {
-                        return $(this).val();
-                    }).get();
-
-                sessionStorage.setItem("benefits", JSON.stringify(benefits));
-                console.log(sessionStorage.getItem("benefits"));
-
-
-
-                var working_group = $("input[name='working_group[]']")
-                    .map(function() {
-                        return $(this).val();
-                    }).get();
-
-                sessionStorage.setItem("working_group", JSON.stringify(working_group));
-                console.log(sessionStorage.getItem("working_group"));
-            }
-        </script> -->
-
         <div class="card-footer text-center">
             <input type="submit" name="submit" class="btn btn-success " value="Submit">
         </div>
@@ -193,19 +147,11 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
         echo '<script> console.log(sessionStorage.getItem("objective"));</script>';
         echo $objective_length = '<script> console.log(sessionStorage.getItem("objective_length"));</script>';
-        // echo $objective_length = '<script> document.write(sessionStorage.getItem("objective_length"));</script>';
-        // $test = $_POST['test'];
-        // echo "ojective_length",$test;
 
         $objective = $_POST['objective'];
         $lecturer = $_POST['lecturer'];
         $benefits = $_POST['benefits'];
         $working_group = $_POST['working_group'];
-
-        // print_r($objective);
-        // print_r($lecturer);
-        // print_r($benefits);
-        // print_r($working_group);
 
 
         $user_id = $_SESSION['id'];
@@ -218,7 +164,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         $location = $_POST['location'];
         
         $cost = $_POST['cost'];
-        $status = "กำลังดำเนินการ";
+        $status = "-";
        
 
         $sql = "SELECT name_project FROM create_project WHERE name_project='$name_project'";

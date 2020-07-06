@@ -21,21 +21,22 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap navbar CSS-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="form.css"> 
+    <link rel="stylesheet" href="form.css">
 </head>
+
 
 <body>
     <div class="" id="nav"></div>
     <form action="" method="POST">
- 
-        <div class="row">
-            <div class="col-lg-3"></div>
+
+        <div class="row ">
+            <div class="col-lg-3 "></div>
             <div class="w3-container col-lg-6 center">
                 <h2 style=" padding :45px;">แก้ไขโครงการ</h2>
-               
+
                 <div class="card">
                     <div class="card-body">
-                 
+
                         <?php
                         include_once('connect.php');
                         $sql = "SELECT * FROM create_project WHERE project_id = '$_GET[project_id]'";
@@ -43,7 +44,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
                         $sql_mutiple_text = "SELECT * FROM mutiple_text WHERE project_id = '$_GET[project_id]'";
                         $result_mutiple_text = $conn->query($sql_mutiple_text);
-                            
+
                         if ($result->num_rows > 0) {
 
 
@@ -184,7 +185,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                         <div class="card-footer text-center">
                             <input type="submit" name="submit" class="btn btn-success " value="บันทึก">
                         </div>
-                       
+                        
     </form>
     <?php
 
@@ -260,7 +261,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
     <script src="index.js"> </script>
-    <script>  
+    <script>
         var objective_replace = '<tr><td style ="width = 25%;"><input type="text" class ="form-control" name="objective[]" id=edit_objective></td><td><a class="remove" >-</td></tr>';
         var lecturer_replace = '<tr><td><input type="text" class ="form-control" name="lecturer[]" id=edit_lecturer></td><td><a class="remove" >-</td></tr>';
         var benefits_replace = '<tr> <td><input type="text" class ="form-control"  name="benefits[]" id=edit_benefits></td><td><a class="remove" >-</td></tr>';
@@ -271,13 +272,13 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         });
 
         function edit(type) {
-            if ($('input[id=edit_'+type+'], textarea[id=edit_'+type+']').is('[readonly]')) {
+            if ($('input[id=edit_' + type + '], textarea[id=edit_' + type + ']').is('[readonly]')) {
 
-                $('input[id=edit_'+type+'], textarea[id=edit_'+type+']').attr('readonly', false);
+                $('input[id=edit_' + type + '], textarea[id=edit_' + type + ']').attr('readonly', false);
                 // console.log("table id " +table_id);
             } else {
 
-                $('input[id=edit_'+type+'], textarea[id=edit_'+type+']').attr('readonly', true);
+                $('input[id=edit_' + type + '], textarea[id=edit_' + type + ']').attr('readonly', true);
             }
         }
         $(function() {
