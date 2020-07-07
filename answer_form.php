@@ -139,7 +139,9 @@ include('auth.php');
 <script>
   $(document).ready(function() {
     $('#table').DataTable({
-      "pagingType": "full_numbers"
+      "pagingType": "full_numbers",
+                "scrollX": "1350px",
+                dom: 'Bfrtip',
     });
   });
 

@@ -145,7 +145,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                      
                   
                         <div>
-                            <label for="exampleFormControlInput1">ค่าลงทะเบียนอบรม</label>  <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'cost\')"></i>
+                            <label for="exampleFormControlInput1">ค่าลงทะเบียนอบรม (บาท)</label>  <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'cost\')"></i>
                             <input type="text" class="form-control text" id=edit_cost name="cost"  readonly  value="' . $row["cost"] . '"></td>
                         </div>
     
@@ -250,8 +250,12 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         $result7 = mysqli_query($conn, $sql7);
 
 
-        echo "<script>alert('บันทึกเรียบร้อย');
-                    window.location='myproject.php';</script>";
+        if($_SESSION['go'] == "go_project" ){
+            echo "<script>window.location='myproject.php';</script>";
+            
+            }else if($_SESSION['go'] == "go_request" ){
+                echo "<script>window.location='request.php';</script>";
+            }
     }
     ?>
 

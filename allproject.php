@@ -53,7 +53,7 @@ include('auth.php');
                 <th style="width:4%" >ที่</th>
 
                   <th style="width:35%" >ชื่อโครงการ</th>
-           
+                  <th style="width:10%" >ชื่อผู้สร้าง</th>
                   <th data-orderable="false" style="width:20%"> รายละเอียดโครงการ</th>
                   <th data-orderable="false"style="width:20%">แบบฟอร์ม</th>
     
@@ -63,6 +63,7 @@ include('auth.php');
         while ($row = $result->fetch_assoc()) {
           $number++;
           echo "<tr><td>" . $number . ".</td><td>" . $row["name_project"] . "</td>  
+          <td>" . $row["creator"] . "</td>  
             <td>  <a href=detail_project.php?project_id=" . $row['project_id'] . "><button type='button' class='btn btn-info' style='width:10'> รายละเอียดโครงการ</button></a></td> 
             <td>   <a href=question_form.php?project_id=" . $row['project_id'] . "><button type='button' class='btn btn-success' style='width:10'>แบบฟอร์ม</button></a></td> 
             </tr>";

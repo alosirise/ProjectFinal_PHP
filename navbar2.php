@@ -27,7 +27,6 @@
     <div class="dropdown-menu">
 
       <a class="dropdown-item" href="profile.php">Profile</a>
-      <a class="dropdown-item" href="#">sssss</a>
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="logout.php">Log out</a>
     </div>

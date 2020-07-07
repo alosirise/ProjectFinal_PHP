@@ -22,7 +22,7 @@ include('auth.php');
         <div class="col-4 offset-md-4 form-div">
             <form action="" method="POST">
                 <div class="form-group">
-                    <label style="font-size: 32px;">โปรไฟล์</label>
+                    <center><label style="font-size: 32px;">โปรไฟล์</label><br><br>
                     <?php
                     include_once('connect.php');
                     $sql2 = "SELECT * FROM images WHERE id = '" . $_SESSION['id'] . "'";
@@ -37,8 +37,8 @@ include('auth.php');
                     }
                     ?>
                 </div>
-                <button type="button" class="btn btn-primary" onclick="location.href='editprofile.php'">Edit</button>
-
+                <center><button type="button" class="btn btn-primary" onclick="location.href='editprofile.php'">Edit</button></center>
+                </center>
                 <?php
 
                 $sql = "SELECT * FROM `profile` WHERE id = '" . $_SESSION['id'] . "'";

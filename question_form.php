@@ -127,7 +127,7 @@ include('auth.php');
             $result1 = mysqli_query($conn, $sql1);
             // echo $sql1.'<br>';
         }
-        echo "<script>window.location='myproject.php';</script>";
+        echo "<script>window.location='allproject.php';</script>";
     }
     ?>
 

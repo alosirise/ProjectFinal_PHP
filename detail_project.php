@@ -2,10 +2,6 @@
 session_start();
 include('auth.php');
 
-if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
-    header('location: home.php');
-    exit();
-}
 //   if($_SESSION['role'] != id)
 
 ?>

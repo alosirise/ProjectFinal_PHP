@@ -1,6 +1,10 @@
 <?php
 session_start();
 include('auth.php');
+if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
+  header('location: home.php');
+  exit();
+}
 ?>
 
 <!doctype html>
@@ -89,14 +93,16 @@ include('auth.php');
           if ($row["status"] == 'อนุมัติ') {
             echo "
             <th><a style=color:forestgreen;>" . $row["status"] . "</a> </th>";
-          }else if ($row["status"] == 'ไม่อนุมัติ') {
+          } else if ($row["status"] == 'ไม่อนุมัติ') {
             echo "
             <th><a style=color:red;>" . $row["status"] . "</a> </th>";
-          }else if ($row["status"] == 'กำลังดำเนินการ') {
+          } else if ($row["status"] == 'กำลังดำเนินการ') {
             echo "
             <th><a style=color:blue;>" . $row["status"] . "</a> </th>";
-          }else{echo "
-            <th>" . $row["status"] . "</th>";}
+          } else {
+            echo "
+            <th>" . $row["status"] . "</th>";
+          }
 
 
 
@@ -104,8 +110,11 @@ include('auth.php');
             echo "
             <td><a href=waiting_project.php?project_id=" . $row['project_id'] . ">  <button type='button' name ='send' class='btn btn-success' >ส่ง</button></a></td>
             ";
-          } else {
+          } else  if ($row["status"] == 'อนุมัติ') {
             echo "<td></td>";
+          } else {
+
+            echo "<td><a href=cancel_send.php?project_id=" . $row['project_id'] . ">  <button type='button' name ='send' class='btn btn-success' >ยกเลิก</button></a></td>";
           }
 
 
