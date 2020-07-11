@@ -119,18 +119,19 @@ if ($_SESSION['role'] != "admin") {
                   <th style="width:6%" >test4</th>      
                   <th style="width:6%" >test5</th>      
                   <th style="width:6%" >test6</th>      
-                  <th style="width:6%" >test7</th>   
+                
                 </tr>
               </thead><tbody> ';
 
                 // output data of each row
                 while ($row = $result->fetch_assoc()) {
                     $number++;
-                    echo "<tr><td>" . $number . ".</td><td>" . $row["name_project"] . "</td>        <td>" . $row["id"] . "</td><td> test</td><td>" . $row["name_project"] . "</td><td>" . $row["name_project"] . "</td><td>" . $row["name_project"] . "</td><td>" . $row["name_project"] . "</td><td>" . $row["name_project"] . "</td>
+                    echo "<tr><td>" . $number . ".</td><td>" . $row["name_project"] . "</td>        <td>" . $row["id"] . "</td><td> test</td><td>" . $row["name_project"] . "</td><td>" . $row["name_project"] . "</td><td>" . $row["name_project"] . "</td><td>" . $row["name_project"] . "</td>
              
            
             </tr>";
-                }echo '</tbody><tfoot> <tr class="w3-blue-gray">
+                }
+                echo '</tbody><tfoot> <tr class="w3-blue-gray">
                   <th>ที่</th>
                   <th>ชื่อโครงการ</th>     
                   <th>test1</th>
@@ -139,7 +140,7 @@ if ($_SESSION['role'] != "admin") {
                   <th>test4</th>      
                   <th>test5</th>      
                   <th>test6</th>      
-                  <th>test7</th>   
+               
                 </tr></tfoot>';
                 echo "</table>";
             } else {
@@ -148,58 +149,78 @@ if ($_SESSION['role'] != "admin") {
             ?>
 
             ซ่อนคอลัมน์ :<br>
-            <a>ที่</a>
-            <label class="toggle-vis switch" data-column="0">
-                <input type="checkbox">
-                <span class="slider round"></span>
-            </label><br>
 
-            <a>ชื่อโครงการ</a>
-            <label class="toggle-vis switch" data-column="1">
-                <input type="checkbox">
-                <span class="slider round"></span>
-            </label><br>
+            <table>
 
-            <a>test1</a>
-            <label class="toggle-vis switch" data-column="2">
-                <input type="checkbox">
-                <span class="slider round"></span>
-            </label><br>
+                <tr>
+                    <th>
+                        <a>ที่</a>
+                        <label class="toggle-vis switch" data-column="0">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label><br>
 
-            <a>test2</a>
-            <label class="toggle-vis switch" data-column="3">
-                <input type="checkbox">
-                <span class="slider round"></span>
-            </label><br>
+                    </th>
 
-            <a>test3</a>
-            <label class="toggle-vis switch" data-column="4">
-                <input type="checkbox">
-                <span class="slider round"></span>
-            </label><br>
+                    <th> <a>ชื่อโครงการ</a>
+                        <label class="toggle-vis switch" data-column="1">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label><br></th>
 
-            <a>test4</a>
-            <label class="toggle-vis switch" data-column="5">
-                <input type="checkbox">
-                <span class="slider round"></span>
-            </label><br>
 
-            <a>test5</a>
-            <label class="toggle-vis switch" data-column="6">
-                <input type="checkbox">
-                <span class="slider round"></span>
-            </label><br>
-            <a>test6</a>
-            <label class="toggle-vis switch" data-column="7">
-                <input type="checkbox">
-                <span class="slider round"></span>
-            </label><br>
-            <a>test7</a>
-            <label class="toggle-vis switch" data-column="8">
-                <input type="checkbox">
-                <span class="slider round"></span>
-            </label><br>
+                    <th> <a>  test1</a>
+                        <label class="toggle-vis switch" data-column="2">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label><br></th>
 
+                    <th> <a>test2</a>
+                        <label class="toggle-vis switch" data-column="3">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label><br></th>
+
+                    
+                </tr>
+
+
+                <tr>
+                    
+                <th>
+                        <a>test3</a>
+                        <label class="toggle-vis switch" data-column="4">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label><br></th>
+
+
+
+                    <th>
+                        <a>test4</a>
+                        <label class="toggle-vis switch" data-column="5">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label><br>
+
+
+                    </th>
+
+
+                    <th>
+                        <a>test5</a>
+                        <label class="toggle-vis switch" data-column="6">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label><br></th>
+
+                    <th> <a>test6</a>
+                        <label class="toggle-vis switch" data-column="7">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label><br></th>
+                </tr>
+            </table>
 
         </div>
     </div>
@@ -224,7 +245,7 @@ if ($_SESSION['role'] != "admin") {
             });
 
             // DataTable
-            
+
             var table = $('#table').DataTable({
                 initComplete: function() {
                     // Apply the search
@@ -244,11 +265,11 @@ if ($_SESSION['role'] != "admin") {
                 "scrollX": "1350px",
                 dom: 'Bfrtip',
                 buttons: [
-                    'copy', 'csv', 'excel',{
-                extend: 'pdfHtml5',
-                orientation: 'landscape',
-                pageSize: 'LEGAL'
-            }, {
+                    'copy', 'csv', 'excel', {
+                        extend: 'pdfHtml5',
+                        orientation: 'landscape',
+                        pageSize: 'LEGAL'
+                    }, {
                         extend: 'print',
                         title: "demo title",
                         orientation: 'landscape',
