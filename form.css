@@ -1,0 +1,59 @@
+.card-body {
+    width: 85%;
+}
+
+.text {
+    width: 350px;
+    font-size: 18px;
+    margin: 10px;
+    padding: 10px;
+    height: 40px;
+}
+
+.container {
+    width: 500px;
+    margin: 100px auto;
+}
+
+input {
+    width: 400px;
+    font-size: 18px;
+    margin: 10px;
+    padding: 10px;
+    height: 40px;
+}
+
+label {
+
+   padding-top: 25px;
+   padding-left: 30px;
+  }
+ 
+.remove {
+
+    display: inline-block;
+    width: 23px;
+    height: 23px;
+    font-size: 20px;
+    background-color: tomato;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    margin: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+table tr:hover{cursor:context-menu;}
+
+
+button:hover {
+    cursor: pointer;
+}
+
+i:hover {
+    cursor: pointer;
+}
+
+tr:hover {
+    cursor: move;
+}

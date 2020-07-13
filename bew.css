@@ -1,0 +1,26 @@
+.form-div{
+    margin-top: 40px;
+    border: 1px solid #e0e0e0;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 100px;
+}
+/* ใช้กับ id */
+#profileDisplay{
+
+vertical-align: middle;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+
+}
+
+.bewcard{
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    margin-bottom:20px;
+}
+
+.button{
+    border-radius: 7px;
+}

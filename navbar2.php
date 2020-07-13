@@ -16,10 +16,10 @@
 </head>
 <body>
     
-<ul class="nav nav-bar topnav-right bg-light " >
-
+<ul class="nav nav-bar bg-light " >
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
     <?php if(isset($_SESSION['id']))  {?>
-    <li class="nav-item">
+    <li class="nav-item ">
       <a href="#" class="nav-link"><?php echo $_SESSION['username'];?></a>
     </li>
     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
@@ -27,12 +27,12 @@
     <div class="dropdown-menu">
 
       <a class="dropdown-item" href="profile.php">Profile</a>
-      <a class="dropdown-item" href="#">sssss</a>
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="logout.php">Log out</a>
     </div>
 
-    <?php }else{ ?>
+    <?php }else{ ?>  
+      <!-- <ul class="navbar-nav ml-auto"> -->
     <li class="nav-item">
       <a href="signin.php" class="nav-link">Sign in</a>
     </li>
@@ -40,7 +40,10 @@
     <li class="nav-item">
       <a href="register.php" class="nav-link">Register</a>
     </li>
+      <!-- </ul> -->
     <?php } ?>
+
+
   </ul>
 
   
@@ -61,7 +64,7 @@
 
          if(!empty($_SESSION['role']) && ($_SESSION['role'] == "staff" || $_SESSION['role'] == "admin")){
             echo ' 
-            <a href="arrange.php" style="font-size:19px">จัดการโครงการ</a>
+            <a href="myproject.php" style="font-size:19px">จัดการโครงการ</a>
             ';
             }
             if(!empty($_SESSION['role']) && $_SESSION['role'] == "admin" ){
@@ -76,7 +79,7 @@
 
 </div>
 
-<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
+
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
