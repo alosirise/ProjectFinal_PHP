@@ -39,10 +39,10 @@ include('auth.php');
                                 ข้อมูล
                             </label>
                             <div class="col-7" style="margin-bottom:20px">
-                                <input type="text" class="form-control" name="column[]">
+                                <input type="text" class="form-control" name="column[0]">
                             </div>
                             <div class="col-4">
-                                <select class="form-control" name="value_column[]">
+                                <select class="form-control" name="value_column[0]">
                                     <option value="1" selected="selected">เว้นว่าง</option>
 
                                     <?php
@@ -63,7 +63,7 @@ include('auth.php');
                                         }
                                     }
                                     for ($i = 0; $i < $count_question; $i++) {
-                                        echo '<option value="'. $question_explode[$i] .'">' . $question_explode[$i] . '</option>';
+                                        echo '<option value="' . $question_explode[$i] . '">' . $question_explode[$i] . '</option>';
                                     }
                                     ?>
 
@@ -88,7 +88,7 @@ include('auth.php');
             <div class="w3-container col-lg-3">
             </div>
             <div class="w3-container">
-                <button type="submit" class="btn-primary" name="">สร้าง</button>
+                <button type="button" class="btn-primary" onclick="createRegist()">สร้าง</button>
             </div>
         </div>
 
@@ -100,33 +100,59 @@ include('auth.php');
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.21/datatables.min.js"></script>
 <script>
     num_column = 1;
+
     function addColumn() {
         console.log("addColumn Click")
-        var column = '<div class="form-row regist'+num_column+'">' +
+        var column = '<div class="form-row regist' + num_column + '">' +
             '<div class="col-7" style="margin-bottom:20px">' +
-            '<input type="text" class="form-control" name="column[]">' +
+            '<input type="text" class="form-control" name="column[' + num_column + ']">' +
             '</div>' +
             '<div class="col-4">' +
-            '<select class="form-control">' +
+            '<select class="form-control" name="value_column[' + num_column + ']">' +
             '<option value="1" selected="selected">เว้นว่าง</option>' +
             <?php
             for ($i = 0; $i < $count_question; $i++) {
-                echo "'" . '<option value="'. $question_explode[$i] .'">' . $question_explode[$i] . '</option>' . "'+";
+                echo "'" . '<option value="' . $question_explode[$i] . '">' . $question_explode[$i] . '</option>' . "'+";
             }
             ?> '</select>' +
             '</div>' +
             '<div class="col-1" style="margin-top:2px">' +
-            '<button type="button" class="btn-danger" onclick="delColumn('+num_column+')">ลบ</button>' +
+            '<button type="button" class="btn-danger" onclick="delColumn(' + num_column + ')">ลบ</button>' +
             '</div>' +
             '</div>' +
             '</div>';
         $("#append_col").append(column);
         num_column++;
+
     }
 
     function delColumn(num_del) {
         console.log("delColumn Click")
         $("div").remove(".regist" + num_del);
+    }
+
+    function createRegist() {
+        console.log("createRegist")
+        localStorage.clear();
+        localStorage.setItem("num_column", num_column);
+
+        for (var i = 0; i < num_column; i++) {
+            localStorage.setItem("column[" + i + "]", $("input[name='column[" + i + "]']").val());
+
+            //ข้างล่างไว้ check console
+            var testval1 = localStorage.getItem("column[" + i + "]");
+            console.log(i + " = " + testval1);
+
+        }
+
+        for (var i = 0; i < num_column; i++) {
+            localStorage.setItem("value_column[" + i + "]", $("select[name='value_column[" + i + "]']").val());
+
+            //ข้างล่างไว้ check console
+            var testval2 = localStorage.getItem("value_column[" + i + "]");
+            console.log(i + " = " + testval2);
+
+        }
     }
 </script>
 <!-- Optional JavaScript -->
