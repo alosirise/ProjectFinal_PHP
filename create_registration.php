@@ -47,7 +47,7 @@ include('auth.php');
 
                                     <?php
                                     // $project_id = $_GET['project_id'];
-                                    $project_id = "247";
+                                    $project_id = "235";
                                     include_once('connect.php');
 
                                     $count_question = 0;
@@ -120,7 +120,6 @@ include('auth.php');
             '</div>' +
             '</div>' +
             '</div>';
-        console.log(column);
         $("#append_col").append(column);
         num_column++;
     }
