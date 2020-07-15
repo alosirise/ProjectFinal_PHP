@@ -103,7 +103,7 @@ include('auth.php');
                                 }
                                 // print_r($answer);
 
-                                for ($i = 0; $i < count($answer); $i++) {
+                                for ($i = 0; $i < $count_row; $i++) {
                                     echo '<tr>';
                                     echo '<th scope="row">' . ($i + 1) . '</th>';
                                     for ($j = 0; $j < count($var_cookie); $j++) {
