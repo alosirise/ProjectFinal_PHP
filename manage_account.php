@@ -58,7 +58,7 @@ include_once('connect.php');
                     echo '
             <table class="table table-responsive" id="table">
               <thead>
-                <tr class="w3-blue-gray">
+                <tr class="w3-green">
                  <th  style="width:4%" >ที่</th>
                   <th style="width:35%" >ชื่อผู้ใช้</th>          
                   <th data-orderable="false" style="width:15%"> สถานะ</th>
@@ -121,7 +121,7 @@ include_once('connect.php');
                     echo '
             <table class="table table-responsive" id="table2">
               <thead>
-                <tr class="w3-blue-gray">
+                <tr class="w3-blue">
                  <th  style="width:4%" >ที่</th>
                   <th style="width:35%" >ชื่อผู้ใช้</th>          
                   <th data-orderable="false" style="width:15%"> สถานะ</th>
@@ -183,7 +183,7 @@ include_once('connect.php');
                     echo '
             <table class="table table-responsive" id="table3">
               <thead>
-                <tr class="w3-blue-gray">
+                <tr class="w3-indigo">
                  <th  style="width:4%" >ที่</th>
                   <th style="width:35%" >ชื่อผู้ใช้</th>          
                   <th data-orderable="false" style="width:15%"> สถานะ</th>
@@ -244,7 +244,6 @@ include_once('connect.php');
         
                                 <option value='admin' ";
                             if ($row["role"] == 'admin') {
-
                                 echo "selected='selected' ";
                             }
                             echo ">Admin</option>

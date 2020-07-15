@@ -47,7 +47,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
 
       include_once('connect.php');
-      $sql = "SELECT * FROM create_project WHERE id = '" . $_SESSION['id'] . "' ";
+      $sql = "SELECT * FROM create_project WHERE id = '" . $_SESSION['id'] . "' AND status != 'ลบ'";
       $result = $conn->query($sql);
       $number = 0;
       $_SESSION['go'] = 'go_project';
@@ -61,8 +61,11 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                   <th style="width:35%" >ชื่อโครงการ</th>
            
                   <th data-orderable="false" style="width:17%"> จัดการโครงการ</th>
+                  <th data-orderable="false""></th>
                   <th data-orderable="false" style="width:17%">จัดการแบบฟอร์ม</th>
-                  <th data-orderable="false" style="width:7%"></th>
+                  <th data-orderable="false" style="width:17%">ฟอร์มประเมิน</th>
+                  <th data-orderable="false""></th>
+                  <th data-orderable="false""></th>
                   <th style="width:10%"> สถานะ</th>
                   <th data-orderable="false" style="width:10%">ส่ง</th>
                   <th data-orderable="false" style="width:10%">ลบ</th>
@@ -74,19 +77,25 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
           $number++;
           echo "<tr><td>" . $number . ".</td><td>" . $row["name_project"] . "</td>  
           ";
-          if ($row["status"] == 'อนุมัติ' || $row["status"] == 'กำลังดำเนินการ') {
+          if ($row["status"] == 'อนุมัติ' || $row["status"] == 'กำลังดำเนินการ' || $row["status"] == 'เสร็จสิ้น') {
             echo "
             <td><a href=edit_project.php?project_id=" . $row['project_id'] . ">    <button type='button' class='btn btn-primary' style='width:10' disabled>จัดการโครงการ</button></a></td> 
+            <td> <i class='fa fa-pencil-square-o fa-lg' aria-hidden='true'></i> </td>
             <td><a href=create_form.php?project_id=" . $row['project_id'] . ">    <button type='button' class='btn btn-warning ' disabled >จัดการแบบฟอร์ม</button></a></td> 
-
+            <td><a href=evaluate_form.php?project_id=" . $row['project_id'] . ">    <button type='button' class='btn btn-info ' disabled >ฟอร์มประเมิน</button></a></td> 
             ";
           } else {
-            echo " <td><a href=edit_project.php?project_id=" . $row['project_id'] . ">    <button type='button' class='btn btn-primary' style='width:10'>จัดการโครงการ</button></a></td> 
-              <td><a href=create_form.php?project_id=" . $row['project_id'] . ">    <button type='button' class='btn btn-warning ' >จัดการแบบฟอร์ม</button></a></td> ";
+            echo " <td><a href=edit_project.php?project_id=" . $row['project_id'] . ">    <button type='button' class='btn btn-primary' style='width:10'>จัดการโครงการ</button></a></td>
+              <td><a href=edit_detail_project.php?project_id=" . $row['project_id'] . "> <i class='fa fa-pencil-square-o fa-lg' aria-hidden='true' ></i></a></td>
+              <td><a href=create_form.php?project_id=" . $row['project_id'] . ">    <button type='button' class='btn btn-warning ' >จัดการแบบฟอร์ม</button></a></td> 
+              <td><a href=evaluate_form.php?project_id=" . $row['project_id'] . ">    <button type='button' class='btn btn-info ' >ฟอร์มประเมิน</button></a></td> 
+              ";
           }
-          if ($row["status"] == 'อนุมัติ') {
+          if ($row["status"] == 'อนุมัติ' || $row["status"] == 'เสร็จสิ้น') {
             echo "<td><a href=answer_form.php?project_id=" . $row['project_id'] . "> <i class='fa fa-book fa-lg' aria-hidden='true'></i></a></td>";
+            echo "<td><a href=enroll_form.php?project_id=" . $row['project_id'] . "> <i class='fa fa-id-card fa-lg' aria-hidden='true'></i></a></td>";
           } else {
+            echo "<td></td>";
             echo "<td></td>";
           }
 
@@ -112,15 +121,21 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             ";
           } else  if ($row["status"] == 'อนุมัติ') {
             echo "<td></td>";
-          } else {
+          } else  if ($row["status"] == 'เสร็จสิ้น') {
+            echo "<td></td>";
+          } else if ($row["status"] == 'กำลังดำเนินการ'){
 
             echo "<td><a href=cancel_send.php?project_id=" . $row['project_id'] . ">  <button type='button' name ='send' class='btn btn-success' >ยกเลิก</button></a></td>";
-          }
+          }else{}
 
 
-          echo "
-            <td><a onClick=\"javascript: return confirm('Please confirm deletion');\" href=delete_project.php?project_id=" . $row['project_id'] . " >  <button type='button' name ='delete' class='btn btn-danger' >ลบ</button></a></td>         
+          if ($row["status"] == '-' || $row["status"] == 'ไม่อนุมัติ')  {
+            echo "
+            <td><a onClick=\"javascript: return confirm('Please confirm deletion');\" href=delete_project.php?project_id=" . $row['project_id'] . " >  <button type='button' name ='delete' class='btn btn-danger' >ลบ</button></a></td>   
             </tr>";
+          } else {
+            echo "<td></td>";
+          }
         }
         echo "</table>";
       } else {

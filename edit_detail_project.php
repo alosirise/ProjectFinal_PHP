@@ -70,7 +70,8 @@ include('auth.php');
                                       <div class="card-body">
                               
                               
-                              <h4 style=" padding :45px;">รายละเอียดโครงการ </h4>
+                              
+                              <h4 style=" padding :35px;">  รายละเอียด  <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'lecturer\')"></i></h4> 
                               ' . $row["principle"] . '
 
 

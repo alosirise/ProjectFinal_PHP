@@ -10,7 +10,7 @@
     
 include_once('connect.php');
           
-          $sql = "DELETE FROM create_project WHERE project_id = '$_GET[project_id]'";
+$sql = "UPDATE `create_project` SET status = 'ลบ' WHERE project_id = '$_GET[project_id]'";
           $result = mysqli_query($conn, $sql);
           if($result)
               header("location:myproject.php");
