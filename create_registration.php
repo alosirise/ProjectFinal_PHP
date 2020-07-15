@@ -133,28 +133,66 @@ include('auth.php');
 
     function createRegist() {
         console.log("createRegist")
+
         localStorage.clear();
         localStorage.setItem("num_column", num_column);
 
         for (var i = 0; i < num_column; i++) {
             localStorage.setItem("column[" + i + "]", $("input[name='column[" + i + "]']").val());
 
-            //ข้างล่างไว้ check console
+            //ข้างล่างไว้ check console เฉยๆ
             var testval1 = localStorage.getItem("column[" + i + "]");
             console.log(i + " = " + testval1);
 
         }
-
+        var check = [];
         for (var i = 0; i < num_column; i++) {
             localStorage.setItem("value_column[" + i + "]", $("select[name='value_column[" + i + "]']").val());
 
-            //ข้างล่างไว้ check console
+            //ข้างล่างไว้ check console เฉยๆ
             var testval2 = localStorage.getItem("value_column[" + i + "]");
             console.log(i + " = " + testval2);
 
+            //เก็บค่าเข้าตัวแปร check เพื่อไปใช้ในตอน check อีกที
+            check[i] = testval2;
         }
+
+
+        var num_column_2 = localStorage.getItem("num_column");
+
+        var cookie_value_column = [];
+        var count_index = 0;
+        for (var i = 0; i < num_column_2; i++) {
+
+            var value_column = localStorage.getItem("value_column[" + i + "]");
+
+            if (value_column != "undefined") {
+                if (value_column == "1") {
+                    var append2 = '<td>test select 1</td>';
+                    // $("#append2").append(append2);
+                }
+                cookie_value_column[count_index] = localStorage.getItem("value_column[" + i + "]");
+                count_index++;
+
+            }
+        }
+        //เช็คกรณีที่มีแต่ 1 ใน value ข้างหลัง
+        var check_result = false;
+        for (var i = 0; i < num_column; i++) {
+            if (!(check[i] == 1 || check[i] == "undefined")) {
+                check_result = true; break;
+            }
+        }
+        if(check_result == true){
+            document.cookie = 'value_column=' + cookie_value_column;
+            window.location.href = "view_registration.php"
+        }else{
+            alert("ต้องมีข้อมูลอย่างน้อย 1 ช่อง");
+        }
+        
     }
 </script>
+
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then minified and Bootstrap JS -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->

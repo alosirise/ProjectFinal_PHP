@@ -51,80 +51,73 @@ include('auth.php');
                         <tbody>
                             <tr>
                             <tr id="append2">
-                                <script>
-                                    var cookie_value_column = [];
-                                    var count_index = 0;
-                                    for (var i = 0; i < num_column; i++) {
 
-                                        var value_column = localStorage.getItem("value_column[" + i + "]");
-
-                                        if (value_column != "undefined") {
-                                            if (value_column == "1") {
-                                                var append2 = '<td>test select 1</td>';
-                                                $("#append2").append(append2);
-                                            }
-                                            cookie_value_column[count_index] = localStorage.getItem("value_column[" + i + "]");
-                                            count_index++;
-
-                                        }
-                                    }
-                                    document.cookie = 'value_column=' + cookie_value_column;
-                                </script>
                                 <?php
                                 // $project_id = $_GET['project_id'];
                                 $project_id = "235";
 
-                                var_dump($_COOKIE['value_column']);
+                                // var_dump($_COOKIE['value_column']);
 
-                                $test = $_COOKIE['value_column'];
-                                $test = explode(",", $test);
-                                var_dump($test);
+                                $var_cookie = $_COOKIE['value_column'];
+                                $var_cookie = explode(",", $var_cookie);
+                                // var_dump($var_cookie);
 
-                                // include_once('connect.php');
+                                include_once('connect.php');
 
-                                // $sql = "SELECT answer from answer where project_id = $project_id and question = $test[0]";
-                                // echo $sql;
-                                // $result = mysqli_query($conn, $sql);
-                                // if ($result->num_rows > 0) {
+                                $answer = array();
 
-                                // }
+                                $count_row = 0;
 
-                                // if ($result->num_rows > 0) {
-                                //     while ($row = $result->fetch_assoc()) {
-                                //         echo '<td>' . $row['answer'] . '</td>';
-                                //     }
-                                // }
+                                //for นี้ใช้แค่เพื่อเก็บจำนวน row ไปเช็คในกรณีที่ ค่าเป็น 1 หรือเว้นว่าง
+                                for ($i = 0; $i < count($var_cookie); $i++) {
+
+                                    $sql = "SELECT answer from answer where project_id = $project_id and question = '" . $var_cookie[$i] . "'";
+                                    // echo $sql;
+                                    $result = mysqli_query($conn, $sql);
+
+                                    if ($result->num_rows > 0) {
+                                        while ($row = $result->fetch_assoc()) {
+                                            $count_row++;
+                                        }
+                                        break;
+                                    }
+                                }
+
+                                for ($i = 0; $i < count($var_cookie); $i++) {
+
+                                    $sql = "SELECT answer from answer where project_id = $project_id and question = '" . $var_cookie[$i] . "'";
+                                    // echo $sql;
+                                    $result = mysqli_query($conn, $sql);
+
+                                    if ($result->num_rows > 0) {
+                                        $j = 0;
+                                        while ($row = $result->fetch_assoc()) {
+                                            $answer[$i][$j] = $row['answer'];
+                                            $j++;
+                                        }
+                                    } else {
+                                        for ($j = 0; $j < $count_row; $j++) {
+                                            $answer[$i][$j] = "";
+                                        }
+                                    }
+                                }
+                                // print_r($answer);
+
+                                for ($i = 0; $i < count($answer); $i++) {
+                                    echo '<tr>';
+                                    echo '<th scope="row">' . ($i + 1) . '</th>';
+                                    for ($j = 0; $j < count($var_cookie); $j++) {
+                                        echo '<td>' . $answer[$j][$i] . '</td>';
+                                    }
+                                    echo '</tr>';
+                                }
 
                                 ?>
-                                <!-- <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td> -->
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
+
                         </tbody>
                     </table>
                 </div>
 
-            </div>
-            <div style="background-color: white;">
-                <button type="button" class="btn-primary" onclick="addColumn()">เพิ่ม</button>
-            </div>
-            <div class="w3-container col-lg-3">
-            </div>
-            <div class="w3-container">
-                <button type="button" class="btn-primary" onclick="createRegist()">สร้าง</button>
             </div>
         </div>
 
