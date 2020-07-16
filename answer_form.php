@@ -58,6 +58,7 @@ include('auth.php');
                     for ($i = 0; $i < $countquestion; $i++) {
                       echo '<th>' . $question_explode[$i] . '</th>';
                     }
+                    echo '<th>ลบ</th>';
                   }
                 }
                 ?>
@@ -90,7 +91,7 @@ include('auth.php');
               }
 
 
-              $sql3 = "SELECT answer from answer where project_id = $project_id";
+              $sql3 = "SELECT answer,transaction from answer where project_id = $project_id";
               $result3 = mysqli_query($conn, $sql3);
 
               $answer = array();
@@ -98,12 +99,11 @@ include('auth.php');
               if ($result3->num_rows > 0) {
                 //ใช้เป็น index ตอนเก็บค่า
                 $j = 0;
-                $count_answer = 0;
 
                 while ($row = $result3->fetch_assoc()) {
                   $answer[$j] = $row['answer'];
+                  $transaction[$j] = $row['transaction'];
                   $j++;
-                  $count_answer++;
                 }
               }
 
@@ -113,14 +113,18 @@ include('auth.php');
               if ($count_user == 0) {
                 echo "ยังไม่การตอบกลับ";
               }
+              $transaction_store = array();
 
               for ($z = 0; $z < $count_user; $z++) {
-                echo '<tr>';
+                //ต้องสร้าง transaction_store มาเก็บอีกทีจะได้ใช้ในตอน delAnswer()ได้
+                $transaction_store[$z] = $transaction[$append_answer];
+                echo '<tr id="tr' . $transaction_store[$z] . '">';
                 echo '<td>' . $username[$z] . '</td>';
                 for ($x = 0; $x < (int) $countquestion; $x++) {
                   echo '<td>' . $answer[$append_answer] . '</td>';
                   $append_answer++;
                 }
+                echo '<td><a onClick=\'javascript: return confirm("ต้องการลบคำตอบ ใช่ หรือ ไม่?"); \'href=del_answer.php?project_id=' . $project_id . '><button type="button" class="btn-danger" onclick="delAnswer(' . $transaction_store[$z] . ')">ลบ</button></a></td>';
                 echo '</tr>';
               }
               ?>
@@ -133,20 +137,24 @@ include('auth.php');
   </form>
 </body>
 
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.21/datatables.min.js"></script>
 <script>
   $(document).ready(function() {
     $('#table').DataTable({
       "pagingType": "full_numbers",
-                "scrollX": "1350px",
-                dom: 'Bfrtip',
+      "scrollX": "1350px",
+      dom: 'Bfrtip',
     });
   });
 
-</script>
+  function delAnswer(num_del) {
+    console.log("del Answer click = " + num_del);
+    document.cookie = 'transaction=' + num_del;
+    
+  }
 
+</script>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then minified and Bootstrap JS -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
