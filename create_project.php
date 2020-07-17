@@ -175,12 +175,13 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         } else if ($name_project == "") {
             echo '<script>alert("กรุณาตั้งชื่อโปรเจ็ค")</script>';
         } else {
+            $datetime = date('Y-m-d H:i:s');
 
-            $sql2 = "INSERT INTO create_project (id,creator ,name_project,respondsible_department,principle,target_group,duration,location,cost,status) 
-                VALUES ( '$user_id','$username','$name_project', '$respondsible_department','$principle','$target_group','$duration','$location','$cost','$status')";
+            $sql2 = "INSERT INTO create_project (id,creator ,name_project,respondsible_department,principle,target_group,duration,location,cost,status,last_change) 
+                VALUES ( '$user_id','$username','$name_project', '$respondsible_department','$principle','$target_group','$duration','$location','$cost','$status','$datetime')";
             $result2 = mysqli_query($conn, $sql2);
 
-
+            
             $project_id;
             $sql_check = "SELECT * FROM create_project WHERE id = '" . $_SESSION['id'] . "' ";
             $result_check = $conn->query($sql_check);
@@ -210,6 +211,11 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                   $sql5  = rtrim($sql5,",");
                   $result5 = mysqli_query($conn, $sql5);
 
+
+
+
+
+                  
                 echo "<script>alert('สร้างโครงการแล้ว ขั้นตอนถัดไป กรุณาสร้างแบบฟอร์ม');
                 window.location='myproject.php';</script>";
             

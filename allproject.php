@@ -40,7 +40,7 @@ include('auth.php');
 
 
       include_once('connect.php');
-      $sql = "SELECT * FROM create_project WHERE status ='อนุมัติ'";
+      $sql = "SELECT * FROM create_project WHERE status ='อนุมัติ' ORDER BY last_change DESC ";
       $result = $conn->query($sql);
       $number = 0;
       if ($result->num_rows > 0) {

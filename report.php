@@ -19,9 +19,10 @@ if ($_SESSION['role'] != "admin") {
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <!-- Bootstrap navbar CSS-->
     <link rel="stylesheet" href="navbar.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.21/datatables.min.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.21/datatables.min.css" /> -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css" />
+
 </head>
 <style>
     #main {
@@ -111,14 +112,14 @@ if ($_SESSION['role'] != "admin") {
             <table class="table table-responsive" id=table >
               <thead>
                 <tr class="w3-blue-gray">
-                <th style="width:2%" >ที่</th>
-                  <th  >ชื่อโครงการ</th>     
-                  <th style="width:6%" >test1</th>
-                  <th style="width:6%" >test2</th> 
-                  <th style="width:6%" >test3</th>      
-                  <th style="width:6%" >test4</th>      
-                  <th style="width:6%" >test5</th>      
-                  <th style="width:6%" >test6</th>      
+                <th  style="width:1%">ลำดับ</th>
+                  <th style="width:1%" >ชื่อโครงการ</th>     
+                  <th style="width:1%" >test1</th>
+                  <th style="width:1%" >test2</th> 
+                  <th style="width:1%" >test3</th>      
+                  <th  style="width:1%">test4</th>      
+                  <th style="width:1%" >test5</th>      
+                  <th  style="width:1%">test6</th>      
                 
                 </tr>
               </thead><tbody> ';
@@ -126,20 +127,20 @@ if ($_SESSION['role'] != "admin") {
                 // output data of each row
                 while ($row = $result->fetch_assoc()) {
                     $number++;
-                    echo "<tr><td>" . $number . ".</td><td>" . $row["name_project"] . "</td>        <td>" . $row["id"] . "</td><td> test</td><td>" . $row["name_project"] . "</td><td>" . $row["name_project"] . "</td><td>" . $row["name_project"] . "</td><td>" . $row["name_project"] . "</td>
+                    echo "<tr><td> " . $number . ".</td><td>" . $row["name_project"] . "</td>        <td>" . $row["id"] . "</td><td> test</td><td>" . $row["name_project"] . "</td><td>" . $row["name_project"] . "</td><td>" . $row["name_project"] . "</td><td>" . $row["name_project"] . "</td>
              
            
             </tr>";
                 }
                 echo '</tbody><tfoot> <tr class="w3-blue-gray">
-                  <th>ที่</th>
-                  <th>ชื่อโครงการ</th>     
-                  <th>test1</th>
-                  <th>test2</th> 
-                  <th>test3</th>      
-                  <th>test4</th>      
-                  <th>test5</th>      
-                  <th>test6</th>      
+                  <th class="topic1">ที่</th>
+                  <th class="topic2">ชื่อโครงการ</th>     
+                  <th class="topic3">test1</th>
+                  <th class="topic4">test2</th> 
+                  <th class="topic5">test3</th>      
+                  <th class="topic6">test4</th>      
+                  <th class="topic7">test5</th>      
+                  <th class="topic8">test6</th>      
                
                 </tr></tfoot>';
                 echo "</table>";
@@ -169,7 +170,7 @@ if ($_SESSION['role'] != "admin") {
                         </label><br></th>
 
 
-                    <th> <a>  test1</a>
+                    <th> <a> test1</a>
                         <label class="toggle-vis switch" data-column="2">
                             <input type="checkbox">
                             <span class="slider round"></span>
@@ -181,13 +182,13 @@ if ($_SESSION['role'] != "admin") {
                             <span class="slider round"></span>
                         </label><br></th>
 
-                    
+
                 </tr>
 
 
                 <tr>
-                    
-                <th>
+
+                    <th>
                         <a>test3</a>
                         <label class="toggle-vis switch" data-column="4">
                             <input type="checkbox">
@@ -236,17 +237,37 @@ if ($_SESSION['role'] != "admin") {
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
+    <script src='vfs_fonts.js'></script>
 
     <script>
         $(document).ready(function() {
-            $('#table tfoot th').each(function() {
+
+            $('.topic1').each(function() {
+                var title = $(this).text();
+                $(this).html('<input type="text" style="width:30px;" placeholder="' + title + '" />');
+            });
+
+            $('.topic3 ,.topic4').each(function() {
+                var title = $(this).text();
+                $(this).html('<input type="text" style="width:50px;" placeholder="ค้นหา : ' + title + '" />');
+            });
+
+            $('.topic2,.topic5 ,.topic6,.topic7 ,.topic8').each(function() {
                 var title = $(this).text();
                 $(this).html('<input type="text" style="width:150px;" placeholder="ค้นหา : ' + title + '" />');
             });
 
             // DataTable
-
+            pdfMake.fonts = {
+                THSarabun: {
+                    normal: 'THSarabun.ttf',
+                    bold: 'THSarabun-Bold.ttf',
+                    italics: 'THSarabun-Italic.ttf',
+                    bolditalics: 'THSarabun-BoldItalic.ttf'
+                }
+            }
             var table = $('#table').DataTable({
+
                 initComplete: function() {
                     // Apply the search
                     this.api().columns().every(function() {
@@ -261,28 +282,119 @@ if ($_SESSION['role'] != "admin") {
                         });
                     });
                 },
+                "lengthMenu": [
+                    [4, 25, 50, -1],
+                    [4, 25, 50, "All"]
+                ],
+                "pageLength": 10,
                 "pagingType": "full_numbers",
                 "scrollX": "1350px",
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', {
+                dom: 'B<"top"f>rt<"bottom"lpi><"clear">',
+                buttons: [{
+                        extend: 'copyHtml5',
+                        exportOptions: {
+                            columns: [':visible']
+                        }
+                    },
+                    {
+                        extend: 'excelHtml5',
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    {
                         extend: 'pdfHtml5',
+                        title: 'report',
+                        text: 'PDF (landscape)',
                         orientation: 'landscape',
-                        pageSize: 'LEGAL'
-                    }, {
+                        pageSize: 'A4',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                        },
+                        customize: function(doc) {
+                            doc.defaultStyle = {
+                                font: 'THSarabun',
+                                fontSize: 12
+                            };
+                            doc.content[1].table.widths = ['5%', '20%', '5%', '5%', '15%', '15%', '20%', '15%'];
+                            doc.styles.tableHeader.fontSize = 13;
+                            var rowCount = doc.content[1].table.body.length; // นับจำนวนแถวทั้งหมดในตาราง
+                            // วนลูปเพื่อกำหนดค่า
+                            for (i = 1; i < rowCount; i++) { // i เริ่มที่ 1 เพราะ i แรกเป็นแถวของหัวข้อ
+                                doc.content[1].table.body[i][0].alignment = 'center';
+                                doc.content[1].table.body[i][1].alignment = 'left';
+                                doc.content[1].table.body[i][2].alignment = 'center';
+                                doc.content[1].table.body[i][3].alignment = 'center';
+                                doc.content[1].table.body[i][4].alignment = 'center';
+                                doc.content[1].table.body[i][5].alignment = 'left';
+                                doc.content[1].table.body[i][6].alignment = 'left';
+                                doc.content[1].table.body[i][7].alignment = 'left';
+                            };
+                            console.log(doc);
+                        }
+                    },
+                    {
+                        "extend": 'pdf',
+                        "text": 'PDF (vertical)',
+                        "title": 'Report',
+                        "pageSize": 'A4',
+                        "customize": function(doc) {
+                            doc.defaultStyle = {
+                                font: 'THSarabun',
+                                fontSize: 12
+                            };
+                            // กำหนดความกว้างของ header แต่ละคอลัมน์หัวข้อ
+                            doc.content[1].table.widths = ['5%', '20%', '5%', '5%', '15%', '15%', '20%', '15%'];
+                            doc.styles.tableHeader.fontSize = 13;
+                            var rowCount = doc.content[1].table.body.length; // นับจำนวนแถวทั้งหมดในตาราง
+                            // วนลูปเพื่อกำหนดค่า
+                            for (i = 1; i < rowCount; i++) { // i เริ่มที่ 1 เพราะ i แรกเป็นแถวของหัวข้อ
+                                doc.content[1].table.body[i][0].alignment = 'center';
+                                doc.content[1].table.body[i][1].alignment = 'left';
+                                doc.content[1].table.body[i][2].alignment = 'center';
+                                doc.content[1].table.body[i][3].alignment = 'center';
+                                doc.content[1].table.body[i][4].alignment = 'center';
+                                doc.content[1].table.body[i][5].alignment = 'left';
+                                doc.content[1].table.body[i][6].alignment = 'left';
+                                doc.content[1].table.body[i][7].alignment = 'left';
+
+                            };
+                            console.log(doc);
+                        }
+                    },
+                    {
                         extend: 'print',
                         title: "demo title",
                         orientation: 'landscape',
+                        exportOptions: {
+                            columns: ':visible',
+                        },
                         customize: function(win) {
-                            $(win.document.body).find('h1').css('text-align', 'center');
-                            $(win.document.body).css('font-size', '12px');
-                            $(win.document.body).find('table')
-                                .addClass('compact')
+                            var last = null;
+                            var current = null;
+                            var bod = [];
+
+                            var css = '@page { size: landscape; }',
+                                head = win.document.head || win.document.getElementsByTagName('head')[0],
+                                style = win.document.createElement('style');
+
+                            style.type = 'text/css';
+                            style.media = 'print';
+
+                            if (style.styleSheet) {
+                                style.styleSheet.cssText = css;
+                            } else {
+                                style.appendChild(win.document.createTextNode(css));
+                            }
+
+                            head.appendChild(style);
                         }
+                    }, {
+                        extend: 'colvis',
+                        collectionLayout: 'fixed two-column'
                     }
                 ]
             });
-
 
 
             $('label.toggle-vis').on('change', function(e) {
@@ -293,6 +405,7 @@ if ($_SESSION['role'] != "admin") {
         });
     </script>
     <script src="index.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.colVis.min.js"></script>
 </body>
 
 </html>

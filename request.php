@@ -53,7 +53,7 @@ $_SESSION['go'] = 'go_request';
         <h2 style=" padding :20px;">คำร้องขอสร้างโครงการ</h2>
         <?php
         include_once('connect.php');
-        $sql = "SELECT * FROM create_project WHERE status = 'กำลังดำเนินการ'";
+        $sql = "SELECT * FROM create_project WHERE status = 'กำลังดำเนินการ' ORDER BY last_change DESC ";
         $result = $conn->query($sql);
         $number = 0;
 
@@ -130,7 +130,7 @@ $_SESSION['go'] = 'go_request';
         <br> <br>
         <h2 style=" padding :20px;">รายการที่อนุมัติแล้ว</h2>
         <?php
-        $sql2 = "SELECT * FROM create_project WHERE status = 'อนุมัติ'";
+        $sql2 = "SELECT * FROM create_project WHERE status = 'อนุมัติ'  ORDER BY last_change DESC ";
         $result2 = $conn->query($sql2);
         $number = 0;
         if ($result2->num_rows > 0) {
@@ -163,7 +163,7 @@ $_SESSION['go'] = 'go_request';
                  <td><a href=create_form.php?project_id=" . $row2['project_id'] . ">    <button type='button' class='btn btn-warning ' >ตรวจสอบแบบฟอร์ม</button></a></td>
                  <td><a href=evaluate_form.php?project_id=" . $row2['project_id'] . ">    <button type='button' class='btn btn-info ' >ฟอร์มประเมิน</button></a></td>  
                  <td><a href=answer_form.php?project_id=" . $row2['project_id'] . "> <i class='fa fa-book fa-lg' aria-hidden='true'></i></a></td>
-                 <td><a href=enroll_form.php?project_id=" . $row2['project_id'] . "> <i class='fa fa-id-card fa-lg' aria-hidden='true'></i></a></td>
+                 <td><a href=create_registration.php?project_id=" . $row2['project_id'] . "> <i class='fa fa-id-card fa-lg' aria-hidden='true'></i></a></td>
                  <td><select name='change' id='project_id' style=' height:30px; width: 100%' onfocus=\"this.setAttribute('PrvSelectedValue',this.value);\" 
                  onchange=\"if(confirm('Do you want to change?')==false) { this.value=this.getAttribute('PrvSelectedValue');return false; }
                  else{location.href= 'approve_project.php?project_id=" . $row2['project_id'] . "&change='+this.value}\" 
@@ -207,7 +207,7 @@ $_SESSION['go'] = 'go_request';
         <br> <br>
         <h2 style=" padding :20px;">รายการที่ปฎิเสธแล้ว</h2>
         <?php
-        $sql3 = "SELECT * FROM create_project WHERE status = 'ไม่อนุมัติ'";
+        $sql3 = "SELECT * FROM create_project WHERE status = 'ไม่อนุมัติ' ORDER BY last_change DESC ";
         $result3 = $conn->query($sql3);
         $number = 0;
 
@@ -286,7 +286,7 @@ $_SESSION['go'] = 'go_request';
         <br> <br>
         <h2 style=" padding :20px;">รายการที่เสร็จสิ้นแล้ว</h2>
         <?php
-        $sql3 = "SELECT * FROM create_project WHERE status = 'เสร็จสิ้น'";
+        $sql3 = "SELECT * FROM create_project WHERE status = 'เสร็จสิ้น'  ORDER BY last_change DESC ";
         $result3 = $conn->query($sql3);
         $number = 0;
 
@@ -297,10 +297,10 @@ $_SESSION['go'] = 'go_request';
                <tr class="w3-blue-gray">
                 <th style="width:4%">ที่</th>
                  <th style="width:26%">ชื่อโครงการ</th>
-                 <th style="width:10%">ชื่อผู้ใช้</th>
+                 <th style="width:9%">ชื่อผู้ใช้</th>
                  <th data-orderable="false" style="width:15%">ตรวจสอบโครงการ</th>
                  <th data-orderable="false"></th>
-                 <th data-orderable="false" style="width:15%">ตรวจสอบแบบฟอร์ม</th>
+                 <th data-orderable="false" style="width:16%">ตรวจสอบแบบฟอร์ม</th>
                  <th data-orderable="false" style="width:15%">ฟอร์มประเมิน</th>
                  <th data-orderable="false"></th>
                  <th data-orderable="false"></th>
@@ -321,7 +321,7 @@ $_SESSION['go'] = 'go_request';
            <td><a href=create_form.php?project_id=" . $row3['project_id'] . ">    <button type='button' class='btn btn-warning ' >ตรวจสอบแบบฟอร์ม</button></a></td> 
            <td><a href=evaluate_form.php?project_id=" . $row3['project_id'] . ">    <button type='button' class='btn btn-info ' >ฟอร์มประเมิน</button></a></td>  
            <td><a href=answer_form.php?project_id=" . $row3['project_id'] . "> <i class='fa fa-book fa-lg' aria-hidden='true'></i></a></td>
-           <td><a href=enroll_form.php?project_id=" . $row3['project_id'] . "> <i class='fa fa-id-card fa-lg' aria-hidden='true'></i></a></td>
+           <td><a href=create_registration.php?project_id=" . $row3['project_id'] . "> <i class='fa fa-id-card fa-lg' aria-hidden='true'></i></a></td>
           
             <td><select name='change' id='project_id' style=' height:30px; width: 100%' onfocus=\"this.setAttribute('PrvSelectedValue',this.value);\" 
                      onchange=\"if(confirm('Do you want to change?')==false) { this.value=this.getAttribute('PrvSelectedValue');return false; }

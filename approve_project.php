@@ -4,8 +4,9 @@ include('auth.php');
 include_once('connect.php');
 
 $change = "$_GET[change]";
+$datetime = date('Y-m-d H:i:s');
 
-$sql2 = "UPDATE `create_project` SET status = '$_GET[change]' WHERE project_id = '$_GET[project_id]'";
+$sql2 = "UPDATE `create_project` SET status = '$_GET[change]',last_change = '".$datetime."' WHERE project_id = '$_GET[project_id]'";
 $result = mysqli_query($conn, $sql2);
 
 
