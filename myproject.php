@@ -63,8 +63,8 @@ echo "<h2 style=' padding :35px; '>แบบร่าง</h2>";
            
                   <th data-orderable="false" style="width:17%"> จัดการโครงการ</th>
                   <th data-orderable="false""></th>
-                  <th data-orderable="false" style="width:17%">จัดการแบบฟอร์ม</th>
-                  <th data-orderable="false" style="width:17%">ฟอร์มประเมิน</th>
+                  <th data-orderable="false" style="width:17%">แบบฟอร์มใบสมัคร</th>
+                  <th data-orderable="false" style="width:17%">แบบประเมิน</th>
                   <th data-orderable="false""></th>
                   <th data-orderable="false""></th>
                   <th style="width:10%"> สถานะ</th>
@@ -166,8 +166,8 @@ echo "<h2 style=' padding :35px; '>แบบร่าง</h2>";
            
                   <th data-orderable="false" style="width:17%"> จัดการโครงการ</th>
                   <th data-orderable="false""></th>
-                  <th data-orderable="false" style="width:17%">จัดการแบบฟอร์ม</th>
-                  <th data-orderable="false" style="width:17%">ฟอร์มประเมิน</th>
+                  <th data-orderable="false" style="width:17%">แบบฟอร์มใบสมัคร</th>
+                  <th data-orderable="false" style="width:17%">แบบประเมิน</th>
                   <th data-orderable="false""></th>
                   <th data-orderable="false""></th>
                   <th style="width:10%"> สถานะ</th>

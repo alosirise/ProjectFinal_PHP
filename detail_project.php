@@ -1,8 +1,6 @@
 <?php
 session_start();
-include('auth.php');
 //   if($_SESSION['role'] != id)
-
 ?>
 
 <!doctype html>
@@ -25,10 +23,9 @@ include('auth.php');
 
     /* This will style any <img> element in .parent div */
     .parent img {
-        object-fit: cover;
+   
         width: 100%;
         height: auto;
-        cursor: pointer;
     }
 </style>
 <body>
@@ -63,7 +60,7 @@ include('auth.php');
                                 if ($row["image_project"] == NULL) {
                                     echo '<div class="parent"><img src="images/placeholder_2.jpg" id="profileDisplay" onclick="triggerClick()"></center></div>';
                                 } else {
-                                    echo '<div class="parent"><img id="profileDisplay" style="cursor: pointer;"onclick="triggerClick()" src="data:image;base64,' . $row["image_project"] . '"></center></div>';
+                                    echo '<div class="parent"><img id="profileDisplay" onclick="triggerClick()" src="data:image;base64,' . $row["image_project"] . '"></center></div>';
                                 }
                                 echo '
                                       <h2 style=" padding :300 px;"></h2>
@@ -122,15 +119,15 @@ include('auth.php');
 
 
 
-
-                    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+                   
                     
 
                     <script src="index.js"> </script>
 
                     
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+                    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
 
 </body>
 

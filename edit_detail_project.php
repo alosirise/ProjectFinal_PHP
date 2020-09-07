@@ -29,7 +29,6 @@ include('auth.php');
 
     /* This will style any <img> element in .parent div */
     .parent img {
-        object-fit: cover;
         width: 100%;
         height: auto;
         cursor: pointer;

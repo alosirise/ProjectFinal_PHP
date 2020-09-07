@@ -1,7 +1,6 @@
 <?php
 session_start();
 include('auth.php');
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -105,6 +104,9 @@ include('auth.php');
         </div>
     </form>
     <?php
+
+
+
     if (isset($_POST['sendAnswer'])) {
         var_dump($type_question);
         var_dump($_POST['ans_question3']);
@@ -119,7 +121,7 @@ include('auth.php');
         if ($result2->num_rows > 0) {
             while ($row = $result2->fetch_assoc()) {
                 // echo $sql2;
-                $num_transaction = $row['MAX(transaction)']+1;
+                $num_transaction = $row['MAX(transaction)'] + 1;
             }
         }
 
@@ -128,21 +130,38 @@ include('auth.php');
             if (gettype($_POST['ans_question' . $i]) == "array") {
                 $count_checkbox_check[$i] = count($_POST['ans_question' . $i]);
                 for ($y = 0; $y < $count_checkbox_check[$i]; $y++) {
-                    $sql1 .= "".$_POST['ans_question' . $i][$y].",";
+                    $sql1 .= "" . $_POST['ans_question' . $i][$y] . ",";
                 }
                 $sql1 = rtrim($sql1, ",");
                 $sql1 .= "',";
-                
-            }else{
-                $sql1 .= "".$_POST['ans_question' . $i]."',";
+            } else {
+                $sql1 .= "" . $_POST['ans_question' . $i] . "',";
             }
-            $sql1 .="".$num_transaction.",";
+            $sql1 .= "" . $num_transaction . ",";
             $sql1 = rtrim($sql1, ",");
-            $sql1 .=")";
+            $sql1 .= ")";
 
             $result1 = mysqli_query($conn, $sql1);
             // echo $sql1.'<br>';
         }
+
+
+        $sql4 = "SELECT name_project from create_project where project_id = $project_id";
+        $result4 = mysqli_query($conn, $sql4);
+        if ($result4->num_rows > 0) {
+            while ($row = $result4->fetch_assoc()) {
+
+                $name_project = $row['name_project'];
+            }
+        }
+
+        $sql3 = "INSERT INTO history (id,username,project_id,status,transaction,name_project) 
+        VALUES ( '$user_id','$username','$project_id','ดำเนินการ',1,'$name_project')";
+        $result3 = mysqli_query($conn, $sql3);
+
+
+
+
         echo "<script>window.location='allproject.php';</script>";
     }
     ?>

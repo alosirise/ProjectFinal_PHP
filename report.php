@@ -109,7 +109,7 @@ if ($_SESSION['role'] != "admin") {
             $number = 0;
             if ($result->num_rows > 0) {
                 echo '
-            <table class="table table-responsive" id=table >
+            <table class="table table-responsive" id=table  >
               <thead>
                 <tr class="w3-blue-gray">
                 <th  style="width:1%">ลำดับ</th>
@@ -254,7 +254,7 @@ if ($_SESSION['role'] != "admin") {
 
             $('.topic2,.topic5 ,.topic6,.topic7 ,.topic8').each(function() {
                 var title = $(this).text();
-                $(this).html('<input type="text" style="width:150px;" placeholder="ค้นหา : ' + title + '" />');
+                $(this).html('<input type="text" style="width:190px;" placeholder="ค้นหา : ' + title + '" />');
             });
 
             // DataTable
@@ -283,12 +283,12 @@ if ($_SESSION['role'] != "admin") {
                     });
                 },
                 "lengthMenu": [
-                    [4, 25, 50, -1],
-                    [4, 25, 50, "All"]
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "All"]
                 ],
                 "pageLength": 10,
+                "scrollX": "1140px",
                 "pagingType": "full_numbers",
-                "scrollX": "1350px",
                 dom: 'B<"top"f>rt<"bottom"lpi><"clear">',
                 buttons: [{
                         extend: 'copyHtml5',
@@ -392,6 +392,7 @@ if ($_SESSION['role'] != "admin") {
                     }, {
                         extend: 'colvis',
                         collectionLayout: 'fixed two-column'
+                        
                     }
                 ]
             });
@@ -400,6 +401,8 @@ if ($_SESSION['role'] != "admin") {
             $('label.toggle-vis').on('change', function(e) {
                 e.preventDefault();
                 var column = table.column($(this).attr('data-column'));
+                $('#container').css('display', 'block');
+                table.columns.adjust().draw();
                 column.visible(!column.visible());
             });
         });

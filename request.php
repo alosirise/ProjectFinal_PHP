@@ -140,10 +140,10 @@ $_SESSION['go'] = 'go_request';
                      <tr class="w3-green">
                       <th style="width:4%">ที่</th>
                        <th style="width:26%">ชื่อโครงการ</th>
-                       <th style="width:10%">ชื่อผู้ใช้</th>
+                       <th style="width:9%">ชื่อผู้ใช้</th>
                        <th data-orderable="false" style="width:15%">ตรวจสอบโครงการ</th>
                        <th data-orderable="false"></th>
-                       <th data-orderable="false" style="width:15%">ตรวจสอบแบบฟอร์ม</th>
+                       <th data-orderable="false" style="width:16%">ตรวจสอบแบบฟอร์ม</th>
                        <th data-orderable="false" style="width:15%">ฟอร์มประเมิน</th>
                        <th data-orderable="false"></th>
                        <th data-orderable="false"></th>

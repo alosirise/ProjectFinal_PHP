@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Css grid image gallery layout</title>
+</head>
+
+<style>
+    body{
+            padding :20px;
+            background: #f2f2f2; 
+/*             
+            display: flex;
+            align-items: center;
+            justify-content: flex-end; */
+    }
+
+    img{
+        width :100%;
+        height :auto;
+    }
+
+    
+        article{
+            width :400px;
+            height :250px;
+            overflow :hidden;
+            position:relative;
+           
+        }
+
+    h2{
+        margin-bottom: 0.5em;
+    }
+
+    .grid-container{
+        display : grid;
+        grid-template-columns: repeat(auto-fit,minmax(350px,1fr));
+
+        grid-gap : 2em;
+    }
+
+    /* hover */
+
+
+    .location-image img {
+        filter : blur(0px);
+        transition : filter .3s ease-in;
+        transform : scale(1.1);
+        height :250px;
+
+    }
+
+    .location-title {
+        font-size :1.5em;
+        font-weight: bold;
+        text-decoration: none;
+        z-index: 1;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left :0;
+        opacity :0;
+        transition: opacity .6s;
+        background :hsla(353, 81%, 65%, 0.4);
+        color: white;
+
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .location-title:hover {
+        opacity: 1;
+    }
+
+    .location-listing:hover .location-image img {
+       filter:  blur(2px);
+    }
+</style>
+<body>
+    <h2>Our location</h2>
+    <div class="grid-container">
+        <article class="location-listing">
+            <a href="#" class="location-title">Location1</a>
+            <div class="location-image">
+                <a href="#">
+                    <img src="pic.jpg" alt="">
+                </a>
+            </div>
+        </article>
+
+        <article class="location-listing">
+            <a href="#" class="location-title">Location1</a>
+            <div class="location-image">
+                <a href="#">
+                    <img src="pic.jpg" alt="">
+                </a>
+            </div>
+        </article>
+
+        <article class="location-listing">
+            <a href="#" class="location-title">Location1</a>
+            <div class="location-image">
+                <a href="#">
+                    <img src="pic.jpg" alt="">
+                </a>
+            </div>
+        </article><article class="location-listing">
+            <a href="#" class="location-title">Location1</a>
+            <div class="location-image">
+                <a href="#">
+                    <img src="pic.jpg" alt="">
+                </a>
+            </div>
+        </article>
+
+        <article class="location-listing">
+            <a href="#" class="location-title">Location2</a>
+            <div class="location-image">
+                <a href="#">
+                    <img src="bg.jpg" alt="">
+                </a>
+            </div>
+        </article>
+
+        <article class="location-listing">
+            <a href="#" class="location-title">Location3</a>
+            <div class="location-image">
+                <a href="#">
+                    <img src="bg2.jpg" alt="">
+                </a>
+            </div>
+        </article>
+
+        <article class="location-listing">
+            <a href="#" class="location-title">Location4</a>
+            <div class="location-image">
+                <a href="#">
+                    <img src="bg.jpg" alt="">
+                </a>
+            </div>
+        </article>
+
+        <article class="location-listing">
+            <a href="#" class="location-title">Location5</a>
+            <div class="location-image">
+                <a href="#">
+                    <img src="bg2.jpg" alt="">
+                </a>
+            </div>
+        </article>
+
+        <article class="location-listing">
+            <a href="#" class="location-title">Location6</a>
+            <div class="location-image">
+                <a href="#">
+                    <img src="pic.jpg" alt="">
+                </a>
+            </div>
+        </article>
+
+
+    </div>
+</body>
+</html>
