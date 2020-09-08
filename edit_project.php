@@ -20,14 +20,15 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap navbar CSS-->
- 
+
     <link rel="stylesheet" href="form.css">
 </head>
 
 
 <body>
     <div class="" id="nav"></div>
-    <form action="" method="POST">
+
+    <form action="" id="pdf" method="POST">
 
         <div class="row ">
             <div class="col-lg-3 "></div>
@@ -61,11 +62,13 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                             <input type="text" class="form-control text" id=edit_respond name="respondsible_department" readonly  value="' . $row["respondsible_department"] . '"></td>
                         </div>
                         <div><label for="exampleFormControlInput1">หลักการและเหตุผล</label>  <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'principle\')"></i>
-                            <textarea class="form-control text" id=edit_principle name="principle" readonly rows="3" > ' . $row["principle"] . '</textarea>
-                        </div> 
+                            <textarea class="form-control text" id=edit_principle name="principle" readonly rows="5" > ' . $row["principle"] . '</textarea>
+                        </div><br>
                         
-                        <label >วัตถุประสงค์</label>  <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'objective\')"></i>
-                        <div>         
+                       
+                        <label >วัตถุประสงค์</label>   <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'objective\')"></i>
+                        &nbsp;&nbsp;&nbsp;<a class="btn btn-info btn-xs" id="addRow1" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
+                        <div style ="padding-left : 12px; padding-top: 6px;">     
                             <table>';
 
                                 foreach ($result_mutiple_text as $value) {
@@ -80,7 +83,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
                                 echo  '</table>
                             <tbody1></tbody><br>
-                            <a class="btn btn-primary pull-left" id="addRow1" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
+                         
                         </div>
                         
 
@@ -95,7 +98,8 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                         </div>
     
                         <label for="exampleFormControlInput1">วิทยากร</label> <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'lecturer\')"></i>
-                        <div>
+                        &nbsp;&nbsp;&nbsp;<a class="btn btn-info btn-xs" id="addRow2" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
+                        <div style ="padding-left : 12px; padding-top: 6px;">   
                             <table>';
 
                                 foreach ($result_mutiple_text as $value) {
@@ -113,7 +117,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                                 echo  '                 
                                 
                             </table> <tbody2></tbody><br>
-                            <a class="btn btn-primary pull-left" id="addRow2" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
+                          
                         </div>
                       
     
@@ -123,7 +127,8 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                         </div>
     
                         <label for="exampleFormControlInput1">ประโยชน์ที่จะได้รับ</label>  <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'benefits\')"></i>
-                        <div>
+                        &nbsp;&nbsp;&nbsp;<a class="btn btn-info btn-xs" id="addRow3" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
+                        <div style ="padding-left : 12px; padding-top: 6px;">   
                             <table> ';
 
                                 foreach ($result_mutiple_text as $value) {
@@ -140,7 +145,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                                 echo  '            
 
                             </table><tbody3></tbody><br>   
-                            <a class="btn btn-primary pull-left" id="addRow3" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
+                        
                         </div>
                      
                   
@@ -155,7 +160,8 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                         </div>
     
                         <label for="exampleFormControlInput1">คณะทำงาน</label>  <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'working_group\')"></i>
-                        <div>
+                        &nbsp;&nbsp;&nbsp;<a class="btn btn-info btn-xs" id="addRow4" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
+                        <div style ="padding-left : 12px; padding-top: 6px;">   
                             <table>';
 
                                 foreach ($result_mutiple_text as $value) {
@@ -170,7 +176,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
                                 echo  '            
                             </table> <tbody4></tbody><br>
-                            <a class="btn btn-primary pull-left" id="addRow4" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
+                            
                         </div>
                       
                        
@@ -185,8 +191,10 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                         <div class="card-footer text-center">
                             <input type="submit" name="submit" class="btn btn-success " value="บันทึก">
                         </div>
-                        
+
     </form>
+    <div id ="elementH"></div>
+    <center><button onclick="toPDF();">Convert to pdf</button></center>
     <?php
 
     if (isset($_POST["submit"])) {
@@ -250,19 +258,20 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         $result7 = mysqli_query($conn, $sql7);
 
 
-        if($_SESSION['go'] == "go_project" ){
+        if ($_SESSION['go'] == "go_project") {
             echo "<script>window.location='myproject.php';</script>";
-            
-            }else if($_SESSION['go'] == "go_request" ){
-                echo "<script>window.location='request.php';</script>";
-            }
+        } else if ($_SESSION['go'] == "go_request") {
+            echo "<script>window.location='request.php';</script>";
+        }
     }
     ?>
 
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+   <script src="jsPDF/dist/jspdf.customfonts.min.js"></script>
 
     <script src="index.js"> </script>
     <script>
@@ -306,6 +315,23 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                 $(this).parents('tr').remove();
             });
         });
+
+
+        function toPDF(){
+            var doc = new jsPDF();
+            var elementHTML = $('#pdf').html();
+            var specialElementHandlers = {'#elementH' : function(element,renderer){
+                    return true;    
+                }
+            };
+
+            doc.fromHTML(elementHTML,15,15,{
+                'width' : 170, 
+                'elementHandlers' : specialElementHandlers
+            });
+
+            doc.save('sample-document.pdf');
+        }
     </script>
 </body>
 
