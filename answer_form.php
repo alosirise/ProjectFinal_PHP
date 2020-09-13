@@ -58,11 +58,11 @@ include('auth.php');
                   while ($row = $result->fetch_assoc()) {
                     $countquestion = $row['num_question'];
                     $question_explode = explode(",", $row['question']);
-                    echo '<td >ชื่อผู้ใช้</th>';
+                    echo '<th >ชื่อผู้ใช้</th>';
                     for ($i = 0; $i < $countquestion; $i++) {
-                      echo '<td > ' . $question_explode[$i] . '</th>';
+                      echo '<th > ' . $question_explode[$i] . '</th>';
                     }
-                    echo '<td ">ลบ</th>';
+                    echo '<th ">ลบ</th>';
                   }
                 }
                 ?>

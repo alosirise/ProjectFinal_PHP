@@ -42,13 +42,28 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
       <center>
         <a href=create_project.php><button type="button" class="btn btn-primary">สร้าง</button></a>
+        <br><br>
+        <ul class="nav nav-tabs" role="tablist">
+                <li > <a href="#list1" class="active nav-link" role="tab" data-toggle="tab">
+                        <icon class="fa fa-home"></icon> แบบร่าง
+                    </a>
+
+                </li>
+                <li><a href="#list2" class=" nav-link" role="tab" data-toggle="tab">
+                        <i class="fa fa-user"></i> รายการ
+                    </a>
+
+                </li>
+              
+            </ul>
       </center>
 
       <?php
-
-echo "<h2 style=' padding :35px; '>แบบร่าง</h2>";
+      echo "<div class='tab-content'>
+      <div class='tab-pane fade active show ' id='list1'>";
+      echo "<h2 style=' padding :35px; '>แบบร่าง</h2>";
       include_once('connect.php');
-      $sql = "SELECT * FROM create_project WHERE id = '" . $_SESSION['id'] . "' AND status != 'ลบ' AND status = '-' ORDER BY last_change DESC" ;
+      $sql = "SELECT * FROM create_project WHERE id = '" . $_SESSION['id'] . "' AND status != 'ลบ' AND status = '-' ORDER BY last_change DESC";
       $result = $conn->query($sql);
       $number = 0;
       $_SESSION['go'] = 'go_project';
@@ -124,13 +139,14 @@ echo "<h2 style=' padding :35px; '>แบบร่าง</h2>";
             echo "<td></td>";
           } else  if ($row["status"] == 'เสร็จสิ้น') {
             echo "<td></td>";
-          } else if ($row["status"] == 'กำลังดำเนินการ'){
+          } else if ($row["status"] == 'กำลังดำเนินการ') {
 
             echo "<td><a href=cancel_send.php?project_id=" . $row['project_id'] . ">  <button type='button' name ='send' class='btn btn-success' >ยกเลิก</button></a></td>";
-          }else{}
+          } else {
+          }
 
 
-          if ($row["status"] == '-' || $row["status"] == 'ไม่อนุมัติ')  {
+          if ($row["status"] == '-' || $row["status"] == 'ไม่อนุมัติ') {
             echo "
             <td><a onClick=\"javascript: return confirm('Please confirm deletion');\" href=delete_project.php?project_id=" . $row['project_id'] . " >  <button type='button' name ='delete' class='btn btn-danger' >ลบ</button></a></td>   
             </tr>";
@@ -142,16 +158,16 @@ echo "<h2 style=' padding :35px; '>แบบร่าง</h2>";
       } else {
         echo "0 results";
       }
+        echo "</div>";
 
 
 
 
 
+      echo "<div class='tab-pane fade ' id='list2'>";
+      echo "<h2 style=' padding :35px; '>รายการ</h2>";
 
-
-      echo "<br><br><h2 style=' padding :35px; '>รายการ</h2>";
-
-      $sql = "SELECT * FROM create_project WHERE id = '" . $_SESSION['id'] . "' AND status != 'ลบ' AND status != '-' ORDER BY status DESC,last_change DESC"  ;
+      $sql = "SELECT * FROM create_project WHERE id = '" . $_SESSION['id'] . "' AND status != 'ลบ' AND status != '-' ORDER BY status DESC,last_change DESC";
       $result = $conn->query($sql);
       $number = 0;
       $_SESSION['go'] = 'go_project';
@@ -226,19 +242,17 @@ echo "<h2 style=' padding :35px; '>แบบร่าง</h2>";
             echo "<td></td>";
           } else  if ($row["status"] == 'เสร็จสิ้น') {
             echo "<td></td>";
-          } else if ($row["status"] == 'กำลังดำเนินการ'){
+          } else if ($row["status"] == 'กำลังดำเนินการ') {
 
             echo "<td><a href=cancel_send.php?project_id=" . $row['project_id'] . ">  <button type='button' name ='send' class='btn btn-success' >ยกเลิก</button></a></td>";
-          }else{}
-
-
-    
+          } else {
+          }
         }
         echo "</table>";
       } else {
         echo "0 results";
       }
-
+      echo "</div></div>";
 
       ?>
 
