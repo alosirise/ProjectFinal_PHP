@@ -14,7 +14,7 @@ if ($change == 'อนุมัติ') {
     echo "<script>alert('อนุมัติโครงการเรียบร้อย');
     window.location='request.php';</script>";
 } else if ($change == 'ไม่อนุมัติ') {
-    echo "<script>alert('ปฎิเสธโครงการเรียบร้อย');
+    echo "<script>alert('ส่งคืนโครงการเรียบร้อย');
     window.location='request.php';</script>";
 } else if ($change == 'กำลังดำเนินการ') {
     echo "<script>alert('สถานะ : กำลังดำเนินการ');

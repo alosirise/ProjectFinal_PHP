@@ -44,7 +44,7 @@ include('auth.php');
               echo '<h2>' . $row['form_name'] . '</h2>';
             }
           }
-          ?>
+          ?><br>
           <table class="table table-bordered" id="table">
             <thead>
               <tr class="w3-blue-gray">
@@ -191,8 +191,7 @@ include('auth.php');
         [10, 25, 50, -1],
         [10, 25, 50, "All"]
       ],
-      "pageLength": 10,
-      "scrollX": "1140px",
+
       "pagingType": "full_numbers",
       dom: 'B<"top"f>rt<"bottom"lpi><"clear">',
       buttons: [{
@@ -310,33 +309,6 @@ include('auth.php');
       table.columns.adjust().draw();
       column.visible(!column.visible());
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   });

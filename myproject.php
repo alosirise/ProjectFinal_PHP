@@ -19,7 +19,8 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
   <!-- Bootstrap navbar CSS-->
   <link rel="stylesheet" href="navbar.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.21/datatables.min.css" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/f7ef8136ea.js" crossorigin="anonymous"></script>
+
 
 </head>
 <style>
@@ -41,7 +42,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
       <h2 style=" padding :20px; ">โครงการของฉัน</h2>
 
       <center>
-        <a href=create_project.php><button type="button" class="btn btn-primary">สร้าง</button></a>
+        <a href=create_project.php><button type="button" class="btn btn-success btn-lg">สร้าง</button></a>
         <br><br>
         <ul class="nav nav-tabs" role="tablist">
                 <li > <a href="#list1" class="active nav-link" role="tab" data-toggle="tab">
@@ -101,8 +102,8 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             <td><a href=evaluate_form.php?project_id=" . $row['project_id'] . ">    <button type='button' class='btn btn-info ' disabled >ฟอร์มประเมิน</button></a></td> 
             ";
           } else {
-            echo " <td><a href=edit_project.php?project_id=" . $row['project_id'] . ">    <button type='button' class='btn btn-primary' style='width:10'>จัดการโครงการ</button></a></td>
-              <td><a href=edit_detail_project.php?project_id=" . $row['project_id'] . "> <i class='fa fa-pencil-square-o fa-lg' aria-hidden='true' ></i></a></td>
+            echo " <td><a href=edit_project.php?project_id=" . $row['project_id'] . ">    <i class='far fa-file-alt fa-lg'></i></a></td>
+              <td><a href=edit_detail_project.php?project_id=" . $row['project_id'] . "> <i class='far fa-edit fa-lg' aria-hidden='true' ></i></a></td>
               <td><a href=create_form.php?project_id=" . $row['project_id'] . ">    <button type='button' class='btn btn-warning ' >จัดการแบบฟอร์ม</button></a></td> 
               <td><a href=evaluate_form.php?project_id=" . $row['project_id'] . ">    <button type='button' class='btn btn-info ' >ฟอร์มประเมิน</button></a></td> 
               ";
@@ -174,7 +175,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
       if ($result->num_rows > 0) {
 
         echo '
-            <table class="table table-responsive " id="table2" >
+            <table class="table table-responsive" id="table2" >
               <thead>
                 <tr class="w3-blue">
                  <th style="width:4%" >ที่</th>

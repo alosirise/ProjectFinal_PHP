@@ -45,7 +45,7 @@ $_SESSION['go'] = 'go_request';
           <option value="all">ทั้งหมด</option>
           <option value="request">คำร้องขอสร้างโครงการ</option>
           <option value="accept">รายการที่อนุมัติแล้ว</option>
-          <option value="reject">รายการที่ปฎิเสธแล้ว</option>
+          <option value="reject">รายการที่ส่งคืนแล้ว</option>
           <option value="finish">รายการที่เสร็จสิ้น</option>
         </select></center> -->
 
@@ -128,7 +128,7 @@ $_SESSION['go'] = 'go_request';
                 if ($row["status"] == 'ไม่อนุมัติ') {
                   echo "selected='selected'";
                 }
-                echo ">ปฎิเสธ</option>
+                echo ">ส่งคืน</option>
 
                <option value='กำลังดำเนินการ' ";
                 if ($row["status"] == 'กำลังดำเนินการ') {
@@ -204,7 +204,7 @@ $_SESSION['go'] = 'go_request';
                 if ($row2["status"] == 'ไม่อนุมัติ') {
                   echo "selected='selected'";
                 }
-                echo ">ปฎิเสธ</option>
+                echo ">ส่งคืน</option>
 
                     <option value='กำลังดำเนินการ' ";
                 if ($row2["status"] == 'กำลังดำเนินการ') {
@@ -232,7 +232,7 @@ $_SESSION['go'] = 'go_request';
 
         <div class="tab-pane fade " id="list3">
           <div id="reject">
-            <h2 style=" padding :35px;">รายการที่ปฎิเสธแล้ว</h2>
+            <h2 style=" padding :35px;">รายการที่ส่งคืนแล้ว</h2>
             <?php
             $sql3 = "SELECT * FROM create_project WHERE status = 'ไม่อนุมัติ' ORDER BY last_change DESC ";
             $result3 = $conn->query($sql3);
@@ -282,7 +282,7 @@ $_SESSION['go'] = 'go_request';
                 if ($row3["status"] == 'ไม่อนุมัติ') {
                   echo "selected='selected'";
                 }
-                echo ">ปฎิเสธ</option>
+                echo ">ส่งคืน</option>
 
                <option value='กำลังดำเนินการ' ";
                 if ($row3["status"] == 'กำลังดำเนินการ') {
@@ -363,7 +363,7 @@ $_SESSION['go'] = 'go_request';
                 if ($row3["status"] == 'ไม่อนุมัติ') {
                   echo "selected='selected'";
                 }
-                echo ">ปฎิเสธ</option>
+                echo ">ส่งคืน</option>
 
                <option value='กำลังดำเนินการ' ";
                 if ($row3["status"] == 'กำลังดำเนินการ') {

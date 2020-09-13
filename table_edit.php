@@ -23,13 +23,13 @@ $sql = "SELECT * FROM budget_form WHERE project_id = '" . $_SESSION['project_id'
 $result = $conn->query($sql);
 ?>
 
-<table class="table table-bordered" id="table">
+<table class="table table-bordered " id="table">
     <thead>
         <tr>
-            <th style="width:18%">ที่</th>
+            <th style="width:10%">ที่</th>
             <th style="width:18%">รายการ</th>
-            <th style="width:18%">จำนวน</th>
-            <th style="width:18%">อัตรา</th>
+            <th style="width:18%">จำนวน (ชุด)</th>
+            <th style="width:18%">อัตรา (บาท)</th>
             <th style="width:18%">ค่าใช้จ่าย (บาท)</th>
             <th>#</th>
             <th>#</th>
