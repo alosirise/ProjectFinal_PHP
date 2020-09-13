@@ -21,7 +21,7 @@ include_once('connect.php');
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <!-- Latest compiled and minified CSS -->
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+   
     <!-- Bootstrap navbar CSS-->
 
     <link rel="stylesheet" href="navbar.css">
@@ -34,7 +34,6 @@ include_once('connect.php');
         bottom: 25px;
         left: 24%;
     }
-    
 </style>
 
 <body>
@@ -53,7 +52,7 @@ include_once('connect.php');
 
 
             <ul class="nav nav-tabs" role="tablist">
-                <li > <a href="#list1" class="active nav-link" role="tab" data-toggle="tab">
+                <li> <a href="#list1" class="active nav-link" role="tab" data-toggle="tab">
                         <icon class="fa fa-home"></icon> รายชื่อผู้ใช้
                     </a>
 
@@ -76,7 +75,7 @@ include_once('connect.php');
 
                     <div id="user_list">
 
-                        <h2 style=" padding :20px;">รายชื่อผู้ใช้</h2>
+                        <h2 style=" padding :35px;">รายชื่อผู้ใช้</h2>
                         <?php
 
                         $sql = "SELECT * FROM  member WHERE role = 'user' ";
@@ -84,7 +83,7 @@ include_once('connect.php');
                         $number = 0;
                         if ($result->num_rows > 0) {
                             echo '                                    
-                                <table class="table  " id="table">
+                                <table class="table  table-responsive" id="table">
                                 <thead>
                                     <tr class="w3-green">
                                     <th  style="width:4%" >ที่</th>
@@ -138,7 +137,7 @@ include_once('connect.php');
 
                     <div id="staff_list">
 
-                        <h2 style=" padding :20px;">รายชื่อบุคลากร</h2>
+                        <h2 style=" padding :35px;">รายชื่อบุคลากร</h2>
                         <?php
 
                         $sql = "SELECT * FROM  member WHERE role = 'staff' ";
@@ -147,7 +146,7 @@ include_once('connect.php');
                         if ($result->num_rows > 0) {
                             echo '
 
-                                <table class="table " id="table2">
+                                <table class="table table-responsive" id="table2">
                                 <thead>
                                     <tr class="w3-blue">
                                     <th  style="width:4%" >ที่</th>
@@ -202,7 +201,7 @@ include_once('connect.php');
                 <div class="tab-pane fade" id="list3">
                     <div id="admin_list">
 
-                        <h2 style=" padding :20px;">รายชื่อผู้ดูแลระบบ</h2>
+                        <h2 style=" padding :35px;">รายชื่อผู้ดูแลระบบ</h2>
                         <?php
 
                         $sql = "SELECT * FROM  member WHERE role = 'admin' ";
@@ -210,16 +209,16 @@ include_once('connect.php');
                         $number = 0;
                         if ($result->num_rows > 0) {
                             echo '
-            <table class="table " id="table3">
-              <thead>
-                <tr class="w3-indigo">
-                 <th  style="width:4%" >ที่</th>
-                  <th style="width:35%" >ชื่อผู้ดูแลระบบ</th>          
-                  <th data-orderable="false" style="width:15%"> สถานะ</th>
-                  <th data-orderable="false" style="width:15%"> แบน</th>
-                  
-                </tr>
-              </thead> ';
+                    <table class="table table-responsive" id="table3">
+                    <thead>
+                        <tr class="w3-indigo">
+                        <th  style="width:4%" >ที่</th>
+                        <th style="width:35%" >ชื่อผู้ดูแลระบบ</th>          
+                        <th data-orderable="false" style="width:15%"> สถานะ</th>
+                        <th data-orderable="false" style="width:15%"> แบน</th>
+                        
+                        </tr>
+                    </thead> ';
 
                             while ($row = $result->fetch_assoc()) {
                                 $number++;
@@ -330,15 +329,14 @@ include_once('connect.php');
 
                     });
 
-                
+
 
 
                 });
             </script>
 
 
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-           
+
             <script src="index.js"></script>
 </body>
 
