@@ -158,7 +158,7 @@ echo "<h2 style=' padding :35px; '>แบบร่าง</h2>";
       if ($result->num_rows > 0) {
 
         echo '
-            <table class="table table-responsive" id="table2" >
+            <table class="table table-responsive " id="table2" >
               <thead>
                 <tr class="w3-blue">
                  <th style="width:4%" >ที่</th>

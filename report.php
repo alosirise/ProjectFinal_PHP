@@ -22,6 +22,7 @@ if ($_SESSION['role'] != "admin") {
     <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.21/datatables.min.css" /> -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css" />
+    
 
 </head>
 <style>
@@ -109,7 +110,7 @@ if ($_SESSION['role'] != "admin") {
             $number = 0;
             if ($result->num_rows > 0) {
                 echo '
-            <table class="table table-responsive" id=table  >
+            <table class="table table-responsive table-bordered" id=table  >
               <thead>
                 <tr class="w3-blue-gray">
                 <th  style="width:1%">ลำดับ</th>
