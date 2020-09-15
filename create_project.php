@@ -16,7 +16,8 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    
+ 
     <!-- Bootstrap navbar CSS-->
 
     <link rel="stylesheet" href="navbar.css">
@@ -56,7 +57,8 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                     </div>
                     
                     <label for="exampleFormControlInput1">วัตถุประสงค์</label>
-                    <div>         
+                     &nbsp;&nbsp;&nbsp;<a class="btn btn-info btn-xs" id="addRow1" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
+                    <div style ="padding-left : 12px; padding-top: 6px;">         
                         <table>  
                                 <tr>
                                 <td ><input type="text" class ="form-control" name="objective[]" id="objective"></td>
@@ -64,7 +66,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                                 </tr>      
 
                         </table><tbody1> </tbody><br>
-                        <a class="btn btn-primary pull-left " id="addRow1" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
+                      
                     </div>
 
                     <div>
@@ -78,14 +80,15 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                     </div>
 
                     <label for="exampleFormControlInput1">วิทยากร</label>
-                    <div>
+                    &nbsp;&nbsp;&nbsp;<a class="btn btn-info btn-xs" id="addRow2" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
+                    <div style ="padding-left : 12px; padding-top: 6px;">
                         <table>
                                 <tr>
                                     <td><input type="text" class ="form-control" name="lecturer[]" id="lecturer"></td>
                                     <td><a class="remove" >-</td>
                                 </tr>                 
                         </table><tbody2> </tbody><br>
-                        <a class="btn btn-primary pull-left" id="addRow2" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
+
                     </div>
                  
                   
@@ -95,8 +98,8 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                         <input type="text" class="form-control text" id="location" name="location"></td>
                     </div>
 
-                    <label for="exampleFormControlInput1">ประโยชน์ที่จะได้รับ</label>
-                    <div>
+                    <label for="exampleFormControlInput1">ประโยชน์ที่จะได้รับ</label> &nbsp;&nbsp;&nbsp;<a class="btn btn-info btn-xs" id="addRow3" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
+                    <div style ="padding-left : 12px; padding-top: 6px;">   
                         <table>                          
                                 <tr>
                                     <td><input type="text" class ="form-control"  name="benefits[]" id="benefits"></td>
@@ -104,7 +107,6 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                                 </tr>
                           
                         </table><tbody3> </tbody><br>
-                        <a class="btn btn-primary pull-left" id="addRow3" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
                     </div>
                   
               
@@ -118,15 +120,14 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                         <div id="includedContent" name ="budget"></div>
                     </div>
 
-                    <label for="exampleFormControlInput1">คณะทำงาน</label>
-                    <div>
+                    <label for="exampleFormControlInput1">คณะทำงาน</label> &nbsp;&nbsp;&nbsp;<a class="btn btn-info btn-xs" id="addRow4" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
+                    <div style ="padding-left : 12px; padding-top: 6px;">   
                         <table>
                                 <tr>
                                     <td><input type="text" class ="form-control" name="working_group[]" id="working_group"></td>
                                     <td><a class="remove" >-</td>
                                 </tr>
                         </table><tbody4> </tbody><br>
-                        <a class="btn btn-primary pull-left" id="addRow4" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
                     </div>
                    
                   
@@ -256,7 +257,8 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                 $(this).parents('tr').remove();
             });
         });
-    </script>
+        
+    </script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </body>
 
 </html>

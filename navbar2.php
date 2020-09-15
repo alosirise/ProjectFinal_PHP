@@ -95,35 +95,35 @@
 
     <img class="center img-center" src="psu-logo.jpg" style="width:50%; ">
 
-    <a href="home.php" style="font-size:19px;">หน้าหลัก</a>
+    <a href="home.php" style="font-size:18px;">หน้าหลัก</a>
     <?php
 
     if (!isset($_SESSION['username'])) {
       echo '
-            <a href="allproject.php" style="font-size:19px">รายชื่อโครงการทั้งหมด</a>
-            <a href="procedure.php" style="font-size:19px">ขั้นตอนการสมัครฝึกอบรม</a>
-            <a href="contact.php" style="font-size:19px">ช่องทางการติดต่อ</a> <hr>';
+            <a href="allproject.php" style="font-size:18px">รายชื่อโครงการทั้งหมด</a>
+            <a href="procedure.php" style="font-size:18px">ขั้นตอนการสมัครฝึกอบรม</a>
+            <a href="contact.php" style="font-size:18px">ช่องทางการติดต่อ</a> <hr>';
     } else {
 
       if (empty($_SESSION['role']) || $_SESSION['role'] == "user" || $_SESSION['role'] == "staff" || $_SESSION['role'] == "admin") {
         echo '
-            <a href="allproject.php" style="font-size:19px">รายชื่อโครงการทั้งหมด</a>
-            <a href="history.php" style="font-size:19px">ประวัติการเข้าร่วม</a> 
-            <a href="procedure.php" style="font-size:19px">ขั้นตอนการสมัครฝึกอบรม</a>
-            <a href="contact.php" style="font-size:19px">ช่องทางการติดต่อ</a> <hr>';
+            <a href="allproject.php" style="font-size:18px">รายชื่อโครงการทั้งหมด</a>
+            <a href="history.php" style="font-size:18px">ประวัติการเข้าร่วม</a> 
+            <a href="procedure.php" style="font-size:18px">ขั้นตอนการสมัครฝึกอบรม</a>
+            <a href="contact.php" style="font-size:18px">ช่องทางการติดต่อ</a> <hr>';
       }
 
       if (!empty($_SESSION['role']) && ($_SESSION['role'] == "staff" || $_SESSION['role'] == "admin")) {
         echo ' 
-            <a href="myproject.php" style="font-size:19px">จัดการโครงการ</a>
+            <a href="myproject.php" style="font-size:18px">จัดการโครงการ</a>
             ';
       }
       if (!empty($_SESSION['role']) && $_SESSION['role'] == "admin") {
         echo '      
-            <a href="request.php" style="font-size:19px">คำร้องขอสร้างโครงการ</a>
-            <a href="report.php" style="font-size:19px">Report โครงการ</a>
+            <a href="request.php" style="font-size:18px">คำร้องขอสร้างโครงการ</a>
+            <a href="report.php" style="font-size:18px">Report โครงการ</a>
             <hr>
-            <a href="manage_account.php" style="font-size:19px">จัดการบัญชี</a>';
+            <a href="manage_account.php" style="font-size:18px">จัดการบัญชี</a>';
       }
     }
     ?>
