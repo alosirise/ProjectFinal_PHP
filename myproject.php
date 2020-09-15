@@ -35,6 +35,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
   td {
     text-align: center;
   }
+  
 </style>
 
 <body>
@@ -55,7 +56,15 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
           </li>
           <li><a href="#list2" class=" nav-link" role="tab" data-toggle="tab">
-              <i class="fa fa-user"></i> รายการ
+              <i class="fa fa-user"></i> กำลังดำเนินการ
+            </a>
+          </li>
+          <li><a href="#list3" class=" nav-link" role="tab" data-toggle="tab">
+              <i class="fa fa-user"></i> รายการที่ถูกส่งคืน
+            </a>
+          </li>
+          <li><a href="#list4" class=" nav-link" role="tab" data-toggle="tab">
+              <i class="fa fa-user"></i> รายการที่อนุมัติแล้ว
             </a>
           </li>
         </ul>
@@ -76,17 +85,16 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             <table class="table table-responsive" id="table" >
               <thead>
                 <tr class="w3-blue-gray">
-                 <th style="width:4%" >ที่</th>
-                  <th style="width:35%" >ชื่อโครงการ</th>
+                 <th class="text-center" style="width:4%" >ที่</th>
+                  <th  style="width:35%" >ชื่อโครงการ</th>
            
-                  <th data-orderable="false" style="width:17%"> จัดการโครงการ</th>
+                  <th class="text-center" data-orderable="false" style="width:17%"> จัดการโครงการ</th>
                   <th data-orderable="false""></th>
-                  <th data-orderable="false" style="width:17%">แบบฟอร์มใบสมัคร</th>
-                  <th data-orderable="false" style="width:13%">แบบประเมิน</th>
-                 
-                  <th style="width:10%"> สถานะ</th>
-                  <th data-orderable="false" style="width:10%">ส่ง</th>
-                  <th data-orderable="false" style="width:10%">ลบ</th>
+                  <th class="text-center" data-orderable="false" style="width:17%">แบบฟอร์มใบสมัคร</th>
+                  <th class="text-center"data-orderable="false" style="width:13%">แบบประเมิน</th>
+                  <th class="text-center" data-orderable="false"style="width:10%"> สถานะ</th>
+                  <th class="text-center" data-orderable="false" style="width:10%">ส่ง</th>
+                  <th class="text-center" data-orderable="false" style="width:10%">ลบ</th>
                
                 </tr>
               </thead> ';
@@ -116,12 +124,10 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
 
 
-
-
       echo "<div class='tab-pane fade ' id='list2'>";
-      echo "<h2 style=' padding :35px; '>รายการ</h2>";
+      echo "<h2 style=' padding :35px; '>กำลังดำเนินการ</h2>";
 
-      $sql = "SELECT * FROM create_project WHERE id = '" . $_SESSION['id'] . "' AND status != 'ลบ' AND status != '-' ORDER BY status DESC,last_change DESC";
+      $sql = "SELECT * FROM create_project WHERE id = '" . $_SESSION['id'] . "' AND status != 'ลบ' AND status = 'กำลังดำเนินการ' ORDER BY status DESC,last_change DESC";
       $result = $conn->query($sql);
       $number = 0;
       $_SESSION['go'] = 'go_project';
@@ -130,16 +136,14 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             <table class="table table-responsive" id="table2" >
               <thead>
                 <tr class="w3-blue">
-                 <th style="width:4%" >ที่</th>
-                  <th style="width:35%" >ชื่อโครงการ</th>
-           
-                  <th data-orderable="false" style="width:17%"> จัดการโครงการ</th>
+                 <th class="text-center" style="width:4%" >ที่</th>
+                  <th style="width:35%" >ชื่อโครงการ</th>      
+                  <th class="text-center" data-orderable="false" style="width:17%"> จัดการโครงการ</th>
                   <th data-orderable="false""></th>
-                  <th data-orderable="false" style="width:17%">แบบฟอร์มใบสมัคร</th>
-                  <th data-orderable="false" style="width:17%">แบบประเมิน</th>
-                  <th data-orderable="false""></th><th data-orderable="false""></th>
-                  <th style="width:10%"> สถานะ</th>
-                  <th data-orderable="false" style="width:10%">ส่ง</th>
+                  <th class="text-center" data-orderable="false" style="width:17%">แบบฟอร์มใบสมัคร</th>
+                  <th class="text-center" data-orderable="false" style="width:17%">แบบประเมิน</th>
+                  <th class="text-center" data-orderable="false" style="width:10%"> สถานะ</th>
+                  <th class="text-center" data-orderable="false" style="width:10%">ส่ง</th>
                 
                 </tr>
               </thead> ';
@@ -147,65 +151,163 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         while ($row = $result->fetch_assoc()) {
           $number++;
           echo "<tr><td>" . $number . ".</td><td style= 'text-align: left;'>" . $row["name_project"] . "</td>  
-          ";
-          if ($row["status"] == 'อนุมัติ' || $row["status"] == 'กำลังดำเนินการ' || $row["status"] == 'เสร็จสิ้น') {
-            echo "
-            <td> <i class='far fa-file-alt fa-lg' aria-hidden='true'></i></td> 
-            <td> <i class='fa fa-pencil-square-o fa-lg' aria-hidden='true'></i> </td>
-            <td><i class='far fa-list-alt fa-lg' aria-hidden='true' ></i></td> 
-            <td><i class='far fa-clipboard fa-lg' aria-hidden='true'></i></td> 
-            ";
-          } else {
-            echo "<td ><a href=edit_project.php?project_id=" . $row['project_id'] . "> <i class='far fa-file-alt fa-lg' ></i></a></td>
-              <td ><a href=edit_detail_project.php?project_id=" . $row['project_id'] . "> <i class='fa fa-pencil-square-o fa-lg' ></i></a></td>
-              <td><a href=create_form.php?project_id=" . $row['project_id'] . "> <i class='far fa-list-alt fa-lg' ></i></a></td> 
-              <td><a href=evaluate_form.php?project_id=" . $row['project_id'] . "><i class='far fa-clipboard fa-lg' ></i></a></td> 
-              ";
-          }
-
-
-          if ($row["status"] == 'อนุมัติ' || $row["status"] == 'เสร็จสิ้น') {
-            echo "<td><a href=answer_form.php?project_id=" . $row['project_id'] . "> <i class='fa fa-book fa-lg' ></i></a></td>";
-            echo "<td><a href=create_registration.php?project_id=" . $row['project_id'] . "> <i class='fa fa-id-card fa-lg' ></i></a></td>";
-          } else {
-            echo "<td></td>";
-            echo "<td></td>";
-          }
-
-
-
-
-          if ($row["status"] == 'อนุมัติ') {
-            echo "
-            <th><a style=color:forestgreen;>" . $row["status"] . "</a> </th>";
-          } else if ($row["status"] == 'ไม่อนุมัติ') {
-            echo "
-            <th><a style=color:red;>" . $row["status"] . "</a> </th>";
-          } else if ($row["status"] == 'กำลังดำเนินการ') {
-            echo "
-            <th><a style=color:blue;>" . $row["status"] . "</a> </th>";
-          } else {
-            echo "
-            <th>" . $row["status"] . "</th>";
-          }
-
-
-
-          if ($row["status"] == 'ไม่อนุมัติ') {
-            echo "
-            <td><a href=waiting_project.php?project_id=" . $row['project_id'] . ">  <button type='button' name ='send' class='btn btn-success' >ส่ง</button></a></td>
-            ";
-          } else if ($row["status"] == 'กำลังดำเนินการ') {
-            echo "<td><a href=cancel_send.php?project_id=" . $row['project_id'] . ">  <button type='button' name ='send' class='btn btn-success' >ยกเลิก</button></a></td>";
-          } else {
-            echo "<td></td>";
-          }
+          <td> <i class='far fa-file-alt fa-lg' aria-hidden='true'></i></td> 
+          <td> <i class='fa fa-pencil-square-o fa-lg' aria-hidden='true'></i> </td>
+          <td><i class='far fa-list-alt fa-lg' aria-hidden='true' ></i></td> 
+          <td><i class='far fa-clipboard fa-lg' aria-hidden='true'></i></td> 
+          <th><a style=color:blue;>" . $row["status"] . "</a> </th>
+          <td><a href=cancel_send.php?project_id=" . $row['project_id'] . ">  <button type='button' name ='send' class='btn btn-success' >ยกเลิก</button></a></td>";
+                
         }
         echo "</table>";
       } else {
         echo "0 results";
       }
-      echo "</div></div>";
+      echo "</div>";
+
+
+
+
+
+
+
+
+      echo "<div class='tab-pane fade ' id='list3'>";
+      echo "<h2 style=' padding :35px; '>รายการที่ส่งคืน</h2>";
+
+      $sql = "SELECT * FROM create_project WHERE id = '" . $_SESSION['id'] . "' AND status != 'ลบ' AND status = 'ไม่อนุมัติ' ORDER BY status DESC,last_change DESC";
+      $result = $conn->query($sql);
+      $number = 0;
+      $_SESSION['go'] = 'go_project';
+      if ($result->num_rows > 0) {
+        echo '
+            <table class="table table-responsive" id="table3" >
+              <thead>
+                <tr class="w3-red">
+                 <th style="width:4%" >ที่</th>
+                  <th style="width:35%" >ชื่อโครงการ</th>      
+                  <th class="text-center" data-orderable="false" style="width:17%"> จัดการโครงการ</th>
+                  <th class="text-center" data-orderable="false""></th>
+                  <th class="text-center" data-orderable="false" style="width:17%">แบบฟอร์มใบสมัคร</th>
+                  <th class="text-center" data-orderable="false" style="width:17%">แบบประเมิน</th>       
+                  <th class="text-center" data-orderable="false" style="width:10%"> สถานะ</th>
+                  <th class="text-center" data-orderable="false" style="width:10%">ส่ง</th>
+                
+                </tr>
+              </thead> ';
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+          $number++;
+          echo "<tr><td>" . $number . ".</td><td style= 'text-align: left;'>" . $row["name_project"] . "</td>  
+          <td ><a href=edit_project.php?project_id=" . $row['project_id'] . "> <i class='far fa-file-alt fa-lg' ></i></a></td>
+              <td ><a href=edit_detail_project.php?project_id=" . $row['project_id'] . "> <i class='fa fa-pencil-square-o fa-lg' ></i></a></td>
+              <td><a href=create_form.php?project_id=" . $row['project_id'] . "> <i class='far fa-list-alt fa-lg' ></i></a></td> 
+              <td><a href=evaluate_form.php?project_id=" . $row['project_id'] . "><i class='far fa-clipboard fa-lg' ></i></a></td> 
+              <th><a style=color:red;>" . $row["status"] . "</a> </th>
+              <td><a href=waiting_project.php?project_id=" . $row['project_id'] . ">  <button type='button' name ='send' class='btn btn-success' >ส่ง</button></a></td> ";
+  
+        }
+        echo "</table>";
+      } else {
+        echo "0 results";
+      }
+      echo "</div>";
+
+
+
+
+
+
+
+
+      echo "<div class='tab-pane fade ' id='list4'>";
+      echo "<h2 style=' padding :35px; '>รายการที่อนุมัติแล้ว</h2>";
+
+      $sql = "SELECT * FROM create_project WHERE id = '" . $_SESSION['id'] . "' AND status = 'อนุมัติ'  ORDER BY status DESC,last_change DESC";
+      $result = $conn->query($sql);
+      $number = 0;
+      $_SESSION['go'] = 'go_project';
+      if ($result->num_rows > 0) {
+        echo '
+            <table class="table table-responsive" id="table4" >
+              <thead>
+                <tr class="w3-green">
+                 <th style="width:4%" >ที่</th>
+                  <th style="width:35%" >ชื่อโครงการ</th>      
+                  <th class="text-center" data-orderable="false" style="width:17%"> จัดการโครงการ</th>
+                  <th class="text-center" data-orderable="false""></th>
+                  <th class="text-center" data-orderable="false" style="width:17%">แบบฟอร์มใบสมัคร</th>
+                  <th class="text-center" data-orderable="false" style="width:17%">แบบประเมิน</th>
+                  <th class="text-center" data-orderable="false"></th><th data-orderable="false"></th>
+                  <th class="text-center" data-orderable="false" style="width:10%"> สถานะ</th>
+            
+                
+                </tr>
+              </thead> ';
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+          $number++;
+          echo "<tr><td>" . $number . ".</td><td style= 'text-align: left;'>" . $row["name_project"] . "</td>  
+          <td> <i class='far fa-file-alt fa-lg' aria-hidden='true'></i></td> 
+            <td> <i class='fa fa-pencil-square-o fa-lg' aria-hidden='true'></i> </td>
+            <td><i class='far fa-list-alt fa-lg' aria-hidden='true' ></i></td> 
+            <td><i class='far fa-clipboard fa-lg' aria-hidden='true'></i></td> 
+            <td><a href=answer_form.php?project_id=" . $row['project_id'] . "> <i class='fa fa-book fa-lg' ></i></a></td>
+            <td><a href=create_registration.php?project_id=" . $row['project_id'] . "> <i class='fa fa-id-card fa-lg' ></i></a></td>
+            <th><a style=color:forestgreen;>" . $row["status"] . "</a></th> ";
+        }
+        echo "</table>";
+      } else {
+        echo "0 results";
+      }
+    
+
+
+
+      echo "<h2 style=' padding :35px;  padding-top :100px;'>รายการที่เสร็จสิ้นแล้ว</h2>";
+
+      $sql = "SELECT * FROM create_project WHERE id = '" . $_SESSION['id'] . "' AND status = 'เสร็จสิ้น' ORDER BY status DESC,last_change DESC";
+      $result = $conn->query($sql);
+      $number = 0;
+      $_SESSION['go'] = 'go_project';
+      if ($result->num_rows > 0) {
+        echo '
+            <table class="table table-responsive" id="table4" >
+              <thead>
+                <tr class="w3-blue-gray">
+                 <th style="width:4%" >ที่</th>
+                  <th style="width:35%" >ชื่อโครงการ</th>      
+                  <th class="text-center" data-orderable="false" style="width:17%"> จัดการโครงการ</th>
+                  <th data-orderable="false"></th>
+                  <th class="text-center" data-orderable="false" style="width:17%">แบบฟอร์มใบสมัคร</th>
+                  <th class="text-center" data-orderable="false" style="width:17%">แบบประเมิน</th>
+                  <th class="text-center" data-orderable="false"></th><th data-orderable="false"></th>
+                  <th class="text-center" data-orderable="false"style="width:10%"> สถานะ</th>
+            
+                
+                </tr>
+              </thead> ';
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+          $number++;
+          echo "<tr><td>" . $number . ".</td><td style= 'text-align: left;'>" . $row["name_project"] . "</td>  
+          <td> <i class='far fa-file-alt fa-lg' aria-hidden='true'></i></td> 
+            <td> <i class='fa fa-pencil-square-o fa-lg' aria-hidden='true'></i> </td>
+            <td><i class='far fa-list-alt fa-lg' aria-hidden='true' ></i></td> 
+            <td><i class='far fa-clipboard fa-lg' aria-hidden='true'></i></td> 
+            <td><a href=answer_form.php?project_id=" . $row['project_id'] . "> <i class='fa fa-book fa-lg' ></i></a></td>
+            <td><a href=create_registration.php?project_id=" . $row['project_id'] . "> <i class='fa fa-id-card fa-lg' ></i></a></td>
+            <th>" . $row["status"] . "</th>
+          ";
+          
+
+        }
+        echo "</table>";
+      } else {
+        echo "0 results";
+      }
+      echo "</div></div>
+      <br><br><br><br><br>";
 
       ?>
 
@@ -217,7 +319,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
       <script>
         $(document).ready(function() {
-          $('#table,#table2').DataTable({
+          $('#table,#table2,#table3,#table4').DataTable({
             "pagingType": "full_numbers",
           });
         });

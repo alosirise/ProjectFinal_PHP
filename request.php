@@ -387,7 +387,7 @@ $_SESSION['go'] = 'go_request';
             ?>
           </div>
         </div>
-      </div>
+      </div><br><br><br><br><br>
 
       <!-- Optional JavaScript -->
       <!-- jQuery first, then Popper.js, then minified and Bootstrap JS -->
