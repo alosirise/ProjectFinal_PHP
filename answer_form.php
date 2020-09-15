@@ -95,7 +95,7 @@ include('auth.php');
               }
 
 
-              $sql3 = "SELECT answer,transaction from answer where project_id = $project_id";
+              $sql3 = "SELECT answer from answer where project_id = $project_id";
               $result3 = mysqli_query($conn, $sql3);
 
               $answer = array();
@@ -106,29 +106,25 @@ include('auth.php');
 
                 while ($row = $result3->fetch_assoc()) {
                   $answer[$j] = $row['answer'];
-                  $transaction[$j] = $row['transaction'];
                   $j++;
                 }
               }
-
 
 
               $append_answer = 0;
               if ($count_user == 0) {
                 echo "ยังไม่การตอบกลับ";
               }
-              $transaction_store = array();
 
               for ($z = 0; $z < $count_user; $z++) {
-                //ต้องสร้าง transaction_store มาเก็บอีกทีจะได้ใช้ในตอน delAnswer()ได้
-                $transaction_store[$z] = $transaction[$append_answer];
-                echo '<tr id="tr' . $transaction_store[$z] . '">';
+
+                echo '<tr id="tr">';
                 echo '<td>' . $username[$z] . '</td>';
                 for ($x = 0; $x < (int) $countquestion; $x++) {
                   echo '<td>' . $answer[$append_answer] . '</td>';
                   $append_answer++;
                 }
-                echo '<td><a onClick=\'javascript: return confirm("ต้องการลบคำตอบ ใช่ หรือ ไม่?"); \'href=del_answer.php?project_id=' . $project_id . '><button type="button" class="btn-danger" onclick="delAnswer(' . $transaction_store[$z] . ')">ลบ</button></a></td>';
+                echo '<td><a onClick=\'javascript: return confirm("ต้องการลบคำตอบ ใช่ หรือ ไม่?"); \'href=del_answer.php?project_id=' . $project_id . '><button type="button" class="btn-danger" onclick="delAnswer('."'".$username[$z]."'".')">ลบ</button></a></td>';
                 echo '</tr>';
               }
               ?>
@@ -313,9 +309,9 @@ include('auth.php');
 
   });
 
-  function delAnswer(num_del) {
-    console.log("del Answer click = " + num_del);
-    document.cookie = 'transaction=' + num_del;
+  function delAnswer(username) {
+    console.log("del Answer click");
+    document.cookie = 'username=' + username;
 
   }
 </script>

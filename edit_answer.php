@@ -35,18 +35,6 @@ include('auth.php');
 
                 include_once('connect.php');
 
-                $sql5 = "SELECT * from history where project_id = $project_id";
-                $result5 = mysqli_query($conn, $sql5);
-                if ($result5->num_rows > 0) {
-                    echo '<div class="bewcard">
-                            <div style="font-size:30px;">คุณได้สมัครเข้าร่วมโครงการนี้แล้ว</div><br>
-                            <div>หากต้องการแก้ไขคำตอบให้กดปุ่ม แก้ไขคำตอบ</div>
-                        </div>';
-                    echo '<div class="w3-container col-lg-2">
-                        <button type="submit" class="btn-primary" name="changeAnswer">แก้ไขคำตอบ</button>
-                    </div>';
-                } else {
-
                     $sql = "SELECT * from question where project_id = $project_id";
                     $result = mysqli_query($conn, $sql);
 
@@ -108,7 +96,7 @@ include('auth.php');
                     echo '<div class="w3-container col-lg-2">
                     <button type="submit" class="btn-primary" name="sendAnswer">ส่งคำตอบ</button>
                 </div>';
-                }
+                
                 ?>
             </div>
     </form>
@@ -117,12 +105,20 @@ include('auth.php');
 
 
     if (isset($_POST['sendAnswer'])) {
+
         var_dump($type_question);
         var_dump($_POST['ans_question3']);
 
         $count_checkbox_check = array();
         $username = $_SESSION['username'];
 
+        $num_transaction = 1;
+
+        //ลบคำตอบ
+        $sql5 = "delete from answer where project_id = $project_id and username = '$username'";
+        $result5 = mysqli_query($conn, $sql5);
+
+        
         for ($i = 0; $i < $count_question; $i++) {
             $sql1 = "INSERT INTO answer (project_id,username,question,answer) VALUES ('$project_id','$username','$question_explode[$i]','";
             if (gettype($_POST['ans_question' . $i]) == "array") {
@@ -142,25 +138,7 @@ include('auth.php');
             // echo $sql1.'<br>';
         }
 
-
-        $sql4 = "SELECT name_project from create_project where project_id = $project_id";
-        $result4 = mysqli_query($conn, $sql4);
-        if ($result4->num_rows > 0) {
-            while ($row = $result4->fetch_assoc()) {
-
-                $name_project = $row['name_project'];
-            }
-        }
-
-        $sql3 = "INSERT INTO history (id,username,project_id,status,name_project) 
-        VALUES ( '$user_id','$username','$project_id','ดำเนินการ','$name_project')";
-        $result3 = mysqli_query($conn, $sql3);
-
         echo "<script>window.location='allproject.php';</script>";
-    }
-
-    if (isset($_POST['changeAnswer'])) {
-        echo "<script>window.location='edit_answer.php?project_id=$_GET[project_id]';</script>";
     }
     ?>
 
