@@ -101,7 +101,7 @@ if ($_SESSION['role'] != "admin") {
 <body>
     <div class="" id="nav"></div>
     <div id="main">
-        <div class="w3-container col-lg-10 center">
+        <div class="w3-container col-lg-11 center">
             <h2 style=" padding :30px; ">Report</h2>
             <?php
             include_once('connect.php');

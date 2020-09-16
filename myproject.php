@@ -40,15 +40,14 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
 <body>
   <div class="" id="nav"></div>
-
   <div id="main">
 
-    <div class="w3-container col-lg-10 center "><br>
+    <div class="w3-container col-lg-11 center "><br>
       <h2 style=" padding :20px; ">โครงการของฉัน</h2>
 
       <center>
         <a href=create_project.php><button type="button" class="btn btn-success btn-lg">สร้าง</button></a>
-        <br><br>
+        <br><br><br>
         <ul class="nav nav-tabs" role="tablist">
           <li> <a href="#list1" class="active nav-link" role="tab" data-toggle="tab">
               <icon class="fa fa-home"></icon> แบบร่าง
@@ -85,30 +84,30 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             <table class="table table-responsive" id="table" >
               <thead>
                 <tr class="w3-blue-gray">
-                 <th class="text-center" style="width:4%" >ที่</th>
-                  <th  style="width:35%" >ชื่อโครงการ</th>
+                 <th class="text-center" style="width:1%" >ที่</th>
+                  <th  style="width:45%" >ชื่อโครงการ</th>
            
-                  <th class="text-center" data-orderable="false" style="width:17%"> จัดการโครงการ</th>
-                  <th data-orderable="false""></th>
-                  <th class="text-center" data-orderable="false" style="width:17%">แบบฟอร์มใบสมัคร</th>
-                  <th class="text-center"data-orderable="false" style="width:13%">แบบประเมิน</th>
-                  <th class="text-center" data-orderable="false"style="width:10%"> สถานะ</th>
-                  <th class="text-center" data-orderable="false" style="width:10%">ส่ง</th>
-                  <th class="text-center" data-orderable="false" style="width:10%">ลบ</th>
-               
+                  <th class="text-center" data-orderable="false" style="width:9%"> จัดการโครงการ</th>
+                  <th data-orderable="false"" style="width:9%"></th>
+                  <th class="text-center" data-orderable="false" style="width:13%">แบบฟอร์มใบสมัคร</th>
+                  <th class="text-center" data-orderable="false" style="width:9%">แบบประเมิน</th>
+                  <th class="text-center"data-orderable="false" style="width:9%">CoC news</th>
+                  <th class="text-center" data-orderable="false"style="width:8%"> สถานะ</th>
+                  <th class="text-center" data-orderable="false" style="width:5%">ส่ง</th>
+                  <th class="text-center" data-orderable="false" style="width:5%">ลบ</th>
+       
                 </tr>
               </thead> ';
         // output data of each row
         while ($row = $result->fetch_assoc()) {
           $number++;
           echo "<tr><td>" . $number . ".</td><td style= 'text-align: left;'>" . $row["name_project"] . "</td>";
-
-
           echo " <td><a href=edit_project.php?project_id=" . $row['project_id'] . ">    <i class='far fa-file-alt fa-lg'></i></a></td>
               <td><a href=edit_detail_project.php?project_id=" . $row['project_id'] . "> <i class='far fa-edit fa-lg'  ></i></a></td>
               <td><a href=create_form.php?project_id=" . $row['project_id'] . ">  <i class='far fa-list-alt fa-lg' ></i></a></td> 
               <td><a href=evaluate_form.php?project_id=" . $row['project_id'] . ">   <i class='far fa-clipboard fa-lg' ></i></a></td> 
-              <th>" . $row["status"] . "</th>
+              <td><a href=evaluate_form.php?project_id=" . $row['project_id'] . ">  <i class='far fa-newspaper fa-lg'></i></a></td> 
+              <th style = 'text-align: center;'>" . $row["status"] . "</th>
               <td><a href=waiting_project.php?project_id=" . $row['project_id'] . ">  <button type='button' name ='send' class='btn btn-success' >ส่ง</button></a></td>
               <td><a onClick=\"javascript: return confirm('Please confirm deletion');\" href=delete_project.php?project_id=" . $row['project_id'] . " >  <button type='button' name ='delete' class='btn btn-danger' >ลบ</button></a></td>   
               </tr>
@@ -136,14 +135,15 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             <table class="table table-responsive" id="table2" >
               <thead>
                 <tr class="w3-blue">
-                 <th class="text-center" style="width:4%" >ที่</th>
-                  <th style="width:35%" >ชื่อโครงการ</th>      
-                  <th class="text-center" data-orderable="false" style="width:17%"> จัดการโครงการ</th>
+                 <th class="text-center" style="width:1%" >ที่</th>
+                  <th style="width:40%" >ชื่อโครงการ</th>      
+                  <th class="text-center" data-orderable="false" style="width:10%"> จัดการโครงการ</th>
                   <th data-orderable="false""></th>
-                  <th class="text-center" data-orderable="false" style="width:17%">แบบฟอร์มใบสมัคร</th>
-                  <th class="text-center" data-orderable="false" style="width:17%">แบบประเมิน</th>
-                  <th class="text-center" data-orderable="false" style="width:10%"> สถานะ</th>
-                  <th class="text-center" data-orderable="false" style="width:10%">ส่ง</th>
+                  <th class="text-center" data-orderable="false" >แบบฟอร์มใบสมัคร</th>
+                  <th class="text-center" data-orderable="false">แบบประเมิน</th>
+                  <th class="text-center"data-orderable="false" >CoC news</th>
+                  <th class="text-center" data-orderable="false" > สถานะ</th>
+                  <th class="text-center" data-orderable="false" >ส่ง</th>
                 
                 </tr>
               </thead> ';
@@ -155,7 +155,8 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
           <td> <i class='fa fa-pencil-square-o fa-lg' aria-hidden='true'></i> </td>
           <td><i class='far fa-list-alt fa-lg' aria-hidden='true' ></i></td> 
           <td><i class='far fa-clipboard fa-lg' aria-hidden='true'></i></td> 
-          <th><a style=color:blue;>" . $row["status"] . "</a> </th>
+          <td><i class='far fa-newspaper fa-lg'></i></td> 
+          <th style = 'text-align: center;'><a style=color:blue; >" . $row["status"] . "</a> </th>
           <td><a href=cancel_send.php?project_id=" . $row['project_id'] . ">  <button type='button' name ='send' class='btn btn-success' >ยกเลิก</button></a></td>";
                 
         }
@@ -185,13 +186,15 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
               <thead>
                 <tr class="w3-red">
                  <th style="width:4%" >ที่</th>
-                  <th style="width:35%" >ชื่อโครงการ</th>      
+                  <th style="width:45%" >ชื่อโครงการ</th>      
                   <th class="text-center" data-orderable="false" style="width:17%"> จัดการโครงการ</th>
                   <th class="text-center" data-orderable="false""></th>
-                  <th class="text-center" data-orderable="false" style="width:17%">แบบฟอร์มใบสมัคร</th>
-                  <th class="text-center" data-orderable="false" style="width:17%">แบบประเมิน</th>       
+                  <th class="text-center" data-orderable="false" style="width:13%">แบบฟอร์มใบสมัคร</th>
+                  <th class="text-center" data-orderable="false" style="width:13%">แบบประเมิน</th>   
+                  <th class="text-center"data-orderable="false" >CoC news</th>    
                   <th class="text-center" data-orderable="false" style="width:10%"> สถานะ</th>
                   <th class="text-center" data-orderable="false" style="width:10%">ส่ง</th>
+                  <th class="text-center" data-orderable="false" style="width:5%">ลบ</th>
                 
                 </tr>
               </thead> ';
@@ -203,10 +206,12 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
               <td ><a href=edit_detail_project.php?project_id=" . $row['project_id'] . "> <i class='fa fa-pencil-square-o fa-lg' ></i></a></td>
               <td><a href=create_form.php?project_id=" . $row['project_id'] . "> <i class='far fa-list-alt fa-lg' ></i></a></td> 
               <td><a href=evaluate_form.php?project_id=" . $row['project_id'] . "><i class='far fa-clipboard fa-lg' ></i></a></td> 
-              <th><a style=color:red;>" . $row["status"] . "</a> </th>
-              <td><a href=waiting_project.php?project_id=" . $row['project_id'] . ">  <button type='button' name ='send' class='btn btn-success' >ส่ง</button></a></td> ";
-  
+              <td><a href=evaluate_form.php?project_id=" . $row['project_id'] . ">  <i class='far fa-newspaper fa-lg'></i></a></td> 
+              <th style = 'text-align: center;'><a style=color:red;>" . $row["status"] . "</a> </th>
+              <td><a href=waiting_project.php?project_id=" . $row['project_id'] . ">  <button type='button' name ='send' class='btn btn-success' >ส่ง</button></a></td> 
+              <td><a onClick=\"javascript: return confirm('Please confirm deletion');\" href=delete_project.php?project_id=" . $row['project_id'] . " >  <button type='button' name ='delete' class='btn btn-danger' >ลบ</button></a></td>";
         }
+       
         echo "</table>";
       } else {
         echo "0 results";
@@ -233,12 +238,14 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
               <thead>
                 <tr class="w3-green">
                  <th style="width:4%" >ที่</th>
-                  <th style="width:35%" >ชื่อโครงการ</th>      
+                  <th style="width:45%" >ชื่อโครงการ</th>      
                   <th class="text-center" data-orderable="false" style="width:17%"> จัดการโครงการ</th>
                   <th class="text-center" data-orderable="false""></th>
-                  <th class="text-center" data-orderable="false" style="width:17%">แบบฟอร์มใบสมัคร</th>
-                  <th class="text-center" data-orderable="false" style="width:17%">แบบประเมิน</th>
-                  <th class="text-center" data-orderable="false"></th><th data-orderable="false"></th>
+                  <th class="text-center" data-orderable="false" style="width:13%">แบบฟอร์มใบสมัคร</th>
+                  <th class="text-center" data-orderable="false" style="width:13%">แบบประเมิน</th>
+                  <th class="text-center"data-orderable="false"  >CoC news</th> 
+                  <th data-orderable="false"></th>
+                  <th data-orderable="false"></th>
                   <th class="text-center" data-orderable="false" style="width:10%"> สถานะ</th>
             
                 
@@ -252,9 +259,10 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             <td> <i class='fa fa-pencil-square-o fa-lg' aria-hidden='true'></i> </td>
             <td><i class='far fa-list-alt fa-lg' aria-hidden='true' ></i></td> 
             <td><i class='far fa-clipboard fa-lg' aria-hidden='true'></i></td> 
+            <td> <i class='far fa-newspaper fa-lg'></i></td> 
             <td><a href=answer_form.php?project_id=" . $row['project_id'] . "> <i class='fa fa-book fa-lg' ></i></a></td>
             <td><a href=create_registration.php?project_id=" . $row['project_id'] . "> <i class='fa fa-id-card fa-lg' ></i></a></td>
-            <th><a style=color:forestgreen;>" . $row["status"] . "</a></th> ";
+            <th style = 'text-align: center;'><a style=color:forestgreen;>" . $row["status"] . "</a></th> ";
         }
         echo "</table>";
       } else {
@@ -272,17 +280,18 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
       $_SESSION['go'] = 'go_project';
       if ($result->num_rows > 0) {
         echo '
-            <table class="table table-responsive" id="table4" >
+            <table class="table table-responsive" id="table5" >
               <thead>
                 <tr class="w3-blue-gray">
                  <th style="width:4%" >ที่</th>
-                  <th style="width:35%" >ชื่อโครงการ</th>      
-                  <th class="text-center" data-orderable="false" style="width:17%"> จัดการโครงการ</th>
+                  <th style="width:40%" >ชื่อโครงการ</th>      
+                  <th class="text-center" data-orderable="false" style="width:15%"> จัดการโครงการ</th>
                   <th data-orderable="false"></th>
-                  <th class="text-center" data-orderable="false" style="width:17%">แบบฟอร์มใบสมัคร</th>
-                  <th class="text-center" data-orderable="false" style="width:17%">แบบประเมิน</th>
+                  <th class="text-center" data-orderable="false" style="width:15%">แบบฟอร์มใบสมัคร</th>
+                  <th class="text-center" data-orderable="false" style="width:15%">แบบประเมิน</th>
+                  <th class="text-center"data-orderable="false" >CoC news</th> 
                   <th class="text-center" data-orderable="false"></th><th data-orderable="false"></th>
-                  <th class="text-center" data-orderable="false"style="width:10%"> สถานะ</th>
+                  <th class="text-center" data-orderable="false"style="width:25%"> สถานะ</th>
             
                 
                 </tr>
@@ -295,9 +304,10 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             <td> <i class='fa fa-pencil-square-o fa-lg' aria-hidden='true'></i> </td>
             <td><i class='far fa-list-alt fa-lg' aria-hidden='true' ></i></td> 
             <td><i class='far fa-clipboard fa-lg' aria-hidden='true'></i></td> 
+            <td> <i class='far fa-newspaper fa-lg'></i></td> 
             <td><a href=answer_form.php?project_id=" . $row['project_id'] . "> <i class='fa fa-book fa-lg' ></i></a></td>
             <td><a href=create_registration.php?project_id=" . $row['project_id'] . "> <i class='fa fa-id-card fa-lg' ></i></a></td>
-            <th>" . $row["status"] . "</th>
+            <th style = 'text-align: center;'>" . $row["status"] . "</th>
           ";
           
 

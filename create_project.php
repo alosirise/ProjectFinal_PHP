@@ -19,10 +19,9 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     
  
     <!-- Bootstrap navbar CSS-->
-
-    <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="form.css">
-
+    <link rel="stylesheet" href="navbar.css">
+    
 </head>
 
 <body>

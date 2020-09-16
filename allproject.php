@@ -31,7 +31,7 @@ session_start();
 
   <div id="main">
 
-    <div class="w3-container col-lg-10 center">
+    <div class="w3-container col-lg-11 center">
       <h2 style=" padding :30px; ">รายชื่อโครงการทั้งหมด</h2>
 
 

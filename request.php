@@ -31,14 +31,17 @@ $_SESSION['go'] = 'go_request';
     bottom: 25px;
     left: 24%;
   }
+  td {
+    text-align: center;
+  }
 </style>
 
 <body>
   <div class="" id="nav"></div>
 
   <div id="main">
-    <div class="w3-container col-lg-10 center ">
-      <br><br>
+    <div class="w3-container col-lg-11 center ">
+     
 
       <br>
       <!-- <center><select style=" height:35px; width: 20%">
@@ -49,7 +52,7 @@ $_SESSION['go'] = 'go_request';
           <option value="finish">รายการที่เสร็จสิ้น</option>
         </select></center> -->
 
-      <br><br>
+        <br>
       <ul class="nav nav-tabs" role="tablist">
         <li> <a href="#list1" class="active nav-link" role="tab" data-toggle="tab">
             <icon class="fa fa-home"></icon> คำร้องขอสร้างโครงการ
@@ -92,13 +95,13 @@ $_SESSION['go'] = 'go_request';
                 <tr class="w3-indigo">
                  <th style="width:4%">ที่</th>
                   <th style="width:26%">ชื่อโครงการ</th>
-                  <th style="width:10%">ชื่อผู้ใช้</th>
-                  <th data-orderable="false" style="width:15%">ตรวจสอบโครงการ</th>
-                  <th data-orderable="false"></th>
-                  <th data-orderable="false" style="width:15%">ตรวจสอบแบบฟอร์ม</th>
-                  <th data-orderable="false" style="width:15%">ฟอร์มประเมิน</th>
+                  <th class="text-center" style="width:10%">ชื่อผู้ใช้</th>
+                  <th class="text-center" data-orderable="false" style="width:15%">ตรวจสอบโครงการ</th>
+                  <th class="text-center" class="text-center" data-orderable="false"></th>
+                  <th class="text-center" class="text-center" data-orderable="false" style="width:15%">ตรวจสอบแบบฟอร์ม</th>
+                  <th class="text-center" class="text-center" data-orderable="false" style="width:15%">ฟอร์มประเมิน</th>
                   
-                  <th data-orderable="false" style="width:10%">สถานะ</th>
+                  <th class="text-center" class="text-center" data-orderable="false" style="width:10%">สถานะ</th>
 
               
                 </tr>
@@ -107,7 +110,7 @@ $_SESSION['go'] = 'go_request';
               //   " . $row["username"] . "
               while ($row = $result->fetch_assoc()) {
                 $number++;
-                echo "<tr><td>" . $number . ".</td><td>" . $row["name_project"] . "</td>  
+                echo "<tr><td>" . $number . ".</td><td style= 'text-align: left;'>" . $row["name_project"] . "</td>  
             <td>" . $row["creator"] . "</td>  
             <td><a href=edit_project.php?project_id=" . $row['project_id'] . ">    <button type='button' class='btn btn-primary' style='width:10'>ตรวจสอบโครงการ</button></a></td> 
             <td><a href=edit_detail_project.php?project_id=" . $row['project_id'] . "> <i class='fa fa-pencil-square-o fa-lg' aria-hidden='true'></i></a></td>
@@ -166,15 +169,15 @@ $_SESSION['go'] = 'go_request';
                    <thead>
                      <tr class="w3-green">
                       <th style="width:4%">ที่</th>
-                       <th style="width:26%">ชื่อโครงการ</th>
-                       <th style="width:9%">ชื่อผู้ใช้</th>
-                       <th data-orderable="false" style="width:15%">ตรวจสอบโครงการ</th>
+                       <th style="width:35%">ชื่อโครงการ</th>
+                       <th class="text-center" style="width:15%">ชื่อผู้ใช้</th>
+                       <th class="text-center" data-orderable="false" style="width:15%">ตรวจสอบโครงการ</th>
                        <th data-orderable="false"></th>
-                       <th data-orderable="false" style="width:16%">ตรวจสอบแบบฟอร์ม</th>
-                       <th data-orderable="false" style="width:15%">ฟอร์มประเมิน</th>
+                       <th class="text-center" data-orderable="false" style="width:16%">ตรวจสอบแบบฟอร์ม</th>
+                       <th class="text-center" data-orderable="false" style="width:15%">ฟอร์มประเมิน</th>
                        <th data-orderable="false"></th>
                        <th data-orderable="false"></th>
-                       <th data-orderable="false" style="width:10%">สถานะ</th>
+                       <th class="text-center" data-orderable="false" style="width:10%">สถานะ</th>
                    
                      </tr>
                    </thead> ';
@@ -182,7 +185,7 @@ $_SESSION['go'] = 'go_request';
               //   " . $row["username"] . "
               while ($row2 = $result2->fetch_assoc()) {
                 $number++;
-                echo "<tr><td>" . $number . ".</td><td>" . $row2["name_project"] . "</td>  
+                echo "<tr><td>" . $number . ".</td><td style= 'text-align: left;'>" . $row2["name_project"] . "</td>  
                  <td>" . $row2["creator"] . "</td>  
                  <td><a href=edit_project.php?project_id=" . $row2['project_id'] . ">    <button type='button' class='btn btn-primary' style='width:10'>ตรวจสอบโครงการ</button></a></td> 
                  <td><a href=edit_detail_project.php?project_id=" . $row2['project_id'] . "> <i class='fa fa-pencil-square-o fa-lg' aria-hidden='true'></i></a></td>
@@ -245,13 +248,13 @@ $_SESSION['go'] = 'go_request';
                <tr class="w3-red">
                 <th style="width:4%">ที่</th>
                  <th style="width:26%">ชื่อโครงการ</th>
-                 <th style="width:10%">ชื่อผู้ใช้</th>
-                 <th data-orderable="false" style="width:15%">ตรวจสอบโครงการ</th>
+                 <th class="text-center" style="width:10%">ชื่อผู้ใช้</th>
+                 <th class="text-center" data-orderable="false" style="width:15%">ตรวจสอบโครงการ</th>
                  <th data-orderable="false"></th>
-                 <th data-orderable="false" style="width:15%">ตรวจสอบแบบฟอร์ม</th>
-                 <th data-orderable="false" style="width:15%">ฟอร์มประเมิน</th>
+                 <th class="text-center" data-orderable="false" style="width:15%">ตรวจสอบแบบฟอร์ม</th>
+                 <th class="text-center" data-orderable="false" style="width:15%">ฟอร์มประเมิน</th>
                  <th data-orderable="false" style="width:5%"></th>
-                 <th data-orderable="false" style="width:15%">สถานะ</th>
+                 <th class="text-center" data-orderable="false" style="width:15%">สถานะ</th>
            
              
                </tr>
@@ -260,7 +263,7 @@ $_SESSION['go'] = 'go_request';
               //   " . $row["username"] . "
               while ($row3 = $result3->fetch_assoc()) {
                 $number++;
-                echo "<tr><td>" . $number . ".</td><td>" . $row3["name_project"] . "</td>  
+                echo "<tr><td>" . $number . ".</td><td style= 'text-align: left;'> " . $row3["name_project"] . "</td>  
            <td>" . $row3["creator"] . "</td>  
            <td><a href=edit_project.php?project_id=" . $row3['project_id'] . ">    <button type='button' class='btn btn-primary' style='width:10'>ตรวจสอบโครงการ</button></a></td> 
            <td><a href=edit_detail_project.php?project_id=" . $row3['project_id'] . "> <i class='fa fa-pencil-square-o fa-lg' aria-hidden='true'></i></a></td>
@@ -324,14 +327,14 @@ $_SESSION['go'] = 'go_request';
                <tr class="w3-blue-gray">
                 <th style="width:4%">ที่</th>
                  <th style="width:26%">ชื่อโครงการ</th>
-                 <th style="width:9%">ชื่อผู้ใช้</th>
-                 <th data-orderable="false" style="width:15%">ตรวจสอบโครงการ</th>
+                 <th class="text-center" style="width:9%">ชื่อผู้ใช้</th>
+                 <th class="text-center" data-orderable="false" style="width:15%">ตรวจสอบโครงการ</th>
                  <th data-orderable="false"></th>
-                 <th data-orderable="false" style="width:16%">ตรวจสอบแบบฟอร์ม</th>
-                 <th data-orderable="false" style="width:15%">ฟอร์มประเมิน</th>
+                 <th class="text-center" data-orderable="false" style="width:16%">ตรวจสอบแบบฟอร์ม</th>
+                 <th class="text-center" data-orderable="false" style="width:15%">ฟอร์มประเมิน</th>
                  <th data-orderable="false"></th>
                  <th data-orderable="false"></th>
-                 <th data-orderable="false" style="width:15%">สถานะ</th>
+                 <th class="text-center" data-orderable="false" style="width:15%">สถานะ</th>
            
              
                </tr>
@@ -340,7 +343,7 @@ $_SESSION['go'] = 'go_request';
               //   " . $row["username"] . "
               while ($row3 = $result3->fetch_assoc()) {
                 $number++;
-                echo "<tr><td>" . $number . ".</td><td>" . $row3["name_project"] . "</td>  
+                echo "<tr><td>" . $number . ".</td><td style= 'text-align: left;'>" . $row3["name_project"] . "</td>  
            <td>" . $row3["creator"] . "</td>  
            <td><a href=edit_project.php?project_id=" . $row3['project_id'] . ">    <button type='button' class='btn btn-primary' style='width:10'>ตรวจสอบโครงการ</button></a></td> 
            <td><a href=edit_detail_project.php?project_id=" . $row3['project_id'] . "> <i class='fa fa-pencil-square-o fa-lg' aria-hidden='true'></i></a></td>

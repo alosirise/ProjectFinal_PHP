@@ -93,7 +93,7 @@
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     </div>
 
-    <img class="center img-center" src="psu-logo.jpg" style="width:50%; ">
+    <img class="center img-center" src="psu-logo.jpg" style="width:45%; ">
 
     <a href="home.php" style="font-size:18px;">หน้าหลัก</a>
     <?php

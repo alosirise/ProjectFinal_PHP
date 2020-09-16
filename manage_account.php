@@ -39,7 +39,7 @@ include_once('connect.php');
 <body>
     <div class="" id="nav"></div>
     <div id="main">
-        <div class="w3-container col-lg-10 center">
+        <div class="w3-container col-lg-11 center">
             <h2 style=" padding :30px; ">จัดการบัญชี</h2>
 
             <!-- <center><select id="select" style=" height:35px; width: 20%">
