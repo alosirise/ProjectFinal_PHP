@@ -103,7 +103,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
           $number++;
           echo "<tr><td>" . $number . ".</td><td style= 'text-align: left;'>" . $row["name_project"] . "</td>";
           echo " <td><a href=edit_project.php?project_id=" . $row['project_id'] . ">    <i class='far fa-file-alt fa-lg'></i></a></td>
-              <td><a href=edit_detail_project.php?project_id=" . $row['project_id'] . "> <i class='far fa-edit fa-lg'  ></i></a></td>
+              <td><a href=edit_detail_project.php?project_id=" . $row['project_id'] . "> <i class='far fa-image fa-lg'  ></i></a></td>
               <td><a href=create_form.php?project_id=" . $row['project_id'] . ">  <i class='far fa-list-alt fa-lg' ></i></a></td> 
               <td><a href=evaluate_form.php?project_id=" . $row['project_id'] . ">   <i class='far fa-clipboard fa-lg' ></i></a></td> 
               <td><a href=evaluate_form.php?project_id=" . $row['project_id'] . ">  <i class='far fa-newspaper fa-lg'></i></a></td> 
@@ -152,7 +152,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
           $number++;
           echo "<tr><td>" . $number . ".</td><td style= 'text-align: left;'>" . $row["name_project"] . "</td>  
           <td> <i class='far fa-file-alt fa-lg' aria-hidden='true'></i></td> 
-          <td> <i class='fa fa-pencil-square-o fa-lg' aria-hidden='true'></i> </td>
+          <td> <i class='far fa-image fa-lg' aria-hidden='true'></i> </td>
           <td><i class='far fa-list-alt fa-lg' aria-hidden='true' ></i></td> 
           <td><i class='far fa-clipboard fa-lg' aria-hidden='true'></i></td> 
           <td><i class='far fa-newspaper fa-lg'></i></td> 
@@ -203,7 +203,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
           $number++;
           echo "<tr><td>" . $number . ".</td><td style= 'text-align: left;'>" . $row["name_project"] . "</td>  
           <td ><a href=edit_project.php?project_id=" . $row['project_id'] . "> <i class='far fa-file-alt fa-lg' ></i></a></td>
-              <td ><a href=edit_detail_project.php?project_id=" . $row['project_id'] . "> <i class='fa fa-pencil-square-o fa-lg' ></i></a></td>
+              <td ><a href=edit_detail_project.php?project_id=" . $row['project_id'] . "> <i class='far fa-image fa-lg' ></i></a></td>
               <td><a href=create_form.php?project_id=" . $row['project_id'] . "> <i class='far fa-list-alt fa-lg' ></i></a></td> 
               <td><a href=evaluate_form.php?project_id=" . $row['project_id'] . "><i class='far fa-clipboard fa-lg' ></i></a></td> 
               <td><a href=evaluate_form.php?project_id=" . $row['project_id'] . ">  <i class='far fa-newspaper fa-lg'></i></a></td> 
@@ -256,7 +256,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
           $number++;
           echo "<tr><td>" . $number . ".</td><td style= 'text-align: left;'>" . $row["name_project"] . "</td>  
           <td> <i class='far fa-file-alt fa-lg' aria-hidden='true'></i></td> 
-            <td> <i class='fa fa-pencil-square-o fa-lg' aria-hidden='true'></i> </td>
+            <td> <i class='far fa-image fa-lg' aria-hidden='true'></i> </td>
             <td><i class='far fa-list-alt fa-lg' aria-hidden='true' ></i></td> 
             <td><i class='far fa-clipboard fa-lg' aria-hidden='true'></i></td> 
             <td> <i class='far fa-newspaper fa-lg'></i></td> 
@@ -301,7 +301,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
           $number++;
           echo "<tr><td>" . $number . ".</td><td style= 'text-align: left;'>" . $row["name_project"] . "</td>  
           <td> <i class='far fa-file-alt fa-lg' aria-hidden='true'></i></td> 
-            <td> <i class='fa fa-pencil-square-o fa-lg' aria-hidden='true'></i> </td>
+            <td> <i class='far fa-image fa-lg' aria-hidden='true'></i> </td>
             <td><i class='far fa-list-alt fa-lg' aria-hidden='true' ></i></td> 
             <td><i class='far fa-clipboard fa-lg' aria-hidden='true'></i></td> 
             <td> <i class='far fa-newspaper fa-lg'></i></td> 

@@ -21,7 +21,7 @@ $_SESSION['go'] = 'go_request';
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.21/datatables.min.css" />
   <!-- Bootstrap navbar CSS-->
   <link rel="stylesheet" href="navbar.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/f7ef8136ea.js" crossorigin="anonymous"></script>
 </head>
 <style>
   #main {
@@ -31,6 +31,7 @@ $_SESSION['go'] = 'go_request';
     bottom: 25px;
     left: 24%;
   }
+
   td {
     text-align: center;
   }
@@ -41,7 +42,7 @@ $_SESSION['go'] = 'go_request';
 
   <div id="main">
     <div class="w3-container col-lg-11 center ">
-     
+
 
       <br>
       <!-- <center><select style=" height:35px; width: 20%">
@@ -52,7 +53,7 @@ $_SESSION['go'] = 'go_request';
           <option value="finish">รายการที่เสร็จสิ้น</option>
         </select></center> -->
 
-        <br>
+      <br>
       <ul class="nav nav-tabs" role="tablist">
         <li> <a href="#list1" class="active nav-link" role="tab" data-toggle="tab">
             <icon class="fa fa-home"></icon> คำร้องขอสร้างโครงการ
@@ -99,7 +100,7 @@ $_SESSION['go'] = 'go_request';
                   <th class="text-center" data-orderable="false" style="width:15%">ตรวจสอบโครงการ</th>
                   <th class="text-center" class="text-center" data-orderable="false"></th>
                   <th class="text-center" class="text-center" data-orderable="false" style="width:15%">ตรวจสอบแบบฟอร์ม</th>
-                  <th class="text-center" class="text-center" data-orderable="false" style="width:15%">ฟอร์มประเมิน</th>
+                  <th class="text-center" class="text-center" data-orderable="false" style="width:15%">แบบประเมิน</th>
                   
                   <th class="text-center" class="text-center" data-orderable="false" style="width:10%">สถานะ</th>
 
@@ -112,11 +113,11 @@ $_SESSION['go'] = 'go_request';
                 $number++;
                 echo "<tr><td>" . $number . ".</td><td style= 'text-align: left;'>" . $row["name_project"] . "</td>  
             <td>" . $row["creator"] . "</td>  
-            <td><a href=edit_project.php?project_id=" . $row['project_id'] . ">    <button type='button' class='btn btn-primary' style='width:10'>ตรวจสอบโครงการ</button></a></td> 
-            <td><a href=edit_detail_project.php?project_id=" . $row['project_id'] . "> <i class='fa fa-pencil-square-o fa-lg' aria-hidden='true'></i></a></td>
+            <td><a href=edit_project.php?project_id=" . $row['project_id'] . ">    <i class='fas fa-file-alt fa-lg'></i></a></td> 
+            <td><a href=edit_detail_project.php?project_id=" . $row['project_id'] . "> <i class='fas fa-image  fa-lg' ></i></a></td>
             ", "
-            <td><a href=create_form.php?project_id=" . $row['project_id'] . ">    <button type='button' class='btn btn-warning ' >ตรวจสอบแบบฟอร์ม</button></a></td> 
-            <td><a href=evaluate_form.php?project_id=" . $row['project_id'] . ">    <button type='button' class='btn btn-info ' >ฟอร์มประเมิน</button></a></td> 
+            <td><a href=create_form.php?project_id=" . $row['project_id'] . ">  <i class='fas fa-tasks fa-lg'></i></a></td> 
+            <td><a href=evaluate_form.php?project_id=" . $row['project_id'] . "> <i class='fas fa-clipboard-check fa-lg'></i></a></td> 
        
             <td><select name='change' id='project_id' style=' height:30px; width: 100%' onfocus=\"this.setAttribute('PrvSelectedValue',this.value);\" 
                      onchange=\"if(confirm('Do you want to change?')==false) { this.value=this.getAttribute('PrvSelectedValue');return false; }
@@ -156,6 +157,7 @@ $_SESSION['go'] = 'go_request';
           </div>
         </div>
 
+
         <div class="tab-pane fade " id="list2">
           <div id="accept">
             <h2 style=" padding :35px;">รายการที่อนุมัติแล้ว</h2>
@@ -174,7 +176,7 @@ $_SESSION['go'] = 'go_request';
                        <th class="text-center" data-orderable="false" style="width:15%">ตรวจสอบโครงการ</th>
                        <th data-orderable="false"></th>
                        <th class="text-center" data-orderable="false" style="width:16%">ตรวจสอบแบบฟอร์ม</th>
-                       <th class="text-center" data-orderable="false" style="width:15%">ฟอร์มประเมิน</th>
+                       <th class="text-center" data-orderable="false" style="width:15%">แบบประเมิน</th>
                        <th data-orderable="false"></th>
                        <th data-orderable="false"></th>
                        <th class="text-center" data-orderable="false" style="width:10%">สถานะ</th>
@@ -187,11 +189,11 @@ $_SESSION['go'] = 'go_request';
                 $number++;
                 echo "<tr><td>" . $number . ".</td><td style= 'text-align: left;'>" . $row2["name_project"] . "</td>  
                  <td>" . $row2["creator"] . "</td>  
-                 <td><a href=edit_project.php?project_id=" . $row2['project_id'] . ">    <button type='button' class='btn btn-primary' style='width:10'>ตรวจสอบโครงการ</button></a></td> 
-                 <td><a href=edit_detail_project.php?project_id=" . $row2['project_id'] . "> <i class='fa fa-pencil-square-o fa-lg' aria-hidden='true'></i></a></td>
+                 <td><a href=edit_project.php?project_id=" . $row2['project_id'] . ">    <i class='fas fa-file-alt fa-lg'></i></a></td> 
+                 <td><a href=edit_detail_project.php?project_id=" . $row2['project_id'] . "> <i class='fas fa-image  fa-lg' ></i></a></td>
                  ", "
-                 <td><a href=create_form.php?project_id=" . $row2['project_id'] . ">    <button type='button' class='btn btn-warning ' >ตรวจสอบแบบฟอร์ม</button></a></td>
-                 <td><a href=evaluate_form.php?project_id=" . $row2['project_id'] . ">    <button type='button' class='btn btn-info ' >ฟอร์มประเมิน</button></a></td>  
+                 <td><a href=create_form.php?project_id=" . $row2['project_id'] . ">   <i class='fas fa-tasks fa-lg'></i></a></td>
+                 <td><a href=evaluate_form.php?project_id=" . $row2['project_id'] . ">  <i class='fas fa-clipboard-check fa-lg'></i></a></td>  
                  <td><a href=answer_form.php?project_id=" . $row2['project_id'] . "> <i class='fa fa-book fa-lg' aria-hidden='true'></i></a></td>
                  <td><a href=create_registration.php?project_id=" . $row2['project_id'] . "> <i class='fa fa-id-card fa-lg' aria-hidden='true'></i></a></td>
                  <td><select name='change' id='project_id' style=' height:30px; width: 100%' onfocus=\"this.setAttribute('PrvSelectedValue',this.value);\" 
@@ -252,7 +254,7 @@ $_SESSION['go'] = 'go_request';
                  <th class="text-center" data-orderable="false" style="width:15%">ตรวจสอบโครงการ</th>
                  <th data-orderable="false"></th>
                  <th class="text-center" data-orderable="false" style="width:15%">ตรวจสอบแบบฟอร์ม</th>
-                 <th class="text-center" data-orderable="false" style="width:15%">ฟอร์มประเมิน</th>
+                 <th class="text-center" data-orderable="false" style="width:15%">แบบประเมิน</th>
                  <th data-orderable="false" style="width:5%"></th>
                  <th class="text-center" data-orderable="false" style="width:15%">สถานะ</th>
            
@@ -265,11 +267,11 @@ $_SESSION['go'] = 'go_request';
                 $number++;
                 echo "<tr><td>" . $number . ".</td><td style= 'text-align: left;'> " . $row3["name_project"] . "</td>  
            <td>" . $row3["creator"] . "</td>  
-           <td><a href=edit_project.php?project_id=" . $row3['project_id'] . ">    <button type='button' class='btn btn-primary' style='width:10'>ตรวจสอบโครงการ</button></a></td> 
-           <td><a href=edit_detail_project.php?project_id=" . $row3['project_id'] . "> <i class='fa fa-pencil-square-o fa-lg' aria-hidden='true'></i></a></td>
+           <td><a href=edit_project.php?project_id=" . $row3['project_id'] . ">   <i class='fas fa-file-alt fa-lg'></i></a></td> 
+           <td><a href=edit_detail_project.php?project_id=" . $row3['project_id'] . "> <i class='fas fa-image  fa-lg' ></i></a></td>
            ", "
-           <td><a href=create_form.php?project_id=" . $row3['project_id'] . ">    <button type='button' class='btn btn-warning ' >ตรวจสอบแบบฟอร์ม</button></a></td> 
-           <td><a href=evaluate_form.php?project_id=" . $row['project_id'] . ">    <button type='button' class='btn btn-info ' >ฟอร์มประเมิน</button></a></td>  
+           <td><a href=create_form.php?project_id=" . $row3['project_id'] . ">   <i class='fas fa-tasks fa-lg'></i></a></td> 
+           <td><a href=evaluate_form.php?project_id=" . $row['project_id'] . ">   <i class='fas fa-clipboard-check fa-lg'></i></a></td>  
             <td></td>
           
             <td><select name='change' id='project_id' style=' height:30px; width: 100%' onfocus=\"this.setAttribute('PrvSelectedValue',this.value);\" 
@@ -313,7 +315,7 @@ $_SESSION['go'] = 'go_request';
 
         <div class="tab-pane fade " id="list4">
           <div id="finish">
-            
+
             <h2 style=" padding :35px;">รายการที่เสร็จสิ้นแล้ว</h2>
             <?php
             $sql3 = "SELECT * FROM create_project WHERE status = 'เสร็จสิ้น'  ORDER BY last_change DESC ";
@@ -326,15 +328,15 @@ $_SESSION['go'] = 'go_request';
              <thead>
                <tr class="w3-blue-gray">
                 <th style="width:4%">ที่</th>
-                 <th style="width:26%">ชื่อโครงการ</th>
+                 <th style="width:40%">ชื่อโครงการ</th>
                  <th class="text-center" style="width:9%">ชื่อผู้ใช้</th>
                  <th class="text-center" data-orderable="false" style="width:15%">ตรวจสอบโครงการ</th>
                  <th data-orderable="false"></th>
-                 <th class="text-center" data-orderable="false" style="width:16%">ตรวจสอบแบบฟอร์ม</th>
-                 <th class="text-center" data-orderable="false" style="width:15%">ฟอร์มประเมิน</th>
+                 <th class="text-center" data-orderable="false" style="width:13%">ตรวจสอบแบบฟอร์ม</th>
+                 <th class="text-center" data-orderable="false" style="width:13%">แบบประเมิน</th>
                  <th data-orderable="false"></th>
                  <th data-orderable="false"></th>
-                 <th class="text-center" data-orderable="false" style="width:15%">สถานะ</th>
+                 <th class="text-center" data-orderable="false" style="width:13%">สถานะ</th>
            
              
                </tr>
@@ -345,11 +347,11 @@ $_SESSION['go'] = 'go_request';
                 $number++;
                 echo "<tr><td>" . $number . ".</td><td style= 'text-align: left;'>" . $row3["name_project"] . "</td>  
            <td>" . $row3["creator"] . "</td>  
-           <td><a href=edit_project.php?project_id=" . $row3['project_id'] . ">    <button type='button' class='btn btn-primary' style='width:10'>ตรวจสอบโครงการ</button></a></td> 
-           <td><a href=edit_detail_project.php?project_id=" . $row3['project_id'] . "> <i class='fa fa-pencil-square-o fa-lg' aria-hidden='true'></i></a></td>
+           <td><a href=edit_project.php?project_id=" . $row3['project_id'] . ">   <i class='fas fa-file-alt fa-lg'></i></a></td> 
+           <td><a href=edit_detail_project.php?project_id=" . $row3['project_id'] . "> <i class='fas fa-image  fa-lg' ></i></a></td>
            ", "
-           <td><a href=create_form.php?project_id=" . $row3['project_id'] . ">    <button type='button' class='btn btn-warning ' >ตรวจสอบแบบฟอร์ม</button></a></td> 
-           <td><a href=evaluate_form.php?project_id=" . $row3['project_id'] . ">    <button type='button' class='btn btn-info ' >ฟอร์มประเมิน</button></a></td>  
+           <td><a href=create_form.php?project_id=" . $row3['project_id'] . ">    <i class='fas fa-tasks fa-lg'></i></a></td> 
+           <td><a href=evaluate_form.php?project_id=" . $row3['project_id'] . ">   <i class='fas fa-clipboard-check fa-lg'></i></a></td>  
            <td><a href=answer_form.php?project_id=" . $row3['project_id'] . "> <i class='fa fa-book fa-lg' aria-hidden='true'></i></a></td>
            <td><a href=create_registration.php?project_id=" . $row3['project_id'] . "> <i class='fa fa-id-card fa-lg' aria-hidden='true'></i></a></td>
           

@@ -35,7 +35,7 @@ include('auth.php');
 
                 include_once('connect.php');
 
-                $sql5 = "SELECT * from history where project_id = $project_id";
+                $sql5 = "SELECT * from history where username = '" . $_SESSION['username'] . "'  AND project_id = $project_id";
                 $result5 = mysqli_query($conn, $sql5);
                 if ($result5->num_rows > 0) {
                     echo '<div class="bewcard">
@@ -156,6 +156,7 @@ include('auth.php');
         VALUES ( '$user_id','$username','$project_id','ดำเนินการ','$name_project')";
         $result3 = mysqli_query($conn, $sql3);
 
+        echo "<script type='text/javascript'>alert('สมัครเข้าร่วมโครงการสำเร็จ');</script>";
         echo "<script>window.location='allproject.php';</script>";
     }
 

@@ -51,7 +51,7 @@ session_start();
           <?php
 
           include_once('connect.php');
-          $sql = "SELECT * FROM history WHERE status ='ดำเนินการ'";
+          $sql = "SELECT * FROM history WHERE username = '" . $_SESSION['username'] . "'  AND status ='ดำเนินการ'";
 
 
           $result = $conn->query($sql);
@@ -87,7 +87,7 @@ session_start();
         <div class="tab-pane fade" id="list2">
           <?php
 
-          $sql = "SELECT * FROM history WHERE status ='เสร็จสิ้น'";
+          $sql = "SELECT * FROM history WHERE username = '" . $_SESSION['username'] . "' AND  status ='เสร็จสิ้น'";
 
 
           $result = $conn->query($sql);

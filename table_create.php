@@ -36,11 +36,11 @@ include_once('connect.php');
 
     echo '<tbody>
         <tr>
-        <td><input type="text"  style="width: 99%;"   class="edit" name ="no[]"      id="edit1" ></td>
-        <td><input type="text"  style="width: 99%;"   class="edit" name ="list[]"    id="edit2" ></td>
-        <td><input type="text"  style="width: 99%;"   class="edit" name ="quantity[]"  id="edit3"></td>
-        <td><input type="text"  style="width: 99%;"   class="edit" name ="rate[]"      id="edit4" ></td>
-        <td><input type="text"  style="width: 99%;"   class="edit" name = "cost1[]"    id="edit5" disabled></td>
+        <td><input type="text"  style="width: 99%;"   class="edit" name ="no[]"      id="edit1-1" ></td>
+        <td><input type="text"  style="width: 99%;"   class="edit" name ="list[]"    id="edit2-1" ></td>
+        <td><input type="text"  style="width: 99%;"   class="edit" name ="quantity[]"  id="edit3-1" onclick="test(id)"></td>
+        <td><input type="text"  style="width: 99%;"   class="edit" name ="rate[]"      id="edit4-1" onclick="test(id)"></td>
+        <td><input type="text"  style="width: 99%;"   class="edit" name = "cost1[]"    id="edit5-1"  disabled></td>
         <td> <i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> </td>
         <td> <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction()"></td>
         </tr>
@@ -50,9 +50,7 @@ include_once('connect.php');
       <th id="total" colspan="4">Total :</th>
       <th > <input type="text" style="width: 99%;" name="result" id="result" disabled></th>
     </tr>
-   </tfoot>
-        ';
-
+   </tfoot>';
     ?>
 
 </table>
@@ -62,12 +60,12 @@ include_once('connect.php');
 <a class="btn btn-primary pull-right" onclick='myCreateFunction()' data-added="0"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
 
 <script>
-  
-var i = 1 ;
-$('#edit1').val(i);
+    var i = 1;
+    $('#edit1-1').val(i);
+
 
     function myCreateFunction() {
-   i++;
+        i++;
         var table = document.getElementById("table");
 
         var index = table.rows.length - 1;
@@ -81,31 +79,51 @@ $('#edit1').val(i);
         var cell6 = row.insertCell(5);
         var cell7 = row.insertCell(6);
 
-        cell1.innerHTML = "<input type='text' class='edit' name ='no[]'   id='edit1' style='width: 99%; cursor: auto;' >";
-        cell2.innerHTML = "<input type='text' class='edit' name ='list[]'     id='edit2' style='width: 99%; cursor: auto;'>";
-        cell3.innerHTML = "<input type='text' class='edit' name ='quantity[]'  id='edit3' style='width: 99%; cursor: auto;'> ";
-        cell4.innerHTML = "<input type='text' class='edit' name='rate[]'  id='edit4' style='width: 99%; cursor: auto;'> ";
-        cell5.innerHTML = "<input type='text' class='edit' name = 'cost1[]'  id='edit5'  style='width: 99%; cursor: auto;' disabled>";
+        cell1.innerHTML = "<input type='text' class='edit' name ='no[]'   id='edit1-" + i + "' style='width: 99%; cursor: auto;' >";
+        cell2.innerHTML = "<input type='text' class='edit' name ='list[]'     id='edit2-" + i + "' style='width: 99%; cursor: auto;'>";
+        cell3.innerHTML = "<input type='text' class='edit' name ='quantity[]'  id='edit3-" + i + "' onclick='test(id)' style='width: 99%; cursor: auto;'> ";
+        cell4.innerHTML = "<input type='text' class='edit' name='rate[]'  id='edit4-" + i + "'  onclick='test(id)' style='width: 99%; cursor: auto;'> ";
+        cell5.innerHTML = "<input type='text' class='edit' name = 'cost1[]'  id='edit5-" + i + "' style='width: 99%; cursor: auto;' disabled>";
 
         cell6.innerHTML = '<i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> ';
         cell7.innerHTML = ' <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction()">';
 
-        $('#edit1').val(i);
-    
+        $('#edit1-' + i).val(i);
 
         myEditFunction();
 
     }
+    var edit5;
 
+    function test(id) {
+        // console.log(id);
+        var a = id.slice(6, id.length);
+        // console.log(a);
 
-  $('#edit4,#edit3').keyup(function(){
-        var edit3;
-        var edit4;
-        edit3 = parseFloat($('#edit3').val());
-        edit4 = parseFloat($('#edit4').val());
-        var edit5 =  edit3*edit4;
-        $('#edit5').val(edit5.toFixed(2));
+        $('#edit3-' + a + ',#edit4-' + a).keyup(function() {
+            var edit3;
+            var edit4;
+            edit3 = parseFloat($('#edit3-' + a).val());
+            edit4 = parseFloat($('#edit4-' + a).val());
+            edit5 = edit3 * edit4;
+            $('#edit5-' + a).val(edit5.toFixed(2));
+            // test2();
+        });
+    }
+
+    $(document).ready(function() {
+        $('#edit5-1').change(function() {
+            console.log('a');
+        });
     });
+
+
+    // function test2() {
+    //     $('#result').val(edit5.toFixed(2));
+    //     console.log(typeof edit5);
+    //     stored = edit5;
+    // }
+
 
 
 
@@ -166,6 +184,7 @@ $('#edit1').val(i);
                     index = this.parentElement.rowIndex;
                     table.deleteRow(index);
 
+                    $('#edit1-' + i).val(i);
                 }
                 console.log("Index deleted: " + index);
             };
