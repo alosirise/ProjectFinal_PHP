@@ -40,7 +40,7 @@ include_once('connect.php');
         <td><input type="text"  style="width: 99%;"   class="edit" name ="list[]"    id="edit2-1" ></td>
         <td><input type="text"  style="width: 99%;"   class="edit" name ="quantity[]"  id="edit3-1" onclick="test(id)"></td>
         <td><input type="text"  style="width: 99%;"   class="edit" name ="rate[]"      id="edit4-1" onclick="test(id)"></td>
-        <td><input type="text"  style="width: 99%;"   class="edit" name = "cost1[]"    id="edit5-1"  disabled></td>
+        <td><input type="text"  style="width: 99%;"   class="edit" name = "cost1[]"    id="edit5-1"  readonly></td>
         <td> <i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> </td>
         <td> <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction()"></td>
         </tr>
@@ -48,7 +48,7 @@ include_once('connect.php');
         <tfoot>
     <tr>
       <th id="total" colspan="4">Total :</th>
-      <th > <input type="text" style="width: 99%;" name="result" id="result" disabled></th>
+      <th > <input type="text" style="width: 99%;" name="result" id="result" readonly></th>
     </tr>
    </tfoot>';
     ?>
@@ -83,22 +83,24 @@ include_once('connect.php');
         cell2.innerHTML = "<input type='text' class='edit' name ='list[]'     id='edit2-" + i + "' style='width: 99%; cursor: auto;'>";
         cell3.innerHTML = "<input type='text' class='edit' name ='quantity[]'  id='edit3-" + i + "' onclick='test(id)' style='width: 99%; cursor: auto;'> ";
         cell4.innerHTML = "<input type='text' class='edit' name='rate[]'  id='edit4-" + i + "'  onclick='test(id)' style='width: 99%; cursor: auto;'> ";
-        cell5.innerHTML = "<input type='text' class='edit' name = 'cost1[]'  id='edit5-" + i + "' style='width: 99%; cursor: auto;' disabled>";
+        cell5.innerHTML = "<input type='text' class='edit' name = 'cost1[]'  id='edit5-" + i + "' style='width: 99%; cursor: auto;' readonly>";
 
         cell6.innerHTML = '<i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> ';
         cell7.innerHTML = ' <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction()">';
 
         $('#edit1-' + i).val(i);
-
+        
         myEditFunction();
-
     }
+
     var edit5;
+   
 
     function test(id) {
         // console.log(id);
         var a = id.slice(6, id.length);
         // console.log(a);
+
 
         $('#edit3-' + a + ',#edit4-' + a).keyup(function() {
             var edit3;
@@ -107,25 +109,53 @@ include_once('connect.php');
             edit4 = parseFloat($('#edit4-' + a).val());
             edit5 = edit3 * edit4;
             $('#edit5-' + a).val(edit5.toFixed(2));
-         
+
+            sum(i);
         });
+       
     }
+
+    // function test2(edit5, a) {
+    //     edit5 = edit5 ||0;
+
+    //     if (a == 1) {
+    //         stored = edit5;
+    //         $('#result').val(stored.toFixed(2));
+
+    //     } else {
+    //         console.log("ก่อน " +stored);
+    //         stored =  stored +edit5;
+    //         console.log("หลัง " +stored);
+    //         $('#result').val(stored.toFixed(2));
+
+    //     }
+    // }
+
+
+
+    var total=0;
+    function sum(i) {
+        for (var count = 1; count <= i; count++) {
+            var stored = parseFloat($('#edit5-' + count).val());
+            if (isNaN(stored)) {
+                stored = 0;
+            }
+            total = total + stored;
+            console.log(total);
+        }
+
+        $('#result').val(total.toFixed(2));
+       total = 0;
+    }
+
+
+
 
     $(document).ready(function() {
         $('#edit5-1').change(function() {
             console.log('a');
         });
     });
-
-
-    function test2() {
-        $('#result').val(edit5.toFixed(2));
-        console.log(typeof edit5);
-        stored = edit5;
-    }
-
-
-
 
 
     function session() {
@@ -181,11 +211,16 @@ include_once('connect.php');
             table.rows[i].cells[6].onclick = function() {
                 var c = confirm("แน่ใจนะที่ต้องการจะลบ?");
                 if (c === true) {
+                    
                     index = this.parentElement.rowIndex;
                     table.deleteRow(index);
 
-                    $('#edit1-' + i).val(i);
+                //     no =index;
+                //   $('#edit1-' + (no+1)).val(index);
+
+       
                 }
+
                 console.log("Index deleted: " + index);
             };
         }

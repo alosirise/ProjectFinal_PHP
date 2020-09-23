@@ -81,8 +81,10 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                     <table>  
                     <tr>
                         <td style="padding-right : 30px;><div id="pickup_date"><p><label class="form">เริ่มวันที่ : </label><input type="date" class="form-control" id="pick_date" name="pickup_date" onchange="cal()"</p></div></td>
-                        <td style="padding-right : 30px;><div id="dropoff_date"><p><label class="form">สิ้นสุดวันที่ : </label><input type="date" class="form-control" id="drop_date" name="dropoff_date" onchange="cal()"/></p></div></td>
-                        <td><div id="numdays"><p><label class="form">รวมจำนวนวันทั้งหมด (วัน) : </label><input type="text" class="form-control" id="numdays2" name="numdays" readonly/></p></div></td>
+                        <td ><div id="dropoff_date"><p><label class="form">สิ้นสุดวันที่ : </label><input type="date" class="form-control" id="drop_date" name="dropoff_date" onchange="cal()"/></p></div></td>
+                       
+                        </tr><tr>
+                        <td ><div id="numdays"><p><label class="form">รวมทั้งหมด (วัน) : </label><input type="text" class="form-control" id="numdays2" name="numdays" readonly/></p></div><td>
                         </tr>
                     </table>  
                       
@@ -170,7 +172,6 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         $respondsible_department = $_POST['respondsible_department'];
         $principle = $_POST['principle'];
         $target_group = $_POST['target_group'];
-        $duration = $_POST['duration'];
         $location = $_POST['location'];
 
         $cost = $_POST['cost'];
@@ -192,15 +193,18 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         $sql = "SELECT name_project FROM create_project WHERE name_project='$name_project'";
         $result1 = mysqli_query($conn, $sql);
 
-        if (mysqli_num_rows($result1) > 0) {
+        if($numdays <0){
+            echo '<script>alert("โปรดตรวจสอบ ระยะเวลาในการทำโปรเจคอีกครั้ง ")</script>';
+        }
+        else if (mysqli_num_rows($result1) > 0) {
             echo '<script>alert("ชื่อของโปรเจคซ้ำกับที่มีอยู่แล้ว โปรดตั้งชื่ออื่น")</script>';
         } else if ($name_project == "") {
             echo '<script>alert("กรุณาตั้งชื่อโปรเจ็ค")</script>';
         } else {
             $datetime = date('Y-m-d H:i:s');
 
-            $sql2 = "INSERT INTO create_project (id,creator ,name_project,respondsible_department,principle,target_group,duration,location,cost,status,last_change,startDate,endDate,numdays) 
-                VALUES ( '$user_id','$username','$name_project', '$respondsible_department','$principle','$target_group','$duration','$location','$cost','$status','$datetime','$pickup_date','$dropoff_date','$numdays')";
+            $sql2 = "INSERT INTO create_project (id,creator ,name_project,respondsible_department,principle,target_group,location,cost,status,last_change,startDate,endDate,numdays) 
+                VALUES ( '$user_id','$username','$name_project', '$respondsible_department','$principle','$target_group','$location','$cost','$status','$datetime','$pickup_date','$dropoff_date','$numdays')";
             $result2 = mysqli_query($conn, $sql2);
 
             echo $sql2;
@@ -279,6 +283,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             });
         });
     </script>
+
     <script type="text/javascript">
         function GetDays() {
             var dropdt = new Date(document.getElementById("drop_date").value);
