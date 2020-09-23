@@ -36,6 +36,12 @@ include_once('connect.php');
 
     echo '<tbody>
         <tr>
+            <th id="total" colspan="1"></th>
+            <th id="total" colspan="4">ค่าตอบแทนคณะทำงาน</th>
+            <th colspan="5"><a class="btn btn-primary btn-xs pull-right" onclick="myCreateFunction()" data-added="0"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a></th>
+        </tr>
+
+        <tr>
         <td><input type="text"  style="width: 99%;"   class="edit" name ="no[]"      id="edit1-1" ></td>
         <td><input type="text"  style="width: 99%;"   class="edit" name ="list[]"    id="edit2-1" ></td>
         <td><input type="text"  style="width: 99%;"   class="edit" name ="quantity[]"  id="edit3-1" onclick="test(id)"></td>
@@ -44,20 +50,43 @@ include_once('connect.php');
         <td> <i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> </td>
         <td> <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction()"></td>
         </tr>
+        
+
+        
+        <tr>
+        <th id="total" colspan="1"></th>
+        <th id="total" colspan="4">ค่าใช้จ่ายในการดำเนินการ (ค่าใช้จ่าย , ค่าวัสดุ)</th>
+        <th colspan="5"><a class="btn btn-primary btn-xs pull-right" onclick="myCreateFunction()" data-added="0"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a></th>
+        </tr>
+
+        <tr>
+        <td><input type="text"  style="width: 99%;"   class="edit" name ="no[]"      id="edit1-1" ></td>
+        <td><input type="text"  style="width: 99%;"   class="edit" name ="list[]"    id="edit2-1" ></td>
+        <td><input type="text"  style="width: 99%;"   class="edit" name ="quantity[]"  id="edit3-1" onclick="test(id)"></td>
+        <td><input type="text"  style="width: 99%;"   class="edit" name ="rate[]"      id="edit4-1" onclick="test(id)"></td>
+        <td><input type="text"  style="width: 99%;"   class="edit" name = "cost1[]"    id="edit5-1"  readonly></td>
+        <td> <i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> </td>
+        <td> <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction()"></td>
+        </tr>
+
+
+
+
         </tbody>
+
         <tfoot>
-    <tr>
-      <th id="total" colspan="4">Total :</th>
-      <th > <input type="text" style="width: 99%;" name="result" id="result" readonly></th>
-    </tr>
-   </tfoot>';
+            <tr>
+            <th id="total" colspan="4"><input type="text" style="width: 99%;" readonly value="รวม :"</th>
+            <th> <input type="text" style="width: 99%;" name="result" id="result" readonly></th>
+            </tr>
+         </tfoot>';
     ?>
 
 </table>
 
 
 
-<a class="btn btn-primary pull-right" onclick='myCreateFunction()' data-added="0"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
+
 
 <script>
     var i = 1;
@@ -89,12 +118,12 @@ include_once('connect.php');
         cell7.innerHTML = ' <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction()">';
 
         $('#edit1-' + i).val(i);
-        
-        myEditFunction();
+
+        // myEditFunction();
     }
 
     var edit5;
-   
+
 
     function test(id) {
         // console.log(id);
@@ -110,30 +139,18 @@ include_once('connect.php');
             edit5 = edit3 * edit4;
             $('#edit5-' + a).val(edit5.toFixed(2));
 
-            sum(i);
+            if (isNaN(edit5)) {
+                console.log("skip");
+            } else {
+                sum(i);
+            }
         });
-       
+
     }
 
-    // function test2(edit5, a) {
-    //     edit5 = edit5 ||0;
 
-    //     if (a == 1) {
-    //         stored = edit5;
-    //         $('#result').val(stored.toFixed(2));
+    var total = 0;
 
-    //     } else {
-    //         console.log("ก่อน " +stored);
-    //         stored =  stored +edit5;
-    //         console.log("หลัง " +stored);
-    //         $('#result').val(stored.toFixed(2));
-
-    //     }
-    // }
-
-
-
-    var total=0;
     function sum(i) {
         for (var count = 1; count <= i; count++) {
             var stored = parseFloat($('#edit5-' + count).val());
@@ -145,7 +162,7 @@ include_once('connect.php');
         }
 
         $('#result').val(total.toFixed(2));
-       total = 0;
+        total = 0;
     }
 
 
@@ -174,7 +191,6 @@ include_once('connect.php');
                 return $(this).val();
             }).get();
 
-
         var rate = $("input[name='rate[]']")
             .map(function() {
                 return $(this).val();
@@ -200,25 +216,24 @@ include_once('connect.php');
             },
             success: function(msg) {}
         });
-
     }
 
 
 
     function myDeleteFunction() {
         var index, table = document.getElementById('table');
-        for (var i = 1; i < table.rows.length; i++) {
+        for (var i = 2; i < table.rows.length; i++) {
             table.rows[i].cells[6].onclick = function() {
                 var c = confirm("แน่ใจนะที่ต้องการจะลบ?");
                 if (c === true) {
-                    
+
                     index = this.parentElement.rowIndex;
                     table.deleteRow(index);
 
-                //     no =index;
-                //   $('#edit1-' + (no+1)).val(index);
+                    sum(i);
+                    //     no =index;
+                    //   $('#edit1-' + (no+1)).val(index);
 
-       
                 }
 
                 console.log("Index deleted: " + index);
@@ -227,29 +242,28 @@ include_once('connect.php');
 
     }
 
-    function myEditFunction() {
-        var index, table = document.getElementById('table');
-        for (var i = 1; i < table.rows.length; i++) {
-            table.rows[i].cells[5].onclick = function() {
+    // function myEditFunction() {
+    //     var index, table = document.getElementById('table');
+    //     for (var i = 1; i < table.rows.length; i++) {
+    //         table.rows[i].cells[5].onclick = function() {
 
-                index = this.parentElement.rowIndex;
-                console.log("This is index : " + index);
-                ////    document.getElementById("no").disabled = false;
-                if ($('input[id=edit]').is('[readonly]')) {
+    //             index = this.parentElement.rowIndex;
+    //             console.log("This is index : " + index);
+    //             ////    document.getElementById("no").disabled = false;
+    //             if ($('input[id=edit]').is('[readonly]')) {
 
-                    $('input[id=edit]').attr('readonly', false);
-                    // console.log("table id " +table_id);
-                } else {
+    //                 $('input[id=edit]').attr('readonly', false);
+    //                 // console.log("table id " +table_id);
+    //             } else {
 
-                    $('input[id=edit]').attr('readonly', true);
-                }
+    //                 $('input[id=edit]').attr('readonly', true);
+    //             }
 
-            };
-        }
+    //         };
+    //     }
 
-    }
+    // }
 </script>
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 

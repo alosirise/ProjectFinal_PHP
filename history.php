@@ -110,7 +110,7 @@ session_start();
               $number++;
               echo "<tr><td>" . $number . "</td><td>" . $row["name_project"] . "</td>  
             <td>" . $row["status"] . "</td>
-            <td>  <button type='button' class='btn btn-info' style='width:10'> รายละเอียด</button></a></td> 
+            <td>  <button type='button' class='btn btn-info' style='width:10'> ทำแบบประเมิน</button></a></td> 
             </tr>";
             }
             echo "</table>";

@@ -43,7 +43,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         <div class="w3-container col-lg-6 center">
             <h2 style=" padding :45px;">สร้างโครงการ</h2>
             <div class="card">
-                <div class="card-body">
+                <div class="card-body" style="width:90%;">
                     <div>
                         <label for="exampleFormControlInput1">ชื่อโครงการ</label>
                         <input type="text" class="form-control text" id="name_project" name="name_project"></td>

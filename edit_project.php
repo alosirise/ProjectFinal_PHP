@@ -36,7 +36,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                 <h2 style=" padding :45px;">แก้ไขโครงการ</h2>
 
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body" style="width:90%;">
 
                         <?php
                         include_once('connect.php');
@@ -92,11 +92,23 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                             <input type="text" class="form-control text" readonly id=edit_target_group name="target_group"   value="' . $row["target_group"] . '"></td>
                         </div>
     
-                        <div>
-                            <label for="exampleFormControlInput1">ระยะเวลาในการจัดการโครงการ</label> <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'duration\')"></i>
-                            <input type="text" class="form-control text" readonly id=edit_duration name="duration"   value="' . $row["duration"] . '"></td>
-                        </div>
+                        <label for="exampleFormControlInput1">ระยะเวลาในการจัดการโครงการ</label>   
+                    <div style ="padding-left : 12px;"> 
+                    <table>  
+                    <tr>
+                        <td style="padding-right : 30px;><div id="pickup_date"><p><label class="form">เริ่มวันที่ : </label><input type="date" class="form-control" id="pick_date" name="pickup_date" value="' . $row["startDate"] . '" onchange="cal()"</p></div></td>
+                        <td ><div id="dropoff_date"><p><label class="form">สิ้นสุดวันที่ : </label><input type="date" class="form-control" id="drop_date" name="dropoff_date" value="' . $row["endDate"] . '" onchange="cal()"/></p></div></td>
+                       
+                        </tr><tr>
+                        <td ><div id="numdays"><p><label class="form">รวมทั้งหมด (วัน) : </label><input type="text" class="form-control" id="numdays2" name="numdays" 
+                        value="' . $row["numdays"] . '" readonly /></p></div><td>
+                        </tr>
+                    </table>  
+                      
+                    </div>
     
+
+
                         <label for="exampleFormControlInput1">วิทยากร</label> <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'lecturer\')"></i>
                         &nbsp;&nbsp;&nbsp;<a class="btn btn-info btn-xs" id="addRow2" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
                         <div style ="padding-left : 12px; padding-top: 6px;">   
@@ -207,10 +219,15 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         $location = $_POST['location'];
         $cost = $_POST['cost'];
 
+        $pickup_date = $_POST['pickup_date'];
+        $dropoff_date = $_POST['dropoff_date'];
+        $numdays = $_POST['numdays'];
+
 
         $sql2 = "UPDATE `create_project` SET name_project = '" . $name_project . "', respondsible_department = '" . $respondsible_department . "'  
                     ,principle = '" . $principle . "',target_group = '" . $target_group . "',duration = '" . $duration . "',
-                    location = '" . $location . "',cost = '" . $cost . "'  WHERE project_id = '$_GET[project_id]'";
+                    location = '" . $location . "',cost = '" . $cost . "',startDate = '" . $pickup_date . "',
+                    endDate = '" .  $dropoff_date . "',numdays = '" . $numdays . "'   WHERE project_id = '$_GET[project_id]'";
         $result = mysqli_query($conn, $sql2);
 
 
@@ -332,7 +349,31 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
             doc.save('sample-document.pdf');
         }
+
+
+
+        function GetDays() {
+            var dropdt = new Date(document.getElementById("drop_date").value);
+            var pickdt = new Date(document.getElementById("pick_date").value);
+            return parseInt((dropdt - pickdt) / (24 * 3600 * 1000));
+        }
+
+        function cal() {
+            if (document.getElementById("drop_date")) {
+                document.getElementById("numdays2").value = GetDays();
+            }
+        }
+
+
+
+
+
+
     </script>
+
+
+
+ 
 </body>
 
 </html>
