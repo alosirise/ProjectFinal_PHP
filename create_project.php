@@ -21,21 +21,9 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     <!-- Bootstrap navbar CSS-->
     <link rel="stylesheet" href="form.css">
     <link rel="stylesheet" href="navbar.css">
-    <link rel="stylesheet" href="jquery.datetimepicker.css">
-</head>
-<style type="text/css">
-    #startDate,
-    #endDate {
-        text-align: center;
-        width: 100px;
-    }
 
-    #startTime,
-    #endTime {
-        text-align: center;
-        width: 70px;
-    }
-</style>
+</head>
+
 
 <body>
 
@@ -86,28 +74,20 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                         <label for="exampleFormControlInput1">กลุ่มเป้าหมาย</label>
                         <input type="text" class="form-control text" id="target_group" name="target_group"></td>
                     </div>
-
-                    <div>
-                        
-                        
+                    <br>
+                   
                     <label for="exampleFormControlInput1">ระยะเวลาในการจัดการโครงการ</label>   
-                    <input type="text" class="form-control text" id="duration" name="duration"></td>   
-                        <div style ="padding-left : 12px; "> 
-                        <table>
-                       
-                        <br>
-                                    <td style="padding-right : 30px;" >เริ่มวันที่ <input type="button" class="form-control" name="startDate" id="startDate" value=""></td>
-                                    <td style="padding-right : 70px;">   เวลา  <input type="button" class="form-control "name="startTime" id="startTime" value=""></td>
-                                
-                                    <td style="padding-right : 30px" >  สิ้นสุดวันที่ &nbsp;&nbsp; <input type="button"  class="form-control" name="endDate" id="endDate" value=""></td> 
-                                    <td>   เวลา  <input type="button" class="form-control " name="endTime" id="endTime" value=""> </td>
-                             
-                                    
-                        </table>
-                     
-                        </div>
+                    <div style ="padding-left : 12px;"> 
+                    <table>  
+                    <tr>
+                        <td style="padding-right : 30px;><div id="pickup_date"><p><label class="form">เริ่มวันที่ : </label><input type="date" class="form-control" id="pick_date" name="pickup_date" onchange="cal()"</p></div></td>
+                        <td style="padding-right : 30px;><div id="dropoff_date"><p><label class="form">สิ้นสุดวันที่ : </label><input type="date" class="form-control" id="drop_date" name="dropoff_date" onchange="cal()"/></p></div></td>
+                        <td><div id="numdays"><p><label class="form">รวมจำนวนวันทั้งหมด (วัน) : </label><input type="text" class="form-control" id="numdays2" name="numdays" readonly/></p></div></td>
+                        </tr>
+                    </table>  
+                      
                     </div>
-
+                    <br>
                     <label for="exampleFormControlInput1">วิทยากร</label>
                     &nbsp;&nbsp;&nbsp;<a class="btn btn-info btn-xs" id="addRow2" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
                     <div style ="padding-left : 12px; padding-top: 6px;">
@@ -140,7 +120,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                   
               
                     <div>
-                        <label for="exampleFormControlInput1">ค่าลงทะเบียนอบรม</label>
+                        <label for="exampleFormControlInput1">ค่าลงทะเบียนอบรม (บาท)</label>
                         <input type="text" class="form-control text" id="cost" name="cost"></td>
                     </div>
 
@@ -196,10 +176,12 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         $cost = $_POST['cost'];
         $status = "-";
 
-        $startDate = $_POST['startDate'];
-        $endDate = $_POST['endDate'];
-        $startTime = $_POST['startTime'];
-        $endTime = $_POST['endTime'];
+        $pickup_date = $_POST['pickup_date'];
+        $dropoff_date = $_POST['dropoff_date'];
+        $numdays = $_POST['numdays'];
+
+        // $startTime = $_POST['startTime'];
+        // $endTime = $_POST['endTime'];
 
 
         // echo $startDate;
@@ -217,8 +199,8 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         } else {
             $datetime = date('Y-m-d H:i:s');
 
-            $sql2 = "INSERT INTO create_project (id,creator ,name_project,respondsible_department,principle,target_group,duration,location,cost,status,last_change) 
-                VALUES ( '$user_id','$username','$name_project', '$respondsible_department','$principle','$target_group','$duration','$location','$cost','$status','$datetime')";
+            $sql2 = "INSERT INTO create_project (id,creator ,name_project,respondsible_department,principle,target_group,duration,location,cost,status,last_change,startDate,endDate,numdays) 
+                VALUES ( '$user_id','$username','$name_project', '$respondsible_department','$principle','$target_group','$duration','$location','$cost','$status','$datetime','$pickup_date','$dropoff_date','$numdays')";
             $result2 = mysqli_query($conn, $sql2);
 
             echo $sql2;
@@ -296,86 +278,20 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                 $(this).parents('tr').remove();
             });
         });
-
-
-
-
-
-
-
-
-
-        $(function() {
-            var optsDate = {
-                format: 'Y-m-d', // รูปแบบวันที่ 
-                formatDate: 'Y-m-d',
-                timepicker: false,
-                closeOnDateSelect: true,
-            }
-            var optsTime = {
-                format: 'H:i', // รูปแบบเวลา
-                step: 30, // step เวลาของนาที แสดงค่าทุก 30 นาที 
-                formatTime: 'H:i',
-                datepicker: false,
-            }
-            var setDateFunc = function(ct, obj) {
-                var minDateSet = $("#startDate").val();
-                var maxDateSet = $("#endDate").val();
-
-                if ($(obj).attr("id") == "startDate") {
-                    this.setOptions({
-                        minDate: false,
-                        maxDate: maxDateSet ? maxDateSet : false
-                    })
-                }
-                if ($(obj).attr("id") == "endDate") {
-                    this.setOptions({
-                        maxDate: false,
-                        minDate: minDateSet ? minDateSet : false
-                    })
-                }
-            }
-
-            var setTimeFunc = function(ct, obj) {
-                var minDateSet = $("#startDate").val();
-                var maxDateSet = $("#endDate").val();
-                var minTimeSet = $("#startTime").val();
-                var maxTimeSet = $("#endTime").val();
-
-                if (minDateSet != maxDateSet) {
-                    minTimeSet = false;
-                    maxTimeSet = false;
-                }
-
-                if ($(obj).attr("id") == "startTime") {
-                    this.setOptions({
-                        defaultDate: minDateSet ? minDateSet : false,
-                        minTime: false,
-                        maxTime: maxTimeSet ? maxTimeSet : false
-                    })
-                }
-                if ($(obj).attr("id") == "endTime") {
-                    this.setOptions({
-                        defaultDate: maxDateSet ? maxDateSet : false,
-                        maxTime: false,
-                        minTime: minTimeSet ? minTimeSet : false
-                    })
-                }
-            }
-
-            $("#startDate,#endDate").datetimepicker($.extend(optsDate, {
-                onShow: setDateFunc,
-                onSelectDate: setDateFunc,
-            }));
-
-            $("#startTime,#endTime").datetimepicker($.extend(optsTime, {
-                onShow: setTimeFunc,
-                onSelectTime: setTimeFunc,
-            }));
-
-        });
     </script>
-    <script src="jquery.datetimepicker.full.js"></script>
+    <script type="text/javascript">
+        function GetDays() {
+            var dropdt = new Date(document.getElementById("drop_date").value);
+            var pickdt = new Date(document.getElementById("pick_date").value);
+            return parseInt((dropdt - pickdt) / (24 * 3600 * 1000));
+        }
+
+        function cal() {
+            if (document.getElementById("drop_date")) {
+                document.getElementById("numdays2").value = GetDays();
+            }
+        }
+    </script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </body>
 

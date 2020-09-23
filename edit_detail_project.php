@@ -36,6 +36,41 @@ include('auth.php');
 </style>
 
 <body>
+
+    <?php
+
+    $dayTH = ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'];
+    $monthTH = [null, 'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
+    $monthTH_brev = [null, 'ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
+
+    function thai_date_short($time)
+    {   // 19  ธ.ค. 2556a
+        global $dayTH, $monthTH_brev;
+        $thai_date_return = date("j", $time);
+        $thai_date_return .= " " . $monthTH_brev[date("n", $time)];
+        $thai_date_return .= " " . (date("Y", $time) + 543);
+        return $thai_date_return;
+    }
+    function thai_date_fullmonth($time)
+    {   // 19 ธันวาคม 2556
+        global $dayTH, $monthTH;
+        $thai_date_return = date("j", $time);
+        $thai_date_return .= " " . $monthTH[date("n", $time)];
+        $thai_date_return .= " " . (date("Y", $time) + 543);
+        return $thai_date_return;
+    }
+    function thai_date_short_number($time)
+    {   // 19-12-56
+        global $dayTH, $monthTH;
+        $thai_date_return = date("d", $time);
+        $thai_date_return .= "-" . date("m", $time);
+        $thai_date_return .= "-" . substr((date("Y", $time) + 543), -2);
+        return $thai_date_return;
+    }
+    ?>
+    <br />
+
+
     <div class="" id="nav"></div>
     <form action="" method="POST" enctype="multipart/form-data">
 
@@ -48,6 +83,7 @@ include('auth.php');
                     <div class="card-body">
 
                         <?php
+
                         include_once('connect.php');
                         $sql = "SELECT * FROM create_project WHERE project_id = '$_GET[project_id]'";
                         $result = $conn->query($sql);
@@ -61,7 +97,6 @@ include('auth.php');
                             while ($row = $result->fetch_assoc()) {
                                 $_SESSION['project_id'] = $row['project_id'];
                                 echo '   
-
                                       <h2 style=" padding :45px;">ชื่อโครงการ  : ' . $row["name_project"] . '</h2>
                                     
                                       ';
@@ -78,8 +113,12 @@ include('auth.php');
                                       <h2 style=" padding :300 px;"></h2>
                                      
                                       <h4 style=" padding :25px;">สถานที่ : ' . $row["location"] . ' </h4>
-                                      <h4 style=" padding :25px;">ระยะเวลา : ' . $row["duration"] . ' </h4>
-                                      <h4 style=" padding :25px;">ราคา : ' . $row["cost"] . ' บาท </h4>
+                                      <h4 style=" padding :25px;">ระยะเวลา : ' . $row["numdays"] . ' วัน</h4>
+
+                                      <h4 style=" padding :25px;">เริ่มต้นวันที่ : ' . thai_date_fullmonth(strtotime($row["startDate"])) . ' </h4>
+                                      
+                                      <h4 style=" padding :25px;">สิ้นสุดวันที่ : ' . thai_date_fullmonth(strtotime($row["endDate"])) . ' </h4>
+                                      <h4 style=" padding :25px;">ค่าลงทะเบียน : ' . $row["cost"] . ' บาท </h4>
                                       </div>
                                       </div>
                                   </div>
@@ -124,6 +163,7 @@ include('auth.php');
                         ?>
                         <div class="card-footer text-center">
                             <input type="submit" name="submit" class="btn btn-success " value="บันทึก">
+
                         </div>
 
     </form>
@@ -160,6 +200,7 @@ include('auth.php');
         }
     }
     ?>
+
 
 
     <script>

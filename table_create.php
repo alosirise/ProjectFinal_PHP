@@ -107,7 +107,7 @@ include_once('connect.php');
             edit4 = parseFloat($('#edit4-' + a).val());
             edit5 = edit3 * edit4;
             $('#edit5-' + a).val(edit5.toFixed(2));
-            // test2();
+         
         });
     }
 
@@ -118,11 +118,11 @@ include_once('connect.php');
     });
 
 
-    // function test2() {
-    //     $('#result').val(edit5.toFixed(2));
-    //     console.log(typeof edit5);
-    //     stored = edit5;
-    // }
+    function test2() {
+        $('#result').val(edit5.toFixed(2));
+        console.log(typeof edit5);
+        stored = edit5;
+    }
 
 
 
