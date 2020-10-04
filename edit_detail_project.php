@@ -76,8 +76,8 @@ include('auth.php');
 
         <div class="row">
             <div class="col-lg-3"></div>
-            <div class="w3-container col-lg-6 center">
-                <h2 style=" padding :45px;">รายละเอียดโครงการ</h2>
+            <div class="w3-container col-lg-7 center">
+                <h2 style=" padding :65px;">รายละเอียดโครงการ</h2>
 
                 <div class="card">
                     <div class="card-body">
@@ -126,7 +126,7 @@ include('auth.php');
                               
                               <div class="row">
                               <div class="col-lg-3"></div>
-                              <div class="w3-container col-lg-6 center">
+                              <div class="w3-container col-lg-7 center">
                                   <h2 style=" padding :45px;"></h2>
                   
                                   <div class="card">
@@ -144,7 +144,7 @@ include('auth.php');
 
                       <div class="row">
                       <div class="col-lg-3"></div>
-                      <div class="w3-container col-lg-6 center">
+                      <div class="w3-container col-lg-7 center">
                           <h2 style=" padding :45px;"></h2>
           
                           <div class="card">

@@ -212,6 +212,7 @@ include_once('connect.php');
             edit3 = parseFloat($('#edit3-' + a).val());
             edit4 = parseFloat($('#edit4-' + a).val());
             edit5 = edit3 * edit4;
+            // console.log("edit5 edit5 "  + edit5);
             $('#edit5-' + a).val(edit5.toFixed(2));
 
             if (isNaN(edit5)) {
@@ -327,8 +328,6 @@ include_once('connect.php');
 
                     index = this.parentElement.rowIndex;
                     table.deleteRow(index);
-
-             
                     sum(i);
                 }
 

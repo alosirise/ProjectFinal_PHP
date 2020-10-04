@@ -16,13 +16,13 @@ session_start();
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.21/datatables.min.css" />
 </head>
 <style>
- #main {
-  position: absolute;
-  top: 50px;
-  right: 25px;
-  bottom: 25px;
-  left: 24%;
-}
+  #main {
+    position: absolute;
+    top: 50px;
+    right: 25px;
+    bottom: 25px;
+    left: 24%;
+  }
 </style>
 
 <body>

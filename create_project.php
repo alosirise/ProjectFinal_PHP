@@ -135,7 +135,12 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                     <div style ="padding-left : 12px; padding-top: 6px;">   
                         <table>
                                 <tr>
-                                    <td><input type="text" class ="form-control" name="working_group[]" id="working_group"></td>
+                                    <td ><input type="text" class ="form-control" name="working_group[]" id="working_group"></td>
+
+                                   
+
+
+                                    
                                     <td><a class="remove" >-</td>
                                 </tr>
                         </table><tbody4> </tbody><br>
@@ -181,22 +186,15 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         $dropoff_date = $_POST['dropoff_date'];
         $numdays = $_POST['numdays'];
 
-        // $startTime = $_POST['startTime'];
-        // $endTime = $_POST['endTime'];
-
-
-        // echo $startDate;
-        // echo $endDate;
         // echo $startTime;
         // echo $endTime;
 
         $sql = "SELECT name_project FROM create_project WHERE name_project='$name_project'";
         $result1 = mysqli_query($conn, $sql);
 
-        if($numdays <0){
+        if ($numdays < 0) {
             echo '<script>alert("โปรดตรวจสอบ ระยะเวลาในการทำโปรเจคอีกครั้ง ")</script>';
-        }
-        else if (mysqli_num_rows($result1) > 0) {
+        } else if (mysqli_num_rows($result1) > 0) {
             echo '<script>alert("ชื่อของโปรเจคซ้ำกับที่มีอยู่แล้ว โปรดตั้งชื่ออื่น")</script>';
         } else if ($name_project == "") {
             echo '<script>alert("กรุณาตั้งชื่อโปรเจ็ค")</script>';
@@ -227,7 +225,6 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             $result4 = mysqli_query($conn, $sql4);
 
 
-
             $count_table = max(count($_POST['no']), count($_POST['list']), count($_POST['quantity']), count($_POST['rate']), count($_POST['cost1']));
             $sql5 = "INSERT INTO budget_form (project_id ,no,list,quantity,rate,cost)   VALUES";
             for ($x = 0; $x < $count_table; $x++) {
@@ -241,22 +238,27 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
 
 
-
-
             echo "<script>alert('สร้างโครงการแล้ว ขั้นตอนถัดไป กรุณาสร้างแบบฟอร์ม');
                 window.location='myproject.php';</script>";
         }
     }
     ?>
 
+<!-- <td style ="padding-left : 8px;"><select id="selectBox" name ="selectBox[]" onchange="changeFunc(); " style="width :100px; height: 30px; ">
+                                    <option value="">เลือก</option>
+                                    <option value="นายณภัทร เสียงสมบุญ">นายณภัทร เสียงสมบุญ</option>
+                                    <option value="นางไอศิกา วจนโรจน์">นางไอศิกา วจนโรจน์</option>
+                                    <option value="not_listed">Not Listed</option>
+                                    </select></td> -->
 
+                                    
 
     <script type="text/javascript">
         var objective_replace = '<tr><td style ="width = 25%;"><input type="text" class ="form-control" name="objective[]" id="objective"></td><td><a class="remove" >-</td></tr>';
         var lecturer_replace = '<tr><td><input type="text" class ="form-control" name="lecturer[]" id="lecturer"></td><td><a class="remove" >-</td></tr>';
         var benefits_replace = '<tr> <td><input type="text" class ="form-control"  name="benefits[]" id="benefits"></td><td><a class="remove" >-</td></tr>';
-        var working_group_replace = '<tr><td><input type="text" class ="form-control" name="working_group[]" id="working_group"></td><td><a class="remove" >-</td></tr>';
-
+        var working_group_replace = '<tr><td><input type="text" class ="form-control" name="working_group[]" id="working_group'+c_row4+'"></td> <td><a class="remove" >-</td></tr>';
+        var c_row4 = 0 ;
         $(function() {
             $("#includedContent").load("table_create.php");
         });
@@ -274,7 +276,9 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                 $('tbody3').before(benefits_replace);
             });
             $('#addRow4').click(function() {
+                // c_row4++;
                 $('tbody4').before(working_group_replace);
+                
             });
 
 
@@ -296,6 +300,12 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                 document.getElementById("numdays2").value = GetDays();
             }
         }
+
+
+        function changeFunc(c_row4) {
+            document.getElementById("working_group"+c_row4).value = document.getElementById("selectBox"+c_row4).value;
+        }
+        
     </script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </body>

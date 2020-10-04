@@ -91,7 +91,7 @@ $_SESSION['go'] = 'go_request';
             if ($result->num_rows > 0) {
 
               echo '
-            <table class="table table-responsive" id=table >
+            <table class="table " id=table >
               <thead>
                 <tr class="w3-indigo">
                  <th style="width:4%">ที่</th>
@@ -167,16 +167,16 @@ $_SESSION['go'] = 'go_request';
             $number = 0;
             if ($result2->num_rows > 0) {
               echo '
-                 <table class="table table-responsive" id=table2 >
+                 <table class="table " id=table2 >
                    <thead>
                      <tr class="w3-green">
                       <th style="width:4%">ที่</th>
                        <th style="width:35%">ชื่อโครงการ</th>
                        <th class="text-center" style="width:15%">ชื่อผู้ใช้</th>
-                       <th class="text-center" data-orderable="false" style="width:15%">ตรวจสอบโครงการ</th>
-                       <th data-orderable="false"></th>
-                       <th class="text-center" data-orderable="false" style="width:16%">ตรวจสอบแบบฟอร์ม</th>
-                       <th class="text-center" data-orderable="false" style="width:15%">แบบประเมิน</th>
+                       <th class="text-center" data-orderable="false" style="width:9%">ตรวจสอบโครงการ</th>
+                       <th class="text-center" data-orderable="false" style="width:9%"></th>
+                       <th class="text-center" data-orderable="false" style="width:9%">ตรวจสอบแบบฟอร์ม</th>
+                       <th class="text-center" data-orderable="false" style="width:9%">แบบประเมิน</th>
                        <th data-orderable="false"></th>
                        <th data-orderable="false"></th>
                        <th class="text-center" data-orderable="false" style="width:10%">สถานะ</th>
@@ -245,7 +245,7 @@ $_SESSION['go'] = 'go_request';
 
             if ($result3->num_rows > 0) {
               echo '
-           <table class="table table-responsive" id=table3 >
+           <table class="table " id=table3 >
              <thead>
                <tr class="w3-red">
                 <th style="width:4%">ที่</th>
@@ -324,14 +324,14 @@ $_SESSION['go'] = 'go_request';
 
             if ($result3->num_rows > 0) {
               echo '
-           <table class="table table-responsive" id=table3 >
+           <table class="table " id=table3 >
              <thead>
                <tr class="w3-blue-gray">
                 <th style="width:4%">ที่</th>
                  <th style="width:40%">ชื่อโครงการ</th>
                  <th class="text-center" style="width:9%">ชื่อผู้ใช้</th>
-                 <th class="text-center" data-orderable="false" style="width:15%">ตรวจสอบโครงการ</th>
-                 <th data-orderable="false"></th>
+                 <th class="text-center" data-orderable="false" style="width:13%">ตรวจสอบโครงการ</th>
+                 <th data-orderable="false" ></th>
                  <th class="text-center" data-orderable="false" style="width:13%">ตรวจสอบแบบฟอร์ม</th>
                  <th class="text-center" data-orderable="false" style="width:13%">แบบประเมิน</th>
                  <th data-orderable="false"></th>
