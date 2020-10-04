@@ -205,8 +205,8 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                         </div>
 
     </form>
-    <div id ="elementH"></div>
-    <center><button onclick="toPDF();">Convert to pdf</button></center>
+    <!-- <div id ="elementH"></div>
+    <center><button onclick="toPDF();">Convert to pdf</button></center> -->
     <?php
 
     if (isset($_POST["submit"])) {
