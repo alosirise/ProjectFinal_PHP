@@ -194,8 +194,8 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
         if ($numdays < 0) {
             echo '<script>alert("โปรดตรวจสอบ ระยะเวลาในการทำโปรเจคอีกครั้ง ")</script>';
-        } else if (mysqli_num_rows($result1) > 0) {
-            echo '<script>alert("ชื่อของโปรเจคซ้ำกับที่มีอยู่แล้ว โปรดตั้งชื่ออื่น")</script>';
+        // } else if (mysqli_num_rows($result1) > 0) {
+        //     echo '<script>alert("ชื่อของโปรเจคซ้ำกับที่มีอยู่แล้ว โปรดตั้งชื่ออื่น")</script>';
         } else if ($name_project == "") {
             echo '<script>alert("กรุณาตั้งชื่อโปรเจ็ค")</script>';
         } else {
