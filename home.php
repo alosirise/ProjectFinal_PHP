@@ -19,13 +19,18 @@
     <!-- Slideshow container -->
     <div class="row">
         <div class="col-lg-3"></div>
+<<<<<<< Updated upstream
         <div class="col-lg-9">
             <h2 class="w3-center" style="padding :35px;">โครงการแนะนำ</h2> 
+=======
+        <div class="col-lg-8">
+            <h2 class="w3-center" style="padding :50px;">โครงการแนะนำ</h2> 
+>>>>>>> Stashed changes
     <!-- noonbranch test commit -->
             <div class="w3-content w3-display-container ">
-                <img class="mySlides" src="pic.jpg" style="width:100%">
-                <img class="mySlides" src="pic2.jpg" style="width:100%">
-                <img class="mySlides" src="pic3.jpg" style="width:100%">
+                <img class="mySlides" src="pic1.jpg" style="width:100%">
+                <img class="mySlides" src="pic4.jpg" style="width:100%">
+                <img class="mySlides" src="pic5.jpg" style="width:100%">
 
 
                 <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>

@@ -20,14 +20,23 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap navbar CSS-->
+<<<<<<< Updated upstream
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+=======
+
+>>>>>>> Stashed changes
     <link rel="stylesheet" href="form.css">
 </head>
 
 
 <body>
     <div class="" id="nav"></div>
+<<<<<<< Updated upstream
     <form action="" method="POST">
+=======
+
+    <form action="" id="pdf" method="POST">
+>>>>>>> Stashed changes
 
         <div class="row ">
             <div class="col-lg-3 "></div>
@@ -35,7 +44,11 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                 <h2 style=" padding :45px;">แก้ไขโครงการ</h2>
 
                 <div class="card">
+<<<<<<< Updated upstream
                     <div class="card-body">
+=======
+                    <div class="card-body" style="width:90%;">
+>>>>>>> Stashed changes
 
                         <?php
                         include_once('connect.php');
@@ -61,11 +74,21 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                             <input type="text" class="form-control text" id=edit_respond name="respondsible_department" readonly  value="' . $row["respondsible_department"] . '"></td>
                         </div>
                         <div><label for="exampleFormControlInput1">หลักการและเหตุผล</label>  <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'principle\')"></i>
+<<<<<<< Updated upstream
                             <textarea class="form-control text" id=edit_principle name="principle" readonly rows="3" > ' . $row["principle"] . '</textarea>
                         </div> 
                         
                         <label >วัตถุประสงค์</label>  <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'objective\')"></i>
                         <div>         
+=======
+                            <textarea class="form-control text" id=edit_principle name="principle" readonly rows="5" > ' . $row["principle"] . '</textarea>
+                        </div><br>
+                        
+                       
+                        <label >วัตถุประสงค์</label>   <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'objective\')"></i>
+                        &nbsp;&nbsp;&nbsp;<a class="btn btn-info btn-xs" id="addRow1" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
+                        <div style ="padding-left : 12px; padding-top: 6px;">     
+>>>>>>> Stashed changes
                             <table>';
 
                                 foreach ($result_mutiple_text as $value) {
@@ -80,7 +103,11 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
                                 echo  '</table>
                             <tbody1></tbody><br>
+<<<<<<< Updated upstream
                             <a class="btn btn-primary pull-left" id="addRow1" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
+=======
+                         
+>>>>>>> Stashed changes
                         </div>
                         
 
@@ -89,6 +116,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                             <input type="text" class="form-control text" readonly id=edit_target_group name="target_group"   value="' . $row["target_group"] . '"></td>
                         </div>
     
+<<<<<<< Updated upstream
                         <div>
                             <label for="exampleFormControlInput1">ระยะเวลาในการจัดการโครงการ</label> <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'duration\')"></i>
                             <input type="text" class="form-control text" readonly id=edit_duration name="duration"   value="' . $row["duration"] . '"></td>
@@ -96,6 +124,28 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     
                         <label for="exampleFormControlInput1">วิทยากร</label> <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'lecturer\')"></i>
                         <div>
+=======
+                        <label for="exampleFormControlInput1">ระยะเวลาในการจัดการโครงการ</label>   
+                    <div style ="padding-left : 12px;"> 
+                    <table>  
+                    <tr>
+                        <td style="padding-right : 30px;><div id="pickup_date"><p><label class="form">เริ่มวันที่ : </label><input type="date" class="form-control" id="pick_date" name="pickup_date" value="' . $row["startDate"] . '" onchange="cal()"</p></div></td>
+                        <td ><div id="dropoff_date"><p><label class="form">สิ้นสุดวันที่ : </label><input type="date" class="form-control" id="drop_date" name="dropoff_date" value="' . $row["endDate"] . '" onchange="cal()"/></p></div></td>
+                       
+                        </tr><tr>
+                        <td ><div id="numdays"><p><label class="form">รวมทั้งหมด (วัน) : </label><input type="text" class="form-control" id="numdays2" name="numdays" 
+                        value="' . $row["numdays"] . '" readonly /></p></div><td>
+                        </tr>
+                    </table>  
+                      
+                    </div>
+    
+
+
+                        <label for="exampleFormControlInput1">วิทยากร</label> <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'lecturer\')"></i>
+                        &nbsp;&nbsp;&nbsp;<a class="btn btn-info btn-xs" id="addRow2" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
+                        <div style ="padding-left : 12px; padding-top: 6px;">   
+>>>>>>> Stashed changes
                             <table>';
 
                                 foreach ($result_mutiple_text as $value) {
@@ -113,7 +163,11 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                                 echo  '                 
                                 
                             </table> <tbody2></tbody><br>
+<<<<<<< Updated upstream
                             <a class="btn btn-primary pull-left" id="addRow2" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
+=======
+                          
+>>>>>>> Stashed changes
                         </div>
                       
     
@@ -123,7 +177,12 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                         </div>
     
                         <label for="exampleFormControlInput1">ประโยชน์ที่จะได้รับ</label>  <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'benefits\')"></i>
+<<<<<<< Updated upstream
                         <div>
+=======
+                        &nbsp;&nbsp;&nbsp;<a class="btn btn-info btn-xs" id="addRow3" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
+                        <div style ="padding-left : 12px; padding-top: 6px;">   
+>>>>>>> Stashed changes
                             <table> ';
 
                                 foreach ($result_mutiple_text as $value) {
@@ -140,7 +199,11 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                                 echo  '            
 
                             </table><tbody3></tbody><br>   
+<<<<<<< Updated upstream
                             <a class="btn btn-primary pull-left" id="addRow3" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
+=======
+                        
+>>>>>>> Stashed changes
                         </div>
                      
                   
@@ -155,7 +218,12 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                         </div>
     
                         <label for="exampleFormControlInput1">คณะทำงาน</label>  <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'working_group\')"></i>
+<<<<<<< Updated upstream
                         <div>
+=======
+                        &nbsp;&nbsp;&nbsp;<a class="btn btn-info btn-xs" id="addRow4" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
+                        <div style ="padding-left : 12px; padding-top: 6px;">   
+>>>>>>> Stashed changes
                             <table>';
 
                                 foreach ($result_mutiple_text as $value) {
@@ -170,7 +238,11 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
                                 echo  '            
                             </table> <tbody4></tbody><br>
+<<<<<<< Updated upstream
                             <a class="btn btn-primary pull-left" id="addRow4" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
+=======
+                            
+>>>>>>> Stashed changes
                         </div>
                       
                        
@@ -185,8 +257,15 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                         <div class="card-footer text-center">
                             <input type="submit" name="submit" class="btn btn-success " value="บันทึก">
                         </div>
+<<<<<<< Updated upstream
                         
     </form>
+=======
+
+    </form>
+    <!-- <div id ="elementH"></div>
+    <center><button onclick="toPDF();">Convert to pdf</button></center> -->
+>>>>>>> Stashed changes
     <?php
 
     if (isset($_POST["submit"])) {
@@ -199,6 +278,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         $location = $_POST['location'];
         $cost = $_POST['cost'];
 
+<<<<<<< Updated upstream
 
         $sql2 = "UPDATE `create_project` SET name_project = '" . $name_project . "', respondsible_department = '" . $respondsible_department . "'  
                     ,principle = '" . $principle . "',target_group = '" . $target_group . "',duration = '" . $duration . "',
@@ -256,14 +336,91 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             }else if($_SESSION['go'] == "go_request" ){
                 echo "<script>window.location='request.php';</script>";
             }
+=======
+        $pickup_date = $_POST['pickup_date'];
+        $dropoff_date = $_POST['dropoff_date'];
+        $numdays = $_POST['numdays'];
+
+        if ($numdays < 0) {
+            echo '<script>alert("โปรดตรวจสอบ ระยะเวลาในการทำโปรเจคอีกครั้ง ")</script>';
+        } else if ($name_project == "") {
+            echo '<script>alert("กรุณาตั้งชื่อโปรเจ็ค")</script>';
+        } else {
+            $sql2 = "UPDATE `create_project` SET name_project = '" . $name_project . "', respondsible_department = '" . $respondsible_department . "'  
+                    ,principle = '" . $principle . "',target_group = '" . $target_group . "',duration = '" . $duration . "',
+                    location = '" . $location . "',cost = '" . $cost . "',startDate = '" . $pickup_date . "',
+                    endDate = '" .  $dropoff_date . "',numdays = '" . $numdays . "'   WHERE project_id = '$_GET[project_id]'";
+            $result = mysqli_query($conn, $sql2);
+
+
+            $objective = $_POST['objective'];
+            $lecturer = $_POST['lecturer'];
+            $benefits = $_POST['benefits'];
+            $working_group = $_POST['working_group'];
+
+            $count = max(count($objective), count($lecturer), count($benefits), count($working_group));
+
+
+            $sql5 = "DELETE FROM mutiple_text
+                    WHERE project_id = '$_GET[project_id]'";
+            $result5 = mysqli_query($conn, $sql5);
+
+
+            $sql4 = "INSERT INTO mutiple_text (project_id ,objective,lecturer,benefits,working_group)   VALUES";
+            for ($x = 0; $x < $count; $x++) {
+                echo " round = ", $x;
+                $sql4 .= "('" . $_GET['project_id'] . "','" . $_POST['objective'][$x] . "','" . $_POST['lecturer'][$x] . "','" . $_POST['benefits'][$x] . "','" . $_POST['working_group'][$x] . "'),";
+            }
+
+            $sql4  = rtrim($sql4, ",");
+            $result4 = mysqli_query($conn, $sql4);
+
+
+            $sql6 = "DELETE FROM budget_form
+                WHERE project_id = '$_GET[project_id]'";
+            $result6 = mysqli_query($conn, $sql6);
+
+            // print_r($_POST['no']);
+            // print_r($_POST['list']);
+            // print_r($_POST['quantity']);
+            // print_r($_POST['rate']);
+            // print_r($_POST['cost1']);
+
+            $count_table = max(count($_POST['no']), count($_POST['list']), count($_POST['quantity']), count($_POST['rate']), count($_POST['cost1']));
+            $sql7 = "INSERT INTO budget_form (project_id,no,list,quantity,rate,cost)   VALUES";
+            for ($x = 0; $x < $count_table; $x++) {
+                echo " round = ", $x;
+                $sql7 .= "('" . $_GET['project_id'] . "','" . $_POST['no'][$x] . "','" . $_POST['list'][$x] . "','" . $_POST['quantity'][$x] . "','" . $_POST['rate'][$x] . "','" . $_POST['cost1'][$x] . "'),";
+            }
+
+            $sql7  = rtrim($sql7, ",");
+            $result7 = mysqli_query($conn, $sql7);
+
+
+            if ($_SESSION['go'] == "go_project") {
+                echo "<script>window.location='myproject.php';</script>";
+            } else if ($_SESSION['go'] == "go_request") {
+                echo "<script>window.location='request.php';</script>";
+            }
+        }
+>>>>>>> Stashed changes
     }
     ?>
 
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+<<<<<<< Updated upstream
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
+=======
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <script src="jsPDF/dist/jspdf.customfonts.min.js"></script>
+
+>>>>>>> Stashed changes
     <script src="index.js"> </script>
     <script>
         var objective_replace = '<tr><td style ="width = 25%;"><input type="text" class ="form-control" name="objective[]" id=edit_objective></td><td><a class="remove" >-</td></tr>';
@@ -306,7 +463,47 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                 $(this).parents('tr').remove();
             });
         });
+<<<<<<< Updated upstream
     </script>
+=======
+
+
+        function toPDF() {
+            var doc = new jsPDF();
+            var elementHTML = $('#pdf').html();
+            var specialElementHandlers = {
+                '#elementH': function(element, renderer) {
+                    return true;
+                }
+            };
+
+            doc.fromHTML(elementHTML, 15, 15, {
+                'width': 170,
+                'elementHandlers': specialElementHandlers
+            });
+
+            doc.save('sample-document.pdf');
+        }
+
+
+
+        function GetDays() {
+            var dropdt = new Date(document.getElementById("drop_date").value);
+            var pickdt = new Date(document.getElementById("pick_date").value);
+            return parseInt((dropdt - pickdt) / (24 * 3600 * 1000));
+        }
+
+        function cal() {
+            if (document.getElementById("drop_date")) {
+                document.getElementById("numdays2").value = GetDays();
+            }
+        }
+    </script>
+
+
+
+
+>>>>>>> Stashed changes
 </body>
 
 </html>

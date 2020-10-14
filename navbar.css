@@ -4,7 +4,6 @@
 
 
 
-
 /* css */
 body {
   font-family: "Lato", sans-serif;
@@ -34,7 +33,7 @@ body {
 
 .sidenav a:hover {
   /* color: #f1f1f1; */
-  color :  #9ab1c4;
+  color :  #c4b99a;
 }
 
 .sidenav .closebtn {

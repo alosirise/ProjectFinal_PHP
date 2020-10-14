@@ -1,6 +1,9 @@
 <?php
 session_start();
+<<<<<<< Updated upstream
 include('auth.php');
+=======
+>>>>>>> Stashed changes
 ?>
 
 <!doctype html>
@@ -17,6 +20,7 @@ include('auth.php');
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.21/datatables.min.css" />
 </head>
 <style>
+<<<<<<< Updated upstream
  #main {
   position: absolute;
   top: 50px;
@@ -24,6 +28,15 @@ include('auth.php');
   bottom: 25px;
   left: 24%;
 }
+=======
+  #main {
+    position: absolute;
+    top: 50px;
+    right: 25px;
+    bottom: 25px;
+    left: 24%;
+  }
+>>>>>>> Stashed changes
 </style>
 
 <body>
@@ -32,15 +45,24 @@ include('auth.php');
 
   <div id="main">
 
+<<<<<<< Updated upstream
     <div class="w3-container col-lg-10 center">
       <h2 style=" padding :30px; ">โครงการของทั้งหมด</h2>
+=======
+    <div class="w3-container col-lg-11 center">
+      <h2 style=" padding :30px; ">รายชื่อโครงการทั้งหมด</h2>
+>>>>>>> Stashed changes
 
 
       <?php
 
 
       include_once('connect.php');
+<<<<<<< Updated upstream
       $sql = "SELECT * FROM create_project WHERE status ='อนุมัติ'";
+=======
+      $sql = "SELECT * FROM create_project WHERE status ='อนุมัติ' ORDER BY last_change DESC ";
+>>>>>>> Stashed changes
       $result = $conn->query($sql);
       $number = 0;
       if ($result->num_rows > 0) {
@@ -53,9 +75,15 @@ include('auth.php');
                 <th style="width:4%" >ที่</th>
 
                   <th style="width:35%" >ชื่อโครงการ</th>
+<<<<<<< Updated upstream
                   <th style="width:10%" >ชื่อผู้สร้าง</th>
                   <th data-orderable="false" style="width:20%"> รายละเอียดโครงการ</th>
                   <th data-orderable="false"style="width:20%">แบบฟอร์ม</th>
+=======
+                
+                  <th data-orderable="false" style="width:20%"> รายละเอียดโครงการ</th>
+                  
+>>>>>>> Stashed changes
     
                 </tr>
               </thead> ';
@@ -63,9 +91,14 @@ include('auth.php');
         while ($row = $result->fetch_assoc()) {
           $number++;
           echo "<tr><td>" . $number . ".</td><td>" . $row["name_project"] . "</td>  
+<<<<<<< Updated upstream
           <td>" . $row["creator"] . "</td>  
             <td>  <a href=detail_project.php?project_id=" . $row['project_id'] . "><button type='button' class='btn btn-info' style='width:10'> รายละเอียดโครงการ</button></a></td> 
             <td>   <a href=question_form.php?project_id=" . $row['project_id'] . "><button type='button' class='btn btn-success' style='width:10'>แบบฟอร์ม</button></a></td> 
+=======
+        
+            <td>  <a href=detail_project.php?project_id=" . $row['project_id'] . "><button type='button' class='btn btn-info' style='width:10'> รายละเอียดโครงการ</button></a></td> 
+>>>>>>> Stashed changes
             </tr>";
         }
         echo "</table>";
