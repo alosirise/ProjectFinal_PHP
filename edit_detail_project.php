@@ -142,21 +142,9 @@ include('auth.php');
 
 
 
-                      <div class="row">
-                      <div class="col-lg-3"></div>
-                      <div class="w3-container col-lg-7 center">
+           
                           <h2 style=" padding :45px;"></h2>
           
-                          <div class="card">
-                              <div class="card-body">
-
-                              <h4 style=" padding :20px;">รายชื่อผู้สมัคร </h4>
-                             
-
-                              </div>
-                              </div>
-                          </div>
-                      </div>
                       ';
                             }
                         }

@@ -689,12 +689,12 @@ var num_question = 0;
             $sql6 = rtrim($sql6, ",");
             $sql6 .= "' WHERE project_id='" . $project_id . "'";
 
-            echo $sql1." | ";
-            echo $sql2." | ";
-            echo $sql3." | ";
-            echo $sql4." | ";
-            echo $sql5." | ";
-            echo $sql6;
+            // echo $sql1." | ";
+            // echo $sql2." | ";
+            // echo $sql3." | ";
+            // echo $sql4." | ";
+            // echo $sql5." | ";
+            // echo $sql6;
 
 
             $result1 = mysqli_query($conn, $sql1);
@@ -737,7 +737,7 @@ var num_question = 0;
             $sql = rtrim($sql, ",");
             $sql .= "')";
 
-            echo $sql;
+            // echo $sql;
             $result = mysqli_query($conn, $sql);
         }
         if($_SESSION['go'] == "go_project" ){

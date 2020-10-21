@@ -137,11 +137,25 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                                 <tr>
                                     <td ><input type="text" class ="form-control" name="working_group[]" id="working_group"></td>
 
-                                   
+                                    ';
+
+        $sql3 = "SELECT working_group FROM name_coc";
+        $result3 = $conn->query($sql3);
+        ?>
+
+        <td style="padding-left :15px;"><select id="selectBox" name="selectBox[]" onchange="changeFunc(); " style="width :110px; height: 30px; ">
+                <?php
+                while ($row3 = $result3->fetch_assoc()) { {
+                        echo '<option value="' . $row3["working_group"] . '">' . $row3["working_group"] . '</option>';
+                    }
+                }
+                ?>
+            </select></td>
 
 
-                                    
-                                    <td><a class="remove" >-</td>
+        <?php
+
+        echo '<td><a class="remove" >-</td>
                                 </tr>
                         </table><tbody4> </tbody><br>
                     </div>
@@ -194,15 +208,15 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
         if ($numdays < 0) {
             echo '<script>alert("โปรดตรวจสอบ ระยะเวลาในการทำโปรเจคอีกครั้ง ")</script>';
-        // } else if (mysqli_num_rows($result1) > 0) {
-        //     echo '<script>alert("ชื่อของโปรเจคซ้ำกับที่มีอยู่แล้ว โปรดตั้งชื่ออื่น")</script>';
+            // } else if (mysqli_num_rows($result1) > 0) {
+            //     echo '<script>alert("ชื่อของโปรเจคซ้ำกับที่มีอยู่แล้ว โปรดตั้งชื่ออื่น")</script>';
         } else if ($name_project == "") {
             echo '<script>alert("กรุณาตั้งชื่อโปรเจ็ค")</script>';
         } else {
             $datetime = date('Y-m-d H:i:s');
 
-            $sql2 = "INSERT INTO create_project (id,creator ,name_project,respondsible_department,principle,target_group,location,cost,status,last_change,startDate,endDate,numdays) 
-                VALUES ( '$user_id','$username','$name_project', '$respondsible_department','$principle','$target_group','$location','$cost','$status','$datetime','$pickup_date','$dropoff_date','$numdays')";
+            $sql2 = "INSERT INTO create_project (id,creator ,name_project,respondsible_department,principle,target_group,location,cost,status,last_change,startDate,endDate,numdays,result_budget) 
+                VALUES ( '$user_id','$username','$name_project', '$respondsible_department','$principle','$target_group','$location','$cost','$status','$datetime','$pickup_date','$dropoff_date','$numdays','" . $_POST['result'] . "')";
             $result2 = mysqli_query($conn, $sql2);
 
             echo $sql2;
@@ -225,11 +239,13 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             $result4 = mysqli_query($conn, $sql4);
 
 
+
+
             $count_table = max(count($_POST['no']), count($_POST['list']), count($_POST['quantity']), count($_POST['rate']), count($_POST['cost1']));
-            $sql5 = "INSERT INTO budget_form (project_id ,no,list,quantity,rate,cost)   VALUES";
+            $sql5 = "INSERT INTO budget_form (project_id ,no,list,quantity,rate,cost,title)   VALUES";
             for ($x = 0; $x < $count_table; $x++) {
                 echo " round = ", $x;
-                $sql5 .= "('$project_id','" . $_POST['no'][$x] . "','" . $_POST['list'][$x] . "','" . $_POST['quantity'][$x] . "','" . $_POST['rate'][$x] . "','" . $_POST['cost1'][$x] . "'),";
+                $sql5 .= "('$project_id','" . $_POST['no'][$x] . "','" . $_POST['list'][$x] . "','" . $_POST['quantity'][$x] . "','" . $_POST['rate'][$x] . "','" . $_POST['cost1'][$x] . "','" . $_POST['title'][$x] . "'),";
             }
 
             $sql5  = rtrim($sql5, ",");
@@ -244,21 +260,44 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     }
     ?>
 
-<!-- <td style ="padding-left : 8px;"><select id="selectBox" name ="selectBox[]" onchange="changeFunc(); " style="width :100px; height: 30px; ">
-                                    <option value="">เลือก</option>
-                                    <option value="นายณภัทร เสียงสมบุญ">นายณภัทร เสียงสมบุญ</option>
-                                    <option value="นางไอศิกา วจนโรจน์">นางไอศิกา วจนโรจน์</option>
-                                    <option value="not_listed">Not Listed</option>
-                                    </select></td> -->
 
-                                    
+
+
 
     <script type="text/javascript">
+        jQuery(function($) {
+            var $ans = $("[name='working_group[]']");
+            $('select[name="selectBox[]"]').change(function() {
+                $ans.val($(this).val())
+            }).triggerHandler('change')
+        })
+
+
+
+
         var objective_replace = '<tr><td style ="width = 25%;"><input type="text" class ="form-control" name="objective[]" id="objective"></td><td><a class="remove" >-</td></tr>';
         var lecturer_replace = '<tr><td><input type="text" class ="form-control" name="lecturer[]" id="lecturer"></td><td><a class="remove" >-</td></tr>';
         var benefits_replace = '<tr> <td><input type="text" class ="form-control"  name="benefits[]" id="benefits"></td><td><a class="remove" >-</td></tr>';
-        var working_group_replace = '<tr><td><input type="text" class ="form-control" name="working_group[]" id="working_group'+c_row4+'"></td> <td><a class="remove" >-</td></tr>';
-        var c_row4 = 0 ;
+        // var working_group_replace = '<tr><td><input type="text" class ="form-control" name="working_group[]" id="working_group' + c_row4 + '"></td> <td style ="padding-left : 8px;"><select id="selectBox" name ="selectBox[]" onchange="changeFunc(); " style="width :100px; height: 30px; "><option value="">เลือก</option><option value="นายณภัทร เสียงสมบุญ">นายณภัทร เสียงสมบุญ</option><option value="นางไอศิกา วจนโรจน์">นางไอศิกา วจนโรจน์</option><option value="not_listed">Not Listed</option></select></td><td><a class="remove" >-</td></tr>';
+     
+        
+     
+        var  working_group_replace ='<tr><td ><input type="text" class ="form-control" name="working_group[]" id="working_group"></td>';
+
+        var  working_group_replace2 ='\;$sql3 = "SELECT working_group FROM name_coc"\;$result3 = $conn->query($sql3)\;?\><td style="padding-left :15px;"><select id="selectBox" name="selectBox[]" onchange="changeFunc(); " style="width :110px; height: 30px; "\>';
+        
+        var  working_group_replace3= '<?php while ($row3 = $result3->fetch_assoc()) { {echo '<option value="' . $row3["working_group"] . '">' . $row3["working_group"] . '</option>';}}?>';
+  
+        var  working_group_replace4 ='</select></td>';
+
+        var  working_group_replace5 = '<td><a class="remove" >-</td></tr>';
+
+
+
+
+
+     
+        var c_row4 = 0;
         $(function() {
             $("#includedContent").load("table_create.php");
         });
@@ -277,8 +316,8 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             });
             $('#addRow4').click(function() {
                 // c_row4++;
-                $('tbody4').before(working_group_replace);
-                
+                $('tbody4').before(working_group_replace+ working_group_replace2+working_group_replace3+working_group_replace4+working_group_replace5);
+
             });
 
 
@@ -303,9 +342,8 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
 
         function changeFunc(c_row4) {
-            document.getElementById("working_group"+c_row4).value = document.getElementById("selectBox"+c_row4).value;
+            document.getElementById("working_group" + c_row4).value = document.getElementById("selectBox" + c_row4).value;
         }
-        
     </script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </body>

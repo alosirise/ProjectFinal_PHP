@@ -271,7 +271,7 @@ $_SESSION['go'] = 'go_request';
            <td><a href=edit_detail_project.php?project_id=" . $row3['project_id'] . "> <i class='fas fa-image  fa-lg' ></i></a></td>
            ", "
            <td><a href=create_form.php?project_id=" . $row3['project_id'] . ">   <i class='fas fa-tasks fa-lg'></i></a></td> 
-           <td><a href=evaluate_form.php?project_id=" . $row['project_id'] . ">   <i class='fas fa-clipboard-check fa-lg'></i></a></td>  
+           <td><a href=evaluate_form.php?project_id=" . $row3['project_id'] . ">   <i class='fas fa-clipboard-check fa-lg'></i></a></td>  
             <td></td>
           
             <td><select name='change' id='project_id' style=' height:30px; width: 100%' onfocus=\"this.setAttribute('PrvSelectedValue',this.value);\" 

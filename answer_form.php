@@ -204,31 +204,31 @@ include('auth.php');
         },
         {
           extend: 'pdfHtml5',
-          title: 'report',
+          title: 'Report',
           text: 'PDF (landscape)',
           orientation: 'landscape',
           pageSize: 'A4',
           exportOptions: {
-            columns: [0, 1, 2, 3, 4, 5, 6, 7]
+            columns: [':visible :not(:last-child)']
           },
           customize: function(doc) {
             doc.defaultStyle = {
               font: 'THSarabun',
               fontSize: 12
             };
-            doc.content[1].table.widths = ['5%', '20%', '5%', '5%', '15%', '15%', '20%', '15%'];
+       
             doc.styles.tableHeader.fontSize = 13;
             var rowCount = doc.content[1].table.body.length; // นับจำนวนแถวทั้งหมดในตาราง
             // วนลูปเพื่อกำหนดค่า
             for (i = 1; i < rowCount; i++) { // i เริ่มที่ 1 เพราะ i แรกเป็นแถวของหัวข้อ
               doc.content[1].table.body[i][0].alignment = 'center';
-              doc.content[1].table.body[i][1].alignment = 'left';
+              doc.content[1].table.body[i][1].alignment = 'center';
               doc.content[1].table.body[i][2].alignment = 'center';
               doc.content[1].table.body[i][3].alignment = 'center';
-              doc.content[1].table.body[i][4].alignment = 'center';
-              doc.content[1].table.body[i][5].alignment = 'left';
-              doc.content[1].table.body[i][6].alignment = 'left';
-              doc.content[1].table.body[i][7].alignment = 'left';
+              // doc.content[1].table.body[i][4].alignment = 'center';
+              // doc.content[1].table.body[i][5].alignment = 'left';
+              // doc.content[1].table.body[i][6].alignment = 'left';
+              // doc.content[1].table.body[i][7].alignment = 'left';
             };
             console.log(doc);
           }
@@ -237,26 +237,29 @@ include('auth.php');
           "extend": 'pdf',
           "text": 'PDF (vertical)',
           "title": 'Report',
-          "pageSize": 'A4',
+          "pageSize": 'A4', 
+          exportOptions: {
+            columns: [':visible :not(:last-child)']
+          },
           "customize": function(doc) {
             doc.defaultStyle = {
               font: 'THSarabun',
               fontSize: 12
             };
             // กำหนดความกว้างของ header แต่ละคอลัมน์หัวข้อ
-            doc.content[1].table.widths = ['5%', '20%', '5%', '5%', '15%', '15%', '20%', '15%'];
+            doc.content[1].table.widths = ['25%', '25%', '25%', '25%'];
             doc.styles.tableHeader.fontSize = 13;
             var rowCount = doc.content[1].table.body.length; // นับจำนวนแถวทั้งหมดในตาราง
             // วนลูปเพื่อกำหนดค่า
             for (i = 1; i < rowCount; i++) { // i เริ่มที่ 1 เพราะ i แรกเป็นแถวของหัวข้อ
               doc.content[1].table.body[i][0].alignment = 'center';
-              doc.content[1].table.body[i][1].alignment = 'left';
+              doc.content[1].table.body[i][1].alignment = 'center';
               doc.content[1].table.body[i][2].alignment = 'center';
               doc.content[1].table.body[i][3].alignment = 'center';
-              doc.content[1].table.body[i][4].alignment = 'center';
-              doc.content[1].table.body[i][5].alignment = 'left';
-              doc.content[1].table.body[i][6].alignment = 'left';
-              doc.content[1].table.body[i][7].alignment = 'left';
+              // doc.content[1].table.body[i][4].alignment = 'center';
+              // doc.content[1].table.body[i][5].alignment = 'left';
+              // doc.content[1].table.body[i][6].alignment = 'left';
+              // doc.content[1].table.body[i][7].alignment = 'left';
 
             };
             console.log(doc);
@@ -267,7 +270,8 @@ include('auth.php');
           title: "demo title",
           orientation: 'landscape',
           exportOptions: {
-            columns: ':visible',
+            columns: [0, 1, 2, 3]
+            // columns: ':visible',
           },
           customize: function(win) {
             var last = null;

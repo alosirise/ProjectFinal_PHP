@@ -46,7 +46,7 @@ include_once('connect.php');
         <td><input type="text"  style="width: 99%;"   class="edit" name ="list[]"    id="edit2-1-1" ></td>
         <td><input type="text"  style="width: 99%;"   class="edit" name ="quantity[]"  id="edit3-1-1" onclick="test(id)"></td>
         <td><input type="text"  style="width: 99%;"   class="edit" name ="rate[]"      id="edit4-1-1" onclick="test(id)"></td>
-        <td><input type="text"  style="width: 99%;"   class="edit" name = "cost1[]"    id="edit5-1-1"  readonly></td>
+        <td><input type="text"  style="width: 99%;"   class="edit" name = "cost1[]"    id="edit5-1-1"  readonly><input type="hidden" name="title[]" value="1"></td>
         <td> <i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> </td>
         <td> <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction(1)"></td>
         </tr>
@@ -64,7 +64,7 @@ include_once('connect.php');
         <td><input type="text"  style="width: 99%;"   class="edit" name ="list[]"    id="edit2-1-2" ></td>
         <td><input type="text"  style="width: 99%;"   class="edit" name ="quantity[]"  id="edit3-1-2" onclick="test(id)"></td>
         <td><input type="text"  style="width: 99%;"   class="edit" name ="rate[]"      id="edit4-1-2" onclick="test(id)"></td>
-        <td><input type="text"  style="width: 99%;"   class="edit" name = "cost1[]"    id="edit5-1-2"  readonly></td>
+        <td><input type="text"  style="width: 99%;"   class="edit" name = "cost1[]"    id="edit5-1-2"  readonly><input type="hidden" name="title[]" value="2"></td>
         <td> <i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> </td>
         <td> <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction(2)"></td>
         </tr>
@@ -81,7 +81,7 @@ include_once('connect.php');
         <td><input type="text"  style="width: 99%;"   class="edit" name ="list[]"    id="edit2-1-3" ></td>
         <td><input type="text"  style="width: 99%;"   class="edit" name ="quantity[]"  id="edit3-1-3" onclick="test(id)"></td>
         <td><input type="text"  style="width: 99%;"   class="edit" name ="rate[]"      id="edit4-1-3" onclick="test(id)"></td>
-        <td><input type="text"  style="width: 99%;"   class="edit" name = "cost1[]"    id="edit5-1-3"  readonly></td>
+        <td><input type="text"  style="width: 99%;"   class="edit" name = "cost1[]"    id="edit5-1-3"  readonly><input type="hidden" name="title[]" value="3"></td>
         <td> <i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> </td>
         <td> <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction(3)"></td>
         </tr>
@@ -98,7 +98,7 @@ include_once('connect.php');
         <td><input type="text"  style="width: 99%;"   class="edit" name ="list[]"    id="edit2-1-4" ></td>
         <td><input type="text"  style="width: 99%;"   class="edit" name ="quantity[]"  id="edit3-1-4" onclick="test(id)"></td>
         <td><input type="text"  style="width: 99%;"   class="edit" name ="rate[]"      id="edit4-1-4" onclick="test(id)"></td>
-        <td><input type="text"  style="width: 99%;"   class="edit" name = "cost1[]"    id="edit5-1-4"  readonly></td>
+        <td><input type="text"  style="width: 99%;"   class="edit" name = "cost1[]"    id="edit5-1-4"  readonly><input type="hidden" name="title[]" value="4"></td>
         <td> <i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> </td>
         <td> <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction(4)"></td>
         </tr>
@@ -108,8 +108,8 @@ include_once('connect.php');
 
         <tfoot>
             <tr>
-            <th id="total" colspan="4"><input type="text" style="width: 99%;" readonly value="รวม :"</th>
-            <th> <input type="text" style="width: 99%;" name="result" id="result" readonly></th>
+            <th id="total" colspan="4"><input type="text" style="width: 99%;" readonly value="รวม :"></th>
+            <th> <input type="text" style="width: 99%;" name="result" id="result" value = "0" readonly></th>
             </tr>
          </tfoot>';
     ?>
@@ -168,7 +168,9 @@ include_once('connect.php');
         var cell6 = row.insertCell(5);
         var cell7 = row.insertCell(6);
 
-        cell1.innerHTML = "<input type='text' class='edit' name ='no[]'   id='edit1-" + num + "-" + topic + "'  style='width: 99%; cursor: auto;' >";
+      
+
+        cell1.innerHTML = "<input type='text' class='edit' name ='no[]'   id='edit1-" + num + "-" + topic + "'  style='width: 99%; cursor: auto;' >  <input type='hidden' name='title[]' value="+topic+">";
         cell2.innerHTML = "<input type='text' class='edit' name ='list[]'     id='edit2-" + num + "-" + topic + "' style='width: 99%; cursor: auto;'>";
         cell3.innerHTML = "<input type='text' class='edit' name ='quantity[]'  id='edit3-" + num + "-" + topic + "' onclick='test(id)' style='width: 99%; cursor: auto;'> ";
         cell4.innerHTML = "<input type='text' class='edit' name='rate[]'  id='edit4-" + num + "-" + topic + "'  onclick='test(id)' style='width: 99%; cursor: auto;'> ";

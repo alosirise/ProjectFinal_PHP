@@ -82,34 +82,21 @@ session_start();
                   
                                   <div class="card">
                                       <div class="card-body">
-                              
-                              
-                              <h4 style=" padding :45px;">รายละเอียดโครงการ </h4>
-                              &emsp;&emsp;&emsp;' . $row["principle"] . '
+                                      
+                              <h4 style=" padding :30px;">รายละเอียดโครงการ </h4>
+                             <h5> &emsp;&emsp;'. $row["detail"] .'</h5>
+                             <h2 style=" padding :20px;"></h2>
 
-
+                                 
                               </div>
+                              
                               </div>
                           </div>
                       </div>
+                      <h2 style=" padding :45px;"></h2>
 
 
-
-                      <div class="row">
-                      <div class="col-lg-3"></div>
-                      <div class="w3-container col-lg-6 center">
-                          <h2 style=" padding :45px;"></h2>
-          
-                          <div class="card">
-                              <div class="card-body">
-
-                              <h4 style=" padding :20px;">รายชื่อผู้สมัคร </h4>
-                             
-
-                              </div>
-                              </div>
-                          </div>
-                      </div>
+                    
                       ';
                         }
                     }
@@ -132,3 +119,20 @@ session_start();
 </body>
 
 </html>
+
+
+<!-- <div class="row">
+                      <div class="col-lg-3"></div>
+                      <div class="w3-container col-lg-6 center">
+                          <h2 style=" padding :45px;"></h2>
+          
+                          <div class="card">
+                              <div class="card-body">
+
+                              <h4 style=" padding :20px;">รายชื่อผู้สมัคร </h4>
+                             
+
+                              </div>
+                              </div>
+                          </div>
+                      </div> -->

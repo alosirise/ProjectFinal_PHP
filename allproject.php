@@ -45,7 +45,7 @@ session_start();
       if ($result->num_rows > 0) {
 
         echo '
-            <table class="table table-responsive" id=table >
+            <table class="table" id=table >
               <thead>
                 <tr class="w3-blue-gray">
             

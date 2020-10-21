@@ -227,7 +227,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         $sql2 = "UPDATE `create_project` SET name_project = '" . $name_project . "', respondsible_department = '" . $respondsible_department . "'  
                     ,principle = '" . $principle . "',target_group = '" . $target_group . "',duration = '" . $duration . "',
                     location = '" . $location . "',cost = '" . $cost . "',startDate = '" . $pickup_date . "',
-                    endDate = '" .  $dropoff_date . "',numdays = '" . $numdays . "'   WHERE project_id = '$_GET[project_id]'";
+                    endDate = '" .  $dropoff_date . "',numdays = '" . $numdays . "',result_budget = '". $_POST['result']. "'   WHERE project_id = '$_GET[project_id]'";
         $result = mysqli_query($conn, $sql2);
 
 
@@ -265,10 +265,10 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         // print_r($_POST['cost1']);
 
         $count_table = max(count($_POST['no']), count($_POST['list']), count($_POST['quantity']), count($_POST['rate']), count($_POST['cost1']));
-        $sql7 = "INSERT INTO budget_form (project_id,no,list,quantity,rate,cost)   VALUES";
+        $sql7 = "INSERT INTO budget_form (project_id,no,list,quantity,rate,cost,title)   VALUES";
         for ($x = 0; $x < $count_table; $x++) {
             echo " round = ", $x;
-            $sql7 .= "('" . $_GET['project_id'] . "','" . $_POST['no'][$x] . "','" . $_POST['list'][$x] . "','" . $_POST['quantity'][$x] . "','" . $_POST['rate'][$x] . "','" . $_POST['cost1'][$x] . "'),";
+            $sql7 .= "('" . $_GET['project_id'] . "','" . $_POST['no'][$x] . "','" . $_POST['list'][$x] . "','" . $_POST['quantity'][$x] . "','" . $_POST['rate'][$x] . "','" . $_POST['cost1'][$x] . "','" . $_POST['title'][$x] . "'),";
         }
 
         $sql7  = rtrim($sql7, ",");
@@ -367,8 +367,6 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
 
 
-
-
     </script>
 
 
@@ -377,3 +375,8 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 </body>
 
 </html>
+
+
+
+
+
