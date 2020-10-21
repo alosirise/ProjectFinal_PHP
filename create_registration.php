@@ -46,13 +46,8 @@ include('auth.php');
                                     <option value="1" selected="selected">เว้นว่าง</option>
 
                                     <?php
-<<<<<<< Updated upstream
-                                    // $project_id = $_GET['project_id'];
-                                    $project_id = "235";
-=======
                                     $project_id = $_GET['project_id'];
                                     // $project_id = "235";
->>>>>>> Stashed changes
                                     include_once('connect.php');
 
                                     $count_question = 0;
@@ -190,13 +185,9 @@ include('auth.php');
         }
         if(check_result == true){
             document.cookie = 'value_column=' + cookie_value_column;
-<<<<<<< Updated upstream
-            window.location.href = "view_registration.php"
-=======
             <?php
             echo "window.location='view_registration.php?project_id=$project_id';"
             ?>
->>>>>>> Stashed changes
         }else{
             alert("ต้องมีข้อมูลอย่างน้อย 1 ช่อง");
         }

@@ -1,8 +1,3 @@
-<<<<<<< Updated upstream
-<?php
-
-?>
-=======
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -18,4 +13,3 @@ echo ($_COOKIE['name']);
     var x =555;
 document.cookie = "name="+x ;
 </script>
->>>>>>> Stashed changes

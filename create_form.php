@@ -596,11 +596,7 @@ var num_question = 0;
 
             //addquestion คือจำนวนที่มีการสร้าง
             $addquestion = $_COOKIE['addquestion'];
-<<<<<<< Updated upstream
-            echo " all_question = " . $addquestion;
-=======
             // echo " all_question = " . $addquestion;
->>>>>>> Stashed changes
     
     
             //count_question คือจำนวนคำถามที่มีอยู่จริงๆ
@@ -610,27 +606,16 @@ var num_question = 0;
             } else {
                 $count_question = count($_POST['question']);
             }
-<<<<<<< Updated upstream
-            echo " true_num_question = " . $count_question;
-    
-    
-            var_dump($_COOKIE['type']);
-=======
             // echo " true_num_question = " . $count_question;
     
     
             // var_dump($_COOKIE['type']);
->>>>>>> Stashed changes
             $type = $_COOKIE['type'];
             //ตัด comma ออกเพราะติดมาตอนใช้ cookie แล้วทำให้ค่ามันเป็น string
             $type = explode(",", $type);
     
     
-<<<<<<< Updated upstream
-            var_dump($_COOKIE['numradio']);
-=======
             // var_dump($_COOKIE['numradio']);
->>>>>>> Stashed changes
             $numradio = $_COOKIE['numradio'];
             $numradio = explode(",", $numradio);
     
@@ -641,11 +626,7 @@ var num_question = 0;
             } else {
                 $count_radio = count($_POST['text_radio']);
             }
-<<<<<<< Updated upstream
-            echo "num_radio = " . $count_radio;
-=======
             // echo "num_radio = " . $count_radio;
->>>>>>> Stashed changes
 
             
             include_once('connect.php');
@@ -688,11 +669,7 @@ var num_question = 0;
 
             $sql5 = "UPDATE question SET num_radio ='";
             for ($i = 0; $i <= $addquestion; $i++) {
-<<<<<<< Updated upstream
-                echo "round = ".$i;
-=======
                 // echo "round = ".$i;
->>>>>>> Stashed changes
                 if ($numradio[$i] != "0" && $numradio[$i] != "null") {
                     $sql5 .= "" . $numradio[$i] . ",";
                 }
@@ -712,21 +689,12 @@ var num_question = 0;
             $sql6 = rtrim($sql6, ",");
             $sql6 .= "' WHERE project_id='" . $project_id . "'";
 
-<<<<<<< Updated upstream
-            echo $sql1." | ";
-            echo $sql2." | ";
-            echo $sql3." | ";
-            echo $sql4." | ";
-            echo $sql5." | ";
-            echo $sql6;
-=======
             // echo $sql1." | ";
             // echo $sql2." | ";
             // echo $sql3." | ";
             // echo $sql4." | ";
             // echo $sql5." | ";
             // echo $sql6;
->>>>>>> Stashed changes
 
 
             $result1 = mysqli_query($conn, $sql1);
@@ -769,19 +737,11 @@ var num_question = 0;
             $sql = rtrim($sql, ",");
             $sql .= "')";
 
-<<<<<<< Updated upstream
-            echo $sql;
-            $result = mysqli_query($conn, $sql);
-        }
-        if($_SESSION['go'] == "go_project" ){
-        echo "<script>window.location='myproject.php';</script>";
-=======
             // echo $sql;
             $result = mysqli_query($conn, $sql);
         }
         if($_SESSION['go'] == "go_project" ){
             echo "<script>window.location='myproject.php';</script>";
->>>>>>> Stashed changes
         
         }else if($_SESSION['go'] == "go_request" ){
             echo "<script>window.location='request.php';</script>";

@@ -19,17 +19,11 @@ if ($_SESSION['role'] != "admin") {
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <!-- Bootstrap navbar CSS-->
     <link rel="stylesheet" href="navbar.css">
-<<<<<<< Updated upstream
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.21/datatables.min.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css" />
-=======
     <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.21/datatables.min.css" /> -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css" />
     
 
->>>>>>> Stashed changes
 </head>
 <style>
     #main {
@@ -98,18 +92,6 @@ if ($_SESSION['role'] != "admin") {
     .slider.round {
         border-radius: 34px;
     }
-<<<<<<< Updated upstream
-
-    .slider.round:before {
-        border-radius: 50%;
-    }
-</style>
-
-<body>
-    <div class="" id="nav"></div>
-    <div id="main">
-        <div class="w3-container col-lg-10 center">
-=======
 
     .slider.round:before {
         border-radius: 50%;
@@ -120,7 +102,6 @@ if ($_SESSION['role'] != "admin") {
     <div class="" id="nav"></div>
     <div id="main">
         <div class="w3-container col-lg-11 center">
->>>>>>> Stashed changes
             <h2 style=" padding :30px; ">Report</h2>
             <?php
             include_once('connect.php');
@@ -129,19 +110,6 @@ if ($_SESSION['role'] != "admin") {
             $number = 0;
             if ($result->num_rows > 0) {
                 echo '
-<<<<<<< Updated upstream
-            <table class="table table-responsive" id=table >
-              <thead>
-                <tr class="w3-blue-gray">
-                <th style="width:2%" >ที่</th>
-                  <th  >ชื่อโครงการ</th>     
-                  <th style="width:6%" >test1</th>
-                  <th style="width:6%" >test2</th> 
-                  <th style="width:6%" >test3</th>      
-                  <th style="width:6%" >test4</th>      
-                  <th style="width:6%" >test5</th>      
-                  <th style="width:6%" >test6</th>      
-=======
             <table class="table table-responsive table-bordered" id=table  >
               <thead>
                 <tr class="w3-blue-gray">
@@ -153,7 +121,6 @@ if ($_SESSION['role'] != "admin") {
                   <th  style="width:1%">test4</th>      
                   <th style="width:1%" >test5</th>      
                   <th  style="width:1%">test6</th>      
->>>>>>> Stashed changes
                 
                 </tr>
               </thead><tbody> ';
@@ -161,26 +128,12 @@ if ($_SESSION['role'] != "admin") {
                 // output data of each row
                 while ($row = $result->fetch_assoc()) {
                     $number++;
-<<<<<<< Updated upstream
-                    echo "<tr><td>" . $number . ".</td><td>" . $row["name_project"] . "</td>        <td>" . $row["id"] . "</td><td> test</td><td>" . $row["name_project"] . "</td><td>" . $row["name_project"] . "</td><td>" . $row["name_project"] . "</td><td>" . $row["name_project"] . "</td>
-=======
                     echo "<tr><td> " . $number . ".</td><td>" . $row["name_project"] . "</td>        <td>" . $row["id"] . "</td><td> test</td><td>" . $row["name_project"] . "</td><td>" . $row["name_project"] . "</td><td>" . $row["name_project"] . "</td><td>" . $row["name_project"] . "</td>
->>>>>>> Stashed changes
              
            
             </tr>";
                 }
                 echo '</tbody><tfoot> <tr class="w3-blue-gray">
-<<<<<<< Updated upstream
-                  <th>ที่</th>
-                  <th>ชื่อโครงการ</th>     
-                  <th>test1</th>
-                  <th>test2</th> 
-                  <th>test3</th>      
-                  <th>test4</th>      
-                  <th>test5</th>      
-                  <th>test6</th>      
-=======
                   <th class="topic1">ที่</th>
                   <th class="topic2">ชื่อโครงการ</th>     
                   <th class="topic3">test1</th>
@@ -189,7 +142,6 @@ if ($_SESSION['role'] != "admin") {
                   <th class="topic6">test4</th>      
                   <th class="topic7">test5</th>      
                   <th class="topic8">test6</th>      
->>>>>>> Stashed changes
                
                 </tr></tfoot>';
                 echo "</table>";
@@ -219,11 +171,7 @@ if ($_SESSION['role'] != "admin") {
                         </label><br></th>
 
 
-<<<<<<< Updated upstream
-                    <th> <a>  test1</a>
-=======
                     <th> <a> test1</a>
->>>>>>> Stashed changes
                         <label class="toggle-vis switch" data-column="2">
                             <input type="checkbox">
                             <span class="slider round"></span>
@@ -235,22 +183,12 @@ if ($_SESSION['role'] != "admin") {
                             <span class="slider round"></span>
                         </label><br></th>
 
-<<<<<<< Updated upstream
-                    
-=======
-
->>>>>>> Stashed changes
                 </tr>
 
 
                 <tr>
-<<<<<<< Updated upstream
-                    
-                <th>
-=======
 
                     <th>
->>>>>>> Stashed changes
                         <a>test3</a>
                         <label class="toggle-vis switch" data-column="4">
                             <input type="checkbox">
@@ -299,19 +237,6 @@ if ($_SESSION['role'] != "admin") {
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
-<<<<<<< Updated upstream
-
-    <script>
-        $(document).ready(function() {
-            $('#table tfoot th').each(function() {
-                var title = $(this).text();
-                $(this).html('<input type="text" style="width:150px;" placeholder="ค้นหา : ' + title + '" />');
-            });
-
-            // DataTable
-
-            var table = $('#table').DataTable({
-=======
     <script src='vfs_fonts.js'></script>
 
     <script>
@@ -343,7 +268,6 @@ if ($_SESSION['role'] != "admin") {
             }
             var table = $('#table').DataTable({
 
->>>>>>> Stashed changes
                 initComplete: function() {
                     // Apply the search
                     this.api().columns().every(function() {
@@ -358,26 +282,6 @@ if ($_SESSION['role'] != "admin") {
                         });
                     });
                 },
-<<<<<<< Updated upstream
-                "pagingType": "full_numbers",
-                "scrollX": "1350px",
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', {
-                        extend: 'pdfHtml5',
-                        orientation: 'landscape',
-                        pageSize: 'LEGAL'
-                    }, {
-                        extend: 'print',
-                        title: "demo title",
-                        orientation: 'landscape',
-                        customize: function(win) {
-                            $(win.document.body).find('h1').css('text-align', 'center');
-                            $(win.document.body).css('font-size', '12px');
-                            $(win.document.body).find('table')
-                                .addClass('compact')
-                        }
-=======
                 "lengthMenu": [
                     [10, 25, 50, -1],
                     [10, 25, 50, "All"]
@@ -489,24 +393,16 @@ if ($_SESSION['role'] != "admin") {
                         extend: 'colvis',
                         collectionLayout: 'fixed two-column'
                         
->>>>>>> Stashed changes
                     }
                 ]
             });
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 
             $('label.toggle-vis').on('change', function(e) {
                 e.preventDefault();
                 var column = table.column($(this).attr('data-column'));
-<<<<<<< Updated upstream
-=======
                 $('#container').css('display', 'block');
                 table.columns.adjust().draw();
->>>>>>> Stashed changes
                 column.visible(!column.visible());
             });
         });

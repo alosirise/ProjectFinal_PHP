@@ -23,15 +23,6 @@ $sql = "SELECT * FROM budget_form WHERE project_id = '" . $_SESSION['project_id'
 $result = $conn->query($sql);
 ?>
 
-<<<<<<< Updated upstream
-<table class="table table-bordered" id="table">
-    <thead>
-        <tr>
-            <th style="width:18%">ที่</th>
-            <th style="width:18%">รายการ</th>
-            <th style="width:18%">จำนวน</th>
-            <th style="width:18%">อัตรา</th>
-=======
 <table class="table table-bordered " id="table">
     <thead>
         <tr>
@@ -39,7 +30,6 @@ $result = $conn->query($sql);
             <th style="width:18%">รายการ</th>
             <th style="width:18%">จำนวน (ชุด)</th>
             <th style="width:18%">อัตรา (บาท)</th>
->>>>>>> Stashed changes
             <th style="width:18%">ค่าใช้จ่าย (บาท)</th>
             <th>#</th>
             <th>#</th>

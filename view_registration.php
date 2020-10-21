@@ -17,17 +17,11 @@ include('auth.php');
     <!-- Bootstrap navbar CSS-->
     <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="bew.css">
-<<<<<<< Updated upstream
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.21/datatables.min.css" />
-</head>
-
-=======
    
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css" />
 </head>
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.21/datatables.min.js"></script>
->>>>>>> Stashed changes
 <body>
     <div class="" id="nav"></div>
     <form action="" method="POST" enctype="multipart/form-data">
@@ -37,19 +31,10 @@ include('auth.php');
                 <h2 style=" padding:30px;">ใบลงทะเบียน</h2>
 
                 <div class="bewcard">
-<<<<<<< Updated upstream
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr id="append">
-                                <th scope="col">ลำดับ</th>
-                                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-                                <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.21/datatables.min.js"></script>
-=======
                     <table class="table table-bordered" id="table">
                         <thead>
                             <tr id="append">
                                 <th scope="col">ลำดับ</th>
->>>>>>> Stashed changes
                                 <script>
                                     var num_column = localStorage.getItem("num_column");
 
@@ -64,19 +49,10 @@ include('auth.php');
                             </tr>
                         </thead>
                         <tbody>
-<<<<<<< Updated upstream
-                            <tr>
-                            <tr id="append2">
-
-                                <?php
-                                // $project_id = $_GET['project_id'];
-                                $project_id = "235";
-=======
                             
                                 <?php
                                 $project_id = $_GET['project_id'];
                                 // $project_id = "235";
->>>>>>> Stashed changes
 
                                 // var_dump($_COOKIE['value_column']);
 
@@ -145,12 +121,6 @@ include('auth.php');
 
     </form>
 </body>
-<<<<<<< Updated upstream
-
-
-<script>
-
-=======
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 
@@ -321,7 +291,6 @@ $(document).ready(function() {
 
 
   });
->>>>>>> Stashed changes
 </script>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then minified and Bootstrap JS -->
@@ -330,9 +299,6 @@ $(document).ready(function() {
 <!-- Compiled and minified JavaScript -->
 
 <script src="index.js"></script>
-<<<<<<< Updated upstream
-=======
 <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.colVis.min.js"></script>
->>>>>>> Stashed changes
 
 </html>

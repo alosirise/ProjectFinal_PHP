@@ -16,17 +16,6 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<<<<<<< Updated upstream
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <!-- Bootstrap navbar CSS-->
-
-    <link rel="stylesheet" href="navbar.css">
-    <link rel="stylesheet" href="form.css">
-
-</head>
-
-<body>
-=======
 
 
     <!-- Bootstrap navbar CSS-->
@@ -38,17 +27,12 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
 <body>
 
->>>>>>> Stashed changes
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="index.js"> </script>
 
     <div class="" id="nav"></div>
-<<<<<<< Updated upstream
-    <form action="" method="POST" >
-=======
     <form action="" method="POST">
->>>>>>> Stashed changes
         <?php
 
         include_once('connect.php');
@@ -59,11 +43,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         <div class="w3-container col-lg-6 center">
             <h2 style=" padding :45px;">สร้างโครงการ</h2>
             <div class="card">
-<<<<<<< Updated upstream
-                <div class="card-body">
-=======
                 <div class="card-body" style="width:90%;">
->>>>>>> Stashed changes
                     <div>
                         <label for="exampleFormControlInput1">ชื่อโครงการ</label>
                         <input type="text" class="form-control text" id="name_project" name="name_project"></td>
@@ -78,12 +58,8 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                     </div>
                     
                     <label for="exampleFormControlInput1">วัตถุประสงค์</label>
-<<<<<<< Updated upstream
-                    <div>         
-=======
                      &nbsp;&nbsp;&nbsp;<a class="btn btn-info btn-xs" id="addRow1" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
                     <div style ="padding-left : 12px; padding-top: 6px;">         
->>>>>>> Stashed changes
                         <table>  
                                 <tr>
                                 <td ><input type="text" class ="form-control" name="objective[]" id="objective"></td>
@@ -91,27 +67,13 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                                 </tr>      
 
                         </table><tbody1> </tbody><br>
-<<<<<<< Updated upstream
-                        <a class="btn btn-primary pull-left " id="addRow1" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
-=======
                       
->>>>>>> Stashed changes
                     </div>
 
                     <div>
                         <label for="exampleFormControlInput1">กลุ่มเป้าหมาย</label>
                         <input type="text" class="form-control text" id="target_group" name="target_group"></td>
                     </div>
-<<<<<<< Updated upstream
-
-                    <div>
-                        <label for="exampleFormControlInput1">ระยะเวลาในการจัดการโครงการ</label>
-                        <input type="text" class="form-control text" id="duration" name="duration"></td>
-                    </div>
-
-                    <label for="exampleFormControlInput1">วิทยากร</label>
-                    <div>
-=======
                     <br>
                    
                     <label for="exampleFormControlInput1">ระยะเวลาในการจัดการโครงการ</label>   
@@ -131,18 +93,12 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                     <label for="exampleFormControlInput1">วิทยากร</label>
                     &nbsp;&nbsp;&nbsp;<a class="btn btn-info btn-xs" id="addRow2" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
                     <div style ="padding-left : 12px; padding-top: 6px;">
->>>>>>> Stashed changes
                         <table>
                                 <tr>
                                     <td><input type="text" class ="form-control" name="lecturer[]" id="lecturer"></td>
                                     <td><a class="remove" >-</td>
                                 </tr>                 
                         </table><tbody2> </tbody><br>
-<<<<<<< Updated upstream
-                        <a class="btn btn-primary pull-left" id="addRow2" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
-=======
-
->>>>>>> Stashed changes
                     </div>
                  
                   
@@ -152,13 +108,8 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                         <input type="text" class="form-control text" id="location" name="location"></td>
                     </div>
 
-<<<<<<< Updated upstream
-                    <label for="exampleFormControlInput1">ประโยชน์ที่จะได้รับ</label>
-                    <div>
-=======
                     <label for="exampleFormControlInput1">ประโยชน์ที่จะได้รับ</label> &nbsp;&nbsp;&nbsp;<a class="btn btn-info btn-xs" id="addRow3" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
                     <div style ="padding-left : 12px; padding-top: 6px;">   
->>>>>>> Stashed changes
                         <table>                          
                                 <tr>
                                     <td><input type="text" class ="form-control"  name="benefits[]" id="benefits"></td>
@@ -166,19 +117,11 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                                 </tr>
                           
                         </table><tbody3> </tbody><br>
-<<<<<<< Updated upstream
-                        <a class="btn btn-primary pull-left" id="addRow3" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
-=======
->>>>>>> Stashed changes
                     </div>
                   
               
                     <div>
-<<<<<<< Updated upstream
-                        <label for="exampleFormControlInput1">ค่าลงทะเบียนอบรม</label>
-=======
                         <label for="exampleFormControlInput1">ค่าลงทะเบียนอบรม (บาท)</label>
->>>>>>> Stashed changes
                         <input type="text" class="form-control text" id="cost" name="cost"></td>
                     </div>
 
@@ -187,17 +130,6 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                         <div id="includedContent" name ="budget"></div>
                     </div>
 
-<<<<<<< Updated upstream
-                    <label for="exampleFormControlInput1">คณะทำงาน</label>
-                    <div>
-                        <table>
-                                <tr>
-                                    <td><input type="text" class ="form-control" name="working_group[]" id="working_group"></td>
-                                    <td><a class="remove" >-</td>
-                                </tr>
-                        </table><tbody4> </tbody><br>
-                        <a class="btn btn-primary pull-left" id="addRow4" style="cursor: pointer;"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a><br><br>
-=======
                     <label for="exampleFormControlInput1">คณะทำงาน</label> &nbsp;&nbsp;&nbsp;<a class="btn btn-info btn-xs" id="addRow4" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
                     <div style ="padding-left : 12px; padding-top: 6px;">   
                         <table>
@@ -211,7 +143,6 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                                     <td><a class="remove" >-</td>
                                 </tr>
                         </table><tbody4> </tbody><br>
->>>>>>> Stashed changes
                     </div>
                    
                   
@@ -223,11 +154,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         ?>
 
         <div class="card-footer text-center">
-<<<<<<< Updated upstream
-            <input type="submit" name="submit" class="btn btn-success " value="Submit">
-=======
             <input type="submit" name="submit" class="btn btn-success " value="สร้าง">
->>>>>>> Stashed changes
         </div>
 
     </form>
@@ -249,14 +176,6 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         $respondsible_department = $_POST['respondsible_department'];
         $principle = $_POST['principle'];
         $target_group = $_POST['target_group'];
-<<<<<<< Updated upstream
-        $duration = $_POST['duration'];
-        $location = $_POST['location'];
-        
-        $cost = $_POST['cost'];
-        $status = "-";
-       
-=======
         $location = $_POST['location'];
 
         $cost = $_POST['cost'];
@@ -268,23 +187,10 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
         // echo $startTime;
         // echo $endTime;
->>>>>>> Stashed changes
 
         $sql = "SELECT name_project FROM create_project WHERE name_project='$name_project'";
         $result1 = mysqli_query($conn, $sql);
 
-<<<<<<< Updated upstream
-        if (mysqli_num_rows($result1) > 0) {
-            echo '<script>alert("ชื่อของโปรเจคซ้ำกับที่มีอยู่แล้ว โปรดตั้งชื่ออื่น")</script>';
-        } else if ($name_project == "") {
-            echo '<script>alert("กรุณาตั้งชื่อโปรเจ็ค")</script>';
-        } else {
-
-            $sql2 = "INSERT INTO create_project (id,creator ,name_project,respondsible_department,principle,target_group,duration,location,cost,status) 
-                VALUES ( '$user_id','$username','$name_project', '$respondsible_department','$principle','$target_group','$duration','$location','$cost','$status')";
-            $result2 = mysqli_query($conn, $sql2);
-
-=======
         if ($numdays < 0) {
             echo '<script>alert("โปรดตรวจสอบ ระยะเวลาในการทำโปรเจคอีกครั้ง ")</script>';
         // } else if (mysqli_num_rows($result1) > 0) {
@@ -299,42 +205,10 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             $result2 = mysqli_query($conn, $sql2);
 
             echo $sql2;
->>>>>>> Stashed changes
 
             $project_id;
             $sql_check = "SELECT * FROM create_project WHERE id = '" . $_SESSION['id'] . "' ";
             $result_check = $conn->query($sql_check);
-<<<<<<< Updated upstream
-             while ($row = $result_check->fetch_assoc()) {
-                $project_id =$row['project_id'];
-             }
-
-                $count = max(count($objective),count($lecturer),count($benefits),count($working_group)); 
-                $sql4 = "INSERT INTO mutiple_text (project_id ,objective,lecturer,benefits,working_group)   VALUES";
-                for ($x = 0; $x < $count; $x++) {
-                    echo " round = ", $x;
-                         $sql4 .="('$project_id','".$_POST['objective'][$x]."','".$_POST['lecturer'][$x]."','".$_POST['benefits'][$x]."','".$_POST['working_group'][$x]."'),";                 
-                }
-                
-                 $sql4  = rtrim($sql4,",");
-                 $result4 = mysqli_query($conn, $sql4);
-
-
-                 
-                 $count_table = max(count($_POST['no']),count($_POST['list']),count($_POST['quantity']),count($_POST['rate']),count($_POST['cost1'])); 
-                 $sql5 = "INSERT INTO budget_form (project_id ,no,list,quantity,rate,cost)   VALUES";
-                 for ($x = 0; $x < $count_table; $x++) {
-                     echo " round = ", $x;
-                          $sql5 .="('$project_id','".$_POST['no'][$x]."','".$_POST['list'][$x]."','".$_POST['quantity'][$x]."','".$_POST['rate'][$x]."','".$_POST['cost1'][$x]."'),";                 
-                 }
-                 
-                  $sql5  = rtrim($sql5,",");
-                  $result5 = mysqli_query($conn, $sql5);
-
-                echo "<script>alert('สร้างโครงการแล้ว ขั้นตอนถัดไป กรุณาสร้างแบบฟอร์ม');
-                window.location='myproject.php';</script>";
-            
-=======
             while ($row = $result_check->fetch_assoc()) {
                 $project_id = $row['project_id'];
             }
@@ -365,21 +239,10 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
             echo "<script>alert('สร้างโครงการแล้ว ขั้นตอนถัดไป กรุณาสร้างแบบฟอร์ม');
                 window.location='myproject.php';</script>";
->>>>>>> Stashed changes
         }
     }
     ?>
 
-<<<<<<< Updated upstream
-
-
-    <script>
-        var objective_replace = '<tr><td style ="width = 25%;"><input type="text" class ="form-control" name="objective[]" id="objective"></td><td><a class="remove" >-</td></tr>';
-        var lecturer_replace = '<tr><td><input type="text" class ="form-control" name="lecturer[]" id="lecturer"></td><td><a class="remove" >-</td></tr>';
-        var benefits_replace = '<tr> <td><input type="text" class ="form-control"  name="benefits[]" id="benefits"></td><td><a class="remove" >-</td></tr>';
-        var working_group_replace = '<tr><td><input type="text" class ="form-control" name="working_group[]" id="working_group"></td><td><a class="remove" >-</td></tr>';
-
-=======
 <!-- <td style ="padding-left : 8px;"><select id="selectBox" name ="selectBox[]" onchange="changeFunc(); " style="width :100px; height: 30px; ">
                                     <option value="">เลือก</option>
                                     <option value="นายณภัทร เสียงสมบุญ">นายณภัทร เสียงสมบุญ</option>
@@ -395,7 +258,6 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         var benefits_replace = '<tr> <td><input type="text" class ="form-control"  name="benefits[]" id="benefits"></td><td><a class="remove" >-</td></tr>';
         var working_group_replace = '<tr><td><input type="text" class ="form-control" name="working_group[]" id="working_group'+c_row4+'"></td> <td><a class="remove" >-</td></tr>';
         var c_row4 = 0 ;
->>>>>>> Stashed changes
         $(function() {
             $("#includedContent").load("table_create.php");
         });
@@ -413,13 +275,9 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                 $('tbody3').before(benefits_replace);
             });
             $('#addRow4').click(function() {
-<<<<<<< Updated upstream
-                $('tbody4').before(working_group_replace);
-=======
                 // c_row4++;
                 $('tbody4').before(working_group_replace);
                 
->>>>>>> Stashed changes
             });
 
 
@@ -428,8 +286,6 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             });
         });
     </script>
-<<<<<<< Updated upstream
-=======
 
     <script type="text/javascript">
         function GetDays() {
@@ -451,7 +307,6 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         
     </script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
->>>>>>> Stashed changes
 </body>
 
 </html>

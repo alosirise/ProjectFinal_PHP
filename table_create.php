@@ -11,12 +11,8 @@ include_once('connect.php');
 
 <html>
 <style>
-<<<<<<< Updated upstream
-   input:read-only, textarea:read-only {
-=======
     input:read-only,
     textarea:read-only {
->>>>>>> Stashed changes
 
         border-color: transparent;
         cursor: context-menu;
@@ -26,15 +22,6 @@ include_once('connect.php');
 <table class="table table-bordered" id="table">
     <thead>
         <tr>
-<<<<<<< Updated upstream
-            <th style="width:18%">ที่</th>
-            <th style="width:18%">รายการ</th>
-            <th style="width:18%">จำนวน</th>
-            <th style="width:18%">อัตรา</th>
-            <th style="width:18%">ค่าใช้จ่าย (บาท)</th>
-            <th>#</th>
-            <th>#</th>
-=======
             <th style="width:10%">ที่</th>
             <th style="width:19%">รายการ</th>
             <th style="width:19%">จำนวน (ชุด)</th>
@@ -42,7 +29,6 @@ include_once('connect.php');
             <th style="width:19%">ค่าใช้จ่าย (บาท)</th>
             <th style="width:5%">#</th>
             <th style="width:5%">#</th>
->>>>>>> Stashed changes
         </tr>
     </thead>
 
@@ -50,20 +36,6 @@ include_once('connect.php');
 
     echo '<tbody>
         <tr>
-<<<<<<< Updated upstream
-        <td><input type="text"  style="width: 99%;"   class="edit" name ="no[]"      id="edit" ></td>
-        <td><input type="text"  style="width: 99%;"   class="edit" name ="list[]"    id="edit" ></td>
-        <td><input type="text"  style="width: 99%;"   class="edit" name ="quantity[]"  id="edit"></td>
-        <td><input type="text"  style="width: 99%;"   class="edit" name ="rate[]"      id="edit" ></td>
-        <td><input type="text"  style="width: 99%;"   class="edit" name = "cost1[]"    id="edit"></td>
-        <td> <i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> </td>
-        <td> <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction()"></td>
-        </tr>
- ';
-
-    ?>
-    </tbody>
-=======
             <th id="total" colspan="1"></th>
             <th id="total" colspan="4">ค่าตอบแทนคณะทำงาน</th>
             <th colspan="5"><a class="btn btn-primary btn-xs pull-right" onclick="myCreateFunction(1)" data-added="0"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a></th>
@@ -142,22 +114,10 @@ include_once('connect.php');
          </tfoot>';
     ?>
 
->>>>>>> Stashed changes
 </table>
 
 
 
-<<<<<<< Updated upstream
-<a class="btn btn-primary pull-right" onclick='myCreateFunction()' data-added="0"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
-
-<script>
-    var i = 0;
-
-    function myCreateFunction() {
-        i++;
-        var table = document.getElementById("table");
-        var row = table.insertRow(-1);
-=======
 
 
 <script>
@@ -200,7 +160,6 @@ include_once('connect.php');
         }
         var row = table.insertRow(index);
 
->>>>>>> Stashed changes
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
         var cell3 = row.insertCell(2);
@@ -209,68 +168,6 @@ include_once('connect.php');
         var cell6 = row.insertCell(5);
         var cell7 = row.insertCell(6);
 
-<<<<<<< Updated upstream
-        cell1.innerHTML = "<input type='text' class='edit' name ='no[]'   id='edit' style='width: 99%; cursor: auto;' >";
-        cell2.innerHTML = "<input type='text' class='edit' name ='list[]'     id='edit' style='width: 99%; cursor: auto;'>";
-        cell3.innerHTML = "<input type='text' class='edit' name ='quantity[]'  id='edit' style='width: 99%; cursor: auto;'> ";
-        cell4.innerHTML = "<input type='text' class='edit' name='rate[]'  id='edit' style='width: 99%; cursor: auto;'> ";
-        cell5.innerHTML = "<input type='text' class='edit' name = 'cost1[]'  id='edit'  style='width: 99%; cursor: auto;'>";
-
-        cell6.innerHTML = '<i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> ';
-        cell7.innerHTML = ' <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction()">';
-
-
-        myEditFunction();
-
-    }
-
-    function session() {
-
-
-        var no = $("input[name='no[]']")
-            .map(function() {
-                return $(this).val();
-            }).get();
-
-        var list = $("input[name='list[]']")
-            .map(function() {
-                return $(this).val();
-            }).get();
-
-        var quantity = $("input[name='quantity[]']")
-            .map(function() {
-                return $(this).val();
-            }).get();
-
-
-        var rate = $("input[name='rate[]']")
-            .map(function() {
-                return $(this).val();
-            }).get();
-
-        var cost1 = $("input[name='cost1[]']")
-            .map(function() {
-                return $(this).val();
-            }).get();
-
-        console.log(no);
-
-        $.ajax({
-            url: 'create_project.php',
-            type: 'POST',
-            data: {
-                'no[]': no,
-                'list[]': list,
-                'quantity[]': quantity,
-                'rate[]': rate,
-                'cost1[]': cost1
-
-            },
-            success: function(msg) {
-            }
-        });
-
-=======
         cell1.innerHTML = "<input type='text' class='edit' name ='no[]'   id='edit1-" + num + "-" + topic + "'  style='width: 99%; cursor: auto;' >";
         cell2.innerHTML = "<input type='text' class='edit' name ='list[]'     id='edit2-" + num + "-" + topic + "' style='width: 99%; cursor: auto;'>";
         cell3.innerHTML = "<input type='text' class='edit' name ='quantity[]'  id='edit3-" + num + "-" + topic + "' onclick='test(id)' style='width: 99%; cursor: auto;'> ";
@@ -353,53 +250,10 @@ include_once('connect.php');
             total = total + stored;
 
         }
->>>>>>> Stashed changes
     }
 
 
 
-<<<<<<< Updated upstream
-    function myDeleteFunction() {
-        var index, table = document.getElementById('table');
-        for (var i = 1; i < table.rows.length; i++) {
-            table.rows[i].cells[6].onclick = function() {
-                var c = confirm("แน่ใจนะที่ต้องการจะลบ?");
-                if (c === true) {
-                    index = this.parentElement.rowIndex;
-                    table.deleteRow(index);
-
-                }
-                console.log("Index deleted: " + index);
-            };
-        }
-
-    }
-
-    function myEditFunction() {
-        var index, table = document.getElementById('table');
-        for (var i = 1; i < table.rows.length; i++) {
-            table.rows[i].cells[5].onclick = function() {
-
-                index = this.parentElement.rowIndex;
-                console.log("This is index : " + index);
-                ////    document.getElementById("no").disabled = false;
-                if ($('input[id=edit]').is('[readonly]')) {
-
-                    $('input[id=edit]').attr('readonly', false);
-                    // console.log("table id " +table_id);
-                } else {
-
-                    $('input[id=edit]').attr('readonly', true);
-                }
-
-            };
-        }
-
-    }
-</script>
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-=======
     // function session() {
     //     var no = $("input[name='no[]']")
     //         .map(function() {
@@ -505,7 +359,6 @@ include_once('connect.php');
     // }
 </script>
 
->>>>>>> Stashed changes
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 </html>

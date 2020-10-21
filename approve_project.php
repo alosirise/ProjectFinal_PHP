@@ -1,20 +1,8 @@
-<<<<<<< Updated upstream
-<?php 
-=======
 <?php
->>>>>>> Stashed changes
 session_start();
 include('auth.php');
 include_once('connect.php');
 
-<<<<<<< Updated upstream
-                   $sql2 = "UPDATE `create_project` SET status = 'อนุมัติ' WHERE project_id = '$_GET[project_id]'";
-                   $result = mysqli_query($conn, $sql2);
-
-                   echo "<script>alert('อนุมัติโครงการเรียบร้อย');
-                   window.location='request.php';</script>";
- ?>
-=======
 $change = "$_GET[change]";
 $datetime = date('Y-m-d H:i:s');
 
@@ -35,4 +23,3 @@ if ($change == 'อนุมัติ') {
     echo "<script>alert('สถานะ : เสร็จสิ้น');
     window.location='request.php';</script>";
 }
->>>>>>> Stashed changes
