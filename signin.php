@@ -1,3 +1,7 @@
+<?php ob_start();?>
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="en">
 
@@ -17,9 +21,9 @@
 </head>
 
 <body>
-    <?php 
-
-    session_start();
+    
+<?php
+    
     include_once('connect.php');
         if(isset($_POST['submit'])){
                 $username =$_POST['username'];
