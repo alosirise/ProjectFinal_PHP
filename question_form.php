@@ -117,8 +117,8 @@ include('auth.php');
 
 
     if (isset($_POST['sendAnswer'])) {
-        var_dump($type_question);
-        var_dump($_POST['ans_question3']);
+        // var_dump($type_question);
+        // var_dump($_POST['ans_question3']);
 
         $count_checkbox_check = array();
         $username = $_SESSION['username'];

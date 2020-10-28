@@ -240,6 +240,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                  <th style="width:5%" class="text-center" >ที่</th>
                   <th style="width:45%" >ชื่อโครงการ</th>      
                   <th style="width:16%" class="text-center" data-orderable="false">คำตอบใบสมัคร</th>
+                  <th style="width:16%" class="text-center" data-orderable="false">คำตอบแบบประเมิน</th>
                   <th style="width:16%" class="text-center" data-orderable="false">สร้างใบลงทะเบียน</th>
                   <th style="width:17%" class="text-center" data-orderable="false" style="width:10%"> สถานะ</th>
             
@@ -254,8 +255,22 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
           
          
            
-            <td style = 'text-align: center'><a href=answer_form.php?project_id=" . $row['project_id'] . "> <i class='fa fa-book fa-lg' ></i></a></td>
-            <td style = 'text-align: center'><a href=create_registration.php?project_id=" . $row['project_id'] . "> <i class='fa fa-id-card fa-lg' ></i></a></td>
+            <td style = 'text-align: center'><a href=answer_form.php?project_id=" . $row['project_id'] . "> <i class='fa fa-book fa-lg' ></i></a></td>";
+
+             $my_project_id = $row["project_id"];
+              $sql2 = "SELECT * FROM evaluate_form WHERE project_id = $my_project_id";
+              $result2 = $conn->query($sql2);
+
+              if ($result2->num_rows > 0) {
+              while ($row2 = $result2->fetch_assoc()) {
+                  echo "<td style = 'text-align: center'><a href=answer_evaluate.php?project_id=" . $row['project_id'] . "> <i class='fas fa-poll fa-lg' ></i></a></td>";
+              }
+            }else{
+              echo "  <td style = 'text-align: center'><i class='fas fa-poll fa-lg' disabled></i></a></td>";
+            }
+
+           
+            echo "<td style = 'text-align: center'><a href=create_registration.php?project_id=" . $row['project_id'] . "> <i class='fa fa-id-card fa-lg' ></i></a></td>
             <th style = 'text-align: center'><a style=color:forestgreen;>" . $row["status"] . "</a></th> ";
         }
         echo "</table>";

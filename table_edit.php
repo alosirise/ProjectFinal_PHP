@@ -50,6 +50,7 @@ $result = $conn->query($sql);
         $sql2 = "SELECT * FROM budget_form WHERE project_id = '" . $_SESSION['project_id'] . "' AND title = '1' ";
         $result2 = $conn->query($sql2);
         $i1 = 1;
+        $count_del2 =0;
         while ($row2 = $result2->fetch_assoc()) {
 
 
@@ -63,6 +64,7 @@ $result = $conn->query($sql);
                 <td> <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction(1)"></td>
                 </tr> ';
             $i1++;
+            $count_del2++;
         }
         break;
     }
@@ -83,6 +85,7 @@ $result = $conn->query($sql);
         $sql2 = "SELECT * FROM budget_form WHERE project_id = '" . $_SESSION['project_id'] . "' AND title = '2' ";
         $result2 = $conn->query($sql2);
         $i2 = 1;
+        $count_del4 = 0;
         while ($row2 = $result2->fetch_assoc()) {
 
             echo '<tr>
@@ -95,6 +98,7 @@ $result = $conn->query($sql);
                 <td> <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction(2)"></td>
                 </tr> ';
             $i2++;
+            $count_del4++;
         }
         break;
     }
@@ -115,6 +119,7 @@ $result = $conn->query($sql);
         $sql2 = "SELECT * FROM budget_form WHERE project_id = '" . $_SESSION['project_id'] . "' AND title = '3' ";
         $result2 = $conn->query($sql2);
         $i3 = 1;
+        $count_del6=0;
         while ($row2 = $result2->fetch_assoc()) {
 
             echo '<tr>
@@ -127,6 +132,7 @@ $result = $conn->query($sql);
                 <td> <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction(3)"></td>
                 </tr> ';
             $i3++;
+            $count_del6++;
         }
         break;
     }
@@ -147,6 +153,7 @@ $result = $conn->query($sql);
         $sql2 = "SELECT * FROM budget_form WHERE project_id = '" . $_SESSION['project_id'] . "' AND title = '4' ";
         $result2 = $conn->query($sql2);
         $i4 = 1;
+        $count_del8=0;
         while ($row2 = $result2->fetch_assoc()) {
 
             echo '<tr>
@@ -159,6 +166,7 @@ $result = $conn->query($sql);
                 <td> <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction(4)"></td>
                 </tr> ';
             $i4++;
+            $count_del8++;
         }
         break;
     }
@@ -169,14 +177,13 @@ $result = $conn->query($sql);
     $result2 = $conn->query($sql2);
     while ($row2 = $result2->fetch_assoc()) {
 
-    echo '<tfoot>
+        echo '<tfoot>
                 <tr>
                 <th id="total" colspan="4"><input type="text" style="width: 99%;" readonly value="รวม :"></th>
                 <th> <input type="text" style="width: 99%;" name="result" id="result" value ="' . $row2["result_budget"] . '" readonly></th>
                 </tr>
         </tfoot>';
-        
-}?>
+    } ?>
 </table>
 <!-- 
 <input type=button value=pdf onclick="generatePdf()">
@@ -195,6 +202,18 @@ $result = $conn->query($sql);
 </script> -->
 
 <script>
+
+    var del2 = 2;
+
+    var del4 = "<?php echo $count_del2+3  ?>";
+    var del6 = "<?php echo $count_del2+$count_del4+4  ?>";
+    var del8 = "<?php echo $count_del2+$count_del4+$count_del6+5  ?>";
+
+    console.log("del2 = "+del2);
+    console.log("del4 = "+del4);
+    console.log("del6 = "+del6);
+    console.log("del8 = "+del8);
+
     var num, total_topic = 4;
     var i1 = "<?php echo $i1 - 1 ?>";
     var i2 = "<?php echo $i2 - 1 ?>";
@@ -259,11 +278,18 @@ $result = $conn->query($sql);
 
         if (topic == 1) {
             $('#edit1-' + num + '-' + topic).val(i1);
-        } else if (topic == 2) {
+            del4++;
+            del6++;
+            del8++;
+        }
+        if (topic == 2) {
             $('#edit1-' + num + '-' + topic).val(i2);
+            del6++;
+            del8++;
         }
         if (topic == 3) {
             $('#edit1-' + num + '-' + topic).val(i3);
+            del8++;
         }
         if (topic == 4) {
             $('#edit1-' + num + '-' + topic).val(i4);
@@ -382,28 +408,42 @@ $result = $conn->query($sql);
         var index, table = document.getElementById('table');
         if (topic == 1) {
             a = document.getElementById("cost_progress").rowIndex;
-            del_num(2);
-
+            del_num(del2, topic);
         } else if (topic == 2) {
             a = document.getElementById("cost_academic").rowIndex;
-            del_num(4);
+            del_num(del4, topic);
         }
         if (topic == 3) {
             a = document.getElementById("cost_etc").rowIndex;
-            del_num(6);
+            del_num(del6, topic);
         }
         if (topic == 4) {
             a = table.rows.length - 1;
-            del_num(8);
+            del_num(del8, topic);
         }
     }
 
-    function del_num(del_num) {
+    function del_num(del_num, topic) {
+        console.log("all" + a);
+        console.log("least" + del_num);
         for (var i = del_num; i <= a; i++) {
             table.rows[i].cells[6].onclick = function() {
+
                 var c = confirm("แน่ใจนะที่ต้องการจะลบ?");
                 if (c === true) {
-
+                    if (topic == 1) {
+                        del4--;
+                        del6--;
+                        del8--;
+                    }
+                    if (topic == 2) {
+                        del6--;
+                        del8--;
+                    }
+                    if (topic == 3) {
+                        del8--;
+                    }
+                    if (topic == 4) {}
                     index = this.parentElement.rowIndex;
                     table.deleteRow(index);
                     sum(i);

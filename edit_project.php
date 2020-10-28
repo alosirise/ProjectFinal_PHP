@@ -165,12 +165,13 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                             <label for="exampleFormControlInput1">ค่าลงทะเบียนอบรม (บาท)</label>  <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'cost\')"></i>
                             <input type="text" class="form-control text" id=edit_cost name="cost"  readonly  value="' . $row["cost"] . '"></td>
                         </div>
-    
+                        <div id="content">
                         <div>
                             <label for="exampleFormControlInput1">งบประมาณค่าใช้จ่าย</label>
                             <div id="includedContent" name ="budget"></div>
                         </div>
-    
+                        </div>
+                     
                         <label for="exampleFormControlInput1">คณะทำงาน</label>  <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'working_group\')"></i>
                         &nbsp;&nbsp;&nbsp;<a class="btn btn-info btn-xs" id="addRow4" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
                         <div style ="padding-left : 12px; padding-top: 6px;">   
@@ -205,8 +206,13 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                         </div>
 
     </form>
-    <!-- <div id ="elementH"></div>
-    <center><button onclick="toPDF();">Convert to pdf</button></center> -->
+
+    
+            This is where you can add in the HTML you’d like to 
+        
+        <center>
+            <a href="javascript:demoFromHTML()" class="button">Download to PDF</a></center>
+   
     <?php
 
     if (isset($_POST["submit"])) {
@@ -227,7 +233,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         $sql2 = "UPDATE `create_project` SET name_project = '" . $name_project . "', respondsible_department = '" . $respondsible_department . "'  
                     ,principle = '" . $principle . "',target_group = '" . $target_group . "',duration = '" . $duration . "',
                     location = '" . $location . "',cost = '" . $cost . "',startDate = '" . $pickup_date . "',
-                    endDate = '" .  $dropoff_date . "',numdays = '" . $numdays . "',result_budget = '". $_POST['result']. "'   WHERE project_id = '$_GET[project_id]'";
+                    endDate = '" .  $dropoff_date . "',numdays = '" . $numdays . "',result_budget = '" . $_POST['result'] . "'   WHERE project_id = '$_GET[project_id]'";
         $result = mysqli_query($conn, $sql2);
 
 
@@ -288,7 +294,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
-   <script src="jsPDF/dist/jspdf.customfonts.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
 
     <script src="index.js"> </script>
     <script>
@@ -334,20 +340,40 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         });
 
 
-        function toPDF(){
-            var doc = new jsPDF();
-            var elementHTML = $('#pdf').html();
-            var specialElementHandlers = {'#elementH' : function(element,renderer){
-                    return true;    
+        function demoFromHTML() {
+            var pdf = new jsPDF('p', 'pt', 'letter');
+            
+            source = $('#content')[0];
+
+            specialElementHandlers = {
+                // element with id of "bypass" - jQuery style selector
+                '#bypassme': function(element, renderer) {
+                    // true = "handled elsewhere, bypass text extraction"
+                    return true
                 }
             };
+            margins = {
+                top: 80,
+                bottom: 60,
+                left: 40,
+                width: 522
+            };
+            // all coords and widths are in jsPDF instance's declared units
+            // 'inches' in this case
+            pdf.fromHTML(
+                source, // HTML string or DOM elem ref.
+                margins.left, // x coord
+                margins.top, { // y coord
+                    'width': margins.width, // max width of content on PDF
+                    'elementHandlers': specialElementHandlers
+                },
 
-            doc.fromHTML(elementHTML,15,15,{
-                'width' : 170, 
-                'elementHandlers' : specialElementHandlers
-            });
-
-            doc.save('sample-document.pdf');
+                function(dispose) {
+                    // dispose: object with X, Y of the last line add to the PDF 
+                    //          this allow the insertion of new lines after html
+                    pdf.save('Test.pdf');
+                }, margins
+            );
         }
 
 
@@ -363,20 +389,11 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                 document.getElementById("numdays2").value = GetDays();
             }
         }
-
-
-
-
     </script>
 
 
 
- 
+
 </body>
 
 </html>
-
-
-
-
-
