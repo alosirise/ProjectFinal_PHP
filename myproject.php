@@ -222,9 +222,6 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
 
 
-
-
-
       echo "<div class='tab-pane fade ' id='list4'>";
       echo "<h2 style=' padding :35px; '>รายการที่อนุมัติแล้ว</h2>";
 

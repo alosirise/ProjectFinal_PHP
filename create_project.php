@@ -136,29 +136,29 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                         <table>
                                 <tr>
                                     <td ><input type="text" class ="form-control" name="working_group[]" id="working_group"></td>
-
                                     ';
 
         $sql3 = "SELECT working_group FROM name_coc";
         $result3 = $conn->query($sql3);
         ?>
 
-        <td style="padding-left :15px;"><select id="selectBox" name="selectBox[]" onchange="changeFunc(); " style="width :110px; height: 30px; ">
+        <!-- <td style="padding-left :15px;"><select id="selectBox" name="selectBox[]" style="width :110px; height: 30px; ">
                 <?php
-                while ($row3 = $result3->fetch_assoc()) { {
-                        echo '<option value="' . $row3["working_group"] . '">' . $row3["working_group"] . '</option>';
-                    }
-                }
+                // echo '<script>var array = [];</script>';
+                // while ($row3 = $result3->fetch_assoc()) { {
+                //         echo '<option value="' . $row3["working_group"] . '">' . $row3["working_group"] . '</option>';
+                //         echo "<script>array.push('$row3[working_group]')</script>";
+                //     }
+                // }
+                // echo "<script>console.log(array);</script>";
                 ?>
-            </select></td>
+            </select></td> -->
+
 
 
         <?php
 
-        echo '<td><a class="remove" >-</td>
-                                </tr>
-                        </table><tbody4> </tbody><br>
-                    </div>
+        echo '<td><a class="remove" >-</td></tr></table><tbody4> </tbody><br></div>
                    
                   
                 </div>
@@ -263,30 +263,23 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
 
     <script type="text/javascript">
-        jQuery(function($) {
-            var $ans = $("[name='working_group[]']");
-            $('select[name="selectBox[]"]').change(function() {
-                $ans.val($(this).val())
-            }).triggerHandler('change')
-        })
+        //  $('select[name="selectBox[]"]').on('change', function() {
+        //             alert(this.value);
+        //                 $('input[name="working_group[]"]').val(this.value);
+
+        //         });
 
 
 
         var objective_replace = '<tr><td style ="width = 25%;"><input type="text" class ="form-control" name="objective[]" id="objective"></td><td><a class="remove" >-</td></tr>';
         var lecturer_replace = '<tr><td><input type="text" class ="form-control" name="lecturer[]" id="lecturer"></td><td><a class="remove" >-</td></tr>';
         var benefits_replace = '<tr> <td><input type="text" class ="form-control"  name="benefits[]" id="benefits"></td><td><a class="remove" >-</td></tr>';
-        // var working_group_replace = '<tr><td><input type="text" class ="form-control" name="working_group[]" id="working_group' + c_row4 + '"></td> <td style ="padding-left : 8px;"><select id="selectBox" name ="selectBox[]" onchange="changeFunc(); " style="width :100px; height: 30px; "><option value="">เลือก</option><option value="นายณภัทร เสียงสมบุญ">นายณภัทร เสียงสมบุญ</option><option value="นางไอศิกา วจนโรจน์">นางไอศิกา วจนโรจน์</option><option value="not_listed">Not Listed</option></select></td><td><a class="remove" >-</td></tr>';
-
 
 
         var working_group_replace = '<tr><td ><input type="text" class ="form-control" name="working_group[]" id="working_group"></td>;';
+        var working_group_replace2 = '<td style="padding-left :15px;"><select id="selectBox" name="selectBox[]"  style="width :110px; height: 30px; ">';
 
-        var working_group_replace2 = '$sql3 = "SELECT working_group FROM name_coc";$result3 = $conn->query($sql3);?><td style="padding-left :15px;"><select id="selectBox" name="selectBox[]" onchange="changeFunc(); " style="width :110px; height: 30px; ">';
-
-        // var working_group_replace3 = '<option value="นายณภัทร เสียงสมบุญ">นายณภัทร เสียงสมบุญ</option><option value="นางไอศิกา วจนโรจน์">นางไอศิกา วจนโรจน์</option><option value="not_listed">Not Listed</option></select></td><td><a class="remove" >-</td></tr>';
-
-
-
+        var working_group_replace4 = '<td><a class="remove" >-</td></tr>';
 
         var c_row4 = 0;
         $(function() {
@@ -306,8 +299,17 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                 $('tbody3').before(benefits_replace);
             });
             $('#addRow4').click(function() {
-                // c_row4++;
-                $('tbody4').before(working_group_replace + working_group_replace2 );
+
+                // var working_group_replace3 = '';
+                // var arrayLength = array.length;
+                // for (var i in array) {
+                //     console.log(array[i]);
+                //     working_group_replace3 = working_group_replace3 + '<option value=' + array[i] + '>' + array[i] + '</option>'
+                // }
+                // console.log(working_group_replace3);
+
+                $('tbody4').before(working_group_replace + working_group_replace4);
+
 
             });
 
@@ -315,6 +317,9 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             $(document).on('click', '.remove', function() {
                 $(this).parents('tr').remove();
             });
+
+
+
         });
     </script>
 
@@ -331,10 +336,6 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             }
         }
 
-
-        function changeFunc(c_row4) {
-            document.getElementById("working_group" + c_row4).value = document.getElementById("selectBox" + c_row4).value;
-        }
     </script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </body>
