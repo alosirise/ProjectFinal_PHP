@@ -94,10 +94,7 @@ include('auth.php');
                                 <icon class="fa fa-home"></icon> ข้อมูลสรุป
                             </a>
                         </li>
-                        <li><a href="#list2" class=" nav-link" role="tab" data-toggle="tab">
-                                <i class="fa fa-user"></i> แยกรายการ
-                            </a>
-                        </li>
+                      
                     </ul>
                     <br><br>
                     <div class="tab-content">

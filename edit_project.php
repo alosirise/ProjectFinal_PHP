@@ -207,11 +207,11 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
     </form>
 
-    
+<!--     
             This is where you can add in the HTML you’d like to 
         
         <center>
-            <a href="javascript:demoFromHTML()" class="button">Download to PDF</a></center>
+            <a href="javascript:demoFromHTML()" class="button">Download to PDF</a></center> -->
    
     <?php
 
