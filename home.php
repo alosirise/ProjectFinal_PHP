@@ -8,9 +8,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Activate Bootstrap 4 Carousel via JavaScript</title>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style>
@@ -27,8 +28,10 @@
 .carousel-indicators li, .carousel a{
     cursor: pointer;
 }
-</style>
+
+</style>   <script src="index.js"></script>
 <script>
+    
 $(document).ready(function(){
     // Activate carousel
     $("#myCarousel").carousel();
@@ -65,13 +68,13 @@ $(document).ready(function(){
             <center><h2 class="w3-center" style="padding :50px;">โครงการแนะนำ</h2> </center>
 <div class="container-lg my-3">
     <div id="myCarousel" class="carousel slide" data-interval="3000" data-ride="carousel">
-        <!-- Carousel indicators -->
+     
         <ol class="carousel-indicators">
             <li class="slide-one active"></li>
             <li class="slide-two"></li>
             <li class="slide-three"></li>
         </ol>
-        <!-- Wrapper for carousel items -->
+      
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="pic1.jpg" alt="First Slide">
@@ -95,7 +98,7 @@ $(document).ready(function(){
                 </div>
             </div>
         </div>
-        <!-- Carousel controls -->
+      
         <a class="carousel-control-prev">
             <span class="carousel-control-prev-icon"></span>
         </a>
@@ -110,7 +113,7 @@ $(document).ready(function(){
 
   
 
-    <script src="index.js"></script>
+ 
 </body>
 
 </html>

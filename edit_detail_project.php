@@ -76,11 +76,11 @@ include('auth.php');
 
         <div class="row">
             <div class="col-lg-3"></div>
-            <div class="w3-container col-lg-7 center">
+            <div class="w3-container col-lg-6 center">
                 <h2 style=" padding :65px;">รายละเอียดโครงการ</h2>
 
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body " style="width: 100%; padding: 20px;">
 
                         <?php
 
@@ -96,29 +96,29 @@ include('auth.php');
 
                             while ($row = $result->fetch_assoc()) {
                                 $_SESSION['project_id'] = $row['project_id'];
-                                echo '   
-                                      <h2 style=" padding :45px;">ชื่อโครงการ  : ' . $row["name_project"] . '</h2>
+                                echo '   <br>
+                                      <h3 style=" padding :35px;">ชื่อโครงการ  : ' . $row["name_project"] . '</h2>
                                     
                                       ';
 
                                 if ($row["image_project"] == NULL) {
-                                    echo '<div class="parent"><img src="images/placeholder_2.jpg"   src="images/placeholder_2.jpg" id="profileDisplay" onclick="triggerClick()" ></div>';
+                                    echo '<div style="padding: 25px 50px 25px 50px;"><div class="parent"><img src="images/placeholder_2.jpg"   src="images/placeholder_2.jpg" id="profileDisplay" onclick="triggerClick()" ></div></div>';
                                 } else {
-                                    echo '<div class="parent"><img id="profileDisplay"  onclick="triggerClick()" src="data:image;base64,' . $row["image_project"] . '"></div>';
+                                    echo '<div style="padding: 25px 50px 25px 50px;"><div class="parent"><img id="profileDisplay"  onclick="triggerClick()" src="data:image;base64,' . $row["image_project"] . '"></div></div>';
                                 }
                                 echo '<center><input type="file" name="image" id="image" style="display: none;" onchange="displayImage(this)"></center>';
 
                                 echo '
-                                <br><br>
-                                      <h2 style=" padding :300 px;"></h2>
+                      
+                                    
                                      
-                                      <h4 style=" padding :25px;">สถานที่ : ' . $row["location"] . ' </h4>
-                                      <h4 style=" padding :25px;">ระยะเวลา : ' . $row["numdays"] . ' วัน</h4>
+                                      <h4 style=" padding: 25px 25px 25px 45px;">สถานที่ : ' . $row["location"] . ' </h4>
+                                      <h4 style=" padding: 25px 25px 25px 45px;">ระยะเวลา : ' . $row["numdays"] . ' วัน</h4>
 
-                                      <h4 style=" padding :25px;">เริ่มต้นวันที่ : ' . thai_date_fullmonth(strtotime($row["startDate"])) . ' </h4>
+                                      <h4 style=" padding: 25px 25px 25px 45px;">เริ่มต้นวันที่ : ' . thai_date_fullmonth(strtotime($row["startDate"])) . ' </h4>
                                       
-                                      <h4 style=" padding :25px;">สิ้นสุดวันที่ : ' . thai_date_fullmonth(strtotime($row["endDate"])) . ' </h4>
-                                      <h4 style=" padding :25px;">ค่าลงทะเบียน : ' . $row["cost"] . ' บาท </h4>
+                                      <h4 style=" padding: 25px 25px 25px 45px;">สิ้นสุดวันที่ : ' . thai_date_fullmonth(strtotime($row["endDate"])) . ' </h4>
+                                      <h4 style=" padding: 25px 25px 25px 45px;">ค่าลงทะเบียน : ' . $row["cost"] . ' บาท </h4>
                                       </div>
                                       </div>
                                   </div>

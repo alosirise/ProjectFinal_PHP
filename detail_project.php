@@ -69,7 +69,7 @@ function thai_date_short_number($time)
             <h2 style=" padding :45px;">รายละเอียดโครงการ</h2>
 
             <div class="card">
-                <div class="card-body">
+                <div class="card-body" style="width: 100%; padding: 20px;">
 
                     <?php
                     include_once('connect.php');
@@ -86,24 +86,24 @@ function thai_date_short_number($time)
                             $_SESSION['project_id'] = $row['project_id'];
                             echo '   
 
-                                      <h2 style=" padding :45px;">ชื่อโครงการ  : ' . $row["name_project"] . '</h2>
+                                      <h3 style=" padding :35px;">ชื่อโครงการ  : ' . $row["name_project"] . '</h2>
                                       ';
 
                                 if ($row["image_project"] == NULL) {
-                                    echo '<div class="parent"><img src="images/placeholder_2.jpg" id="profileDisplay" onclick="triggerClick()"></center></div>';
+                                    echo '<div style="padding: 25px 50px 25px 50px;"><div class="parent"><img src="images/placeholder_2.jpg" id="profileDisplay" onclick="triggerClick()"></center></div></div>';
                                 } else {
-                                    echo '<div class="parent"><img id="profileDisplay" onclick="triggerClick()" src="data:image;base64,' . $row["image_project"] . '"></center></div>';
+                                    echo '<div style="padding: 25px 50px 25px 50px;"><div class="parent"><img id="profileDisplay" onclick="triggerClick()" src="data:image;base64,' . $row["image_project"] . '"></center></div></div>';
                                 }
                                 echo '
-                                      <h2 style=" padding :300 px;"></h2>
+                                   
                                      
-                                      <h4 style=" padding :25px;">สถานที่ : ' . $row["location"] . ' </h4>
-                                      <h4 style=" padding :25px;">ระยะเวลา : ' . $row["numdays"] . ' วัน</h4>
+                                      <h4 style=" padding: 25px 25px 25px 45px;">สถานที่ : ' . $row["location"] . ' </h4>
+                                      <h4 style=" padding: 25px 25px 25px 45px;">ระยะเวลา : ' . $row["numdays"] . ' วัน</h4>
                                       
-                                      <h4 style=" padding :25px;">เริ่มต้นวันที่ : ' . thai_date_fullmonth(strtotime($row["startDate"])) . ' </h4>
+                                      <h4 style=" padding: 25px 25px 25px 45px;">เริ่มต้นวันที่ : ' . thai_date_fullmonth(strtotime($row["startDate"])) . ' </h4>
                                       
-                                      <h4 style=" padding :25px;">สิ้นสุดวันที่ : ' . thai_date_fullmonth(strtotime($row["endDate"])) . ' </h4>
-                                      <h4 style=" padding :25px;">ราคา : ' . $row["cost"] . ' บาท </h4>
+                                      <h4 style=" padding: 25px 25px 25px 45px;">สิ้นสุดวันที่ : ' . thai_date_fullmonth(strtotime($row["endDate"])) . ' </h4>
+                                      <h4 style=" padding: 25px 25px 25px 45px;">ราคา : ' . $row["cost"] . ' บาท </h4>
                                       </div>
                                       </div>
                                   </div>

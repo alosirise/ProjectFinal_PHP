@@ -22,7 +22,29 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
   <script src="https://kit.fontawesome.com/f7ef8136ea.js" crossorigin="anonymous"></script>
 
 
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.21/datatables.min.js"></script>
+
+
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> 
+
+
 </head>
+<script>
+    $(document).ready(function() {
+        $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+            localStorage.setItem('activeTab', $(e.target).attr('href'));
+        });
+        var activeTab = localStorage.getItem('activeTab');
+        console.log(activeTab);
+        if (activeTab) {
+            $('#myTab a[href="' + activeTab + '"]').tab('show');
+        }
+    });
+</script>
 <style>
   #main {
     position: absolute;
@@ -48,7 +70,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
       <center>
         <a href=create_project.php><button type="button" class="btn btn-success btn-lg">สร้าง</button></a>
         <br><br><br>
-        <ul class="nav nav-tabs" role="tablist">
+        <ul class="nav nav-tabs" role="tablist" id= "myTab">
           <li> <a href="#list1" class="active nav-link" role="tab" data-toggle="tab">
               <icon class="fa fa-home"></icon> แบบร่าง
             </a>
@@ -321,10 +343,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
       ?>
 
 
-      <!-- Optional JavaScript -->
-      <!-- jQuery first, then Popper.js, then minified and Bootstrap JS -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.21/datatables.min.js"></script>
+
 
       <script>
         $(document).ready(function() {

@@ -52,13 +52,11 @@ include('auth.php');
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            <tr id="append2">
+                            
 
                                 <?php
                                 $project_id = $_GET['project_id'];
                                 // $project_id = "235";
-
                                 // var_dump($_COOKIE['value_column']);
 
                                 $var_cookie = $_COOKIE['value_column'];
@@ -81,6 +79,11 @@ include('auth.php');
                                     if ($result->num_rows > 0) {
                                         while ($row = $result->fetch_assoc()) {
                                             $count_row++;
+                                            ?>
+                                             <script>
+                                            var countColumn = "<?php echo $count_row; ?>";
+                                          </script>
+                                          <?php
                                         }
                                         break;
                                     }
@@ -120,14 +123,10 @@ include('auth.php');
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
-
     </form>
 </body>
-
-
 
 
 
@@ -200,31 +199,32 @@ include('auth.php');
           text: 'PDF (landscape)',
           orientation: 'landscape',
           pageSize: 'A4',
-          exportOptions: {
-            columns: [':visible :not(:last-child)']
-          },
+          // exportOptions: {
+          //   columns: [':visible :not(:last-child)']
+          // },
           customize: function(doc) {
             doc.defaultStyle = {
               font: 'THSarabun',
               fontSize: 15
             };
-            doc.content[1].margin = [ 100, 0, 0, 0 ];
+            doc.content[1].margin = [ 50, 0, 0, 0 ];
             doc.styles.tableHeader.fontSize = 15;
             countColumn = parseInt(countColumn) + 1; //+1 เพราะ เพิ่มแถว ชื่อผู้ใช้
 
             // doc.content[1].table.widths = ['25%', '25%', '25%'];
-            // doc.content[1].table.widths = 
-            // Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+            doc.content[1].table.widths = 
+            Array(doc.content[1].table.body[0].length + 1).join('*').split('');
 
-            var colCount = new Array();
-            $('#table').find('tbody tr:first-child td').each(function(){
-                if($(this).attr('colspan')){
-                    for(var i=1;i<=$(this).attr('colspan');$i++){
-                        colCount.push('*');
-                    }
-                }else{ colCount.push('*'); }
-            });
-            doc.content[1].table.widths = colCount;
+            // var colCount = new Array();
+           
+            // $('#table').find('tbody tr:first-child td').each(function(){
+            //     if($(this).attr('colspan')){
+            //         for(var i=1;i<=$(this).attr('colspan');$i++){
+            //             colCount.push('*');
+            //         }
+            //     }else{ colCount.push('*'); }
+            // });
+            // doc.content[1].table.widths = colCount;
 
             doc.styles.tableBodyOdd.alignment = 'center'; 
             doc.styles.tableBodyEven.alignment = 'center'; 
@@ -251,9 +251,9 @@ include('auth.php');
           "text": 'PDF (vertical)',
           "title": 'Report',
           "pageSize": 'A4',
-          exportOptions: {
-            columns: [':visible :not(:last-child)']
-          },
+          // exportOptions: {
+          //   columns: [':visible :not(:last-child)']
+          // },
           "customize": function(doc) {
             doc.defaultStyle = {
               font: 'THSarabun',
@@ -262,16 +262,18 @@ include('auth.php');
 
             doc.content[1].margin = [ 50, 0, 0, 0];
             doc.styles.tableHeader.fontSize = 15;
+            doc.content[1].table.widths = 
+            Array(doc.content[1].table.body[0].length + 1).join('*').split('');
 
-            var colCount = new Array();
-            $('#table').find('tbody tr:first-child td').each(function(){
-                if($(this).attr('colspan')){
-                    for(var i=1;i<=$(this).attr('colspan');$i++){
-                        colCount.push('*');
-                    }
-                }else{ colCount.push('*'); }
-            });
-            doc.content[1].table.widths = colCount; // กำหนดความกว้างของ header แต่ละคอลัมน์หัวข้อ
+            // var colCount = new Array();
+            // $('#table').find('tbody tr:first-child td').each(function(){
+            //     if($(this).attr('colspan')){
+            //         for(var i=1;i<=$(this).attr('colspan');$i++){
+            //             colCount.push('*');
+            //         }
+            //     }else{ colCount.push('*'); }
+            // });
+            // doc.content[1].table.widths = colCount; // กำหนดความกว้างของ header แต่ละคอลัมน์หัวข้อ
 
 
             doc.styles.tableHeader.fontSize = 13;
