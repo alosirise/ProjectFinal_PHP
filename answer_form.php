@@ -57,6 +57,11 @@ include('auth.php');
                 if ($result->num_rows > 0) {
                   while ($row = $result->fetch_assoc()) {
                     $countquestion = $row['num_question'];
+                ?>
+                    <script>
+                      var countColumn = "<?php echo $countquestion; ?>";
+                    </script>
+                <?php
                     $question_explode = explode(",", $row['question']);
                     echo '<th >ชื่อผู้ใช้</th>';
                     for ($i = 0; $i < $countquestion; $i++) {
@@ -124,7 +129,7 @@ include('auth.php');
                   echo '<td>' . $answer[$append_answer] . '</td>';
                   $append_answer++;
                 }
-                echo '<td><a onClick=\'javascript: return confirm("ต้องการลบคำตอบ ใช่ หรือ ไม่?"); \'href=del_answer.php?project_id=' . $project_id . '><button type="button" class="btn-danger" onclick="delAnswer('."'".$username[$z]."'".')">ลบ</button></a></td>';
+                echo '<td><a onClick=\'javascript: return confirm("ต้องการลบคำตอบ ใช่ หรือ ไม่?"); \'href=del_answer.php?project_id=' . $project_id . '><button type="button" class="btn-danger" onclick="delAnswer(' . "'" . $username[$z] . "'" . ')">ลบ</button></a></td>';
                 echo '</tr>';
               }
               ?>
@@ -214,22 +219,43 @@ include('auth.php');
           customize: function(doc) {
             doc.defaultStyle = {
               font: 'THSarabun',
-              fontSize: 12
+              fontSize: 15
             };
-       
-            doc.styles.tableHeader.fontSize = 13;
-            var rowCount = doc.content[1].table.body.length; // นับจำนวนแถวทั้งหมดในตาราง
+            doc.content[1].margin = [ 100, 0, 0, 0 ];
+            doc.styles.tableHeader.fontSize = 15;
+            countColumn = parseInt(countColumn) + 1; //+1 เพราะ เพิ่มแถว ชื่อผู้ใช้
+
+            // doc.content[1].table.widths = ['25%', '25%', '25%'];
+            // doc.content[1].table.widths = 
+            // Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+
+            var colCount = new Array();
+            $('#table').find('tbody tr:first-child td').each(function(){
+                if($(this).attr('colspan')){
+                    for(var i=1;i<=$(this).attr('colspan');$i++){
+                        colCount.push('*');
+                    }
+                }else{ colCount.push('*'); }
+            });
+            doc.content[1].table.widths = colCount;
+
+            doc.styles.tableBodyOdd.alignment = 'center'; 
+            doc.styles.tableBodyEven.alignment = 'center'; 
+
+            // var rowCount = doc.content[1].table.body.length; // นับจำนวนแถวทั้งหมดในตาราง
             // วนลูปเพื่อกำหนดค่า
-            for (i = 1; i < rowCount; i++) { // i เริ่มที่ 1 เพราะ i แรกเป็นแถวของหัวข้อ
-              doc.content[1].table.body[i][0].alignment = 'center';
-              doc.content[1].table.body[i][1].alignment = 'center';
-              doc.content[1].table.body[i][2].alignment = 'center';
-              doc.content[1].table.body[i][3].alignment = 'center';
-              // doc.content[1].table.body[i][4].alignment = 'center';
-              // doc.content[1].table.body[i][5].alignment = 'left';
-              // doc.content[1].table.body[i][6].alignment = 'left';
-              // doc.content[1].table.body[i][7].alignment = 'left';
-            };
+        
+            // var x = 0;
+            // for (i = 1; i < rowCount; i++) { // i เริ่มที่ 1 เพราะ i แรกเป็นแถวของหัวข้อ
+            //     for (var z = 0; z < countColumn; z++) {
+            //       console.log("row : " + i + ", col : " + z);
+            //       doc.content[1].table.body[i][z].alignment = 'center';
+            //     }
+
+            //     x++;
+            //     console.log("all : " + countColumn); //เนื่องจาก x=0 ดังนั้น coutcolumn ต้อง-1
+                
+            // };
             console.log(doc);
           }
         },
@@ -237,31 +263,48 @@ include('auth.php');
           "extend": 'pdf',
           "text": 'PDF (vertical)',
           "title": 'Report',
-          "pageSize": 'A4', 
+          "pageSize": 'A4',
           exportOptions: {
             columns: [':visible :not(:last-child)']
           },
           "customize": function(doc) {
             doc.defaultStyle = {
               font: 'THSarabun',
-              fontSize: 12
+              fontSize: 15
             };
-            // กำหนดความกว้างของ header แต่ละคอลัมน์หัวข้อ
-            doc.content[1].table.widths = ['25%', '25%', '25%', '25%'];
-            doc.styles.tableHeader.fontSize = 13;
-            var rowCount = doc.content[1].table.body.length; // นับจำนวนแถวทั้งหมดในตาราง
-            // วนลูปเพื่อกำหนดค่า
-            for (i = 1; i < rowCount; i++) { // i เริ่มที่ 1 เพราะ i แรกเป็นแถวของหัวข้อ
-              doc.content[1].table.body[i][0].alignment = 'center';
-              doc.content[1].table.body[i][1].alignment = 'center';
-              doc.content[1].table.body[i][2].alignment = 'center';
-              doc.content[1].table.body[i][3].alignment = 'center';
-              // doc.content[1].table.body[i][4].alignment = 'center';
-              // doc.content[1].table.body[i][5].alignment = 'left';
-              // doc.content[1].table.body[i][6].alignment = 'left';
-              // doc.content[1].table.body[i][7].alignment = 'left';
 
-            };
+            doc.content[1].margin = [ 50, 0, 0, 0];
+            doc.styles.tableHeader.fontSize = 15;
+
+            var colCount = new Array();
+            $('#table').find('tbody tr:first-child td').each(function(){
+                if($(this).attr('colspan')){
+                    for(var i=1;i<=$(this).attr('colspan');$i++){
+                        colCount.push('*');
+                    }
+                }else{ colCount.push('*'); }
+            });
+            doc.content[1].table.widths = colCount; // กำหนดความกว้างของ header แต่ละคอลัมน์หัวข้อ
+
+
+            doc.styles.tableHeader.fontSize = 13;
+            doc.styles.tableBodyOdd.alignment = 'center'; 
+            doc.styles.tableBodyEven.alignment = 'center'; 
+
+            // var rowCount = doc.content[1].table.body.length; // นับจำนวนแถวทั้งหมดในตาราง
+            // // วนลูปเพื่อกำหนดค่า
+            // var x = 0;
+            // for (i = 1; i < rowCount; i++) { // i เริ่มที่ 1 เพราะ i แรกเป็นแถวของหัวข้อ
+            //     for (var z = 0; z < countColumn; z++) {
+            //       console.log("row : " + i + ", col : " + z);
+            //       doc.content[1].table.body[i][z].alignment = 'center';
+            //     }
+
+            //     x++;
+            //     console.log("all : " + countColumn); //เนื่องจาก x=0 ดังนั้น coutcolumn ต้อง-1
+          
+            // };
+
             console.log(doc);
           }
         },

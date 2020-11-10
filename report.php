@@ -105,7 +105,7 @@ if ($_SESSION['role'] != "admin") {
             <h2 style=" padding :30px; ">Report</h2>
             <?php
             include_once('connect.php');
-            $sql = "SELECT * FROM create_project WHERE status ='อนุมัติ'";
+            $sql = "SELECT * FROM create_project WHERE status ='อนุมัติ' ORDER BY last_change DESC ";
             $result = $conn->query($sql);
             $number = 0;
             if ($result->num_rows > 0) {
@@ -115,12 +115,12 @@ if ($_SESSION['role'] != "admin") {
                 <tr class="w3-blue-gray">
                 <th  style="width:1%">ลำดับ</th>
                   <th style="width:1%" >ชื่อโครงการ</th>     
-                  <th style="width:1%" >test1</th>
-                  <th style="width:1%" >test2</th> 
-                  <th style="width:1%" >test3</th>      
-                  <th  style="width:1%">test4</th>      
-                  <th style="width:1%" >test5</th>      
-                  <th  style="width:1%">test6</th>      
+                  <th style="width:1%" >หน่วยงานที่รับผิดชอบ</th>
+                  <th style="width:1%" >ระยะเวลา (วัน)</th> 
+                  <th style="width:1%" >สถานที่</th>      
+                  <th  style="width:1%">งบประมาณค่าใช้จ่าย</th>      
+                  <th style="width:1%" >ค่าลงทะเบียนอบรม (บาท)</th>      
+                  <th  style="width:1%"></th>      
                 
                 </tr>
               </thead><tbody> ';
@@ -128,22 +128,22 @@ if ($_SESSION['role'] != "admin") {
                 // output data of each row
                 while ($row = $result->fetch_assoc()) {
                     $number++;
-                    echo "<tr><td> " . $number . ".</td><td>" . $row["name_project"] . "</td>        <td>" . $row["id"] . "</td><td> test</td><td>" . $row["name_project"] . "</td><td>" . $row["name_project"] . "</td><td>" . $row["name_project"] . "</td><td>" . $row["name_project"] . "</td>
+                    echo "<tr><td> " . $number . ".</td><td>" . $row["name_project"] . "</td>        <td>" . $row["respondsible_department"] . "</td><td>" . $row["numdays"] . "</td><td>" . $row["location"] . "</td><td>" . $row["result_budget"] . "</td><td>" . $row["cost"] . "</td><td> test</td>
              
            
             </tr>";
                 }
-                echo '</tbody><tfoot> <tr class="w3-blue-gray">
-                  <th class="topic1">ที่</th>
-                  <th class="topic2">ชื่อโครงการ</th>     
-                  <th class="topic3">test1</th>
-                  <th class="topic4">test2</th> 
-                  <th class="topic5">test3</th>      
-                  <th class="topic6">test4</th>      
-                  <th class="topic7">test5</th>      
-                  <th class="topic8">test6</th>      
+                // echo '</tbody><tfoot> <tr class="w3-blue-gray">
+                //   <th class="topic1">ที่</th>
+                //   <th class="topic2">ชื่อโครงการ</th>     
+                //   <th class="topic3"></th>
+                //   <th class="topic4"></th> 
+                //   <th class="topic5"></th>      
+                //   <th class="topic6"></th>      
+                //   <th class="topic7"></th>      
+                //   <th class="topic8"></th>      
                
-                </tr></tfoot>';
+                // </tr></tfoot>';
                 echo "</table>";
             } else {
                 echo "0 results";
@@ -243,20 +243,20 @@ if ($_SESSION['role'] != "admin") {
     <script>
         $(document).ready(function() {
 
-            $('.topic1').each(function() {
-                var title = $(this).text();
-                $(this).html('<input type="text" style="width:30px;" placeholder="' + title + '" />');
-            });
+            // $('.topic1').each(function() {
+            //     var title = $(this).text();
+            //     $(this).html('<input type="text" style="width:30px;" placeholder="' + title + '" />');
+            // });
 
-            $('.topic3 ,.topic4').each(function() {
-                var title = $(this).text();
-                $(this).html('<input type="text" style="width:50px;" placeholder="ค้นหา : ' + title + '" />');
-            });
+            // $('.topic3 ,.topic4').each(function() {
+            //     var title = $(this).text();
+            //     $(this).html('<input type="text" style="width:50px;" placeholder="ค้นหา : ' + title + '" />');
+            // });
 
-            $('.topic2,.topic5 ,.topic6,.topic7 ,.topic8').each(function() {
-                var title = $(this).text();
-                $(this).html('<input type="text" style="width:190px;" placeholder="ค้นหา : ' + title + '" />');
-            });
+            // $('.topic2,.topic5 ,.topic6,.topic7 ,.topic8').each(function() {
+            //     var title = $(this).text();
+            //     $(this).html('<input type="text" style="width:190px;" placeholder="ค้นหา : ' + title + '" />');
+            // });
 
             // DataTable
             pdfMake.fonts = {
@@ -288,7 +288,7 @@ if ($_SESSION['role'] != "admin") {
                     [10, 25, 50, "All"]
                 ],
                 "pageLength": 10,
-                "scrollX": "1140px",
+                "scrollX": true,
                 "pagingType": "full_numbers",
                 dom: 'B<"top"f>rt<"bottom"lpi><"clear">',
                 buttons: [{
