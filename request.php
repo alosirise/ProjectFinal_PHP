@@ -1,3 +1,4 @@
+<?php ob_start(); ?>
 <?php
 session_start();
 include('auth.php');
@@ -29,22 +30,22 @@ $_SESSION['go'] = 'go_request';
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.21/datatables.min.js"></script>
 
 
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> 
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
 
 </head>
 <script>
-    $(document).ready(function() {
-        $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
-            localStorage.setItem('activeTab', $(e.target).attr('href'));
-        });
-        var activeTab = localStorage.getItem('activeTab');
-        console.log(activeTab);
-        if (activeTab) {
-            $('#myTab a[href="' + activeTab + '"]').tab('show');
-        }
+  $(document).ready(function() {
+    $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+      localStorage.setItem('activeTab', $(e.target).attr('href'));
     });
+    var activeTab = localStorage.getItem('activeTab');
+    console.log(activeTab);
+    if (activeTab) {
+      $('#myTab a[href="' + activeTab + '"]').tab('show');
+    }
+  });
 </script>
 <style>
   #main {
@@ -417,7 +418,7 @@ $_SESSION['go'] = 'go_request';
         </div>
       </div><br><br><br><br><br>
 
-  
+
 
 
       <script>

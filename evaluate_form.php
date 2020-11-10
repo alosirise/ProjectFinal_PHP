@@ -1,7 +1,7 @@
+<?php ob_start();?>
 <?php
 session_start();
 include('auth.php');
-
 ?>
 <!doctype html>
 <html lang="en">

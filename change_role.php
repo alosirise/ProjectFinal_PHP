@@ -1,5 +1,5 @@
+<?php ob_start();?>
 <?php
-
     session_start();
     include('auth.php');
 
@@ -16,3 +16,4 @@ include_once('connect.php');
         header("location:manage_account.php");
   }else
   echo "Not Change";
+?>

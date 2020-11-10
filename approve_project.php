@@ -1,3 +1,4 @@
+<?php ob_start();?>
 <?php
 session_start();
 include('auth.php');
@@ -23,3 +24,4 @@ if ($change == 'อนุมัติ') {
     echo "<script>alert('สถานะ : เสร็จสิ้น');
     window.location='request.php';</script>";
 }
+?>

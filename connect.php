@@ -1,3 +1,4 @@
+<?php ob_start();?>
 <?php 
    $conn = new mysqli('localhost','root','','basic');
 

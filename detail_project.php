@@ -1,3 +1,4 @@
+<?php ob_start();?>
 <?php
 session_start();
 //   if($_SESSION['role'] != id)

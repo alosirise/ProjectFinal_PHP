@@ -1,3 +1,4 @@
+<?php ob_start();?>
 <?php
 session_start();
 include('auth.php');
@@ -22,13 +23,13 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
   <script src="https://kit.fontawesome.com/f7ef8136ea.js" crossorigin="anonymous"></script>
 
 
-
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.21/datatables.min.js"></script>
 
 
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+   
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> 
 
 
@@ -187,12 +188,6 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         echo "0 results";
       }
       echo "</div>";
-
-
-
-
-
-
 
 
       echo "<div class='tab-pane fade ' id='list3'>";

@@ -1,3 +1,4 @@
+<?php ob_start();?>
 <?php 
 session_start();
 include('auth.php');
@@ -9,3 +10,4 @@ include_once('connect.php');
     // echo $sql;
 
     echo "<script>window.location='answer_form.php?project_id=$_GET[project_id]';</script>";
+?>

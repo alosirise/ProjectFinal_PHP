@@ -1,3 +1,9 @@
+<?php ob_start(); ?>
+<?php 
+    session_start();
+    include_once('connect.php');
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -19,8 +25,6 @@
 <body>
     <?php 
 
-    session_start();
-    include_once('connect.php');
         if(isset($_POST['submit'])){
                 $username =$_POST['username'];
                 $password = $conn->real_escape_string($_POST['password']);

@@ -1,7 +1,7 @@
+<?php ob_start();?>
 <?php
 session_start();
 include('auth.php');
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -18,7 +18,7 @@ include('auth.php');
     <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="bew.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css" />
 
 </head>
 

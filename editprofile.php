@@ -1,7 +1,7 @@
+<?php ob_start(); ?>
 <?php
 session_start();
 include('auth.php');
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -16,6 +16,56 @@ include('auth.php');
     <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="bew.css">
 </head>
+<style>
+    .container {
+        position: relative;
+        width: 50%;
+    }
+
+    .image {
+        opacity: 1;
+        display: flex;
+        width: 100%;
+        height: auto;
+        transition: .5s ease;
+        backface-visibility: hidden;
+    }
+
+    .middle {
+        transition: .5s ease;
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .container:hover .image {
+
+        opacity: 0.5;
+
+    }
+
+    .container:hover .middle {
+        opacity: 1;
+    }
+
+    .text {
+        cursor: pointer;
+        vertical-align: middle;
+        width: 249px;
+        height: 249px;
+        border-radius: 50%;
+
+        transition: opacity .6s;
+        background: black;
+        color: whitesmoke;
+        font-size: 27px;
+
+    }
+</style>
 
 <body>
     <div class="" id="nav"></div>
@@ -31,10 +81,16 @@ include('auth.php');
                         $result4 = mysqli_query($conn, $sql4);
                         if ($result4->num_rows > 0) {
                             while ($row = $result4->fetch_assoc()) {
-                                echo '<img id="profileDisplay" style="cursor: pointer;"onclick="triggerClick()" src="data:image;base64,' . $row["image"] . '"></center>';
+                                echo '<div class="container"> <div class="text" ><img id="profileDisplay" class="image"  style="cursor: pointer;"onclick="triggerClick()"
+                                 src="data:image;base64,' . $row["image"] . '"><div class="middle" onclick="triggerClick()">
+                                Edit</div></div>
+                               </div> </center>';
                             }
                         } else {
-                            echo '<img src="images/placeholder_2.jpg" id="profileDisplay" onclick="triggerClick()">';
+                            echo '<div class="container"> <div class="text"><img id="profileDisplay" class="image"  style="cursor: pointer;"onclick="triggerClick()"
+                            src="images/placeholder_2.jpg">
+                            <div class="middle" onclick="triggerClick()">Edit</div></div>
+                          </div> </center>';
                         }
                         echo '<input type="file" name="image" id="image" style="display: none;" onchange="displayImage(this)">
                     </div>';

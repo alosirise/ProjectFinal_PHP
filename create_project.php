@@ -1,3 +1,4 @@
+<?php ob_start();?>
 <?php
 session_start();
 include('auth.php');
@@ -29,7 +30,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-   
+    <script src="index.js"> </script>
 
     <div class="" id="nav"></div>
     <form action="" method="POST">
