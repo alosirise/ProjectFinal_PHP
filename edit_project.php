@@ -164,12 +164,13 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                             <label for="exampleFormControlInput1">ค่าลงทะเบียนอบรม (บาท)</label>  <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'cost\')"></i>
                             <input type="text" class="form-control text" id=edit_cost name="cost"  readonly  value="' . $row["cost"] . '"></td>
                         </div>
-    
+                        <div id="content">
                         <div>
                             <label for="exampleFormControlInput1">งบประมาณค่าใช้จ่าย</label>
                             <div id="includedContent" name ="budget"></div>
                         </div>
-    
+                        </div>
+                     
                         <label for="exampleFormControlInput1">คณะทำงาน</label>  <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'working_group\')"></i>
                         &nbsp;&nbsp;&nbsp;<a class="btn btn-info btn-xs" id="addRow4" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
                         <div style ="padding-left : 12px; padding-top: 6px;">   
@@ -204,8 +205,13 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                         </div>
 
     </form>
-    <!-- <div id ="elementH"></div>
-    <center><button onclick="toPDF();">Convert to pdf</button></center> -->
+
+<!--     
+            This is where you can add in the HTML you’d like to 
+        
+        <center>
+            <a href="javascript:demoFromHTML()" class="button">Download to PDF</a></center> -->
+   
     <?php
 
     if (isset($_POST["submit"])) {
@@ -222,67 +228,62 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         $dropoff_date = $_POST['dropoff_date'];
         $numdays = $_POST['numdays'];
 
-        if ($numdays < 0) {
-            echo '<script>alert("โปรดตรวจสอบ ระยะเวลาในการทำโปรเจคอีกครั้ง ")</script>';
-        } else if ($name_project == "") {
-            echo '<script>alert("กรุณาตั้งชื่อโปรเจ็ค")</script>';
-        } else {
-            $sql2 = "UPDATE `create_project` SET name_project = '" . $name_project . "', respondsible_department = '" . $respondsible_department . "'  
+
+        $sql2 = "UPDATE `create_project` SET name_project = '" . $name_project . "', respondsible_department = '" . $respondsible_department . "'  
                     ,principle = '" . $principle . "',target_group = '" . $target_group . "',duration = '" . $duration . "',
                     location = '" . $location . "',cost = '" . $cost . "',startDate = '" . $pickup_date . "',
-                    endDate = '" .  $dropoff_date . "',numdays = '" . $numdays . "'   WHERE project_id = '$_GET[project_id]'";
-            $result = mysqli_query($conn, $sql2);
+                    endDate = '" .  $dropoff_date . "',numdays = '" . $numdays . "',result_budget = '" . $_POST['result'] . "'   WHERE project_id = '$_GET[project_id]'";
+        $result = mysqli_query($conn, $sql2);
 
 
-            $objective = $_POST['objective'];
-            $lecturer = $_POST['lecturer'];
-            $benefits = $_POST['benefits'];
-            $working_group = $_POST['working_group'];
+        $objective = $_POST['objective'];
+        $lecturer = $_POST['lecturer'];
+        $benefits = $_POST['benefits'];
+        $working_group = $_POST['working_group'];
 
-            $count = max(count($objective), count($lecturer), count($benefits), count($working_group));
+        $count = max(count($objective), count($lecturer), count($benefits), count($working_group));
 
 
-            $sql5 = "DELETE FROM mutiple_text
+        $sql5 = "DELETE FROM mutiple_text
                     WHERE project_id = '$_GET[project_id]'";
-            $result5 = mysqli_query($conn, $sql5);
+        $result5 = mysqli_query($conn, $sql5);
 
 
-            $sql4 = "INSERT INTO mutiple_text (project_id ,objective,lecturer,benefits,working_group)   VALUES";
-            for ($x = 0; $x < $count; $x++) {
-                echo " round = ", $x;
-                $sql4 .= "('" . $_GET['project_id'] . "','" . $_POST['objective'][$x] . "','" . $_POST['lecturer'][$x] . "','" . $_POST['benefits'][$x] . "','" . $_POST['working_group'][$x] . "'),";
-            }
+        $sql4 = "INSERT INTO mutiple_text (project_id ,objective,lecturer,benefits,working_group)   VALUES";
+        for ($x = 0; $x < $count; $x++) {
+            echo " round = ", $x;
+            $sql4 .= "('" . $_GET['project_id'] . "','" . $_POST['objective'][$x] . "','" . $_POST['lecturer'][$x] . "','" . $_POST['benefits'][$x] . "','" . $_POST['working_group'][$x] . "'),";
+        }
 
-            $sql4  = rtrim($sql4, ",");
-            $result4 = mysqli_query($conn, $sql4);
+        $sql4  = rtrim($sql4, ",");
+        $result4 = mysqli_query($conn, $sql4);
 
 
-            $sql6 = "DELETE FROM budget_form
+        $sql6 = "DELETE FROM budget_form
                 WHERE project_id = '$_GET[project_id]'";
-            $result6 = mysqli_query($conn, $sql6);
+        $result6 = mysqli_query($conn, $sql6);
 
-            // print_r($_POST['no']);
-            // print_r($_POST['list']);
-            // print_r($_POST['quantity']);
-            // print_r($_POST['rate']);
-            // print_r($_POST['cost1']);
+        // print_r($_POST['no']);
+        // print_r($_POST['list']);
+        // print_r($_POST['quantity']);
+        // print_r($_POST['rate']);
+        // print_r($_POST['cost1']);
 
-            $count_table = max(count($_POST['no']), count($_POST['list']), count($_POST['quantity']), count($_POST['rate']), count($_POST['cost1']));
-            $sql7 = "INSERT INTO budget_form (project_id,no,list,quantity,rate,cost)   VALUES";
-            for ($x = 0; $x < $count_table; $x++) {
-                echo " round = ", $x;
-                $sql7 .= "('" . $_GET['project_id'] . "','" . $_POST['no'][$x] . "','" . $_POST['list'][$x] . "','" . $_POST['quantity'][$x] . "','" . $_POST['rate'][$x] . "','" . $_POST['cost1'][$x] . "'),";
-            }
+        $count_table = max(count($_POST['no']), count($_POST['list']), count($_POST['quantity']), count($_POST['rate']), count($_POST['cost1']));
+        $sql7 = "INSERT INTO budget_form (project_id,no,list,quantity,rate,cost,title)   VALUES";
+        for ($x = 0; $x < $count_table; $x++) {
+            echo " round = ", $x;
+            $sql7 .= "('" . $_GET['project_id'] . "','" . $_POST['no'][$x] . "','" . $_POST['list'][$x] . "','" . $_POST['quantity'][$x] . "','" . $_POST['rate'][$x] . "','" . $_POST['cost1'][$x] . "','" . $_POST['title'][$x] . "'),";
+        }
 
-            $sql7  = rtrim($sql7, ",");
-            $result7 = mysqli_query($conn, $sql7);
+        $sql7  = rtrim($sql7, ",");
+        $result7 = mysqli_query($conn, $sql7);
 
 
-            if ($_SESSION['go'] == "go_project") {
-                echo "<script>window.location='myproject.php';</script>";
-            } else if ($_SESSION['go'] == "go_request") {
-                echo "<script>window.location='request.php';</script>";
-            }
+        if ($_SESSION['go'] == "go_project") {
+            echo "<script>window.location='myproject.php';</script>";
+        } else if ($_SESSION['go'] == "go_request") {
+            echo "<script>window.location='request.php';</script>";
         }
     }
     ?>
@@ -292,7 +293,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
-    <script src="jsPDF/dist/jspdf.customfonts.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
 
     <script src="index.js"> </script>
     <script>
@@ -338,21 +339,40 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         });
 
 
-        function toPDF() {
-            var doc = new jsPDF();
-            var elementHTML = $('#pdf').html();
-            var specialElementHandlers = {
-                '#elementH': function(element, renderer) {
-                    return true;
+        function demoFromHTML() {
+            var pdf = new jsPDF('p', 'pt', 'letter');
+            
+            source = $('#content')[0];
+
+            specialElementHandlers = {
+                // element with id of "bypass" - jQuery style selector
+                '#bypassme': function(element, renderer) {
+                    // true = "handled elsewhere, bypass text extraction"
+                    return true
                 }
             };
+            margins = {
+                top: 80,
+                bottom: 60,
+                left: 40,
+                width: 522
+            };
+            // all coords and widths are in jsPDF instance's declared units
+            // 'inches' in this case
+            pdf.fromHTML(
+                source, // HTML string or DOM elem ref.
+                margins.left, // x coord
+                margins.top, { // y coord
+                    'width': margins.width, // max width of content on PDF
+                    'elementHandlers': specialElementHandlers
+                },
 
-            doc.fromHTML(elementHTML, 15, 15, {
-                'width': 170,
-                'elementHandlers': specialElementHandlers
-            });
-
-            doc.save('sample-document.pdf');
+                function(dispose) {
+                    // dispose: object with X, Y of the last line add to the PDF 
+                    //          this allow the insertion of new lines after html
+                    pdf.save('Test.pdf');
+                }, margins
+            );
         }
 
 

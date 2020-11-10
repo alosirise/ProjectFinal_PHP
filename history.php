@@ -53,7 +53,6 @@ session_start();
           include_once('connect.php');
           $sql = "SELECT * FROM history WHERE username = '" . $_SESSION['username'] . "'  AND status ='ดำเนินการ'";
 
-
           $result = $conn->query($sql);
           $number = 0;
           if ($result->num_rows > 0) {
@@ -65,7 +64,8 @@ session_start();
                 <th style="width:4%" >ที่</th>
                   <th style="width:35%" >ชื่อโครงการ</th>
                   <th data-orderable="false" style="width:15%"> สถานะ</th>
-                  <th data-orderable="false" style="width:20%"> รายละเอียดโครงการ</th>
+      
+                  <th data-orderable="false" style="width:20%"> ประเมินโครงการ</th>
                  
     
                 </tr>
@@ -74,13 +74,25 @@ session_start();
             while ($row = $result->fetch_assoc()) {
               $number++;
               echo "<tr><td>" . $number . "</td><td>" . $row["name_project"] . "</td>  
-            <td>" . $row["status"] . "</td>
-            <td>  <button type='button' class='btn btn-info' style='width:10'> รายละเอียด</button></a></td> 
-            </tr>";
+            <td>" . $row["status"] . "</td>";
+
+              $his_project_id = $row["project_id"];
+              $sql2 = "SELECT * FROM evaluate_form WHERE project_id = $his_project_id";
+              $result2 = $conn->query($sql2);
+
+              if ($result2->num_rows > 0) {
+              while ($row2 = $result2->fetch_assoc()) {
+                  echo "<td> <a href=question_evaluate.php?project_id=" . $row['project_id'] . "> <button type='button' class='btn btn-info' style='width:10'>ประเมินโครงการ</button></a></td>";
+              }
+            }else{
+              echo "<td><button type='button' class='btn btn-info' style='width:10' disabled>ประเมินโครงการ</button></a></td>";
             }
-            echo "</table>";
+
+              echo "</tr>";
+            }
+              echo "</table>";
           } else {
-            echo "0 results";
+              echo "0 results";
           }
           ?> </div>
 
@@ -100,7 +112,7 @@ session_start();
                 <th style="width:4%" >ที่</th>
                   <th style="width:35%" >ชื่อโครงการ</th>
                   <th data-orderable="false" style="width:15%"> สถานะ</th>
-                  <th data-orderable="false" style="width:20%"> รายละเอียดโครงการ</th>
+                  <th data-orderable="false" style="width:20%"> ประเมินโครงการ</th>
                  
     
                 </tr>
@@ -109,11 +121,22 @@ session_start();
             while ($row = $result->fetch_assoc()) {
               $number++;
               echo "<tr><td>" . $number . "</td><td>" . $row["name_project"] . "</td>  
-            <td>" . $row["status"] . "</td>
-            <td>  <button type='button' class='btn btn-info' style='width:10'> ทำแบบประเมิน</button></a></td> 
-            </tr>";
+            <td>" . $row["status"] . "</td>";
+            $his_project_id = $row["project_id"];
+            $sql2 = "SELECT * FROM evaluate_form WHERE project_id = $his_project_id";
+            $result2 = $conn->query($sql2);
+
+            if ($result2->num_rows > 0) {
+              while ($row2 = $result2->fetch_assoc()) {
+                  echo "<td> <a href=question_evaluate.php?project_id=" . $row['project_id'] . "> <button type='button' class='btn btn-info' style='width:10'>ประเมินโครงการ</button></a></td>";
+              }
+            }else{
+              echo "<td><button type='button' class='btn btn-info' style='width:10' disabled>ประเมินโครงการ</button></a></td>";
             }
-            echo "</table>";
+
+              echo "</tr>";
+            }
+              echo "</table>";
           } else {
             echo "0 results";
           }

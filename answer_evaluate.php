@@ -53,13 +53,10 @@ include('auth.php');
                     <?php
 
                     $value_php = 1;
-                    $project_id = 302;
-                    // $project_id = $_GET['project_id'];
+                    // $project_id = 302;
+                    $project_id = $_GET['project_id'];
 
                     include_once('connect.php');
-                    $sqlselect = "SELECT * from evaluate_form where project_id = $project_id";
-                    $resultselect = mysqli_query($conn, $sqlselect);
-
                     $sqlanswer = "SELECT * from answer_evaluate where project_id = $project_id";
                     $resultanswer = mysqli_query($conn, $sqlanswer);
 
@@ -78,86 +75,67 @@ include('auth.php');
                     // var_dump($question_explode);
 
                     $score = array();
+                    $username = array();
+                    $count = 0;
                     if ($resultanswer->num_rows > 0) {
                         while ($row = $resultanswer->fetch_assoc()) {
+                            $username[$count] = $row['username'];
+                            $count++;
+
                             $answer_explode = explode(",", $row['answer']);
                             $score = array_merge($score, $answer_explode);
                         }
                     }
                     // var_dump($score);
-
-
-
+                    //var_dump($username);
+                    
 
                     echo '<ul class="nav nav-tabs" role="tablist">
                         <li> <a href="#list1" class="active nav-link" role="tab" data-toggle="tab">
-                                <icon class="fa fa-home"></icon> ข้อมูลสรุป
+                                <icon class="fas fa-chart-area"></icon> ข้อมูลกราฟ
                             </a>
-
                         </li>
-                        <li><a href="#list2" class=" nav-link" role="tab" data-toggle="tab">
-                                <i class="fa fa-user"></i> แยกรายการ
+                        <li> <a href="#list2" class="nav-link" role="tab" data-toggle="tab">
+                                <icon class="fas fa-table"></icon> ข้อมูลตาราง
                             </a>
-
                         </li>
+                      
                     </ul>
                     <br><br>
-
-
                     <div class="tab-content">
                         <div class="tab-pane fade active show " id="list1">
-                            <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
+                            <div id="columnchart_material" style="width: 1000px; height: 500px;"></div>
                         </div>
-
-                        <div class="tab-pane fade" id="list2">';
-
-
-                    if ($resultselect->num_rows > 0) {
-                        while ($row = $resultselect->fetch_assoc()) {
-
-                            $count_will_appendquestion = $row['num_question'];
-                            $question_explode = explode(",", $row['question']);
-
-                            echo '<div class="bewcard">
-                                    <div style="font-size:30px;" name="evaluate_name">' . $row['evaluate_name'] . '</div>
-                                </div>';
-                            echo '<table id="table" class="table  table-bordered">
-                                <tr>
-                                    <td width="65%" rowspan="2" align="center">
-                                        <strong>หัวข้อการประเมิน</strong>
-                                    </td>
-                                    <!-- colspan คือตัวทำให้ ระดับความพึงพอใจบีบออก -->
-                                    <td colspan="5" align="center"><strong>ระดับความพึงพอใจ</strong></td>
-                                </tr>
-                                <tr>
-                                    <td width="5%" align="center"><strong>5</strong></td>
-                                    <td width="5%" align="center"><strong>4</strong></td>
-                                    <td width="5%" align="center"><strong>3</strong></td>
-                                    <td width="5%" align="center"><strong>2</strong></td>
-                                    <td width="5%" align="center"><strong>1</strong></td>
-                                
-                                </tr>';
-                            for ($i = 0; $i < $count_will_appendquestion; $i++) {
-                                echo '<tr>
-                                <td height="30">' . ($i + 1) . '. ' . $question_explode[$i] . '</td>
-                                <td height="30" align="center"><input name="score' . $i . '" type="radio" value="5" ></td>
-                                <td height="30" align="center"><input name="score' . $i . '" type="radio" value="4" ></td>
-                                <td height="30" align="center"><input name="score' . $i . '" type="radio" value="3" ></td>
-                                <td height="30" align="center"><input name="score' . $i . '" type="radio" value="2" ></td>
-                                <td height="30" align="center"><input name="score' . $i . '" type="radio" value="1" ></td>
-                                </tr>';
-                            }
-                            echo '<tr>
-                                    <td colspan="6">ข้อเสนอแนะ<br><br>
-                                        <textarea rows="3" cols="130" name="suggestion" required></textarea>
-                                    </td>
-                                    </tr>
-                                </table>';
-                        }
-                    }
-
-                    echo '</div>
+                        <div class="tab-pane fade" id="list2">
+                            <div>';
+                            echo '<table class="table table-bordered" id="table">
+                            <thead>
+                                <tr class="w3-blue-gray">
+                                    <th >ชื่อผู้ใช้</th>';
+                                    for($i = 0 ;$i<$num_question;$i++){
+                                        echo '<th>'.$question_explode[$i].'</th>';
+                                    }
+                               echo '</tr>
+                            </thead>
+                            <tbody>';
+                            
+                            //ให้ k ไหลไปเรื่อยๆเพื่อวางคำตอบ eval
+                            $k = 0;
+                                for($i = 0;$i<count($username);$i++){
+                                    echo '<tr>';
+                                    echo '<td>'.$username[$i].'</td>';
+                                    for($j = 0;$j<$num_question;$j++,$k++){
+                                        echo '<td>'.$score[$k].'</td>';
+                                    }
+                                    echo '</tr>';
+                                }
+                            echo '</tbody>
+                            </table>
+                            </div>
+                        </div>
                     </div>';
+
+
                     ?>
 
                     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -276,7 +254,6 @@ include('auth.php');
                                     title: php_evaluate_name,
                                     subtitle: '',
                                 }
-                                
                             };
 
                             var chart = new google.charts.Bar(document.getElementById('columnchart_material'));

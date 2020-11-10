@@ -97,12 +97,13 @@ $_SESSION['go'] = 'go_request';
                  <th style="width:4%">ที่</th>
                   <th style="width:26%">ชื่อโครงการ</th>
                   <th class="text-center" style="width:10%">ชื่อผู้ใช้</th>
-                  <th class="text-center" data-orderable="false" style="width:10%">ตรวจสอบโครงการ</th>
-                  <th class="text-center" class="text-center" data-orderable="false" style="width:8%">รายละเอียดเพิ่มเติม</th>
-                  <th class="text-center" class="text-center" data-orderable="false" style="width:10%">ตรวจสอบแบบฟอร์ม</th>
+                  <th class="text-center" data-orderable="false" style="width:15%">ตรวจสอบโครงการ</th>
+                  <th class="text-center" class="text-center" data-orderable="false"></th>
+                  <th class="text-center" class="text-center" data-orderable="false" style="width:15%">ตรวจสอบแบบฟอร์ม</th>
                   <th class="text-center" class="text-center" data-orderable="false" style="width:15%">แบบประเมิน</th>
                   
                   <th class="text-center" class="text-center" data-orderable="false" style="width:10%">สถานะ</th>
+
               
                 </tr>
               </thead> ';
@@ -119,7 +120,7 @@ $_SESSION['go'] = 'go_request';
             <td><a href=evaluate_form.php?project_id=" . $row['project_id'] . "> <i class='fas fa-clipboard-check fa-lg'></i></a></td> 
        
             <td><select name='change' id='project_id' style=' height:30px; width: 100%' onfocus=\"this.setAttribute('PrvSelectedValue',this.value);\" 
-                     onchange=\"if(confirm('คุณต้องการเปลี่ยนสถานะของโครงการนี้หรือไม่ ?')==false) { this.value=this.getAttribute('PrvSelectedValue');return false; }
+                     onchange=\"if(confirm('Do you want to change?')==false) { this.value=this.getAttribute('PrvSelectedValue');return false; }
                      else{location.href= 'approve_project.php?project_id=" . $row['project_id'] . "&change='+this.value}\" 
                      >              
              <option value='อนุมัติ' ";
@@ -173,7 +174,7 @@ $_SESSION['go'] = 'go_request';
                        <th style="width:35%">ชื่อโครงการ</th>
                        <th class="text-center" style="width:15%">ชื่อผู้ใช้</th>
                        <th class="text-center" data-orderable="false" style="width:9%">ตรวจสอบโครงการ</th>
-                       <th class="text-center" class="text-center" data-orderable="false" style="width:8%">รายละเอียดเพิ่มเติม</th>
+                       <th class="text-center" data-orderable="false" style="width:9%"></th>
                        <th class="text-center" data-orderable="false" style="width:9%">ตรวจสอบแบบฟอร์ม</th>
                        <th class="text-center" data-orderable="false" style="width:9%">แบบประเมิน</th>
                        <th data-orderable="false"></th>
@@ -196,7 +197,7 @@ $_SESSION['go'] = 'go_request';
                  <td><a href=answer_form.php?project_id=" . $row2['project_id'] . "> <i class='fa fa-book fa-lg' aria-hidden='true'></i></a></td>
                  <td><a href=create_registration.php?project_id=" . $row2['project_id'] . "> <i class='fa fa-id-card fa-lg' aria-hidden='true'></i></a></td>
                  <td><select name='change' id='project_id' style=' height:30px; width: 100%' onfocus=\"this.setAttribute('PrvSelectedValue',this.value);\" 
-                 onchange=\"if(confirm('คุณต้องการเปลี่ยนสถานะของโครงการนี้หรือไม่ ?')==false) { this.value=this.getAttribute('PrvSelectedValue');return false; }
+                 onchange=\"if(confirm('Do you want to change?')==false) { this.value=this.getAttribute('PrvSelectedValue');return false; }
                  else{location.href= 'approve_project.php?project_id=" . $row2['project_id'] . "&change='+this.value}\" 
                  >              
                   <option value='อนุมัติ' ";
@@ -251,9 +252,9 @@ $_SESSION['go'] = 'go_request';
                  <th style="width:26%">ชื่อโครงการ</th>
                  <th class="text-center" style="width:10%">ชื่อผู้ใช้</th>
                  <th class="text-center" data-orderable="false" style="width:15%">ตรวจสอบโครงการ</th>
-                 <th class="text-center" class="text-center" data-orderable="false" style="width:8%">รายละเอียดเพิ่มเติม</th>
+                 <th data-orderable="false"></th>
                  <th class="text-center" data-orderable="false" style="width:15%">ตรวจสอบแบบฟอร์ม</th>
-                 <th class="text-center" data-orderable="false" style="width:10%">แบบประเมิน</th>
+                 <th class="text-center" data-orderable="false" style="width:15%">แบบประเมิน</th>
                  <th data-orderable="false" style="width:5%"></th>
                  <th class="text-center" data-orderable="false" style="width:15%">สถานะ</th>
            
@@ -274,7 +275,7 @@ $_SESSION['go'] = 'go_request';
             <td></td>
           
             <td><select name='change' id='project_id' style=' height:30px; width: 100%' onfocus=\"this.setAttribute('PrvSelectedValue',this.value);\" 
-                     onchange=\"if(confirm('คุณต้องการเปลี่ยนสถานะของโครงการนี้หรือไม่ ?')==false) { this.value=this.getAttribute('PrvSelectedValue');return false; }
+                     onchange=\"if(confirm('Do you want to change?')==false) { this.value=this.getAttribute('PrvSelectedValue');return false; }
                      else{location.href= 'approve_project.php?project_id=" . $row3['project_id'] . "&change='+this.value}\" 
                      >              
              <option value='อนุมัติ' ";
@@ -355,7 +356,7 @@ $_SESSION['go'] = 'go_request';
            <td><a href=create_registration.php?project_id=" . $row3['project_id'] . "> <i class='fa fa-id-card fa-lg' aria-hidden='true'></i></a></td>
           
             <td><select name='change' id='project_id' style=' height:30px; width: 100%' onfocus=\"this.setAttribute('PrvSelectedValue',this.value);\" 
-                     onchange=\"if(confirm('คุณต้องการเปลี่ยนสถานะของโครงการนี้หรือไม่ ?')==false) { this.value=this.getAttribute('PrvSelectedValue');return false; }
+                     onchange=\"if(confirm('Do you want to change?')==false) { this.value=this.getAttribute('PrvSelectedValue');return false; }
                      else{location.href= 'approve_project.php?project_id=" . $row3['project_id'] . "&change='+this.value}\" 
                      >              
              <option value='อนุมัติ' ";

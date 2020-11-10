@@ -203,19 +203,19 @@ include('auth.php');
         },
         {
           extend: 'pdfHtml5',
-          title: 'คำตอบแบบฟอร์ม',
+          title: 'Report',
           text: 'PDF (landscape)',
           orientation: 'landscape',
           pageSize: 'A4',
           exportOptions: {
-            columns: [1,2,3,4]
+            columns: [':visible :not(:last-child)']
           },
           customize: function(doc) {
             doc.defaultStyle = {
               font: 'THSarabun',
               fontSize: 12
             };
-            doc.content[1].table.widths = ['25%', '25%', '25%', '25%'];
+       
             doc.styles.tableHeader.fontSize = 13;
             var rowCount = doc.content[1].table.body.length; // นับจำนวนแถวทั้งหมดในตาราง
             // วนลูปเพื่อกำหนดค่า
@@ -235,10 +235,10 @@ include('auth.php');
         {
           "extend": 'pdf',
           "text": 'PDF (vertical)',
-          "title": 'คำตอบแบบฟอร์ม',
+          "title": 'Report',
           "pageSize": 'A4', 
           exportOptions: {
-            columns: [1,2,3,4]
+            columns: [':visible :not(:last-child)']
           },
           "customize": function(doc) {
             doc.defaultStyle = {
@@ -266,7 +266,7 @@ include('auth.php');
         },
         {
           extend: 'print',
-          title: "คำตอบแบบฟอร์ม",
+          title: "demo title",
           orientation: 'landscape',
           exportOptions: {
             columns: [0, 1, 2, 3]

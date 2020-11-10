@@ -292,13 +292,11 @@ if (isset($_POST['addQ'])) {
 
         
         if ($_SESSION['go'] == "go_project") {
-            // echo "<script>alert('บันทึกสำเร็จ');
-            // window.location='myproject.php';</script>";
-            echo "<script>window.location='myproject.php';</script>";
+            echo "<script>alert('บันทึกสำเร็จ');
+            window.location='myproject.php';</script>";
         } else if ($_SESSION['go'] == "go_request") {
-            // echo "<script>alert('บันทึกสำเร็จ');
-            // window.location='request.php';</script>";
-            echo "<script>window.location='request.php';</script>";
+            echo "<script>alert('บันทึกสำเร็จ');
+            window.location='request.php';</script>";
         }
     } else {
         $sql2 = "INSERT INTO evaluate_form (project_id,evaluate_name,num_question,question) VALUES ('$project_id','$evaluate_name','$num_eval_question','";
@@ -319,13 +317,11 @@ if (isset($_POST['addQ'])) {
 
 
         if ($_SESSION['go'] == "go_project") {
-            // echo "<script>alert('สร้างแบบประเมินสำเร็จ');
-            // window.location='myproject.php';</script>";
-            echo "<script>window.location='myproject.php';</script>";
+            echo "<script>alert('สร้างแบบประเมินสำเร็จ');
+            window.location='myproject.php';</script>";
         } else if ($_SESSION['go'] == "go_request") {
-            // echo "<script>alert('บันทึกสำเร็จ');
-            // window.location='request.php';</script>";
-            echo "<script>window.location='request.php';</script>";
+            echo "<script>alert('บันทึกสำเร็จ');
+            window.location='request.php';</script>";
         }
     }
 }

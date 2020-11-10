@@ -52,8 +52,8 @@ include('auth.php');
                 <div class="container">
                     <?php
 
-                    $project_id = 302;
-                    // $project_id = $_GET['project_id'];
+              
+                    $project_id = $_GET['project_id'];
 
 
                     include_once('connect.php');
@@ -99,7 +99,7 @@ include('auth.php');
                                 for ($i = 0; $i < $count_will_appendquestion; $i++) {
                                     echo '<tr>
                                     <td height="30">' . ($i + 1) . '. ' . $question_explode[$i] . '</td>
-                                    <td height="30" align="center"><input name="score' . $i . '" type="radio" value="5" ></td>
+                                    <td height="30" align="center"><input name="score' . $i . '" type="radio" value="5" required></td>
                                     <td height="30" align="center"><input name="score' . $i . '" type="radio" value="4" ></td>
                                     <td height="30" align="center"><input name="score' . $i . '" type="radio" value="3" ></td>
                                     <td height="30" align="center"><input name="score' . $i . '" type="radio" value="2" ></td>

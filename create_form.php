@@ -596,7 +596,7 @@ var num_question = 0;
 
             //addquestion คือจำนวนที่มีการสร้าง
             $addquestion = $_COOKIE['addquestion'];
-            // echo " all_question = " . $addquestion;
+            echo " all_question = " . $addquestion;
     
     
             //count_question คือจำนวนคำถามที่มีอยู่จริงๆ
@@ -606,16 +606,16 @@ var num_question = 0;
             } else {
                 $count_question = count($_POST['question']);
             }
-            // echo " true_num_question = " . $count_question;
+            echo " true_num_question = " . $count_question;
     
     
-            // var_dump($_COOKIE['type']);
+            var_dump($_COOKIE['type']);
             $type = $_COOKIE['type'];
             //ตัด comma ออกเพราะติดมาตอนใช้ cookie แล้วทำให้ค่ามันเป็น string
             $type = explode(",", $type);
     
     
-            // var_dump($_COOKIE['numradio']);
+            var_dump($_COOKIE['numradio']);
             $numradio = $_COOKIE['numradio'];
             $numradio = explode(",", $numradio);
     
@@ -626,7 +626,7 @@ var num_question = 0;
             } else {
                 $count_radio = count($_POST['text_radio']);
             }
-            // echo "num_radio = " . $count_radio;
+            echo "num_radio = " . $count_radio;
 
             
             include_once('connect.php');
@@ -669,7 +669,7 @@ var num_question = 0;
 
             $sql5 = "UPDATE question SET num_radio ='";
             for ($i = 0; $i <= $addquestion; $i++) {
-                // echo "round = ".$i;
+                echo "round = ".$i;
                 if ($numradio[$i] != "0" && $numradio[$i] != "null") {
                     $sql5 .= "" . $numradio[$i] . ",";
                 }
@@ -741,7 +741,7 @@ var num_question = 0;
             $result = mysqli_query($conn, $sql);
         }
         if($_SESSION['go'] == "go_project" ){
-            echo "<script>window.location='myproject.php';</script>";
+        echo "<script>window.location='myproject.php';</script>";
         
         }else if($_SESSION['go'] == "go_request" ){
             echo "<script>window.location='request.php';</script>";
