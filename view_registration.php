@@ -199,9 +199,9 @@ include('auth.php');
           text: 'PDF (landscape)',
           orientation: 'landscape',
           pageSize: 'A4',
-          // exportOptions: {
-          //   columns: [':visible :not(:last-child)']
-          // },
+          exportOptions: {
+            columns: [':visible']
+          },
           customize: function(doc) {
             doc.defaultStyle = {
               font: 'THSarabun',
@@ -251,9 +251,9 @@ include('auth.php');
           "text": 'PDF (vertical)',
           "title": 'Report',
           "pageSize": 'A4',
-          // exportOptions: {
-          //   columns: [':visible :not(:last-child)']
-          // },
+          exportOptions: {
+            columns: [':visible']
+          },
           "customize": function(doc) {
             doc.defaultStyle = {
               font: 'THSarabun',
@@ -299,11 +299,10 @@ include('auth.php');
         },
         {
           extend: 'print',
-          title: "demo title",
+          title: "Report",
           orientation: 'landscape',
           exportOptions: {
-            columns: [0, 1, 2, 3]
-            // columns: ':visible',
+            columns: [':visible']
           },
           customize: function(win) {
             var last = null;

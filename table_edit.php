@@ -178,12 +178,24 @@ $result = $conn->query($sql);
     $result2 = $conn->query($sql2);
     while ($row2 = $result2->fetch_assoc()) {
 
-        echo '<tfoot>
-                <tr>
-                <th id="total" colspan="4"><input type="text" style="width: 99%;" readonly value="รวม :"></th>
-                <th> <input type="text" style="width: 99%;" name="result" id="result" value ="' . $row2["result_budget"] . '" readonly></th>
-                </tr>
-        </tfoot>';
+        echo '
+        <tfoot>
+            <tr id="total2">
+            <th id="total" colspan="4"><input type="text" style="width: 99%;" readonly value="รวมค่าใช้จ่าย :"></th>
+            <th> <input type="text" style="width: 99%;" name="result" id="result" value = "' .  number_format($row2["result_budget"],2). '" readonly></th>
+            </tr>
+
+            <tr>
+            <th id="" colspan="4"><input type="text" style="width: 99%;" readonly value="+15 % (ค่าบริการวิชาการ) :"></th>
+            <th> <input type="text" style="width: 99%;" name="operation_fee" id="operation_fee" value = "' .  number_format(($row2["result_budget"]*0.15),2). '" readonly></th>
+            </tr>
+
+            <tr>
+            <th id="" colspan="4"><input type="text" style="width: 99%;" readonly value="รวมค่าใช้จ่ายสุทธิ :"></th>
+            <th> <input type="text" style="width: 99%;" name="sum_total" id="sum_total" value =  "' .  number_format($row2["result_budget"]*0.15+$row2["result_budget"],2). '" readonly></th>
+            </tr>
+
+         </tfoot>';
     } ?>
 </table>
 <!-- 
@@ -339,6 +351,12 @@ $result = $conn->query($sql);
         cal_sum(3, i3);
         cal_sum(4, i4);
         $('#result').val(total.toFixed(2));
+
+        operation_fee = total*0.15; 
+        $('#operation_fee').val(operation_fee.toFixed(2));
+
+        sum_total = operation_fee+total
+        $('#sum_total').val(sum_total.toFixed(2));
         console.log(total);
         total = 0;
     }

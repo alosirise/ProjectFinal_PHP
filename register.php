@@ -1,5 +1,8 @@
-<?php ob_start();?>
-
+<?php ob_start(); ?>
+<?php 
+session_start();
+include_once('connect.php');
+?>
 <!doctype html>
 <html lang="en">
 
@@ -21,7 +24,7 @@
 
 <body>
     <?php
- 
+
     if (isset($_POST['submit'])) {
         $sql2 = "SELECT username FROM member WHERE username ='$_POST[username]'";
         $result2 = mysqli_query($conn, $sql2);

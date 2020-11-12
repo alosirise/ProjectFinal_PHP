@@ -35,7 +35,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     <div class="" id="nav"></div>
     <form action="" method="POST">
         <?php
-
+//หน่วยงานที่รับผิดชอบ ->แหล่งเงิน
         include_once('connect.php');
 
         echo ' 
@@ -50,7 +50,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                         <input type="text" class="form-control text" id="name_project" name="name_project"></td>
                     </div>
                     <div>
-                        <label for="exampleFormControlInput1">หน่วยงานที่รับผิดชอบ</label>
+                        <label for="exampleFormControlInput1">แหล่งเงิน</label>
                         <input type="text" class="form-control text" id="respondsible_department" name="respondsible_department"></td>
                     </div>
                     <div>
@@ -132,6 +132,30 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                         <div id="includedContent" name ="budget"></div>
                     </div>
 
+
+
+                    <label for="exampleFormControlInput1">ปีงบประมาณ</label>
+                    <table>  
+                    <tr>
+                        <td ><input type="text" class="form-control text" id=edit_budget_year name="budget_year" ><td>
+                    </tr>
+                    </table>    
+                 
+
+
+                    <label for="exampleFormControlInput1">หัวหน้าโครงการ</label> 
+                    <table>  
+                    <tr>
+                        <td ><input type="text" class="form-control text" id=edit_project_leader name="project_leader"  ><td>
+                    </tr>
+                    </table>    
+     
+
+
+
+
+
+
                     <label for="exampleFormControlInput1">คณะทำงาน</label> &nbsp;&nbsp;&nbsp;<a class="btn btn-info btn-xs" id="addRow4" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
                     <div style ="padding-left : 12px; padding-top: 6px;">   
                         <table>
@@ -201,6 +225,12 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         $dropoff_date = $_POST['dropoff_date'];
         $numdays = $_POST['numdays'];
 
+
+        $budget_year = $_POST['budget_year'];
+        $project_leader = $_POST['project_leader'];
+
+        // $sum_total = $_POST['cost'];
+
         // echo $startTime;
         // echo $endTime;
 
@@ -216,8 +246,8 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         } else {
             $datetime = date('Y-m-d H:i:s');
 
-            $sql2 = "INSERT INTO create_project (id,creator ,name_project,respondsible_department,principle,target_group,location,cost,status,last_change,startDate,endDate,numdays,result_budget) 
-                VALUES ( '$user_id','$username','$name_project', '$respondsible_department','$principle','$target_group','$location','$cost','$status','$datetime','$pickup_date','$dropoff_date','$numdays','" . $_POST['result'] . "')";
+            $sql2 = "INSERT INTO create_project (id,creator ,name_project,respondsible_department,principle,target_group,location,cost,status,last_change,startDate,endDate,numdays,result_budget,sum_result_budget,budget_year,project_leader) 
+                VALUES ( '$user_id','$username','$name_project', '$respondsible_department','$principle','$target_group','$location','$cost','$status','$datetime','$pickup_date','$dropoff_date','$numdays','" . $_POST['result'] . "','" . $_POST['sum_total'] . "','$budget_year','$project_leader')";
             $result2 = mysqli_query($conn, $sql2);
 
             echo $sql2;

@@ -311,11 +311,10 @@ include('auth.php');
         },
         {
           extend: 'print',
-          title: "demo title",
+          title: "Report",
           orientation: 'landscape',
           exportOptions: {
-            columns: [0, 1, 2, 3]
-            // columns: ':visible',
+            columns: [':visible']
           },
           customize: function(win) {
             var last = null;

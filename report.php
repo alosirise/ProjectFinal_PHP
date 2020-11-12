@@ -23,7 +23,7 @@ if ($_SESSION['role'] != "admin") {
     <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.21/datatables.min.css" /> -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css" />
-    
+
 
 </head>
 <style>
@@ -100,6 +100,40 @@ if ($_SESSION['role'] != "admin") {
 </style>
 
 <body>
+
+    <?php
+
+    $dayTH = ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'];
+    $monthTH = [null, 'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
+    $monthTH_brev = [null, 'ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
+
+    function thai_date_short($time)
+    {   // 19  ธ.ค. 2556a
+        global $dayTH, $monthTH_brev;
+        $thai_date_return = date("j", $time);
+        $thai_date_return .= " " . $monthTH_brev[date("n", $time)];
+        // $thai_date_return .= " " . (date("Y", $time) + 543);                   *****hide year
+        return $thai_date_return;
+    }
+    function thai_date_fullmonth($time)
+    {   // 19 ธันวาคม 2556
+        global $dayTH, $monthTH;
+        $thai_date_return = date("j", $time);
+        $thai_date_return .= " " . $monthTH[date("n", $time)];
+        $thai_date_return .= " " . (date("Y", $time) + 543);
+        return $thai_date_return;
+    }
+    function thai_date_short_number($time)
+    {   // 19-12-56
+        global $dayTH, $monthTH;
+        $thai_date_return = date("d", $time);
+        $thai_date_return .= "-" . date("m", $time);
+        $thai_date_return .= "-" . substr((date("Y", $time) + 543), -2);
+        return $thai_date_return;
+    }
+    ?>
+
+
     <div class="" id="nav"></div>
     <div id="main">
         <div class="w3-container col-lg-11 center">
@@ -115,25 +149,45 @@ if ($_SESSION['role'] != "admin") {
               <thead>
                 <tr class="w3-blue-gray">
                 <th  style="width:1%">ลำดับ</th>
-                  <th style="width:1%" >ชื่อโครงการ</th>     
-                  <th style="width:1%" >หน่วยงานที่รับผิดชอบ</th>
-                  <th style="width:1%" >ระยะเวลา (วัน)</th> 
-                  <th style="width:1%" >สถานที่</th>      
-                  <th  style="width:1%">งบประมาณค่าใช้จ่าย</th>      
-                  <th style="width:1%" >ค่าลงทะเบียนอบรม (บาท)</th>      
-                  <th  style="width:1%"></th>      
-                
+                  <th style="width:5%" >ปีงบประมาณ</th>     
+                  <th style="width:15%" >ชื่อโครงการ</th>
+                  <th style="width:5%" >หัวหน้าโครงการ</th> 
+                  <th style="width:15%" >ผู้ร่วมโครงการ</th>      
+                  <th  style="width:15%">ระยะเวลา</th>      
+                  <th style="width:5%" >แหล่งเงิน</th>      
+                  <th  style="width:15%">ประมาณการค่าใช้จ่าย</th>      
+                  <th  style="width:10%">สรุปค่าใช้จ่ายและเงินคงเหลือ</th>      
+                  <th  style="width:14%">เปอเซ็น</th>      
                 </tr>
               </thead><tbody> ';
 
-                // output data of each row
+                $project_id_create; //id in database
+                $project_id_multiple; //id in database
+
+                //   thai_date_fullmonth(strtotime($row["startDate"])) .ถึง . thai_date_fullmonth(strtotime($row["endDate"]))
+
                 while ($row = $result->fetch_assoc()) {
                     $number++;
-                    echo "<tr><td> " . $number . ".</td><td>" . $row["name_project"] . "</td>        <td>" . $row["respondsible_department"] . "</td><td>" . $row["numdays"] . "</td><td>" . $row["location"] . "</td><td>" . $row["result_budget"] . "</td><td>" . $row["cost"] . "</td><td> test</td>
-             
-           
-            </tr>";
+                    $project_id_create = $row["project_id"];
+
+                    $sql2 = "SELECT * FROM mutiple_text WHERE project_id = $project_id_create";
+                    $result2 = $conn->query($sql2);
+               
+                    echo "<tr><td> " . $number . ".</td><td>" . $row["budget_year"] . "</td>        <td>" . $row["name_project"] . "</td><td>" . $row["project_leader"] . "</td>
+                    <td>";
+
+                    
+                    while ($row2 = $result2->fetch_assoc()) {
+                        echo $row2["working_group"] .'<br>';
+                    }
+
+
+                    echo  "</td><td>" . thai_date_short(strtotime($row["startDate"])) . ' - ' . thai_date_short(strtotime($row["endDate"])) . "</td><td>" . $row["respondsible_department"] . "</td>
+                    <td>" . $row["sum_result_budget"] .  "</td><td> test</td><td> test</td>
+                    
+                            </tr>";
                 }
+
                 // echo '</tbody><tfoot> <tr class="w3-blue-gray">
                 //   <th class="topic1">ที่</th>
                 //   <th class="topic2">ชื่อโครงการ</th>     
@@ -143,7 +197,7 @@ if ($_SESSION['role'] != "admin") {
                 //   <th class="topic6"></th>      
                 //   <th class="topic7"></th>      
                 //   <th class="topic8"></th>      
-               
+
                 // </tr></tfoot>';
                 echo "</table>";
             } else {
@@ -309,16 +363,16 @@ if ($_SESSION['role'] != "admin") {
                         title: 'report',
                         text: 'PDF (landscape)',
                         orientation: 'landscape',
-                        pageSize: 'A4',
+                        pageSize: 'A1',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
                         },
                         customize: function(doc) {
                             doc.defaultStyle = {
                                 font: 'THSarabun',
                                 fontSize: 12
                             };
-                            doc.content[1].table.widths = ['5%', '20%', '5%', '5%', '15%', '15%', '20%', '15%'];
+                            doc.content[1].table.widths = ['5%', '5%', '15%', '5%', '10%', '15%', '5%', '15%', '15%', '10%'];
                             doc.styles.tableHeader.fontSize = 13;
                             var rowCount = doc.content[1].table.body.length; // นับจำนวนแถวทั้งหมดในตาราง
                             // วนลูปเพื่อกำหนดค่า
@@ -331,6 +385,8 @@ if ($_SESSION['role'] != "admin") {
                                 doc.content[1].table.body[i][5].alignment = 'left';
                                 doc.content[1].table.body[i][6].alignment = 'left';
                                 doc.content[1].table.body[i][7].alignment = 'left';
+                                doc.content[1].table.body[i][8].alignment = 'left';
+                                doc.content[1].table.body[i][9].alignment = 'left';
                             };
                             console.log(doc);
                         }
@@ -394,7 +450,7 @@ if ($_SESSION['role'] != "admin") {
                     }, {
                         extend: 'colvis',
                         collectionLayout: 'fixed two-column'
-                        
+
                     }
                 ]
             });

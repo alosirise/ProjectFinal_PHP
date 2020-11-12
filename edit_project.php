@@ -1,4 +1,4 @@
-<?php ob_start();?>
+<?php ob_start(); ?>
 <?php
 session_start();
 include('auth.php');
@@ -49,7 +49,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
                         if ($result->num_rows > 0) {
 
-
+                            //หน่วยงานที่รับผิดชอบ ->แหล่งเงิน
                             while ($row = $result->fetch_assoc()) {
                                 $_SESSION['project_id'] = $row['project_id'];
                                 echo '   
@@ -59,7 +59,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                             <input type="text" class="form-control text" id=edit_name_project name="name_project"  readonly value="' . $row["name_project"] . '"></td>
                         </div>
                         <div>
-                            <label for="exampleFormControlInput1">หน่วยงานที่รับผิดชอบ</label>  <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'respond\')"></i>
+                            <label for="exampleFormControlInput1">แหล่งเงิน</label>  <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'respond\')"></i>
                             <input type="text" class="form-control text" id=edit_respond name="respondsible_department" readonly  value="' . $row["respondsible_department"] . '"></td>
                         </div>
                         <div><label for="exampleFormControlInput1">หลักการและเหตุผล</label>  <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'principle\')"></i>
@@ -173,6 +173,31 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                         </div>
                         </div>
                      
+
+                        <label for="exampleFormControlInput1">ปีงบประมาณ</label> <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'budget_year\')"></i>
+                  
+                    <table>  
+                    <tr>
+                        <td ><input type="text" class="form-control text" id=edit_budget_year name="budget_year"  readonly value="' . $row["budget_year"] . '"><td>
+                    </tr>
+                    </table>    
+                   
+
+
+
+
+                    <label for="exampleFormControlInput1">หัวหน้าโครงการ</label> <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'project_leader\')"></i>
+                  
+                    <table>  
+                    <tr>
+                        <td ><input type="text" class="form-control text" id=edit_project_leader name="project_leader"  readonly value="' . $row["project_leader"] . '"><td>
+                    </tr>
+                    </table>    
+                   
+
+
+
+
                         <label for="exampleFormControlInput1">คณะทำงาน</label>  <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'working_group\')"></i>
                         &nbsp;&nbsp;&nbsp;<a class="btn btn-info btn-xs" id="addRow4" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
                         <div style ="padding-left : 12px; padding-top: 6px;">   
@@ -193,7 +218,11 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                             
                         </div>
                       
-                       
+
+
+               
+
+
                     </div>
                 </div>
             </div>
@@ -208,12 +237,12 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
     </form>
 
-<!--     
+    <!--     
             This is where you can add in the HTML you’d like to 
         
         <center>
             <a href="javascript:demoFromHTML()" class="button">Download to PDF</a></center> -->
-   
+
     <?php
 
     if (isset($_POST["submit"])) {
@@ -230,11 +259,15 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         $dropoff_date = $_POST['dropoff_date'];
         $numdays = $_POST['numdays'];
 
+        $budget_year = $_POST['budget_year'];
+        $project_leader = $_POST['project_leader'];
+
 
         $sql2 = "UPDATE `create_project` SET name_project = '" . $name_project . "', respondsible_department = '" . $respondsible_department . "'  
                     ,principle = '" . $principle . "',target_group = '" . $target_group . "',duration = '" . $duration . "',
                     location = '" . $location . "',cost = '" . $cost . "',startDate = '" . $pickup_date . "',
-                    endDate = '" .  $dropoff_date . "',numdays = '" . $numdays . "',result_budget = '" . $_POST['result'] . "'   WHERE project_id = '$_GET[project_id]'";
+                    endDate = '" .  $dropoff_date . "',numdays = '" . $numdays . "',result_budget = '" . $_POST['result'] . "',sum_result_budget = '" . $_POST['sum_total'] . "',
+                    budget_year = '" . $budget_year . "' ,project_leader = '" . $project_leader . "' WHERE project_id = '$_GET[project_id]'";
         $result = mysqli_query($conn, $sql2);
 
 
@@ -343,7 +376,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
         function demoFromHTML() {
             var pdf = new jsPDF('p', 'pt', 'letter');
-            
+
             source = $('#content')[0];
 
             specialElementHandlers = {

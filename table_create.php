@@ -108,10 +108,21 @@ include_once('connect.php');
         </tbody>
 
         <tfoot>
-            <tr>
-            <th id="total" colspan="4"><input type="text" style="width: 99%;" readonly value="รวม :"></th>
+            <tr id="total2">
+            <th id="total" colspan="4"><input type="text" style="width: 99%;" readonly value="รวมค่าใช้จ่าย :"></th>
             <th> <input type="text" style="width: 99%;" name="result" id="result" value = "0" readonly></th>
             </tr>
+
+            <tr>
+            <th id="" colspan="4"><input type="text" style="width: 99%;" readonly value="+15 % (ค่าบริการวิชาการ) :"></th>
+            <th> <input type="text" style="width: 99%;" name="operation_fee" id="operation_fee" value = "0" readonly></th>
+            </tr>
+
+            <tr>
+            <th id="" colspan="4"><input type="text" style="width: 99%;" readonly value="รวมค่าใช้จ่ายสุทธิ :"></th>
+            <th> <input type="text" style="width: 99%;" name="sum_total" id="sum_total" value =  "0" readonly></th>
+            </tr>
+
          </tfoot>';
     ?>
 
@@ -160,7 +171,7 @@ include_once('connect.php');
             num = i3;
         }
         if (topic == 4) {
-            var index = table.rows.length - 1;
+            var index = document.getElementById("total2").rowIndex;
             i4++;
             num = i4;
         }
@@ -240,7 +251,8 @@ include_once('connect.php');
 
 
     var total = 0;
-
+    var operation_fee =0;
+    var sum_total =0; 
     function sum() {
 
         cal_sum(1, i1);
@@ -248,6 +260,12 @@ include_once('connect.php');
         cal_sum(3, i3);
         cal_sum(4, i4);
         $('#result').val(total.toFixed(2));
+
+        operation_fee = total*0.15; 
+        $('#operation_fee').val(operation_fee.toFixed(2));
+
+        sum_total = operation_fee+total
+        $('#sum_total').val(sum_total.toFixed(2));
         console.log(total);
         total = 0;
     }
