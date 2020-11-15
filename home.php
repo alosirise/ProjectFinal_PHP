@@ -81,7 +81,7 @@ $(document).ready(function(){
       
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="pic1.jpg" alt="First Slide">
+                <img src="poster.jpg" alt="First Slide">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>First slide label</h5>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>

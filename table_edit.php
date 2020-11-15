@@ -233,10 +233,10 @@ $result = $conn->query($sql);
     var i3 = "<?php echo $i3 - 1 ?>";
     var i4 = "<?php echo $i4 - 1 ?>";
 
-    $('#edit1-' + 1 + '-' + 1).val(1);
-    $('#edit1-' + 1 + '-' + 2).val(1);
-    $('#edit1-' + 1 + '-' + 3).val(1);
-    $('#edit1-' + 1 + '-' + 4).val(1);
+    $('#edit1-' + 1 + '-' + 1).val(i1);
+    $('#edit1-' + 1 + '-' + 2).val(i2);
+    $('#edit1-' + 1 + '-' + 3).val(i3);
+    $('#edit1-' + 1 + '-' + 4).val(i4);
 
     function myCreateFunction(topic) {
         total_topic = total_topic + 1;
@@ -260,12 +260,10 @@ $result = $conn->query($sql);
             num = i3;
         }
         if (topic == 4) {
-            var index = table.rows.length - 1;
+            var index = document.getElementById("total2").rowIndex;
             i4++;
             num = i4;
         }
-
-
         var row = table.insertRow(index);
 
         var cell1 = row.insertCell(0);
@@ -343,6 +341,8 @@ $result = $conn->query($sql);
 
 
     var total = 0;
+    var operation_fee =0;
+    var sum_total =0; 
 
     function sum() {
 
@@ -357,68 +357,31 @@ $result = $conn->query($sql);
 
         sum_total = operation_fee+total
         $('#sum_total').val(sum_total.toFixed(2));
+
+
+        
         console.log(total);
         total = 0;
     }
 
 
+    
 
     function cal_sum(topic, c_num) {
+        console.log("c_num  "+c_num);
         for (var count = 1; count <= c_num; count++) {
 
             var stored = parseFloat($('#edit5-' + count + '-' + topic).val());
             if (isNaN(stored)) {
                 stored = 0;
             }
+            console.log("SDfsdf"+total);
             total = total + stored;
 
         }
     }
 
 
-
-    // function session() {
-    //     var no = $("input[name='no[]']")
-    //         .map(function() {
-    //             return $(this).val();
-    //         }).get();
-
-    //     var list = $("input[name='list[]']")
-    //         .map(function() {
-    //             return $(this).val();
-    //         }).get();
-
-    //     var quantity = $("input[name='quantity[]']")
-    //         .map(function() {
-    //             return $(this).val();
-    //         }).get();
-
-    //     var rate = $("input[name='rate[]']")
-    //         .map(function() {
-    //             return $(this).val();
-    //         }).get();
-
-    //     var cost1 = $("input[name='cost1[]']")
-    //         .map(function() {
-    //             return $(this).val();
-    //         }).get();
-
-    //     console.log(no);
-
-    //     $.ajax({
-    //         url: 'create_project.php',
-    //         type: 'POST',
-    //         data: {
-    //             'no[]': no,
-    //             'list[]': list,
-    //             'quantity[]': quantity,
-    //             'rate[]': rate,
-    //             'cost1[]': cost1
-
-    //         },
-    //         success: function(msg) {}
-    //     });
-    // }
 
 
     var a;

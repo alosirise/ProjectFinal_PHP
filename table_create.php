@@ -286,50 +286,6 @@ include_once('connect.php');
 
 
 
-    // function session() {
-    //     var no = $("input[name='no[]']")
-    //         .map(function() {
-    //             return $(this).val();
-    //         }).get();
-
-    //     var list = $("input[name='list[]']")
-    //         .map(function() {
-    //             return $(this).val();
-    //         }).get();
-
-    //     var quantity = $("input[name='quantity[]']")
-    //         .map(function() {
-    //             return $(this).val();
-    //         }).get();
-
-    //     var rate = $("input[name='rate[]']")
-    //         .map(function() {
-    //             return $(this).val();
-    //         }).get();
-
-    //     var cost1 = $("input[name='cost1[]']")
-    //         .map(function() {
-    //             return $(this).val();
-    //         }).get();
-
-    //     console.log(no);
-
-    //     $.ajax({
-    //         url: 'create_project.php',
-    //         type: 'POST',
-    //         data: {
-    //             'no[]': no,
-    //             'list[]': list,
-    //             'quantity[]': quantity,
-    //             'rate[]': rate,
-    //             'cost1[]': cost1
-
-    //         },
-    //         success: function(msg) {}
-    //     });
-    // }
-
-
     var a;
 
     function myDeleteFunction(topic) {
@@ -383,27 +339,7 @@ include_once('connect.php');
         }
     }
 
-    // function myEditFunction() {
-    //     var index, table = document.getElementById('table');
-    //     for (var i = 2; i < table.rows.length; i++) {
-    //         table.rows[i].cells[5].onclick = function() {
 
-    //             index = this.parentElement.rowIndex;
-    //             console.log("This is index : " + index);
-    //             ////    document.getElementById("no").disabled = false;
-    //             if ($('input[id^="edit"]').is('[readonly]')) {
-
-    //                 $('input[id^="edit"]').attr('readonly', false);
-    //                 // console.log("table id " +table_id);
-    //             } else {
-
-    //                 $('input[id^="edit"]').attr('readonly', true);
-    //             }
-
-    //         };
-    //     }
-
-    // }
 </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>

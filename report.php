@@ -155,8 +155,8 @@ if ($_SESSION['role'] != "admin") {
                   <th style="width:15%" >ผู้ร่วมโครงการ</th>      
                   <th  style="width:15%">ระยะเวลา</th>      
                   <th style="width:5%" >แหล่งเงิน</th>      
-                  <th  style="width:15%">ประมาณการค่าใช้จ่าย</th>      
-                  <th  style="width:10%">สรุปค่าใช้จ่ายและเงินคงเหลือ</th>      
+                  <th  style="width:15%">ประมาณการค่าใช้จ่าย (บาท)</th>      
+                  <th  style="width:10%">สรุปค่าใช้จ่ายและเงินคงเหลือ (บาท)</th>      
                   <th  style="width:14%">เปอเซ็น</th>      
                 </tr>
               </thead><tbody> ';
