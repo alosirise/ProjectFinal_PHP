@@ -122,10 +122,19 @@ include('auth.php');
                 echo "ยังไม่การตอบกลับ";
               }
 
+
+              $sql5 = "SELECT * from profile where profile_id = '" . $_SESSION['id'] . "'";
+              $result5 = mysqli_query($conn, $sql5);
+              if ($result5->num_rows > 0) {
+                while ($row = $result5->fetch_assoc()) {
+                  $profile_id = $row["profile_id"];
+                }
+              }
+
               for ($z = 0; $z < $count_user; $z++) {
 
                 echo '<tr id="tr">';
-                echo '<td>' . $username[$z] . '</td>';
+                echo '<td><a href=profile.php?profile_id=' . $profile_id . '>'.$username[$z].'</a></td>';
                 for ($x = 0; $x < (int) $countquestion; $x++) {
                   echo '<td>' . $answer[$append_answer] . '</td>';
                   $append_answer++;

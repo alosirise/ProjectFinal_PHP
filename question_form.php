@@ -1,4 +1,4 @@
-<?php ob_start();?>
+<?php ob_start(); ?>
 <?php
 session_start();
 include('auth.php');
@@ -35,6 +35,7 @@ include('auth.php');
                 $count_question = 0;
 
                 include_once('connect.php');
+
 
                 $sql5 = "SELECT * from history where username = '" . $_SESSION['username'] . "'  AND project_id = $project_id";
                 $result5 = mysqli_query($conn, $sql5);
@@ -121,11 +122,21 @@ include('auth.php');
         // var_dump($type_question);
         // var_dump($_POST['ans_question3']);
 
+        $sql6 = "SELECT * from profile where profile_id = '" . $_SESSION['id'] . "'";
+        $result6 = mysqli_query($conn, $sql6);
+        if ($result6->num_rows > 0) {
+            while ($row = $result6->fetch_assoc()) {
+                $firstname = $row['firstname'];
+            }
+        }
+        //firstname คือใส่ชื่อ firstname คนตอบ เอามาจาก $sql6
+
+
         $count_checkbox_check = array();
         $username = $_SESSION['username'];
 
         for ($i = 0; $i < $count_question; $i++) {
-            $sql1 = "INSERT INTO answer (project_id,username,question,answer) VALUES ('$project_id','$username','$question_explode[$i]','";
+            $sql1 = "INSERT INTO answer (project_id,username,question,answer) VALUES ('$project_id','$firstname','$question_explode[$i]','";
             if (gettype($_POST['ans_question' . $i]) == "array") {
                 $count_checkbox_check[$i] = count($_POST['ans_question' . $i]);
                 for ($y = 0; $y < $count_checkbox_check[$i]; $y++) {

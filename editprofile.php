@@ -95,7 +95,7 @@ include('auth.php');
                         echo '<input type="file" name="image" id="image" style="display: none;" onchange="displayImage(this)">
                     </div>';
 
-                        $sql = "SELECT * FROM `profile` WHERE id = '" . $_SESSION['id'] . "'";
+                        $sql = "SELECT * FROM `profile` WHERE profile_id = '" . $_SESSION['id'] . "'";
                         $result = mysqli_query($conn, $sql);
 
                         //fix current date
@@ -107,25 +107,22 @@ include('auth.php');
            <div class="col-lg-8 mx-auto">ชื่อ <input type="text" value="' . $row["firstname"] . '" name="firstname" required></div> 
            <div class="col-lg-8 mx-auto">นามสกุล <input type="text" value="' . $row["surname"] . '" name="surname" required></div>
            <div class="col-lg-8 mx-auto">วัน/เดือน/ปีเกิด <input type="date" value="' . $row["dateofbirth"] . '" name="dateofbirth" min="1900-01-01" max="' . $current_date . '"></div>
-           <div class="col-lg-8 mx-auto">ที่อยู่ <textarea name="address2" required rows="3" cols="30">
-           ' . $row["address2"] . '
-           </textarea></div>
-
+           <div class="col-lg-8 mx-auto">ที่อยู่ <textarea name="address2" required rows="3" cols="30">'.$row["address2"].'</textarea></div>
            <div class="col-lg-8 mx-auto">เบอร์โทร <input type="text" value="' . $row["telephone"] . '" name="telephone" pattern=".{9,10}" required title="9 to 10 characters"></div>
            <div class="col-lg-8 mx-auto">อีเมลล์ <input type="email" value="' . $row["email"] . '" name="email" required></div>
            <div class="col-lg-8 mx-auto">แพ้ยา/อาหาร <input type="text" value="' . $row["drug_food_allergy"] . '" name="drug_food_allergy" required></div>';
 
                                 if ($row["sex"] == "male") {
                                     echo '<div class="col-lg-8 mx-auto">เพศ
-                <input type="radio" name="sex" value="male" checked>
+                <input type="radio" name="sex" value="ชาย" checked>
                 <label for="male">ชาย</label>
-                <input type="radio" name="sex" value="female">
+                <input type="radio" name="sex" value="หญิง">
                 <label for="male">หญิง</label>';
                                 } else {
                                     echo '<div class="col-lg-8 mx-auto">เพศ
-                <input type="radio" name="sex" value="male">
+                <input type="radio" name="sex" value="ชาย">
                 <label for="male">ชาย</label>
-                <input type="radio" name="sex" value="female" checked>
+                <input type="radio" name="sex" value="หญิง" checked>
                 <label for="male">หญิง</label>';
                                 }
                             }
@@ -169,7 +166,7 @@ include('auth.php');
         $sex = $_POST["sex"];
 
         $sql2 = "UPDATE `profile` SET firstname = '" . $firstname . "' ,surname = '" . $surname . "' ,dateofbirth = '" . $dateofbirth . "' ,address2 = '" . $address2 . "'
-        ,telephone = '" . $telephone . "' ,email = '" . $email . "' ,drug_food_allergy = '" . $drug_food_allergy . "' ,sex = '" . $sex . "' WHERE id='" . $session . "'";
+        ,telephone = '" . $telephone . "' ,email = '" . $email . "' ,drug_food_allergy = '" . $drug_food_allergy . "' ,sex = '" . $sex . "' WHERE profile_id='" . $session . "'";
         $result = mysqli_query($conn, $sql2);
         echo "<script>window.location='profile.php';</script>";
         if (empty($_FILES['image']['tmp_name'])) {

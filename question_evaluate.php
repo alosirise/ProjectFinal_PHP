@@ -1,4 +1,4 @@
-<?php ob_start();?>
+<?php ob_start(); ?>
 <?php
 session_start();
 include('auth.php');
@@ -53,13 +53,22 @@ include('auth.php');
                 <div class="container">
                     <?php
 
-              
+
                     $project_id = $_GET['project_id'];
 
 
                     include_once('connect.php');
 
-                    $sql2 = "SELECT * from answer_evaluate where username = '" . $_SESSION['username'] . "'  AND project_id = $project_id";
+                    $sql4 = "SELECT * from profile where profile_id = '" . $_SESSION['id'] . "'";
+                    $result4 = mysqli_query($conn, $sql4);
+                    if ($result4->num_rows > 0) {
+                        while ($row = $result4->fetch_assoc()) {
+                            $firstname_check = $row['firstname'];
+                        }
+                    }
+
+
+                    $sql2 = "SELECT * from answer_evaluate where username = '" . $firstname_check . "'  AND project_id = $project_id";
                     $result2 = mysqli_query($conn, $sql2);
                     if ($result2->num_rows > 0) {
                         echo '<div class="bewcard">
@@ -68,7 +77,7 @@ include('auth.php');
                         echo '<div class="w3-container col-lg-2">
                             <button type="submit" class="btn-primary" name="back">กลับ</button>
                         </div>';
-                    }else{
+                    } else {
 
                         $sqlselect = "SELECT * from evaluate_form where project_id = $project_id";
                         $resultselect = mysqli_query($conn, $sqlselect);
@@ -115,11 +124,10 @@ include('auth.php');
                                     </table>';
                             }
                         }
-                        
+
                         echo '<div>
                             <button type="submit" class="btn-primary" name="sendAnswer">ส่งคำตอบ</button>
                         </div>';
-                        
                     }
                     ?>
 
@@ -147,10 +155,19 @@ include('auth.php');
 <?php
 if (isset($_POST['sendAnswer'])) {
 
+    $sql3 = "SELECT * from profile where profile_id = '" . $_SESSION['id'] . "'";
+    $result3 = mysqli_query($conn, $sql3);
+    if ($result3->num_rows > 0) {
+        while ($row = $result3->fetch_assoc()) {
+            $firstname = $row['firstname'];
+        }
+    }
+
     $username = $_SESSION['username'];
     $suggestion = $_POST['suggestion'];
 
-    $sql = "INSERT INTO answer_evaluate (project_id,username,suggestion,answer) VALUES ('$project_id','$username','$suggestion','";
+    //firstname คือใส่ชื่อ firstname คนตอบ เอามาจาก $sql3
+    $sql = "INSERT INTO answer_evaluate (project_id,username,suggestion,answer) VALUES ('$project_id','$firstname','$suggestion','";
 
     for ($i = 0; $i < $count_will_appendquestion; $i++) {
         $sql .= "" . $_POST['score' . $i] . ",";
@@ -158,7 +175,7 @@ if (isset($_POST['sendAnswer'])) {
     $sql = rtrim($sql, ",");
     $sql .= "')";
 
-    // echo $sql.'<br>';
+    // echo $sql . '<br>';
     $result = mysqli_query($conn, $sql);
 
     echo "<script type='text/javascript'>alert('ตอบแบบประเมินเรียบร้อย');</script>";

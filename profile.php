@@ -42,21 +42,20 @@ include('auth.php');
                 </center>
                 <?php
 
-                $sql = "SELECT * FROM `profile` WHERE id = '" . $_SESSION['id'] . "'";
+                $sql = "SELECT * FROM profile WHERE profile_id = '$_GET[profile_id]'";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         $date = new DateTime($row["dateofbirth"]);
-                        echo '
-           <div class="col-lg-8 mx-auto">ชื่อ : ' . $row["firstname"] . '</div> 
-           <div class="col-lg-8 mx-auto">นามสกุล : ' . $row["surname"] . '</div>' .
+                        echo '<div class="col-lg-8 mx-auto">ชื่อ : ' . $row["firstname"] . '</div> 
+                            <div class="col-lg-8 mx-auto">นามสกุล : ' . $row["surname"] . '</div>' .
                             '<div class="col-lg-8 mx-auto">วัน/เดือน/ปีเกิด : ' . date_format($date, "d/m/Y") . '</div>
-           <div class="col-lg-8 mx-auto">ที่อยู่ : ' . $row["address2"] . '</div>
-           <div class="col-lg-8 mx-auto">เบอร์โทร : ' . $row["telephone"] . '</div>
-           <div class="col-lg-8 mx-auto">อีเมลล์ : ' . $row["email"] . '</div>
-           <div class="col-lg-8 mx-auto">แพ้ยา/อาหาร : ' . $row["drug_food_allergy"] . '</div>
-           <div class="col-lg-8 mx-auto">เพศ : ' . $row["sex"] . '</div>';
+                            <div class="col-lg-8 mx-auto">ที่อยู่ : ' . $row["address2"] . '</div>
+                            <div class="col-lg-8 mx-auto">เบอร์โทร : ' . $row["telephone"] . '</div>
+                            <div class="col-lg-8 mx-auto">อีเมลล์ : ' . $row["email"] . '</div>
+                            <div class="col-lg-8 mx-auto">แพ้ยา/อาหาร : ' . $row["drug_food_allergy"] . '</div>
+                            <div class="col-lg-8 mx-auto">เพศ : ' . $row["sex"] . '</div>';
                     }
                 }
                 ?>

@@ -610,13 +610,13 @@ var num_question = 0;
             echo " true_num_question = " . $count_question;
     
     
-            var_dump($_COOKIE['type']);
+            // var_dump($_COOKIE['type']);
             $type = $_COOKIE['type'];
             //ตัด comma ออกเพราะติดมาตอนใช้ cookie แล้วทำให้ค่ามันเป็น string
             $type = explode(",", $type);
     
     
-            var_dump($_COOKIE['numradio']);
+            // var_dump($_COOKIE['numradio']);
             $numradio = $_COOKIE['numradio'];
             $numradio = explode(",", $numradio);
     

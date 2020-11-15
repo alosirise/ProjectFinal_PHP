@@ -63,7 +63,7 @@
           <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['username']; ?>&nbsp;&nbsp;&nbsp;</a>
 
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownId">
-            <a class="dropdown-item" href="profile.php">Profile</a>
+            <a class="dropdown-item" href="profile.php?profile_id=<?php echo $_SESSION['id']?>">Profile</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="logout.php">Log out</a>
           </div>

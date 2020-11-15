@@ -22,14 +22,13 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     <!-- Bootstrap navbar CSS-->
     <link rel="stylesheet" href="form.css">
     <link rel="stylesheet" href="navbar.css">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 
 <body>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+ 
     <script src="index.js"> </script>
 
     <div class="" id="nav"></div>
