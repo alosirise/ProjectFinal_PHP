@@ -1,4 +1,4 @@
-<?php ob_start();?>
+<?php ob_start(); ?>
 <?php
 session_start();
 include('auth.php');
@@ -51,7 +51,7 @@ $result = $conn->query($sql);
         $sql2 = "SELECT * FROM budget_form WHERE project_id = '" . $_SESSION['project_id'] . "' AND title = '1' ";
         $result2 = $conn->query($sql2);
         $i1 = 1;
-        $count_del2 =0;
+        $count_del2 = 0;
         while ($row2 = $result2->fetch_assoc()) {
 
 
@@ -61,9 +61,13 @@ $result = $conn->query($sql);
                 <td><input type="text"  style="width: 99%;"   name="quantity[]" class="edit"  id="edit3-' . $i1 . '-1"  onclick="test(id)" value ="' . $row2["quantity"] . '" ></td>
                 <td><input type="text"  style="width: 99%;"   name="rate[]"  class="edit"     id="edit4-' . $i1 . '-1"  onclick="test(id)"  value ="' . $row2["rate"] . '" ></td>
                 <td><input type="text"  style="width: 99%;"   name="cost1[]"  class="edit"    id="edit5-' . $i1 . '-1"  value ="' . $row2["cost"] . '" readonly><input type="hidden" name="title[]" value="1"></td>
-                <td> <i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> </td>
-                <td> <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction(1)"></td>
+                <td> <i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> </td>';
+            if ($i1 === 1) {
+                echo ' <td></td>';
+            } else {
+                echo '<td> <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction(1)"></td>
                 </tr> ';
+            }
             $i1++;
             $count_del2++;
         }
@@ -95,9 +99,13 @@ $result = $conn->query($sql);
                 <td><input type="text"  style="width: 99%;"   name="quantity[]" class="edit"  id="edit3-' . $i2 . '-2"  onclick="test(id)" value ="' . $row2["quantity"] . '" ></td>
                 <td><input type="text"  style="width: 99%;"   name="rate[]"  class="edit"     id="edit4-' . $i2 . '-2" onclick="test(id)"  value ="' . $row2["rate"] . '" ></td>
                 <td><input type="text"  style="width: 99%;"   name="cost1[]"  class="edit"    id="edit5-' . $i2 . '-2"  value ="' . $row2["cost"] . '" readonly><input type="hidden" name="title[]" value="2"></td>
-                <td> <i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> </td>
-                <td> <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction(2)"></td>
-                </tr> ';
+                <td> <i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> </td>';
+                if ($i2 === 1) {
+                    echo ' <td></td>';
+                } else {
+                    echo '<td> <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction(2)"></td>
+                    </tr> ';
+                }
             $i2++;
             $count_del4++;
         }
@@ -120,7 +128,7 @@ $result = $conn->query($sql);
         $sql2 = "SELECT * FROM budget_form WHERE project_id = '" . $_SESSION['project_id'] . "' AND title = '3' ";
         $result2 = $conn->query($sql2);
         $i3 = 1;
-        $count_del6=0;
+        $count_del6 = 0;
         while ($row2 = $result2->fetch_assoc()) {
 
             echo '<tr>
@@ -129,9 +137,13 @@ $result = $conn->query($sql);
                 <td><input type="text"  style="width: 99%;"   name="quantity[]" class="edit"  id="edit3-' . $i3 . '-3"  onclick="test(id)" value ="' . $row2["quantity"] . '" ></td>
                 <td><input type="text"  style="width: 99%;"   name="rate[]"  class="edit"     id="edit4-' . $i3 . '-3" onclick="test(id)"  value ="' . $row2["rate"] . '" ></td>
                 <td><input type="text"  style="width: 99%;"   name="cost1[]"  class="edit"    id="edit5-' . $i3 . '-3"  value ="' . $row2["cost"] . '" readonly><input type="hidden" name="title[]" value="3"></td>
-                <td> <i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> </td>
-                <td> <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction(3)"></td>
-                </tr> ';
+                <td> <i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> </td>';
+                if ($i3 === 1) {
+                    echo ' <td></td>';
+                } else {
+                    echo '<td> <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction(3)"></td>
+                    </tr> ';
+                }
             $i3++;
             $count_del6++;
         }
@@ -154,7 +166,7 @@ $result = $conn->query($sql);
         $sql2 = "SELECT * FROM budget_form WHERE project_id = '" . $_SESSION['project_id'] . "' AND title = '4' ";
         $result2 = $conn->query($sql2);
         $i4 = 1;
-        $count_del8=0;
+        $count_del8 = 0;
         while ($row2 = $result2->fetch_assoc()) {
 
             echo '<tr>
@@ -163,9 +175,13 @@ $result = $conn->query($sql);
                 <td><input type="text"  style="width: 99%;"   name="quantity[]" class="edit"  id="edit3-' . $i4 . '-4"  onclick="test(id)" value ="' . $row2["quantity"] . '" ></td>
                 <td><input type="text"  style="width: 99%;"   name="rate[]"  class="edit"     id="edit4-' . $i4 . '-4" onclick="test(id)"  value ="' . $row2["rate"] . '" ></td>
                 <td><input type="text"  style="width: 99%;"   name="cost1[]"  class="edit"    id="edit5-' . $i4 . '-4"  value ="' . $row2["cost"] . '" readonly><input type="hidden" name="title[]" value="4"></td>
-                <td> <i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> </td>
-                <td> <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction(4)"></td>
-                </tr> ';
+                <td> <i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> </td>';
+                if ($i4 === 1) {
+                    echo ' <td></td>';
+                } else {
+                    echo '<td> <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction(4)"></td>
+                    </tr> ';
+                }
             $i4++;
             $count_del8++;
         }
@@ -182,50 +198,35 @@ $result = $conn->query($sql);
         <tfoot>
             <tr id="total2">
             <th id="total" colspan="4"><input type="text" style="width: 99%;" readonly value="รวมค่าใช้จ่าย :"></th>
-            <th> <input type="text" style="width: 99%;" name="result" id="result" value = "' .  number_format($row2["result_budget"],2). '" readonly></th>
+            <th> <input type="text" style="width: 99%;" name="result" id="result" value = "' .  number_format($row2["result_budget"], 2) . '" readonly></th>
             </tr>
 
             <tr>
             <th id="" colspan="4"><input type="text" style="width: 99%;" readonly value="+15 % (ค่าบริการวิชาการ) :"></th>
-            <th> <input type="text" style="width: 99%;" name="operation_fee" id="operation_fee" value = "' .  number_format(($row2["result_budget"]*0.15),2). '" readonly></th>
+            <th> <input type="text" style="width: 99%;" name="operation_fee" id="operation_fee" value = "' .  number_format(($row2["result_budget"] * 0.15), 2) . '" readonly></th>
             </tr>
 
             <tr>
             <th id="" colspan="4"><input type="text" style="width: 99%;" readonly value="รวมค่าใช้จ่ายสุทธิ :"></th>
-            <th> <input type="text" style="width: 99%;" name="sum_total" id="sum_total" value =  "' .  number_format($row2["result_budget"]*0.15+$row2["result_budget"],2). '" readonly></th>
+            <th> <input type="text" style="width: 99%;" name="sum_total" id="sum_total" value =  "' .  number_format($row2["result_budget"] * 0.15 + $row2["result_budget"], 2) . '" readonly></th>
             </tr>
 
          </tfoot>';
     } ?>
 </table>
-<!-- 
-<input type=button value=pdf onclick="generatePdf()">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/"
-    crossorigin="anonymous"></script>
-<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-<script>
-    function download() {
-        let pdf = new jsPDF('l', 'pt', [1920, 640]);
-        pdf.html(document.getElementById('tb_Logbook'), {
-            callback: function (pdf) {
-                pdf.save('test.pdf');
-            }
-        });
-    }
-</script> -->
+
 
 <script>
-
     var del2 = 2;
 
-    var del4 = "<?php echo $count_del2+3  ?>";
-    var del6 = "<?php echo $count_del2+$count_del4+4  ?>";
-    var del8 = "<?php echo $count_del2+$count_del4+$count_del6+5  ?>";
+    var del4 = "<?php echo $count_del2 + 3  ?>";
+    var del6 = "<?php echo $count_del2 + $count_del4 + 4  ?>";
+    var del8 = "<?php echo $count_del2 + $count_del4 + $count_del6 + 5  ?>";
 
-    console.log("del2 = "+del2);
-    console.log("del4 = "+del4);
-    console.log("del6 = "+del6);
-    console.log("del8 = "+del8);
+    console.log("del2 = " + del2);
+    console.log("del4 = " + del4);
+    console.log("del6 = " + del6);
+    console.log("del8 = " + del8);
 
     var num, total_topic = 4;
     var i1 = "<?php echo $i1 - 1 ?>";
@@ -282,6 +283,10 @@ $result = $conn->query($sql);
         cell4.innerHTML = "<input type='text' class='edit' name='rate[]'  id='edit4-" + num + "-" + topic + "'  onclick='test(id)' style='width: 99%; cursor: auto;'> ";
         cell5.innerHTML = "<input type='text' class='edit' name = 'cost1[]'  id='edit5-" + num + "-" + topic + "' style='width: 99%; cursor: auto;' readonly>";
 
+
+    
+
+
         cell6.innerHTML = '<i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> ';
         cell7.innerHTML = ' <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction(' + topic + ')">';
 
@@ -326,6 +331,10 @@ $result = $conn->query($sql);
             var edit4;
             edit3 = parseFloat($('#edit3-' + a).val());
             edit4 = parseFloat($('#edit4-' + a).val());
+            if(isNaN(edit3) || isNaN(edit4)){
+                edit3 =0;
+                edit4 =0;
+            }
             edit5 = edit3 * edit4;
             // console.log("edit5 edit5 "  + edit5);
             $('#edit5-' + a).val(edit5.toFixed(2));
@@ -341,8 +350,8 @@ $result = $conn->query($sql);
 
 
     var total = 0;
-    var operation_fee =0;
-    var sum_total =0; 
+    var operation_fee = 0;
+    var sum_total = 0;
 
     function sum() {
 
@@ -352,30 +361,30 @@ $result = $conn->query($sql);
         cal_sum(4, i4);
         $('#result').val(total.toFixed(2));
 
-        operation_fee = total*0.15; 
+        operation_fee = total * 0.15;
         $('#operation_fee').val(operation_fee.toFixed(2));
 
-        sum_total = operation_fee+total
+        sum_total = operation_fee + total
         $('#sum_total').val(sum_total.toFixed(2));
 
 
-        
+
         console.log(total);
         total = 0;
     }
 
 
-    
+
 
     function cal_sum(topic, c_num) {
-        console.log("c_num  "+c_num);
+        console.log("c_num  " + c_num);
         for (var count = 1; count <= c_num; count++) {
 
             var stored = parseFloat($('#edit5-' + count + '-' + topic).val());
             if (isNaN(stored)) {
                 stored = 0;
             }
-            console.log("SDfsdf"+total);
+            console.log("SDfsdf" + total);
             total = total + stored;
 
         }

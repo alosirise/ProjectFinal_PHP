@@ -44,12 +44,12 @@ include_once('connect.php');
 
         <tr>
         <td><input type="text"  style="width: 99%;"   class="edit" name ="no[]"      id="edit1-1-1" ></td>
-        <td><input type="text"  style="width: 99%;"   class="edit" name ="list[]"    id="edit2-1-1" ></td>
+        <td><input type="text"  style="width: 99%;"   class="edit" name ="list[]"    id="edit2-1-1" required ></td>
         <td><input type="text"  style="width: 99%;"   class="edit" name ="quantity[]"  id="edit3-1-1" onclick="test(id)"></td>
         <td><input type="text"  style="width: 99%;"   class="edit" name ="rate[]"      id="edit4-1-1" onclick="test(id)"></td>
         <td><input type="text"  style="width: 99%;"   class="edit" name = "cost1[]"    id="edit5-1-1"  readonly><input type="hidden" name="title[]" value="1"></td>
         <td> <i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> </td>
-        <td> <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction(1)"></td>
+        <td> </td>
         </tr>
         
 
@@ -67,7 +67,7 @@ include_once('connect.php');
         <td><input type="text"  style="width: 99%;"   class="edit" name ="rate[]"      id="edit4-1-2" onclick="test(id)"></td>
         <td><input type="text"  style="width: 99%;"   class="edit" name = "cost1[]"    id="edit5-1-2"  readonly><input type="hidden" name="title[]" value="2"></td>
         <td> <i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> </td>
-        <td> <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction(2)"></td>
+        <td> </td>
         </tr>
 
 
@@ -84,7 +84,7 @@ include_once('connect.php');
         <td><input type="text"  style="width: 99%;"   class="edit" name ="rate[]"      id="edit4-1-3" onclick="test(id)"></td>
         <td><input type="text"  style="width: 99%;"   class="edit" name = "cost1[]"    id="edit5-1-3"  readonly><input type="hidden" name="title[]" value="3"></td>
         <td> <i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> </td>
-        <td> <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction(3)"></td>
+        <td> </td>
         </tr>
 
 
@@ -101,7 +101,7 @@ include_once('connect.php');
         <td><input type="text"  style="width: 99%;"   class="edit" name ="rate[]"      id="edit4-1-4" onclick="test(id)"></td>
         <td><input type="text"  style="width: 99%;"   class="edit" name = "cost1[]"    id="edit5-1-4"  readonly><input type="hidden" name="title[]" value="4"></td>
         <td> <i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> </td>
-        <td> <i class="glyphicon glyphicon-trash i" style="cursor: pointer;" onclick="myDeleteFunction(4)"></td>
+        <td></td>
         </tr>
 
 
@@ -236,8 +236,12 @@ include_once('connect.php');
             var edit4;
             edit3 = parseFloat($('#edit3-' + a).val());
             edit4 = parseFloat($('#edit4-' + a).val());
+            if(isNaN(edit3) || isNaN(edit4)){
+                edit3 =0;
+                edit4 =0;
+            }
             edit5 = edit3 * edit4;
-            // console.log("edit5 edit5 "  + edit5);
+            console.log("edit4"  + edit4);
             $('#edit5-' + a).val(edit5.toFixed(2));
 
             if (isNaN(edit5)) {

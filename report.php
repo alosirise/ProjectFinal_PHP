@@ -137,7 +137,7 @@ if ($_SESSION['role'] != "admin") {
     <div class="" id="nav"></div>
     <div id="main">
         <div class="w3-container col-lg-11 center">
-            <h2 style=" padding :30px; ">Report</h2>
+            <h2 style=" padding :30px; ">สรุปรายงาน</h2>
             <?php
             include_once('connect.php');
             $sql = "SELECT * FROM create_project WHERE status ='อนุมัติ' OR status ='เสร็จสิ้น' ORDER BY last_change DESC ";
@@ -149,19 +149,27 @@ if ($_SESSION['role'] != "admin") {
               <thead>
                 <tr class="w3-blue-gray">
                 <th  style="width:1%">ลำดับ</th>
-                  <th style="width:5%" >ปีงบประมาณ</th>     
-                  <th style="width:15%" >ชื่อโครงการ</th>
+                  <th style="width:2%" >ปีงบประมาณ</th>     
+                  <th style="width:9%" >ชื่อโครงการ</th>
                   <th style="width:5%" >หัวหน้าโครงการ</th> 
-                  <th style="width:13%" >ผู้ร่วมโครงการ</th>      
-                  <th  style="width:10%">ระยะเวลา</th>      
-                  <th style="width:5%" >แหล่งเงิน</th>      
-                  <th  style="width:10%">ประมาณการค่าใช้จ่าย (บาท)</th>      
-                  <th  style="width:10%">สรุปค่าใช้จ่ายและเงินคงเหลือ (บาท)</th>      
-                  <th  style="width:10%">ค่าตอบแทน</th>    
-                  <th  style="width:10%">ค่าใช้สอย,ค่าวัสดุ</th>    
-                  <th  style="width:10%">ค่าเช่าห้อง</th>    
-                  <th  style="width:10%">ค่าใช้จ่ายอื่นๆ</th>
-                  <th  style="width:10%">เงินคงเหลือ</th>      
+                  <th style="width:5%" >ผู้ร่วมโครงการ</th>      
+                  <th  style="width:5%">ระยะเวลา</th>      
+                  <th style="width:4%" >แหล่งเงิน</th>      
+                  <th  style="width:5%">ประมาณการค่าใช้จ่าย (บาท)</th>      
+                  <th  style="width:5%">สรุปรวมค่าใช้จ่ายและเงินคงเหลือ (บาท)</th>      
+                  <th  style="width:5%">ค่าตอบแทน</th>    
+                  <th  style="width:5%">ค่าใช้สอย,ค่าวัสดุ</th>    
+                  <th  style="width:5%">ค่าเช่าห้อง</th>    
+                  <th  style="width:5%">ค่าใช้จ่ายอื่นๆ</th>
+                  <th  style="width:5%">เงินคงเหลือ</th>      
+
+                  <th  style="width:5%">ค่าบริการวิชาการ 15 %</th>      
+                  <th  style="width:5%">จัดสรร 15 % มหาลัย 1.5</th>      
+                  <th  style="width:5%">จัดสรร 15 % วข 2.5</th>      
+                  <th  style="width:5%">จัดสรร 15 % คณะ 11</th>      
+                  <th  style="width:5%">ค่าธรรมเนียม 5% จาก 11% ที่คณะได้</th>      
+                  <th  style="width:5%">คืนค่าธรรมเนียม 6% จาก 11% ให้ผู้รับงาน</th>      
+                  <th  style="width:4%">สถานะ</th>      
                 </tr>
               </thead><tbody> ';
 
@@ -193,103 +201,44 @@ if ($_SESSION['role'] != "admin") {
                     <td>" . $row["sum_topic1"] .  "</td>
                     <td>" . $row["sum_topic2"] .  "</td>
                     <td>" . $row["sum_topic3"] .  "</td>
-                    <td>" . $row["sum_topic4"] .  "</td>
+                    <td>" . $row["sum_topic4"] .  "</td>";
 
-                    <td>" . $row["sum_topic4"] .  "</td>
+                    $x = (float)$row["summary_budget"];
+                    $y = (float)$row["sum_result_budget"];
+                    $ans =$y-$x;
+
+                    echo"
+                    <td>".number_format($ans,2)."</td>
+
+                    <td>" . $row["operation_fee"].  "</td>
+                    <td>" . (1.5 * $row["operation_fee"])/15 .  "</td>
+                    <td>" . (2.5 * $row["operation_fee"])/15 .  "</td>
+                    <td>" . (11 * $row["operation_fee"])/15 .  "</td>";
+                   
+                   $stored_11 = (11 * $row["operation_fee"])/15;
+
+                    echo "
+                    <td>" . (5 * $stored_11)/11 .  "</td>
+                    <td>" . (6 * $stored_11)/11 .  "</td>";
+
+
+                    if($row["status"] == 'อนุมัติ'){
+                        echo "<td>ดำเนินการ</td>";
+                    }else{
+                        echo "<td>ปิดโครงการ</td>";
+                    }
                     
-                            </tr>";
+                    echo "</tr>";
                 }
 
-                // echo '</tbody><tfoot> <tr class="w3-blue-gray">
-                //   <th class="topic1">ที่</th>
-                //   <th class="topic2">ชื่อโครงการ</th>     
-                //   <th class="topic3"></th>
-                //   <th class="topic4"></th> 
-                //   <th class="topic5"></th>      
-                //   <th class="topic6"></th>      
-                //   <th class="topic7"></th>      
-                //   <th class="topic8"></th>      
-
-                // </tr></tfoot>';
+                
                 echo "</table>";
             } else {
                 echo "0 results";
             }
             ?>
 
-            ซ่อนคอลัมน์ :<br>
-
-            <table>
-
-                <tr>
-                    <th>
-                        <a>ที่</a>
-                        <label class="toggle-vis switch" data-column="0">
-                            <input type="checkbox">
-                            <span class="slider round"></span>
-                        </label><br>
-
-                    </th>
-
-                    <th> <a>ชื่อโครงการ</a>
-                        <label class="toggle-vis switch" data-column="1">
-                            <input type="checkbox">
-                            <span class="slider round"></span>
-                        </label><br></th>
-
-
-                    <th> <a> test1</a>
-                        <label class="toggle-vis switch" data-column="2">
-                            <input type="checkbox">
-                            <span class="slider round"></span>
-                        </label><br></th>
-
-                    <th> <a>test2</a>
-                        <label class="toggle-vis switch" data-column="3">
-                            <input type="checkbox">
-                            <span class="slider round"></span>
-                        </label><br></th>
-
-
-                </tr>
-
-
-                <tr>
-
-                    <th>
-                        <a>test3</a>
-                        <label class="toggle-vis switch" data-column="4">
-                            <input type="checkbox">
-                            <span class="slider round"></span>
-                        </label><br></th>
-
-
-
-                    <th>
-                        <a>test4</a>
-                        <label class="toggle-vis switch" data-column="5">
-                            <input type="checkbox">
-                            <span class="slider round"></span>
-                        </label><br>
-
-
-                    </th>
-
-
-                    <th>
-                        <a>test5</a>
-                        <label class="toggle-vis switch" data-column="6">
-                            <input type="checkbox">
-                            <span class="slider round"></span>
-                        </label><br></th>
-
-                    <th> <a>test6</a>
-                        <label class="toggle-vis switch" data-column="7">
-                            <input type="checkbox">
-                            <span class="slider round"></span>
-                        </label><br></th>
-                </tr>
-            </table>
+            
 
         </div>
     </div>
@@ -301,31 +250,14 @@ if ($_SESSION['role'] != "admin") {
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.flash.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
+ 
     <script src='vfs_fonts.js'></script>
 
     <script>
         $(document).ready(function() {
 
-            // $('.topic1').each(function() {
-            //     var title = $(this).text();
-            //     $(this).html('<input type="text" style="width:30px;" placeholder="' + title + '" />');
-            // });
-
-            // $('.topic3 ,.topic4').each(function() {
-            //     var title = $(this).text();
-            //     $(this).html('<input type="text" style="width:50px;" placeholder="ค้นหา : ' + title + '" />');
-            // });
-
-            // $('.topic2,.topic5 ,.topic6,.topic7 ,.topic8').each(function() {
-            //     var title = $(this).text();
-            //     $(this).html('<input type="text" style="width:190px;" placeholder="ค้นหา : ' + title + '" />');
-            // });
-
-            // DataTable
             pdfMake.fonts = {
                 THSarabun: {
                     normal: 'THSarabun.ttf',
@@ -355,7 +287,7 @@ if ($_SESSION['role'] != "admin") {
                     [10, 25, 50, "All"]
                 ],
                 "pageLength": 10,
-                "scrollX": 2000,
+                "scrollX": 3200,
                 "pagingType": "full_numbers",
                 dom: 'B<"top"f>rt<"bottom"lpi><"clear">',
                 buttons: [{
@@ -369,116 +301,13 @@ if ($_SESSION['role'] != "admin") {
                         exportOptions: {
                             columns: ':visible'
                         }
-                    },
-                    {
-                        extend: 'pdfHtml5',
-                        title: 'report',
-                        text: 'PDF (landscape)',
-                        orientation: 'landscape',
-                        pageSize: 'A1',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-                        },
-                        customize: function(doc) {
-                            doc.defaultStyle = {
-                                font: 'THSarabun',
-                                fontSize: 12
-                            };
-                            doc.content[1].table.widths = ['5%', '5%', '15%', '5%', '10%', '15%', '5%', '15%', '15%', '10%'];
-                            doc.styles.tableHeader.fontSize = 13;
-                            var rowCount = doc.content[1].table.body.length; // นับจำนวนแถวทั้งหมดในตาราง
-                            // วนลูปเพื่อกำหนดค่า
-                            for (i = 1; i < rowCount; i++) { // i เริ่มที่ 1 เพราะ i แรกเป็นแถวของหัวข้อ
-                                doc.content[1].table.body[i][0].alignment = 'center';
-                                doc.content[1].table.body[i][1].alignment = 'left';
-                                doc.content[1].table.body[i][2].alignment = 'center';
-                                doc.content[1].table.body[i][3].alignment = 'center';
-                                doc.content[1].table.body[i][4].alignment = 'center';
-                                doc.content[1].table.body[i][5].alignment = 'left';
-                                doc.content[1].table.body[i][6].alignment = 'left';
-                                doc.content[1].table.body[i][7].alignment = 'left';
-                                doc.content[1].table.body[i][8].alignment = 'left';
-                                doc.content[1].table.body[i][9].alignment = 'left';
-                            };
-                            console.log(doc);
-                        }
-                    },
-                    {
-                        "extend": 'pdf',
-                        "text": 'PDF (vertical)',
-                        "title": 'Report',
-                        "pageSize": 'A4',
-                        "customize": function(doc) {
-                            doc.defaultStyle = {
-                                font: 'THSarabun',
-                                fontSize: 12
-                            };
-                            // กำหนดความกว้างของ header แต่ละคอลัมน์หัวข้อ
-                            doc.content[1].table.widths = ['5%', '20%', '5%', '5%', '15%', '15%', '20%', '15%'];
-                            doc.styles.tableHeader.fontSize = 13;
-                            var rowCount = doc.content[1].table.body.length; // นับจำนวนแถวทั้งหมดในตาราง
-                            // วนลูปเพื่อกำหนดค่า
-                            for (i = 1; i < rowCount; i++) { // i เริ่มที่ 1 เพราะ i แรกเป็นแถวของหัวข้อ
-                                doc.content[1].table.body[i][0].alignment = 'center';
-                                doc.content[1].table.body[i][1].alignment = 'left';
-                                doc.content[1].table.body[i][2].alignment = 'center';
-                                doc.content[1].table.body[i][3].alignment = 'center';
-                                doc.content[1].table.body[i][4].alignment = 'center';
-                                doc.content[1].table.body[i][5].alignment = 'left';
-                                doc.content[1].table.body[i][6].alignment = 'left';
-                                doc.content[1].table.body[i][7].alignment = 'left';
-
-                            };
-                            console.log(doc);
-                        }
-                    },
-                    {
-                        extend: 'print',
-                        title: "demo title",
-                        orientation: 'landscape',
-                        exportOptions: {
-                            columns: ':visible',
-                        },
-                        customize: function(win) {
-                            var last = null;
-                            var current = null;
-                            var bod = [];
-
-                            var css = '@page { size: landscape; }',
-                                head = win.document.head || win.document.getElementsByTagName('head')[0],
-                                style = win.document.createElement('style');
-
-                            style.type = 'text/css';
-                            style.media = 'print';
-
-                            if (style.styleSheet) {
-                                style.styleSheet.cssText = css;
-                            } else {
-                                style.appendChild(win.document.createTextNode(css));
-                            }
-
-                            head.appendChild(style);
-                        }
-                    }, {
-                        extend: 'colvis',
-                        collectionLayout: 'fixed two-column'
-
                     }
                 ]
             });
 
-
-            $('label.toggle-vis').on('change', function(e) {
-                e.preventDefault();
-                var column = table.column($(this).attr('data-column'));
-                $('#container').css('display', 'block');
-                table.columns.adjust().draw();
-                column.visible(!column.visible());
-            });
         });
     </script>
     <script src="index.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.colVis.min.js"></script>
 </body>
 
 </html>

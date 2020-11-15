@@ -122,7 +122,7 @@
       if (!empty($_SESSION['role']) && $_SESSION['role'] == "admin") {
         echo '      
             <a href="request.php" style="font-size:18px">คำร้องขอสร้างโครงการ</a>
-            <a href="report.php" style="font-size:18px">Report โครงการ</a>
+            <a href="report.php" style="font-size:18px">สรุปรายงาน</a>
             <hr>
             <a href="manage_account.php" style="font-size:18px">จัดการบัญชี</a>';
       }

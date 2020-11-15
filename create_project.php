@@ -128,7 +128,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                     </div>
 
                     <div>
-                        <label for="exampleFormControlInput1">งบประมาณค่าใช้จ่าย</label>
+                        <label for="exampleFormControlInput1">งบประมาณค่าใช้จ่าย (หากไม่มีให้ กรอก - )</label>
                         <div id="includedContent" name ="budget"></div>
                     </div>
 
