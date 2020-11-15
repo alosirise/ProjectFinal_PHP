@@ -108,13 +108,13 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
               <thead>
                 <tr class="w3-blue-gray">
                  <th class="text-center" style="width:1%" >ที่</th>
-                  <th  style="width:45%" >ชื่อโครงการ</th>
+                  <th  style="width:30%" >ชื่อโครงการ</th>
            
                   <th class="text-center" data-orderable="false" style="width:9%"> จัดการโครงการ</th>
                   <th data-orderable="false"" style="width:9%"></th>
                   <th class="text-center" data-orderable="false" style="width:13%">แบบฟอร์มใบสมัคร</th>
                   <th class="text-center" data-orderable="false" style="width:9%">แบบประเมิน</th>
-                  <th class="text-center"data-orderable="false" style="width:9%">CoC news</th>
+               
                   <th class="text-center" data-orderable="false"style="width:8%"> สถานะ</th>
                   <th class="text-center" data-orderable="false" style="width:5%">ส่ง</th>
                   <th class="text-center" data-orderable="false" style="width:5%">ลบ</th>
@@ -129,7 +129,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
               <td><a href=edit_detail_project.php?project_id=" . $row['project_id'] . "> <i class='far fa-image fa-lg'  ></i></a></td>
               <td><a href=create_form.php?project_id=" . $row['project_id'] . ">  <i class='far fa-list-alt fa-lg' ></i></a></td> 
               <td><a href=evaluate_form.php?project_id=" . $row['project_id'] . ">   <i class='far fa-clipboard fa-lg' ></i></a></td> 
-              <td><a href=evaluate_form.php?project_id=" . $row['project_id'] . ">  <i class='far fa-newspaper fa-lg'></i></a></td> 
+              
               <th style = 'text-align: center;'>" . $row["status"] . "</th>
               <td><a href=waiting_project.php?project_id=" . $row['project_id'] . ">  <button type='button' name ='send' class='btn btn-success' >ส่ง</button></a></td>
               <td><a onClick=\"javascript: return confirm('Please confirm deletion');\" href=delete_project.php?project_id=" . $row['project_id'] . " >  <button type='button' name ='delete' class='btn btn-danger' >ลบ</button></a></td>   
@@ -164,7 +164,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                   <th data-orderable="false""></th>
                   <th class="text-center" data-orderable="false" >แบบฟอร์มใบสมัคร</th>
                   <th class="text-center" data-orderable="false">แบบประเมิน</th>
-                  <th class="text-center"data-orderable="false" >CoC news</th>
+                
                   <th class="text-center" data-orderable="false" > สถานะ</th>
                   <th class="text-center" data-orderable="false" >ส่ง</th>
                 
@@ -178,7 +178,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
           <td> <i class='far fa-image fa-lg' aria-hidden='true'></i> </td>
           <td><i class='far fa-list-alt fa-lg' aria-hidden='true' ></i></td> 
           <td><i class='far fa-clipboard fa-lg' aria-hidden='true'></i></td> 
-          <td><i class='far fa-newspaper fa-lg'></i></td> 
+          
           <th style = 'text-align: center;'><a style=color:blue; >" . $row["status"] . "</a> </th>
           <td><a href=cancel_send.php?project_id=" . $row['project_id'] . ">  <button type='button' name ='send' class='btn btn-success' >ยกเลิก</button></a></td>";
                 
@@ -204,11 +204,11 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                 <tr class="w3-red">
                  <th style="width:4%" >ที่</th>
                   <th style="width:45%" >ชื่อโครงการ</th>      
-                  <th class="text-center" data-orderable="false" style="width:17%"> จัดการโครงการ</th>
+                  <th class="text-center" data-orderable="false" style="width:23%"> จัดการโครงการ</th>
                   <th class="text-center" data-orderable="false""></th>
                   <th class="text-center" data-orderable="false" style="width:13%">แบบฟอร์มใบสมัคร</th>
                   <th class="text-center" data-orderable="false" style="width:13%">แบบประเมิน</th>   
-                  <th class="text-center" data-orderable="false" >CoC news</th>    
+                  
                   <th class="text-center" data-orderable="false" style="width:10%"> สถานะ</th>
                   <th class="text-center" data-orderable="false" style="width:10%">ส่ง</th>
                   <th class="text-center" data-orderable="false" style="width:5%">ลบ</th>
@@ -223,7 +223,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
               <td ><a href=edit_detail_project.php?project_id=" . $row['project_id'] . "> <i class='far fa-image fa-lg' ></i></a></td>
               <td><a href=create_form.php?project_id=" . $row['project_id'] . "> <i class='far fa-list-alt fa-lg' ></i></a></td> 
               <td><a href=evaluate_form.php?project_id=" . $row['project_id'] . "><i class='far fa-clipboard fa-lg' ></i></a></td> 
-              <td><a href=evaluate_form.php?project_id=" . $row['project_id'] . ">  <i class='far fa-newspaper fa-lg'></i></a></td> 
+         
               <th style = 'text-align: center;'><a style=color:red;>" . $row["status"] . "</a> </th>
               <td><a href=waiting_project.php?project_id=" . $row['project_id'] . ">  <button type='button' name ='send' class='btn btn-success' >ส่ง</button></a></td> 
               <td><a onClick=\"javascript: return confirm('Please confirm deletion');\" href=delete_project.php?project_id=" . $row['project_id'] . " >  <button type='button' name ='delete' class='btn btn-danger' >ลบ</button></a></td>";

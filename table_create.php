@@ -56,7 +56,7 @@ include_once('connect.php');
         
         <tr id="cost_progress">
         <th id="total" colspan="1"></th>
-        <th id="total" colspan="4">ค่าใช้จ่ายในการดำเนินการ (ค่าใช้จ่าย , ค่าวัสดุ)</th>
+        <th id="total" colspan="4">ค่าใช้จ่ายในการดำเนินการ (ค่าใช้สอย , ค่าวัสดุ)</th>
         <th colspan="5"><a class="btn btn-primary btn-xs pull-right" onclick="myCreateFunction(2)" data-added="0"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a></th>
         </tr>
 
@@ -73,7 +73,7 @@ include_once('connect.php');
 
         <tr id="cost_academic">
         <th id="total" colspan="1"></th>
-        <th id="total" colspan="4">ค่าบริการวิชาการ</th>
+        <th id="total" colspan="4">ค่าเช่าห้อง</th>
         <th colspan="5"><a class="btn btn-primary btn-xs pull-right" onclick="myCreateFunction(3)" data-added="0"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a></th>
         </tr>
 

@@ -21,7 +21,7 @@ include_once('connect.php');
 </style>
 
 <?php
-$sql = "SELECT * FROM budget_form WHERE project_id = '" . $_SESSION['project_id'] . "'";
+$sql = "SELECT * FROM budget_form WHERE project_id = '" . $_GET['project_id'] . "'";
 $result = $conn->query($sql);
 ?>
 
@@ -45,29 +45,29 @@ $result = $conn->query($sql);
 
         <div class="row ">
             <div class="col-lg-3 "></div>
-            <div class="w3-container col-lg-6 center">
+            <div class="w3-container col-lg-7 center">
                 <h2 style=" padding :45px;">ประมาณการค่าใช้จ่าย</h2>
 
-                <div class="card">
-                    <div class="card-body " style="width:90%;">
+
+                <!-- <div class="card-body " style="width:90%;"> -->
 
 
 
-                        <table class="table table-bordered " style="padding-top : 100px;">
-                            <thead>
-                                <tr>
-                                    <th style="width:10%">ที่</th>
-                                    <th style="width:22.5%">รายการ</th>
-                                    <th style="width:22.5%">จำนวน (ชุด)</th>
-                                    <th style="width:22.5%">อัตรา (บาท)</th>
-                                    <th style="width:22.5%">ค่าใช้จ่าย (บาท)</th>
-                                </tr>
-                            </thead>
+                <table class="table table-bordered " style="padding-top : 100px;">
+                    <thead>
+                        <tr>
+                            <th style="width:10%">ที่</th>
+                            <th style="width:22.5%">รายการ</th>
+                            <th style="width:22.5%">จำนวน (ชุด)</th>
+                            <th style="width:22.5%">อัตรา (บาท)</th>
+                            <th style="width:22.5%">ค่าใช้จ่าย (บาท)</th>
+                        </tr>
+                    </thead>
 
-                            <?php
-                            while ($row = $result->fetch_assoc()) {
-                                echo '<tbody>';
-                                echo '   
+                    <?php
+                    while ($row = $result->fetch_assoc()) {
+                        echo '<tbody>';
+                        echo '   
                 <tr>
                 <th  colspan="1"></th>
                 <th  colspan="4">ค่าตอบแทนคณะทำงาน</th>
@@ -75,11 +75,11 @@ $result = $conn->query($sql);
                 </tr>';
 
 
-                                $sql2 = "SELECT * FROM budget_form WHERE project_id = '" . $_SESSION['project_id'] . "' AND title = '1' ";
-                                $result2 = $conn->query($sql2);
+                        $sql2 = "SELECT * FROM budget_form WHERE project_id = '" . $_GET['project_id'] . "' AND title = '1' ";
+                        $result2 = $conn->query($sql2);
 
-                                while ($row2 = $result2->fetch_assoc()) {
-                                    echo '<tr>
+                        while ($row2 = $result2->fetch_assoc()) {
+                            echo '<tr>
                 <td><input type="text"  style="width: 99%;"     value ="' . $row2["no"] . '" readonly></td>
                 <td><input type="text"  style="width: 99%;"     value ="' . $row2["list"] . '" readonly></td>
                 <td><input type="text"  style="width: 99%;"     value ="' . $row2["quantity"] . '" readonly></td>
@@ -87,29 +87,29 @@ $result = $conn->query($sql);
                 <td><input type="text"  style="width: 99%;"     value ="' . $row2["cost"] . '" readonly><input type="hidden" name="title[]" value="1"></td>
       
                 </tr> ';
-                                }
-                                break;
-                            }
+                        }
+                        break;
+                    }
 
 
-                            while ($row = $result->fetch_assoc()) {
-                                echo '<tbody>';
+                    while ($row = $result->fetch_assoc()) {
+                        echo '<tbody>';
 
 
-                                echo '   
+                        echo '   
             <tr ">
             <th  colspan="1"></th>
-            <th  colspan="4">ค่าใช้จ่ายในการดำเนินการ (ค่าใช้จ่าย , ค่าวัสดุ)</th>
+            <th  colspan="4">ค่าใช้จ่ายในการดำเนินการ (ค่าใช้สอย , ค่าวัสดุ)</th>
            
             </tr>';
 
 
-                                $sql2 = "SELECT * FROM budget_form WHERE project_id = '" . $_SESSION['project_id'] . "' AND title = '2' ";
-                                $result2 = $conn->query($sql2);
+                        $sql2 = "SELECT * FROM budget_form WHERE project_id = '" . $_GET['project_id'] . "'  AND title = '2' ";
+                        $result2 = $conn->query($sql2);
 
-                                while ($row2 = $result2->fetch_assoc()) {
+                        while ($row2 = $result2->fetch_assoc()) {
 
-                                    echo '<tr>
+                            echo '<tr>
                 <td><input type="text"  style="width: 99%;"   value ="' . $row2["no"] . '" readonly></td>
                 <td><input type="text"  style="width: 99%;"   value ="' . $row2["list"] . '" readonly></td>
                 <td><input type="text"  style="width: 99%;"   value ="' . $row2["quantity"] . '" readonly></td>
@@ -117,29 +117,29 @@ $result = $conn->query($sql);
                 <td><input type="text"  style="width: 99%;"   value ="' . $row2["cost"] . '" readonly><input type="hidden" name="title[]" value="2"></td>
                
                 </tr> ';
-                                }
-                                break;
-                            }
+                        }
+                        break;
+                    }
 
 
-                            while ($row = $result->fetch_assoc()) {
-                                echo '<tbody>';
+                    while ($row = $result->fetch_assoc()) {
+                        echo '<tbody>';
 
 
-                                echo '   
+                        echo '   
             <tr >
         <th  colspan="1"></th>
-        <th  colspan="4">ค่าบริการวิชาการ</th>
+        <th  colspan="4">ค่าเช่าห้อง</th>
        
         </tr>';
 
 
-                                $sql2 = "SELECT * FROM budget_form WHERE project_id = '" . $_SESSION['project_id'] . "' AND title = '3' ";
-                                $result2 = $conn->query($sql2);
+                        $sql2 = "SELECT * FROM budget_form WHERE project_id = '" . $_GET['project_id'] . "' AND title = '3' ";
+                        $result2 = $conn->query($sql2);
 
-                                while ($row2 = $result2->fetch_assoc()) {
+                        while ($row2 = $result2->fetch_assoc()) {
 
-                                    echo '<tr>
+                            echo '<tr>
                 <td><input type="text"  style="width: 99%;"   value ="' . $row2["no"] . '" readonly></td>
                 <td><input type="text"  style="width: 99%;"   value ="' . $row2["list"] . '" readonly></td>
                 <td><input type="text"  style="width: 99%;"   value ="' . $row2["quantity"] . '" readonly></td>
@@ -147,16 +147,16 @@ $result = $conn->query($sql);
                 <td><input type="text"  style="width: 99%;"   value ="' . $row2["cost"] . '" readonly><input type="hidden" name="title[]" value="3"></td>
                 
                 </tr> ';
-                                }
-                                break;
-                            }
+                        }
+                        break;
+                    }
 
 
-                            while ($row = $result->fetch_assoc()) {
-                                echo '<tbody>';
+                    while ($row = $result->fetch_assoc()) {
+                        echo '<tbody>';
 
 
-                                echo '   
+                        echo '   
             <tr>
             <th colspan="1"></th>
             <th colspan="4">ค่าใช้จ่ายอื่นๆ</th>
@@ -164,12 +164,12 @@ $result = $conn->query($sql);
             </tr>';
 
 
-                                $sql2 = "SELECT * FROM budget_form WHERE project_id = '" . $_SESSION['project_id'] . "' AND title = '4' ";
-                                $result2 = $conn->query($sql2);
+                        $sql2 = "SELECT * FROM budget_form WHERE project_id = '" . $_GET['project_id'] . "'  AND title = '4' ";
+                        $result2 = $conn->query($sql2);
 
-                                while ($row2 = $result2->fetch_assoc()) {
+                        while ($row2 = $result2->fetch_assoc()) {
 
-                                    echo '<tr>
+                            echo '<tr>
                 <td><input type="text"  style="width: 99%;"   value ="' . $row2["no"] . '" readonly></td>
                 <td><input type="text"  style="width: 99%;"   value ="' . $row2["list"] . '" readonly></td>
                 <td><input type="text"  style="width: 99%;"   value ="' . $row2["quantity"] . '" readonly></td>
@@ -177,17 +177,17 @@ $result = $conn->query($sql);
                 <td><input type="text"  style="width: 99%;"   value ="' . $row2["cost"] . '" readonly><input type="hidden" name="title[]" value="4"></td>
               
                 </tr> ';
-                                }
-                                break;
-                            }
+                        }
+                        break;
+                    }
 
-                            echo '</tbody>';
+                    echo '</tbody>';
 
-                            $sql2 = "SELECT * FROM create_project WHERE project_id = '" . $_SESSION['project_id'] . "'";
-                            $result2 = $conn->query($sql2);
-                            while ($row2 = $result2->fetch_assoc()) {
+                    $sql2 = "SELECT * FROM create_project WHERE project_id = '" . $_GET['project_id'] . "' ";
+                    $result2 = $conn->query($sql2);
+                    while ($row2 = $result2->fetch_assoc()) {
 
-                                echo '
+                        echo '
         <tfoot>
             <tr ">
             <th colspan="4"><input type="text" style="width: 99%;" readonly value="รวมค่าใช้จ่าย :"></th>
@@ -205,30 +205,30 @@ $result = $conn->query($sql);
             </tr>
 
          </tfoot>';
-                            } ?>
-                        </table>
+                    } ?>
+                </table>
 
 
 
 
 
-                        <h2 style=" padding :45px;">สรุปค่าใช้จ่ายและเงินคงเหลือ</h2>
-                        <table class="table table-bordered" id="table">
-                            <thead>
-                                <tr>
-                                    <th style="width:10%">ที่</th>
-                                    <th style="width:19%">รายการ</th>
-                                    <th style="width:19%">จำนวน (ชุด)</th>
-                                    <th style="width:19%">อัตรา (บาท)</th>
-                                    <th style="width:19%">ค่าใช้จ่าย (บาท)</th>
-                                    <th style="width:5%">#</th>
-                                    <th style="width:5%">#</th>
-                                </tr>
-                            </thead>
+                <h2 style=" padding :45px; padding-top :100px;">สรุปค่าใช้จ่ายและเงินคงเหลือ</h2>
+                <table class="table table-bordered" id="table">
+                    <thead>
+                        <tr>
+                            <th style="width:10%">ที่</th>
+                            <th style="width:19%">รายการ</th>
+                            <th style="width:19%">จำนวน (ชุด)</th>
+                            <th style="width:19%">อัตรา (บาท)</th>
+                            <th style="width:19%">ค่าใช้จ่าย (บาท)</th>
+                            <th style="width:5%">#</th>
+                            <th style="width:5%">#</th>
+                        </tr>
+                    </thead>
 
-                            <?php
+                    <?php
 
-                            echo '<tbody>
+                    echo '<tbody>
         <tr>
             <th id="total" colspan="1"></th>
             <th id="total" colspan="4">ค่าตอบแทนคณะทำงาน</th>
@@ -249,7 +249,7 @@ $result = $conn->query($sql);
         
         <tr id="cost_progress">
         <th id="total" colspan="1"></th>
-        <th id="total" colspan="4">ค่าใช้จ่ายในการดำเนินการ (ค่าใช้จ่าย , ค่าวัสดุ)</th>
+        <th id="total" colspan="4">ค่าใช้จ่ายในการดำเนินการ (ค่าใช้สอย , ค่าวัสดุ)</th>
         <th colspan="5"><a class="btn btn-primary btn-xs pull-right" onclick="myCreateFunction(2)" data-added="0"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a></th>
         </tr>
 
@@ -266,7 +266,7 @@ $result = $conn->query($sql);
 
         <tr id="cost_academic">
         <th id="total" colspan="1"></th>
-        <th id="total" colspan="4">ค่าบริการวิชาการ</th>
+        <th id="total" colspan="4">ค่าเช่าห้อง</th>
         <th colspan="5"><a class="btn btn-primary btn-xs pull-right" onclick="myCreateFunction(3)" data-added="0"><i class="glyphicon glyphicon-plus"></i> เพิ่ม </a></th>
         </tr>
 
@@ -318,49 +318,54 @@ $result = $conn->query($sql);
             </tr>
 
 
-
   
-   
-
          </tfoot>    ';
-                            ?>
+                    ?>
 
-                        </table>
-                        <tr>
-                            <th> <span onclick="sum_topic()" name ="submit"class="btn btn-success ">submit</span>
+                </table>
+                <div style="padding-top : 20px;">
+                    <center><input type="submit" onclick="sum_topic()" name="submit" class="btn btn-success " value="Submit"></center>
+                </div>
+                <input type="hidden" name="sum_topic1" id="sum_topic1">
+                <input type="hidden" name="sum_topic2" id="sum_topic2">
+                <input type="hidden" name="sum_topic3" id="sum_topic3">
+                <input type="hidden" name="sum_topic4" id="sum_topic4">
 
 
-                            </th>
-                        </tr>
     </form>
-            <?php
-  if (isset($_POST["submit"])) {
-            $count_table = max(count($_POST['no']), count($_POST['list']), count($_POST['quantity']), count($_POST['rate']), count($_POST['cost1']));
-            $sql5 = "INSERT INTO confirm_budget (project_id ,no,list,quantity,rate,cost,title)   VALUES";
-            for ($x = 0; $x < $count_table; $x++) {
-                echo " round = ", $x;
-                $sql5 .= "('$project_id','" . $_POST['no'][$x] . "','" . $_POST['list'][$x] . "','" . $_POST['quantity'][$x] . "','" . $_POST['rate'][$x] . "','" . $_POST['cost1'][$x] . "','" . $_POST['title'][$x] . "'),";
-            }
+    <?php
+    if (isset($_POST["submit"])) {
 
-            $sql5  = rtrim($sql5, ",");
-            $result5 = mysqli_query($conn, $sql5);
+        $sql6 = "DELETE FROM confirm_budget WHERE project_id = '$_GET[project_id]'";
+        $result6 = mysqli_query($conn, $sql6);
 
-
-
-
-            $sql2 = "UPDATE `create_project` SET summary_budget = '" . $_POST['sum_total'] . "',
-            sum_topic1 = '" . $_POST['sum_topic1'] . "' ,sum_topic2 = '" . $_POST['sum_topic2'] . "' ,sum_topic3 = '" . $_POST['sum_topic3'] . "'
-            ,sum_topic4 = '" . $_POST['sum_topic4'] . "' WHERE project_id = '$_GET[project_id]'";
-            
-            $result = mysqli_query($conn, $sql2);
-
-
-
-
-
+        $count_table = max(count($_POST['no']), count($_POST['list']), count($_POST['quantity']), count($_POST['rate']), count($_POST['cost1']));
+        $sql5 = "INSERT INTO confirm_budget (project_id ,no,list,quantity,rate,cost,title)   VALUES";
+        for ($x = 0; $x < $count_table; $x++) {
+            echo " round = ", $x;
+            $sql5 .= "('$_GET[project_id]','" . $_POST['no'][$x] . "','" . $_POST['list'][$x] . "','" . $_POST['quantity'][$x] . "','" . $_POST['rate'][$x] . "','" . $_POST['cost1'][$x] . "','" . $_POST['title'][$x] . "'),";
         }
 
-            ?>
+        $sql5  = rtrim($sql5, ",");
+        $result5 = mysqli_query($conn, $sql5);
+
+
+
+
+        $sql2 = "UPDATE `create_project` SET summary_budget = '" . $_POST['sum_total'] . "',
+            sum_topic1 = '" . $_POST['sum_topic1'] . "' ,sum_topic2 = '" . $_POST['sum_topic2'] . "' ,sum_topic3 = '" . $_POST['sum_topic3'] . "'
+            ,sum_topic4 = '" . $_POST['sum_topic4'] . "' WHERE project_id =  '$_GET[project_id]'";
+
+        $result = mysqli_query($conn, $sql2);
+
+
+
+        echo "<script>window.location='request.php';</script>";
+
+
+    }
+
+    ?>
 
     <script>
         var del2 = 2;
@@ -573,7 +578,12 @@ $result = $conn->query($sql);
             console.log("sum_topic4 : " + sum_topic4);
 
 
-            $("#my_form").submit();
+
+            document.getElementById("sum_topic1").value = sum_topic1;
+            document.getElementById("sum_topic2").value = sum_topic2;
+            document.getElementById("sum_topic3").value = sum_topic3;
+            document.getElementById("sum_topic4").value = sum_topic4;
+
         }
 
 

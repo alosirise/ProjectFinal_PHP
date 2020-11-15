@@ -54,6 +54,7 @@ $_SESSION['go'] = 'go_request';
     right: 25px;
     bottom: 25px;
     left: 24%;
+ 
   }
 
   td {
@@ -203,6 +204,7 @@ $_SESSION['go'] = 'go_request';
                        <th class="text-center" data-orderable="false" style="width:9%">แบบประเมิน</th>
                        <th data-orderable="false"></th>
                        <th data-orderable="false"></th>
+                       <th data-orderable="false"></th>
                        <th class="text-center" data-orderable="false" style="width:10%">สถานะ</th>
                    
                      </tr>
@@ -220,6 +222,8 @@ $_SESSION['go'] = 'go_request';
                  <td><a href=evaluate_form.php?project_id=" . $row2['project_id'] . ">  <i class='fas fa-clipboard-check fa-lg'></i></a></td>  
                  <td><a href=answer_form.php?project_id=" . $row2['project_id'] . "> <i class='fa fa-book fa-lg' aria-hidden='true'></i></a></td>
                  <td><a href=create_registration.php?project_id=" . $row2['project_id'] . "> <i class='fa fa-id-card fa-lg' aria-hidden='true'></i></a></td>
+                 <td><a href=confirm_budget.php?project_id=" . $row2['project_id'] . "> <i class='fas fa-hand-holding-usd fa-lg' aria-hidden='true'></i></a></td>
+
                  <td><select name='change' id='project_id' style=' height:30px; width: 100%' onfocus=\"this.setAttribute('PrvSelectedValue',this.value);\" 
                  onchange=\"if(confirm('Do you want to change?')==false) { this.value=this.getAttribute('PrvSelectedValue');return false; }
                  else{location.href= 'approve_project.php?project_id=" . $row2['project_id'] . "&change='+this.value}\" 

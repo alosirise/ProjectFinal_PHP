@@ -140,7 +140,7 @@ if ($_SESSION['role'] != "admin") {
             <h2 style=" padding :30px; ">Report</h2>
             <?php
             include_once('connect.php');
-            $sql = "SELECT * FROM create_project WHERE status ='อนุมัติ' ORDER BY last_change DESC ";
+            $sql = "SELECT * FROM create_project WHERE status ='อนุมัติ' OR status ='เสร็จสิ้น' ORDER BY last_change DESC ";
             $result = $conn->query($sql);
             $number = 0;
             if ($result->num_rows > 0) {
@@ -152,12 +152,16 @@ if ($_SESSION['role'] != "admin") {
                   <th style="width:5%" >ปีงบประมาณ</th>     
                   <th style="width:15%" >ชื่อโครงการ</th>
                   <th style="width:5%" >หัวหน้าโครงการ</th> 
-                  <th style="width:15%" >ผู้ร่วมโครงการ</th>      
-                  <th  style="width:15%">ระยะเวลา</th>      
+                  <th style="width:13%" >ผู้ร่วมโครงการ</th>      
+                  <th  style="width:10%">ระยะเวลา</th>      
                   <th style="width:5%" >แหล่งเงิน</th>      
-                  <th  style="width:15%">ประมาณการค่าใช้จ่าย (บาท)</th>      
+                  <th  style="width:10%">ประมาณการค่าใช้จ่าย (บาท)</th>      
                   <th  style="width:10%">สรุปค่าใช้จ่ายและเงินคงเหลือ (บาท)</th>      
-                  <th  style="width:14%">เปอเซ็น</th>      
+                  <th  style="width:10%">ค่าตอบแทน</th>    
+                  <th  style="width:10%">ค่าใช้สอย,ค่าวัสดุ</th>    
+                  <th  style="width:10%">ค่าเช่าห้อง</th>    
+                  <th  style="width:10%">ค่าใช้จ่ายอื่นๆ</th>
+                  <th  style="width:10%">เงินคงเหลือ</th>      
                 </tr>
               </thead><tbody> ';
 
@@ -183,7 +187,15 @@ if ($_SESSION['role'] != "admin") {
 
 
                     echo  "</td><td>" . thai_date_short(strtotime($row["startDate"])) . ' - ' . thai_date_short(strtotime($row["endDate"])) . "</td><td>" . $row["respondsible_department"] . "</td>
-                    <td>" . $row["sum_result_budget"] .  "</td><td> test</td><td> test</td>
+                    <td>" . $row["sum_result_budget"] .  "</td><td>" . $row["summary_budget"] .  "</td>
+                    
+
+                    <td>" . $row["sum_topic1"] .  "</td>
+                    <td>" . $row["sum_topic2"] .  "</td>
+                    <td>" . $row["sum_topic3"] .  "</td>
+                    <td>" . $row["sum_topic4"] .  "</td>
+
+                    <td>" . $row["sum_topic4"] .  "</td>
                     
                             </tr>";
                 }
@@ -343,7 +355,7 @@ if ($_SESSION['role'] != "admin") {
                     [10, 25, 50, "All"]
                 ],
                 "pageLength": 10,
-                "scrollX": true,
+                "scrollX": 2000,
                 "pagingType": "full_numbers",
                 dom: 'B<"top"f>rt<"bottom"lpi><"clear">',
                 buttons: [{
