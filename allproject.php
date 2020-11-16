@@ -32,7 +32,7 @@ session_start();
   <div id="main">
 
     <div class="w3-container col-lg-11 center">
-      <h2 style=" padding :30px; ">รายชื่อโครงการทั้งหมด</h2>
+      <h2 style=" padding :30px; padding-top :70px;">รายชื่อโครงการทั้งหมด</h2>
 
 
       <?php

@@ -137,7 +137,7 @@ if ($_SESSION['role'] != "admin") {
     <div class="" id="nav"></div>
     <div id="main">
         <div class="w3-container col-lg-11 center">
-            <h2 style=" padding :30px; ">สรุปรายงาน</h2>
+            <h2 style=" padding :30px; padding-top :70px;">สรุปรายงาน</h2>
             <?php
             include_once('connect.php');
             $sql = "SELECT * FROM create_project WHERE status ='อนุมัติ' OR status ='เสร็จสิ้น' ORDER BY last_change DESC ";

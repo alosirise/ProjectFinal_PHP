@@ -1,4 +1,5 @@
-<?php ob_start();?>
+<?php ob_start();
+?>
 <!doctype html>
 <html lang="en">
 
@@ -17,7 +18,7 @@
     <div class="" id="nav"></div>
     <div class="row">
 <div class="col-lg-4"></div>
-   <div class="col-lg-8 mx-auto" style=" font-size: 32px;">เกี่ยวกับการติดต่อ</div>
+   <div class="col-lg-8 mx-auto" style=" font-size: 32px;  padding-top :70px;">เกี่ยวกับการติดต่อ</div>
    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then minified and Bootstrap JS -->

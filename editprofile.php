@@ -93,45 +93,49 @@ include('auth.php');
                           </div> </center>';
                         }
                         echo '<input type="file" name="image" id="image" style="display: none;" onchange="displayImage(this)">
-                    </div>';
+                    </div>   <br>';
 
                         $sql = "SELECT * FROM `profile` WHERE profile_id = '" . $_SESSION['id'] . "'";
                         $result = mysqli_query($conn, $sql);
 
                         //fix current date
                         $current_date = date("Y-m-d");
-
+                     
                         if ($result->num_rows > 0) {
+                            echo '<table class="table" id=table>';
+
                             while ($row = $result->fetch_assoc()) {
                                 echo '
-           <div class="col-lg-8 mx-auto">ชื่อ-สกุล <input type="text" value="' . $row["firstname_surname"] . '" name="firstname_surname" required></div> 
-           <div class="col-lg-8 mx-auto">วัน/เดือน/ปีเกิด <input type="date" value="' . $row["dateofbirth"] . '" name="dateofbirth" min="1900-01-01" max="' . $current_date . '"></div>
-           <div class="col-lg-8 mx-auto">ที่อยู่ <textarea name="address2" required rows="3" cols="30">'.$row["address2"].'</textarea></div>
-           <div class="col-lg-8 mx-auto">เบอร์โทร <input type="text" value="' . $row["telephone"] . '" name="telephone" pattern=".{9,10}" required title="9 to 10 characters"></div>
-           <div class="col-lg-8 mx-auto">อีเมลล์ <input type="email" value="' . $row["email"] . '" name="email" required></div>
-           <div class="col-lg-8 mx-auto">แพ้ยา/อาหาร <input type="text" value="' . $row["drug_food_allergy"] . '" name="drug_food_allergy" required></div>';
+                                <tr><td>ชื่อ-สกุล</td><td><input type="text" value="' . $row["firstname_surname"] . '" name="firstname_surname" required></td></tr>
+                                <tr><td>วัน/เดือน/ปีเกิด</td><td> <input type="date" value="' . $row["dateofbirth"] . '" name="dateofbirth" min="1900-01-01" max="' . $current_date . '"></td></tr>
+                                <tr><td>ที่อยู่</td><td><textarea name="address2" required rows="3" cols="30">' . $row["address2"] . '</textarea></td></tr>
+                                <tr><td>เบอร์โทร</td><td><input type="text" value="' . $row["telephone"] . '" name="telephone" pattern=".{9,10}" required title="9 to 10 characters"></td></tr>
+                                <tr><td>อีเมลล์</td><td><input type="email" value="' . $row["email"] . '" name="email" required></td></tr>
+                                <tr><td>แพ้ยา/อาหาร</td><td><input type="text" value="' . $row["drug_food_allergy"] . '" name="drug_food_allergy" required></td></tr>';
 
                                 if ($row["sex"] == "male") {
-                                    echo '<div class="col-lg-8 mx-auto">เพศ
+                                    echo '<tr><td>เพศ</td><td>
                 <input type="radio" name="sex" value="ชาย" checked>
                 <label for="male">ชาย</label>
                 <input type="radio" name="sex" value="หญิง">
-                <label for="male">หญิง</label>';
+                <label for="male">หญิง</label></td>';
                                 } else {
-                                    echo '<div class="col-lg-8 mx-auto">เพศ
+                                    echo '<tr><td>เพศ</td><td>
                 <input type="radio" name="sex" value="ชาย">
                 <label for="male">ชาย</label>
                 <input type="radio" name="sex" value="หญิง" checked>
-                <label for="male">หญิง</label>';
+                <label for="male">หญิง</label></td>';
                                 }
+
+                                echo '</tr><br>';
+                                echo '<tr><td colspan=4>
+                                <center><button type="submit" class="btn btn-primary" name="submit1">Save</button></center></td></tr>';
                             }
                         }
 
                         ?>
 
-                        <div class="col-lg-8 mx-auto" style="margin-top:5px;">
-                            <button type="submit" class="btn btn-primary" name="submit1">Save</button>
-                        </div>
+                        
                 </div>
         </div>
     </div>

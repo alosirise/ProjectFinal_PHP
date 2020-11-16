@@ -1,4 +1,4 @@
-<?php ob_start();?>
+<?php ob_start(); ?>
 <?php
 session_start();
 include('auth.php');
@@ -24,17 +24,21 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     <link rel="stylesheet" href="navbar.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
-
+<style>
+    body {
+        overflow-x: hidden;
+    }
+</style>
 
 <body>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
- 
+
     <script src="index.js"> </script>
 
     <div class="" id="nav"></div>
     <form action="" method="POST">
         <?php
-//หน่วยงานที่รับผิดชอบ ->แหล่งเงิน
+        //หน่วยงานที่รับผิดชอบ ->แหล่งเงิน
         include_once('connect.php');
 
         echo ' 
@@ -166,7 +170,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         $result3 = $conn->query($sql3);
         ?>
 
-       
+
 
         <?php
 
@@ -351,7 +355,6 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                 document.getElementById("numdays2").value = GetDays();
             }
         }
-
     </script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </body>

@@ -6,7 +6,7 @@ include('auth.php');
 if ($_SESSION['role'] != "admin") {
     header('location: home.php');
     exit();
-  }
+}
 include_once('connect.php');
 ?>
 
@@ -17,6 +17,9 @@ include_once('connect.php');
 
         border-color: transparent;
         cursor: context-menu;
+    }
+    body {
+        overflow-x: hidden;
     }
 </style>
 
@@ -202,11 +205,13 @@ $result = $conn->query($sql);
             <tr>
             <th colspan="4"><input type="text" style="width: 99%;" readonly value="รวมค่าใช้จ่ายสุทธิ :"></th>
             <th> <input type="text" style="width: 99%;"  value =  "' .  number_format($row2["result_budget"] * 0.15 + $row2["result_budget"], 2) . '" readonly></th>';
-            ?>
-            <script>var estimate_result = "<?php echo number_format($row2["result_budget"] * 0.15 + $row2["result_budget"], 2)?>";</script>
-            <?php
+                    ?>
+                        <script>
+                            var estimate_result = "<?php echo number_format($row2["result_budget"] * 0.15 + $row2["result_budget"], 2) ?>";
+                        </script>
+                    <?php
 
-            echo '</tr>
+                        echo '</tr>
 
          </tfoot>';
                     } ?>
@@ -216,8 +221,9 @@ $result = $conn->query($sql);
 
 
 
-                <h2 style=" padding : 100px 45px 10px 45px;">สรุปค่าใช้จ่ายและเงินคงเหลือ  <h4>(หากไม่มีให้ กรอก - )</h4></h2>
-              
+                <h2 style=" padding : 100px 45px 10px 45px;">สรุปค่าใช้จ่ายและเงินคงเหลือ <h4>(หากไม่มีให้ กรอก - )</h4>
+                </h2>
+
                 <table class="table table-bordered" id="table">
                     <thead>
                         <tr>
@@ -327,8 +333,9 @@ $result = $conn->query($sql);
          </tfoot>    ';
                     ?>
 
-                </table><h4  style="padding-top : 25px;">เงินคงเหลือ (บาท)</h4>
-                <div><input type="text" id="cal_diff" value = 0  >   <span class='btn btn-primary' onclick="cal_diff();">คำนวณ</div>
+                </table>
+                <h4 style="padding-top : 25px;">เงินคงเหลือ (บาท)</h4>
+                <div><input type="text" id="cal_diff" value=0> <span class='btn btn-primary' onclick="cal_diff();">คำนวณ</div>
                 <div style="padding-top : 20px;">
                     <center><input type="submit" onclick="sum_topic()" name="submit" class="btn btn-success " value="Submit"></center>
                 </div>
@@ -368,7 +375,6 @@ $result = $conn->query($sql);
 
         echo "<script>alert('ระบบได้คำนวณ และจัดเก็บลงไปใน สรุปรายงานแล้ว !!');
                 window.location='request.php';</script>";
-
     }
 
     ?>
@@ -477,10 +483,10 @@ $result = $conn->query($sql);
                 var edit4;
                 edit3 = parseFloat($('#edit3-' + a).val());
                 edit4 = parseFloat($('#edit4-' + a).val());
-                if(isNaN(edit3) || isNaN(edit4)){
-                edit3 =0;
-                edit4 =0;
-            }
+                if (isNaN(edit3) || isNaN(edit4)) {
+                    edit3 = 0;
+                    edit4 = 0;
+                }
                 edit5 = edit3 * edit4;
                 // console.log("edit5 edit5 "  + edit5);
                 $('#edit5-' + a).val(edit5.toFixed(2));
@@ -598,7 +604,7 @@ $result = $conn->query($sql);
 
         function cal_diff() {
             console.log("sds");
-            document.getElementById("cal_diff").value = (estimate_result- sum_total).toFixed(2);
+            document.getElementById("cal_diff").value = (estimate_result - sum_total).toFixed(2);
         }
 
 

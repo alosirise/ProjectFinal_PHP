@@ -21,7 +21,13 @@ include_once('connect.php');
     <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
-
+<style>
+     html,
+    body {
+        height: 100%;
+        background-color: #f5f5f5;
+    }
+</style>
 <body>
     <div class="container">
         <div class="row">
@@ -30,10 +36,9 @@ include_once('connect.php');
                     <form action="" method="POST" name="myForm" onsubmit="return validateForm()">
                         <div class="card-header text-center">Register</div>
                 </div>
-
                 <div class="card-body">
                     <div class="center">
-                        <img src="pic.jpg" class="" style="width: 300px; padding-top: 50px; padding-bottom: 50px;">
+                        <img src="Webp.net-resizeimage (1).png" class="" style="width: 300px;  padding-bottom: 50px;">
                     </div>
 
 

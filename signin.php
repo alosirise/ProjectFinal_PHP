@@ -3,37 +3,113 @@
 session_start();
 include_once('connect.php');
 ?>
-
-<!doctype html>
-<html lang="en">
+<html>
 
 <head>
-
-    <title>Title</title>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <title></title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <link href="signin.css" rel="stylesheet">
+
 </head>
+<style>
+    html,
+    body {
+        height: 100%;
+        background-color: #f5f5f5;
+    }
 
-<body>
+    .main {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        padding-bottom: 40px;
+    }
+
+    .form-signin {
+        width: 100%;
+        max-width: 330px;
+        padding: 15px;
+        margin: auto;
+    }
+
+    .form-signin .checkbox {
+        font-weight: 400;
+    }
+
+    .form-signin .form-control {
+        position: relative;
+        box-sizing: border-box;
+        height: auto;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .form-signin .form-control:focus {
+        z-index: 2;
+    }
+
+    .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+</style>
+
+
+<body class="text-center">
+    <h1 class="h3 mb-3 font-weight-normal" style="padding-top: 32px; font-size:32px;">ระบบจัดการบริการวิชาการแบบครบวงจร
+    </h1>
+
+    <div class="main">
+        <h1 class="h3 mb-3 font-weight-normal"></h1>
+        <form class="form-signin" action="" method="POST"> 
+            <img class="mb-4" src="Webp.net-resizeimage (1).png" style="width : 100%; ">
+            <img class="mb-4" src="psu_passport.png" style="width : 70%; ">
+            <h4 style="padding-top: 5px; padding-bottom: 20px; font-size: 18px;"></h4>
+            <label for="Username" class="sr-only">Username</label>
+            <input type="text" id="username" class="form-control" name="username" placeholder="Username" required="" autofocus="">
+            <br>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="password" class="form-control" name="password" placeholder="Password" required="">
+            <div class="checkbox mb-3">
+                <label>
+
+                </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" name="submit" type="submit">Sign in</button>
+            <div class="mb-3" style="padding-top: 15px;">
+                <label>
+                    <a href="register.php"> register</a>
+                </label>
+            </div>
+            <div style="padding-top :35px;">
+                <label>
+                    คู่มือการใช้งานระบบ
+                </label>
+            </div>
+        </form>
+    </div>
+
+
     <?php
-
     if (isset($_POST['submit'])) {
         $username = $_POST['username'];
         $password = $conn->real_escape_string($_POST['password']);
 
         $sql = "SELECT * FROM `member` WHERE `username` =  '" . $username . "' AND `password` = '" . md5($password) . "' ";
         $result = $conn->query($sql);
-
-
-
-
 
 
         if ($result->num_rows > 0) {
@@ -63,52 +139,6 @@ include_once('connect.php');
     }
 
     ?>
-
-
-
-    <div class="container">
-
-        <div class="row ">
-            <div class="col-lg-5 mx-auto mt-5">
-                <div class="card">
-                    <form action="" method="POST">
-                        <div class="card-header text-center">Sign in</div>
-                </div>
-                <div class="card-body">
-                    <div class="form-group row">
-                        <label for="username" class="col-sm-3 col-form-label">Username</label>
-                        <div class="col-sm-9">
-                            <input type="text" id="username" class="form-control" name="username">
-                        </div>
-                    </div>
-                    <div class="formgroup row">
-                        <label for="password" class="col-sm-3 col-form-label">Password</label>
-                        <div class="col-sm-9">
-                            <input type="password" id="password" class="form-control" name="password">
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer text-center">
-                    <input type="submit" name="submit" class="btn btn-success " value="Submit">
-                    <input type="submit" name="back" class="btn btn-success " value="Back">
-
-                    </form>
-                </div>
-                <br>
-                <p>Not register yet? <a href="register.php">Register Here</a>
-                    <p>
-            </div>
-        </div>
-    </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then minified and Bootstrap JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Compiled and minified JavaScript -->
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/perfect-scrollbar.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
 
 </body>
 

@@ -41,7 +41,7 @@ include_once('connect.php');
     <div class="" id="nav"></div>
     <div id="main">
         <div class="w3-container col-lg-11 center">
-            <h2 style=" padding :30px; ">จัดการบัญชี</h2>
+            <h2 style=" padding :30px; padding-top :50px;">จัดการบัญชี</h2>
 
             <!-- <center><select id="select" style=" height:35px; width: 20%">
                     <option value="all">ทั้งหมด</option>
@@ -90,7 +90,7 @@ include_once('connect.php');
                                     <th  style="width:4%" >ที่</th>
                                     <th style="width:35%" >ชื่อผู้ใช้</th>          
                                     <th data-orderable="false" style="width:15%"> สถานะ</th>
-                                    <th data-orderable="false" style="width:15%"> แบน</th>
+                                   
                                     
                                     </tr>
                                 </thead> ';
@@ -121,7 +121,7 @@ include_once('connect.php');
                     
                     </td>  
 
-                    <td><a onClick=\"javascript: return confirm('Please confirm deletion');\" >  <button type='button' name ='delete' class='btn btn-danger' >ลบ/แบน</button></a></td>         
+                   
                     </tr>";
                             }
 
@@ -153,7 +153,7 @@ include_once('connect.php');
                                     <th  style="width:4%" >ที่</th>
                                     <th style="width:35%" >ชื่อบุคลากร</th>          
                                     <th data-orderable="false" style="width:15%"> สถานะ</th>
-                                    <th data-orderable="false" style="width:15%"> แบน</th>
+                                 
                                     
                                     </tr>
                                 </thead> ';
@@ -184,7 +184,7 @@ include_once('connect.php');
                     
                     </td>  
 
-                    <td><a onClick=\"javascript: return confirm('Please confirm deletion');\" >  <button type='button' name ='delete' class='btn btn-danger' >ลบ/แบน</button></a></td>         
+                  
                     </tr>";
                             }
 
@@ -216,7 +216,7 @@ include_once('connect.php');
                         <th  style="width:4%" >ที่</th>
                         <th style="width:35%" >ชื่อผู้ดูแลระบบ</th>          
                         <th data-orderable="false" style="width:15%"> สถานะ</th>
-                        <th data-orderable="false" style="width:15%"> แบน</th>
+                      
                         
                         </tr>
                     </thead> ';
@@ -249,10 +249,7 @@ include_once('connect.php');
                                     echo ">Admin</option>
                         </select>
 
-                    
                     </td>  
-
-                    <td><a onClick=\"javascript: return confirm('Please confirm deletion');\" >  <button type='button' name ='delete' class='btn btn-danger' >ลบ/แบน</button></a></td>         
                     </tr>";
                                 } else {
                                     echo "<tr><td>" . $number . ".</td><td>" . $row["username"] . "</td>  
@@ -279,20 +276,14 @@ include_once('connect.php');
                                 </select>
                             
                             </td>  
-                            <td><a onClick=\"javascript: return confirm('Please confirm deletion');\" >  <button type='button' name ='delete' class='btn btn-danger' >ลบ/แบน</button></a></td>         
                             </tr>";
                                 }
                             }
-
-
                             echo "</table>";
                         } else {
                             echo " 0 account";
                         }
-
-
                         ?>
-
                     </div>
                 </div>
             </div><br><br>
@@ -303,42 +294,12 @@ include_once('connect.php');
 
             <script>
                 $(document).ready(function() {
-                    // $("#select").on("change", function() {
-                    //     if ($('select').val() == 'user') {
-                    //         $('#admin_list').hide();
-                    //         $('#staff_list').hide();
-                    //         $('#user_list').show();
-                    //     } else if ($('select').val() == 'staff') {
-                    //         $('#user_list').hide();
-                    //         $('#staff_list').show();
-                    //         $('#admin_list').hide();
-                    //     } else if ($('select').val() == 'admin') {
-                    //         $('#admin_list').show();
-                    //         $('#user_list').hide();
-                    //         $('#staff_list').hide();
-
-                    //     } else {
-                    //         $('#admin_list').show();
-                    //         $('#user_list').show();
-                    //         $('#staff_list').show();
-                    //     }
-                    // });
-
                     $('#table,#table2,#table3').DataTable({
                         "autoWidth": false,
                         "pagingType": "full_numbers",
-
                     });
-
-
-
-
                 });
             </script>
-
-
-
             <script src="index.js"></script>
 </body>
-
 </html>

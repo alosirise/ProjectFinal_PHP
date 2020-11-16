@@ -25,7 +25,7 @@ include('auth.php');
         <div class="col-4 offset-md-4 form-div">
             <form action="" method="POST">
                 <div class="form-group">
-                    <center><label style="font-size: 32px;">โปรไฟล์</label><br><br>
+                    <center><label style="font-size: 32px; padding-top:50px;">โปรไฟล์</label><br><br>
                         <?php
                         include_once('connect.php');
                         $sql2 = "SELECT * FROM images WHERE id = '" . $_SESSION['id'] . "'";
@@ -42,7 +42,7 @@ include('auth.php');
                 </div>
 
 
-
+<br>
 
                 <?php
                 if ($_SESSION['id'] == $_GET['profile_id']) {
@@ -51,10 +51,7 @@ include('auth.php');
                 <?php
                 }
                 ?>
-
-
-
-
+<br>
 
                 <?php
 
@@ -62,24 +59,24 @@ include('auth.php');
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
+                    echo '<table class="table " id=table>';
                     while ($row = $result->fetch_assoc()) {
                         $date = new DateTime($row["dateofbirth"]);
-                        echo '<div class="col-lg-8 mx-auto">ชื่อ-สกุล : ' . $row["firstname_surname"] . '</div> ' .
-                            '<div class="col-lg-8 mx-auto">วัน/เดือน/ปีเกิด : ' . date_format($date, "d/m/Y") . '</div>
-                            <div class="col-lg-8 mx-auto">ที่อยู่ : ' . $row["address2"] . '</div>
-                            <div class="col-lg-8 mx-auto">เบอร์โทร : ' . $row["telephone"] . '</div>
-                            <div class="col-lg-8 mx-auto">อีเมลล์ : ' . $row["email"] . '</div>
-                            <div class="col-lg-8 mx-auto">แพ้ยา/อาหาร : ' . $row["drug_food_allergy"] . '</div>
-                            <div class="col-lg-8 mx-auto">เพศ : ' . $row["sex"] . '</div>';
+                        echo '<tr><td>ชื่อ-สกุล</td><td>' . $row["firstname_surname"] . '</td></tr>' .
+                            '<tr><td>วัน/เดือน/ปีเกิด</td><td>' . date_format($date, "d/m/Y") . '</td></tr>
+                            <tr><td>ที่อยู่</td><td>' . $row["address2"] . '</td></tr>
+                            <tr><td>เบอร์โทร</td><td>' . $row["telephone"] . '</td></tr>
+                            <tr><td>อีเมลล์</td><td>' . $row["email"] . '</td></tr>
+                            <tr><td>แพ้ยา/อาหาร</td><td>' . $row["drug_food_allergy"] . '</td></tr>
+                            <tr><td>เพศ</td><td>' . $row["sex"] . '</td></tr></table>';
                     }
                 }
-                ?>
+                ?><br><br>
             </form>
         </div>
     </div>
     </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then minified and Bootstrap JS -->
+  
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Compiled and minified JavaScript -->
 

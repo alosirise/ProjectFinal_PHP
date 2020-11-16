@@ -1,6 +1,7 @@
 <?php ob_start();?>
 <?php
 session_start();
+include('auth.php');
 ?>
 
 <!doctype html>
@@ -31,7 +32,7 @@ session_start();
   <div id="main">
 
     <div class="w3-container col-lg-10 center">
-      <h2 style=" padding :30px; ">ประวัติการเข้าร่วม</h2>
+      <h2 style=" padding :30px;  padding-top :70px;">ประวัติการเข้าร่วม</h2>
 
       <ul class="nav nav-tabs" role="tablist">
         <li> <a href="#list1" class="active nav-link" role="tab" data-toggle="tab">

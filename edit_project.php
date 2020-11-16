@@ -25,6 +25,11 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     <link rel="stylesheet" href="form.css">
 </head>
 
+<style>
+    body {
+        overflow-x: hidden;
+    }
+</style>
 
 <body>
     <div class="" id="nav"></div>
