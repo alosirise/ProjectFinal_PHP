@@ -2,6 +2,10 @@
 <?php
 session_start();
 include('auth.php');
+if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
+  header('location: home.php');
+  exit();
+}
 ?>
 <!doctype html>
 <html lang="en">

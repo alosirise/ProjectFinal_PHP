@@ -1,8 +1,12 @@
-<?php ob_start();?>
+<?php ob_start(); ?>
 <?php
 session_start();
 include('auth.php');
 
+if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
+  header('location: home.php');
+  exit();
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -68,6 +72,7 @@ include('auth.php');
                     for ($i = 0; $i < $countquestion; $i++) {
                       echo '<th > ' . $question_explode[$i] . '</th>';
                     }
+                    echo '<th ">สถานะ</th>';
                     echo '<th ">ลบ</th>';
                   }
                 }
@@ -123,22 +128,65 @@ include('auth.php');
               }
 
 
-              $sql5 = "SELECT * from profile where profile_id = '" . $_SESSION['id'] . "'";
-              $result5 = mysqli_query($conn, $sql5);
-              if ($result5->num_rows > 0) {
-                while ($row = $result5->fetch_assoc()) {
-                  $profile_id = $row["profile_id"];
-                }
-              }
+
+
+
 
               for ($z = 0; $z < $count_user; $z++) {
 
+                $sql5 = "SELECT * from profile where firstname_surname = '" . $username[$z] . "'";
+                $result5 = mysqli_query($conn, $sql5);
+                if ($result5->num_rows > 0) {
+                  while ($row = $result5->fetch_assoc()) {
+                    $profile_id = $row["profile_id"];
+                  }
+                }
+
                 echo '<tr id="tr">';
-                echo '<td><a href=profile.php?profile_id=' . $profile_id . '>'.$username[$z].'</a></td>';
+                echo '<td><a href=profile.php?profile_id=' . $profile_id . '>' . $username[$z] . '</a></td>';
                 for ($x = 0; $x < (int) $countquestion; $x++) {
                   echo '<td>' . $answer[$append_answer] . '</td>';
                   $append_answer++;
                 }
+
+                $status ="";
+                $sql6 = "SELECT * from check_payment where firstname_surname = '" . $username[$z] . "'";
+                $result6 = mysqli_query($conn, $sql6);
+                if ($result6->num_rows > 0) {
+                  while ($row = $result6->fetch_assoc()) {
+                    $status = $row["status"];
+                  }
+                }
+
+                echo " <td><select name='change' id='project_id' style=' height:30px; width: 100%' onfocus=\"this.setAttribute('PrvSelectedValue',this.value);\" 
+               onchange=\"if(confirm('Do you want to change?')==false) { this.value=this.getAttribute('PrvSelectedValue');return false; }
+               else{location.href='check_payment.php?username=".$username[$z]."&id=".$project_id."&change='+this.value}\" 
+               >              
+
+               
+               <option value='รอยืนยันการชำระเงิน' ";
+               if ( $status == 'รอยืนยันการชำระเงิน') {
+                 echo "selected='selected' ";
+               }
+               echo ">รอยืนยันการชำระเงิน</option>
+
+                <option value='ยกเลิกการสมัคร' ";
+                if ( $status == 'ยกเลิกการสมัคร') {
+                  echo "selected='selected'";
+                }
+                echo ">ยกเลิกการสมัคร</option>
+
+             
+                    <option value='ชำระเงินเรียบร้อย' ";
+                if ( $status == 'ชำระเงินเรียบร้อย') {
+                  echo "selected='selected' ";
+                }
+                echo ">ชำระเงินเรียบร้อย</option>
+                  </select>
+     </td>  ";
+
+
+
                 echo '<td><a onClick=\'javascript: return confirm("ต้องการลบคำตอบ ใช่ หรือ ไม่?"); \'href=del_answer.php?project_id=' . $project_id . '><button type="button" class="btn-danger" onclick="delAnswer(' . "'" . $username[$z] . "'" . ')">ลบ</button></a></td>';
                 echo '</tr>';
               }
@@ -224,14 +272,14 @@ include('auth.php');
           orientation: 'landscape',
           pageSize: 'A4',
           exportOptions: {
-            columns: [':visible :not(:last-child)']
+            columns: [':visible :not(:last-child) ']
           },
           customize: function(doc) {
             doc.defaultStyle = {
               font: 'THSarabun',
               fontSize: 15
             };
-            doc.content[1].margin = [ 100, 0, 0, 0 ];
+            doc.content[1].margin = [100, 0, 0, 0];
             doc.styles.tableHeader.fontSize = 15;
             countColumn = parseInt(countColumn) + 1; //+1 เพราะ เพิ่มแถว ชื่อผู้ใช้
 
@@ -240,21 +288,23 @@ include('auth.php');
             // Array(doc.content[1].table.body[0].length + 1).join('*').split('');
 
             var colCount = new Array();
-            $('#table').find('tbody tr:first-child td').each(function(){
-                if($(this).attr('colspan')){
-                    for(var i=1;i<=$(this).attr('colspan');$i++){
-                        colCount.push('*');
-                    }
-                }else{ colCount.push('*'); }
+            $('#table').find('tbody tr:first-child td').each(function() {
+              if ($(this).attr('colspan')) {
+                for (var i = 1; i <= $(this).attr('colspan'); $i++) {
+                  colCount.push('*');
+                }
+              } else {
+                colCount.push('*');
+              }
             });
             doc.content[1].table.widths = colCount;
 
-            doc.styles.tableBodyOdd.alignment = 'center'; 
-            doc.styles.tableBodyEven.alignment = 'center'; 
+            doc.styles.tableBodyOdd.alignment = 'center';
+            doc.styles.tableBodyEven.alignment = 'center';
 
             // var rowCount = doc.content[1].table.body.length; // นับจำนวนแถวทั้งหมดในตาราง
             // วนลูปเพื่อกำหนดค่า
-        
+
             // var x = 0;
             // for (i = 1; i < rowCount; i++) { // i เริ่มที่ 1 เพราะ i แรกเป็นแถวของหัวข้อ
             //     for (var z = 0; z < countColumn; z++) {
@@ -264,7 +314,7 @@ include('auth.php');
 
             //     x++;
             //     console.log("all : " + countColumn); //เนื่องจาก x=0 ดังนั้น coutcolumn ต้อง-1
-                
+
             // };
             console.log(doc);
           }
@@ -283,23 +333,25 @@ include('auth.php');
               fontSize: 15
             };
 
-            doc.content[1].margin = [ 50, 0, 0, 0];
+            doc.content[1].margin = [50, 0, 0, 0];
             doc.styles.tableHeader.fontSize = 15;
 
             var colCount = new Array();
-            $('#table').find('tbody tr:first-child td').each(function(){
-                if($(this).attr('colspan')){
-                    for(var i=1;i<=$(this).attr('colspan');$i++){
-                        colCount.push('*');
-                    }
-                }else{ colCount.push('*'); }
+            $('#table').find('tbody tr:first-child td').each(function() {
+              if ($(this).attr('colspan')) {
+                for (var i = 1; i <= $(this).attr('colspan'); $i++) {
+                  colCount.push('*');
+                }
+              } else {
+                colCount.push('*');
+              }
             });
             doc.content[1].table.widths = colCount; // กำหนดความกว้างของ header แต่ละคอลัมน์หัวข้อ
 
 
             doc.styles.tableHeader.fontSize = 13;
-            doc.styles.tableBodyOdd.alignment = 'center'; 
-            doc.styles.tableBodyEven.alignment = 'center'; 
+            doc.styles.tableBodyOdd.alignment = 'center';
+            doc.styles.tableBodyEven.alignment = 'center';
 
             // var rowCount = doc.content[1].table.body.length; // นับจำนวนแถวทั้งหมดในตาราง
             // // วนลูปเพื่อกำหนดค่า
@@ -312,7 +364,7 @@ include('auth.php');
 
             //     x++;
             //     console.log("all : " + countColumn); //เนื่องจาก x=0 ดังนั้น coutcolumn ต้อง-1
-          
+
             // };
 
             console.log(doc);

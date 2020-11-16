@@ -2,6 +2,10 @@
 <?php
 session_start();
 include('auth.php');
+if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
+    header('location: home.php');
+    exit();
+  }
 ?>
 <!doctype html>
 <html lang="en">
@@ -88,7 +92,7 @@ th,td {
                                 if ($i == 0) {
                                     if ($question_explode[$i] == "null") {
                                         echo '<tr class="q' . ($i + 1) . '">
-                                        <td height="30"><input class="form-control" name="question[]" type="text" placeholder="คำถามของคุณ"></td>
+                                        <td height="30"><input class="form-control" name="question[]" type="text" placeholder="คำถามของคุณ" required></td>
                                         <td height="30" align="center"><input type="radio" value="5" disabled /></td>
                                         <td height="30" align="center"><input type="radio" value="4" disabled /></td>
                                         <td height="30" align="center"><input type="radio" value="3" disabled /></td>
@@ -97,7 +101,7 @@ th,td {
                                         </tr>';
                                     } else {
                                         echo '<tr class="q' . ($i + 1) . '">
-                                        <td height="30"><input class="form-control" name="question[]" type="text" value="' . $question_explode[$i] . '" placeholder="คำถามของคุณ"></td>
+                                        <td height="30"><input class="form-control" name="question[]" type="text" value="' . $question_explode[$i] . '" placeholder="คำถามของคุณ" required></td>
                                         <td height="30" align="center"><input type="radio" value="5" disabled /></td>
                                         <td height="30" align="center"><input type="radio" value="4" disabled /></td>
                                         <td height="30" align="center"><input type="radio" value="3" disabled /></td>
@@ -108,7 +112,7 @@ th,td {
                                 } else {
                                     if ($question_explode[$i] == "null") {
                                         echo '<tr class="q' . ($i + 1) . '">
-                                        <td height="30"><input class="form-control" name="question[]" type="text" placeholder="คำถามของคุณ"></td>
+                                        <td height="30"><input class="form-control" name="question[]" type="text" placeholder="คำถามของคุณ" required></td>
                                         <td height="30" align="center"><input type="radio" value="5" disabled /></td>
                                         <td height="30" align="center"><input type="radio" value="4" disabled /></td>
                                         <td height="30" align="center"><input type="radio" value="3" disabled /></td>
@@ -118,7 +122,7 @@ th,td {
                                         </tr>';
                                     } else {
                                         echo '<tr class="q' . ($i + 1) . '">
-                                        <td height="30"><input class="form-control" name="question[]" type="text" value="' . $question_explode[$i] . '" placeholder="คำถามของคุณ"></td>
+                                        <td height="30"><input class="form-control" name="question[]" type="text" value="' . $question_explode[$i] . '" placeholder="คำถามของคุณ" required></td>
                                         <td height="30" align="center"><input type="radio" value="5" disabled /></td>
                                         <td height="30" align="center"><input type="radio" value="4" disabled /></td>
                                         <td height="30" align="center"><input type="radio" value="3" disabled /></td>
@@ -162,7 +166,7 @@ th,td {
                         <td width="5%" align="center"><strong>1</strong></td>
                     </tr>
                     <tr class="q1">
-                        <td height="30"><input class="form-control" name="question[]" type="text" placeholder="คำถามของคุณ"></td>
+                        <td height="30"><input class="form-control" name="question[]" type="text" placeholder="คำถามของคุณ" required></td>
                         <td height="30" align="center"><input type="radio" value="5" disabled /></td>
                         <td height="30" align="center"><input type="radio" value="4" disabled /></td>
                         <td height="30" align="center"><input type="radio" value="3" disabled /></td>
@@ -231,7 +235,7 @@ th,td {
         i++;
         num_question++;
         var question = '<tr class="q' + i + '">' +
-            '<td height="30"><input class="form-control" name="question[]" type="text" placeholder="คำถามของคุณ"></td>' +
+            '<td height="30"><input class="form-control" name="question[]" type="text" placeholder="คำถามของคุณ" required></td>' +
             '<td height="30" align="center"><input type="radio" value="5" disabled/></td>' +
             '<td height="30" align="center"><input type="radio" value="4" disabled/></td>' +
             '<td height="30" align="center"><input type="radio" value="3" disabled/></td>' +

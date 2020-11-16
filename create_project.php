@@ -46,7 +46,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                 <div class="card-body" style="width:90%;">
                     <div>
                         <label for="exampleFormControlInput1">ชื่อโครงการ</label>
-                        <input type="text" class="form-control text" id="name_project" name="name_project"></td>
+                        <input type="text" class="form-control text" id="name_project" name="name_project" required></td>
                     </div>
                     <div>
                         <label for="exampleFormControlInput1">แหล่งเงิน</label>
@@ -80,8 +80,8 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                     <div style ="padding-left : 12px;"> 
                     <table>  
                     <tr>
-                        <td style="padding-right : 30px;><div id="pickup_date"><p><label class="form">เริ่มวันที่ : </label><input type="date" class="form-control" id="pick_date" name="pickup_date" onchange="cal()"</p></div></td>
-                        <td ><div id="dropoff_date"><p><label class="form">สิ้นสุดวันที่ : </label><input type="date" class="form-control" id="drop_date" name="dropoff_date" onchange="cal()"/></p></div></td>
+                        <td style="padding-right : 30px;><div id="pickup_date"><p><label class="form">เริ่มวันที่ : </label><input type="date" class="form-control" id="pick_date" name="pickup_date" onchange="cal()" required /> </p></div></td>
+                        <td ><div id="dropoff_date"><p><label class="form">สิ้นสุดวันที่ : </label><input type="date" class="form-control" id="drop_date" name="dropoff_date" onchange="cal()" required /></p></div></td>
                        
                         </tr><tr>
                         <td ><div id="numdays"><p><label class="form">รวมทั้งหมด (วัน) : </label><input type="text" class="form-control" id="numdays2" name="numdays" readonly/></p></div><td>
@@ -166,19 +166,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         $result3 = $conn->query($sql3);
         ?>
 
-        <!-- <td style="padding-left :15px;"><select id="selectBox" name="selectBox[]" style="width :110px; height: 30px; ">
-                <?php
-                // echo '<script>var array = [];</script>';
-                // while ($row3 = $result3->fetch_assoc()) { {
-                //         echo '<option value="' . $row3["working_group"] . '">' . $row3["working_group"] . '</option>';
-                //         echo "<script>array.push('$row3[working_group]')</script>";
-                //     }
-                // }
-                // echo "<script>console.log(array);</script>";
-                ?>
-            </select></td> -->
-
-
+       
 
         <?php
 
@@ -240,8 +228,6 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             echo '<script>alert("โปรดตรวจสอบ ระยะเวลาในการทำโปรเจคอีกครั้ง ")</script>';
             // } else if (mysqli_num_rows($result1) > 0) {
             //     echo '<script>alert("ชื่อของโปรเจคซ้ำกับที่มีอยู่แล้ว โปรดตั้งชื่ออื่น")</script>';
-        } else if ($name_project == "") {
-            echo '<script>alert("กรุณาตั้งชื่อโปรเจ็ค")</script>';
         } else {
             $datetime = date('Y-m-d H:i:s');
 

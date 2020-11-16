@@ -57,9 +57,9 @@ $result = $conn->query($sql);
 
             echo '<tr>
                 <td><input type="text"  style="width: 99%;"   name="no[]"  class="edit"      id="edit1-' . $i1 . '-1"  value ="' . $row2["no"] . '" ></td>
-                <td><input type="text"  style="width: 99%;"   name="list[]"  class="edit"    id="edit2-' . $i1 . '-1"  value ="' . $row2["list"] . '" ></td>
-                <td><input type="text"  style="width: 99%;"   name="quantity[]" class="edit"  id="edit3-' . $i1 . '-1"  onclick="test(id)" value ="' . $row2["quantity"] . '" ></td>
-                <td><input type="text"  style="width: 99%;"   name="rate[]"  class="edit"     id="edit4-' . $i1 . '-1"  onclick="test(id)"  value ="' . $row2["rate"] . '" ></td>
+                <td><input type="text"  style="width: 99%;"   name="list[]"  class="edit"    id="edit2-' . $i1 . '-1"  value ="' . $row2["list"] . '" required></td>
+                <td><input type="text"  style="width: 99%;"   name="quantity[]" class="edit"  id="edit3-' . $i1 . '-1"  onclick="test(id)" value ="' . $row2["quantity"] . '" required></td>
+                <td><input type="text"  style="width: 99%;"   name="rate[]"  class="edit"     id="edit4-' . $i1 . '-1"  onclick="test(id)"  value ="' . $row2["rate"] . '" required></td>
                 <td><input type="text"  style="width: 99%;"   name="cost1[]"  class="edit"    id="edit5-' . $i1 . '-1"  value ="' . $row2["cost"] . '" readonly><input type="hidden" name="title[]" value="1"></td>
                 <td> <i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> </td>';
             if ($i1 === 1) {
@@ -95,9 +95,9 @@ $result = $conn->query($sql);
 
             echo '<tr>
                 <td><input type="text"  style="width: 99%;"   name="no[]"  class="edit"      id="edit1-' . $i2 . '-2"  value ="' . $row2["no"] . '" ></td>
-                <td><input type="text"  style="width: 99%;"   name="list[]"  class="edit"    id="edit2-' . $i2 . '-2"  value ="' . $row2["list"] . '" ></td>
-                <td><input type="text"  style="width: 99%;"   name="quantity[]" class="edit"  id="edit3-' . $i2 . '-2"  onclick="test(id)" value ="' . $row2["quantity"] . '" ></td>
-                <td><input type="text"  style="width: 99%;"   name="rate[]"  class="edit"     id="edit4-' . $i2 . '-2" onclick="test(id)"  value ="' . $row2["rate"] . '" ></td>
+                <td><input type="text"  style="width: 99%;"   name="list[]"  class="edit"    id="edit2-' . $i2 . '-2"  value ="' . $row2["list"] . '" required></td>
+                <td><input type="text"  style="width: 99%;"   name="quantity[]" class="edit"  id="edit3-' . $i2 . '-2"  onclick="test(id)" value ="' . $row2["quantity"] . '" required></td>
+                <td><input type="text"  style="width: 99%;"   name="rate[]"  class="edit"     id="edit4-' . $i2 . '-2" onclick="test(id)"  value ="' . $row2["rate"] . '" required></td>
                 <td><input type="text"  style="width: 99%;"   name="cost1[]"  class="edit"    id="edit5-' . $i2 . '-2"  value ="' . $row2["cost"] . '" readonly><input type="hidden" name="title[]" value="2"></td>
                 <td> <i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> </td>';
                 if ($i2 === 1) {
@@ -133,9 +133,9 @@ $result = $conn->query($sql);
 
             echo '<tr>
                 <td><input type="text"  style="width: 99%;"   name="no[]"  class="edit"      id="edit1-' . $i3 . '-3"  value ="' . $row2["no"] . '" ></td>
-                <td><input type="text"  style="width: 99%;"   name="list[]"  class="edit"    id="edit2-' . $i3 . '-3"  value ="' . $row2["list"] . '" ></td>
-                <td><input type="text"  style="width: 99%;"   name="quantity[]" class="edit"  id="edit3-' . $i3 . '-3"  onclick="test(id)" value ="' . $row2["quantity"] . '" ></td>
-                <td><input type="text"  style="width: 99%;"   name="rate[]"  class="edit"     id="edit4-' . $i3 . '-3" onclick="test(id)"  value ="' . $row2["rate"] . '" ></td>
+                <td><input type="text"  style="width: 99%;"   name="list[]"  class="edit"    id="edit2-' . $i3 . '-3"  value ="' . $row2["list"] . '" required></td>
+                <td><input type="text"  style="width: 99%;"   name="quantity[]" class="edit"  id="edit3-' . $i3 . '-3"  onclick="test(id)" value ="' . $row2["quantity"] . '" required></td>
+                <td><input type="text"  style="width: 99%;"   name="rate[]"  class="edit"     id="edit4-' . $i3 . '-3" onclick="test(id)"  value ="' . $row2["rate"] . '" required></td>
                 <td><input type="text"  style="width: 99%;"   name="cost1[]"  class="edit"    id="edit5-' . $i3 . '-3"  value ="' . $row2["cost"] . '" readonly><input type="hidden" name="title[]" value="3"></td>
                 <td> <i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> </td>';
                 if ($i3 === 1) {
@@ -171,9 +171,9 @@ $result = $conn->query($sql);
 
             echo '<tr>
                 <td><input type="text"  style="width: 99%;"   name="no[]"  class="edit"      id="edit1-' . $i4 . '-4"  value ="' . $row2["no"] . '" ></td>
-                <td><input type="text"  style="width: 99%;"   name="list[]"  class="edit"    id="edit2-' . $i4 . '-4"  value ="' . $row2["list"] . '" ></td>
-                <td><input type="text"  style="width: 99%;"   name="quantity[]" class="edit"  id="edit3-' . $i4 . '-4"  onclick="test(id)" value ="' . $row2["quantity"] . '" ></td>
-                <td><input type="text"  style="width: 99%;"   name="rate[]"  class="edit"     id="edit4-' . $i4 . '-4" onclick="test(id)"  value ="' . $row2["rate"] . '" ></td>
+                <td><input type="text"  style="width: 99%;"   name="list[]"  class="edit"    id="edit2-' . $i4 . '-4"  value ="' . $row2["list"] . '" required></td>
+                <td><input type="text"  style="width: 99%;"   name="quantity[]" class="edit"  id="edit3-' . $i4 . '-4"  onclick="test(id)" value ="' . $row2["quantity"] . '" required></td>
+                <td><input type="text"  style="width: 99%;"   name="rate[]"  class="edit"     id="edit4-' . $i4 . '-4" onclick="test(id)"  value ="' . $row2["rate"] . '" required></td>
                 <td><input type="text"  style="width: 99%;"   name="cost1[]"  class="edit"    id="edit5-' . $i4 . '-4"  value ="' . $row2["cost"] . '" readonly><input type="hidden" name="title[]" value="4"></td>
                 <td> <i class="glyphicon glyphicon-pencil i" style="cursor: pointer;"  onclick="myEditFunction()"> </td>';
                 if ($i4 === 1) {
@@ -278,9 +278,9 @@ $result = $conn->query($sql);
 
 
         cell1.innerHTML = "<input type='text' class='edit' name ='no[]'   id='edit1-" + num + "-" + topic + "'  style='width: 99%; cursor: auto;' >  <input type='hidden' name='title[]' value=" + topic + ">";
-        cell2.innerHTML = "<input type='text' class='edit' name ='list[]'     id='edit2-" + num + "-" + topic + "' style='width: 99%; cursor: auto;'>";
-        cell3.innerHTML = "<input type='text' class='edit' name ='quantity[]'  id='edit3-" + num + "-" + topic + "' onclick='test(id)' style='width: 99%; cursor: auto;'> ";
-        cell4.innerHTML = "<input type='text' class='edit' name='rate[]'  id='edit4-" + num + "-" + topic + "'  onclick='test(id)' style='width: 99%; cursor: auto;'> ";
+        cell2.innerHTML = "<input type='text' class='edit' name ='list[]'     id='edit2-" + num + "-" + topic + "' style='width: 99%; cursor: auto;' required>";
+        cell3.innerHTML = "<input type='text' class='edit' name ='quantity[]'  id='edit3-" + num + "-" + topic + "' onclick='test(id)' style='width: 99%; cursor: auto;' required> ";
+        cell4.innerHTML = "<input type='text' class='edit' name='rate[]'  id='edit4-" + num + "-" + topic + "'  onclick='test(id)' style='width: 99%; cursor: auto;' required> ";
         cell5.innerHTML = "<input type='text' class='edit' name = 'cost1[]'  id='edit5-" + num + "-" + topic + "' style='width: 99%; cursor: auto;' readonly>";
 
 

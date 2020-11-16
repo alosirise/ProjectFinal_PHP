@@ -1,4 +1,4 @@
-<?php ob_start();?>
+<?php ob_start(); ?>
 <?php
 session_start();
 include('auth.php');
@@ -19,32 +19,33 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <!-- Bootstrap navbar CSS-->
   <link rel="stylesheet" href="navbar.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.21/datatables.min.css" />
   <script src="https://kit.fontawesome.com/f7ef8136ea.js" crossorigin="anonymous"></script>
 
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.21/datatables.min.js"></script>
 
 
   <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
-   
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> 
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
 
 </head>
 <script>
-    $(document).ready(function() {
-        $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
-            localStorage.setItem('activeTab', $(e.target).attr('href'));
-        });
-        var activeTab = localStorage.getItem('activeTab');
-        console.log(activeTab);
-        if (activeTab) {
-            $('#myTab a[href="' + activeTab + '"]').tab('show');
-        }
+  $(document).ready(function() {
+    $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+      localStorage.setItem('activeTab', $(e.target).attr('href'));
     });
+    var activeTab = localStorage.getItem('activeTab');
+    console.log(activeTab);
+    if (activeTab) {
+      $('#myTab a[href="' + activeTab + '"]').tab('show');
+    }
+  });
 </script>
 <style>
   #main {
@@ -58,7 +59,6 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
   td {
     text-align: center;
   }
-  
 </style>
 
 <body>
@@ -71,7 +71,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
       <center>
         <a href=create_project.php><button type="button" class="btn btn-success btn-lg">สร้าง</button></a>
         <br><br><br>
-        <ul class="nav nav-tabs" role="tablist" id= "myTab">
+        <ul class="nav nav-tabs" role="tablist" id="myTab">
           <li> <a href="#list1" class="active nav-link" role="tab" data-toggle="tab">
               <icon class="fa fa-home"></icon> แบบร่าง
             </a>
@@ -138,7 +138,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         }
         echo "</table>";
       } else {
-        echo "0 results";
+        echo "<h3>-ยังไม่มีแบบร่างที่สร้างไว้-</h3>";
       }
       echo "</div>";
 
@@ -181,11 +181,10 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
           
           <th style = 'text-align: center;'><a style=color:blue; >" . $row["status"] . "</a> </th>
           <td><a href=cancel_send.php?project_id=" . $row['project_id'] . ">  <button type='button' name ='send' class='btn btn-success' >ยกเลิก</button></a></td>";
-                
         }
         echo "</table>";
       } else {
-        echo "0 results";
+        echo "<h3>-ยังไม่มีรายการที่กำลังดำเนินการ-</h3>";
       }
       echo "</div>";
 
@@ -228,10 +227,10 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
               <td><a href=waiting_project.php?project_id=" . $row['project_id'] . ">  <button type='button' name ='send' class='btn btn-success' >ส่ง</button></a></td> 
               <td><a onClick=\"javascript: return confirm('Please confirm deletion');\" href=delete_project.php?project_id=" . $row['project_id'] . " >  <button type='button' name ='delete' class='btn btn-danger' >ลบ</button></a></td>";
         }
-       
+
         echo "</table>";
       } else {
-        echo "0 results";
+         echo "<h3>-ยังไม่มีรายการที่ถูกส่งคืน-</h3>";
       }
       echo "</div>";
 
@@ -271,27 +270,27 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
            
             <td style = 'text-align: center'><a href=answer_form.php?project_id=" . $row['project_id'] . "> <i class='fa fa-book fa-lg' ></i></a></td>";
 
-             $my_project_id = $row["project_id"];
-              $sql2 = "SELECT * FROM evaluate_form WHERE project_id = $my_project_id";
-              $result2 = $conn->query($sql2);
+          $my_project_id = $row["project_id"];
+          $sql2 = "SELECT * FROM evaluate_form WHERE project_id = $my_project_id";
+          $result2 = $conn->query($sql2);
 
-              if ($result2->num_rows > 0) {
-              while ($row2 = $result2->fetch_assoc()) {
-                  echo "<td style = 'text-align: center'><a href=answer_evaluate.php?project_id=" . $row['project_id'] . "> <i class='fas fa-poll fa-lg' ></i></a></td>";
-              }
-            }else{
-              echo "  <td style = 'text-align: center'><i class='fas fa-poll fa-lg' disabled></i></a></td>";
+          if ($result2->num_rows > 0) {
+            while ($row2 = $result2->fetch_assoc()) {
+              echo "<td style = 'text-align: center'><a href=answer_evaluate.php?project_id=" . $row['project_id'] . "> <i class='fas fa-poll fa-lg' ></i></a></td>";
             }
+          } else {
+            echo "  <td style = 'text-align: center'><i class='fas fa-poll fa-lg' disabled></i></a></td>";
+          }
 
-           
-            echo "<td style = 'text-align: center'><a href=create_registration.php?project_id=" . $row['project_id'] . "> <i class='fa fa-id-card fa-lg' ></i></a></td>
+
+          echo "<td style = 'text-align: center'><a href=create_registration.php?project_id=" . $row['project_id'] . "> <i class='fa fa-id-card fa-lg' ></i></a></td>
             <th style = 'text-align: center'><a style=color:forestgreen;>" . $row["status"] . "</a></th> ";
         }
         echo "</table>";
       } else {
-        echo "0 results";
+        echo "<h3>-ยังไม่มีรายการที่ได้รับการอนุมัติ-</h3>";
       }
-    
+
 
 
 
@@ -310,6 +309,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                   <th style="width:45% "  >ชื่อโครงการ</th>      
 
                   <th style="width:16%" class="text-center" data-orderable="false">คำตอบใบสมัคร</th>
+                  <th style="width:16%" class="text-center" data-orderable="false">คำตอบแบบประเมิน</th>
                   <th style="width:16%" class="text-center" data-orderable="false">สร้างใบลงทะเบียน</th>
                   <th style="width:17%" class="text-center" data-orderable="false" style="width:25%"> สถานะ</th>
             
@@ -321,16 +321,26 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
           $number++;
           echo "<tr><td>" . $number . ".</td><td style= 'text-align: left;'>" . $row["name_project"] . "</td>  
       
-            <td style = 'text-align: center;'><a href=answer_form.php?project_id=" . $row['project_id'] . "> <i class='fa fa-book fa-lg' ></i></a></td>
-            <td style = 'text-align: center;'> <a href=create_registration.php?project_id=" . $row['project_id'] . "> <i class='fa fa-id-card fa-lg' ></i></a></td>
+            <td style = 'text-align: center;'><a href=answer_form.php?project_id=" . $row['project_id'] . "> <i class='fa fa-book fa-lg' ></i></a></td>";
+
+          $my_project_id = $row["project_id"];
+          $sql2 = "SELECT * FROM evaluate_form WHERE project_id = $my_project_id";
+          $result2 = $conn->query($sql2);
+
+          if ($result2->num_rows > 0) {
+            while ($row2 = $result2->fetch_assoc()) {
+              echo "<td style = 'text-align: center'><a href=answer_evaluate.php?project_id=" . $row['project_id'] . "> <i class='fas fa-poll fa-lg' ></i></a></td>";
+            }
+          } else {
+            echo "<td style = 'text-align: center'><i class='fas fa-poll fa-lg' disabled></i></a></td>";
+          }
+          echo "<td style = 'text-align: center;'> <a href=create_registration.php?project_id=" . $row['project_id'] . "> <i class='fa fa-id-card fa-lg' ></i></a></td>
             <th style = 'text-align: center;'>" . $row["status"] . "</th>
           ";
-          
-
         }
         echo "</table>";
       } else {
-        echo "0 results";
+        echo "<h3>-ยังไม่มีรายการที่เสร็จสิ้น-</h3>";
       }
       echo "</div></div>
       <br><br><br><br><br>";
@@ -347,7 +357,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
           });
         });
       </script>
-  
+
       <script src="index.js"></script>
 </body>
 

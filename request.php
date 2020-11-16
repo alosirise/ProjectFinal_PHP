@@ -176,7 +176,7 @@ $_SESSION['go'] = 'go_request';
               }
               echo "</table>";
             } else {
-              echo "<h3>ยังไม่มีคำร้องขอในขณะนี้</h3>";
+              echo "<h3>-ยังไม่มีคำร้องขอในขณะนี้-</h3>";
             }
             ?>
           </div>
@@ -334,7 +334,7 @@ $_SESSION['go'] = 'go_request';
               }
               echo "</table>";
             } else {
-              echo "<h3>-ยังไม่มีรายการที่ปฏิเสธ-</h3>";
+              echo "<h3>-ยังไม่มีรายการที่ส่งคืน-</h3>";
             }
             ?>
           </div>
@@ -415,7 +415,7 @@ $_SESSION['go'] = 'go_request';
               }
               echo "</table>";
             } else {
-              echo "<h3>-ยังไม่มีรายการที่จบไปแล้ว-</h3>";
+              echo "<h3>-ยังไม่มีรายการที่เสร็จสิ้น-</h3>";
             }
             ?>
           </div>
@@ -427,30 +427,7 @@ $_SESSION['go'] = 'go_request';
 
       <script>
         $(document).ready(function() {
-          // $("select").on("change", function() {
-          //   if ($('select').val() == 'request') {
-          //     $('#reject,#accept,#finish').hide();
-          //     $('#request').show();
-
-          //   } else if ($('select').val() == 'accept') {
-          //    $('#reject,#request,#finish').hide();
-          //     $('#accept').show();
-
-          //   } else if ($('select').val() == 'reject') {
-          //     $('#reject').show();
-          //     $('#request,#accept,#finish').hide();
-
-          //   } else if ($('select').val() == 'finish') {
-          //     $('#finish').show();
-          //     $('#reject,#accept,#request').hide();;
-
-          //   }else {
-          //     $('#reject,#accept,#request,#reject').show();
-
-          //   }
-          // });
-
-
+         
           $('#table,#table2,#table3').DataTable({
             "pagingType": "full_numbers",
           });

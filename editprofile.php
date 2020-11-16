@@ -104,8 +104,7 @@ include('auth.php');
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
                                 echo '
-           <div class="col-lg-8 mx-auto">ชื่อ <input type="text" value="' . $row["firstname"] . '" name="firstname" required></div> 
-           <div class="col-lg-8 mx-auto">นามสกุล <input type="text" value="' . $row["surname"] . '" name="surname" required></div>
+           <div class="col-lg-8 mx-auto">ชื่อ-สกุล <input type="text" value="' . $row["firstname_surname"] . '" name="firstname_surname" required></div> 
            <div class="col-lg-8 mx-auto">วัน/เดือน/ปีเกิด <input type="date" value="' . $row["dateofbirth"] . '" name="dateofbirth" min="1900-01-01" max="' . $current_date . '"></div>
            <div class="col-lg-8 mx-auto">ที่อยู่ <textarea name="address2" required rows="3" cols="30">'.$row["address2"].'</textarea></div>
            <div class="col-lg-8 mx-auto">เบอร์โทร <input type="text" value="' . $row["telephone"] . '" name="telephone" pattern=".{9,10}" required title="9 to 10 characters"></div>
@@ -156,8 +155,7 @@ include('auth.php');
     }
     if (isset($_POST['submit1'])) {
         $session = $_SESSION['id'];
-        $firstname = $_POST['firstname'];
-        $surname = $_POST["surname"];
+        $firstname_surname = $_POST['firstname_surname'];
         $dateofbirth = $_POST["dateofbirth"];
         $address2 = $_POST["address2"];
         $telephone = $_POST["telephone"];
@@ -165,10 +163,10 @@ include('auth.php');
         $drug_food_allergy = $_POST["drug_food_allergy"];
         $sex = $_POST["sex"];
 
-        $sql2 = "UPDATE `profile` SET firstname = '" . $firstname . "' ,surname = '" . $surname . "' ,dateofbirth = '" . $dateofbirth . "' ,address2 = '" . $address2 . "'
+        $sql2 = "UPDATE `profile` SET firstname_surname = '" . $firstname_surname . "' ,dateofbirth = '" . $dateofbirth . "' ,address2 = '" . $address2 . "'
         ,telephone = '" . $telephone . "' ,email = '" . $email . "' ,drug_food_allergy = '" . $drug_food_allergy . "' ,sex = '" . $sex . "' WHERE profile_id='" . $session . "'";
         $result = mysqli_query($conn, $sql2);
-        echo "<script>window.location='profile.php';</script>";
+        echo "<script>window.location='profile.php?profile_id=$_SESSION[id]';</script>";
         if (empty($_FILES['image']['tmp_name'])) {
             echo "Please select image.";
         } else {

@@ -2,6 +2,10 @@
 <?php 
 session_start();
 include('auth.php');
+if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
+    header('location: home.php');
+    exit();
+}
 include_once('connect.php');
 $datetime = date('Y-m-d H:i:s');
 

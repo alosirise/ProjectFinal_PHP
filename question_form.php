@@ -16,6 +16,7 @@ include('auth.php');
     <!-- Bootstrap navbar CSS-->
     <link rel="stylesheet" href="navbar.css">
     <link rel="stylesheet" href="bew.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -78,26 +79,28 @@ include('auth.php');
                                 </div>';
                                 if ($type_explode[$i] == 1) {
                                     echo '<div>
-                                        <input class="form-control" name="ans_question' . $i . '" type="text" placeholder="คำตอบของคุณ">
+                                        <input class="form-control" name="ans_question' . $i . '" type="text" placeholder="คำตอบของคุณ" required>
                                     </div>';
                                     $type_question[$i] = 1;
                                 } else if ($type_explode[$i] == 2) {
                                     echo '<div>
-                                    <textarea class="form-control" name="ans_question' . $i . '" type="text" placeholder="คำตอบของคุณ"></textarea>
+                                    <textarea class="form-control" name="ans_question' . $i . '" type="text" placeholder="คำตอบของคุณ" required ></textarea>
                                 </div>';
                                     $type_question[$i] = 2;
                                 } else if ($type_explode[$i] == 3) {
                                     for ($y = 0; $y < $num_radio_explode[$x]; $y++, $z++) {
-                                        echo '<input type="radio" name="ans_question' . $i . '" value="' . $text_radio_explode[$z] . '">
+                                        echo '<input type="radio" name="ans_question' . $i . '" value="' . $text_radio_explode[$z] . '" required>
                                         <label>' . $text_radio_explode[$z] . '</label><br>';
                                     }
                                     $x++;
                                     $type_question[$i] = 3;
                                 } else if ($type_explode[$i] == 4) {
+
                                     for ($y = 0; $y < $num_radio_explode[$x]; $y++, $z++) {
-                                        echo '<input type="checkbox" name="ans_question' . $i . '[]" value="' . $text_radio_explode[$z] . '">
+                                        echo '<input type="checkbox" id="ans_question-' . $y . '"  name="ans_question' . $i . '[]" value="' . $text_radio_explode[$z] . '" onclick="check()">
                                         <label>' . $text_radio_explode[$z] . '</label><br>';
                                     }
+
                                     $x++;
                                     $type_question[$i] = 4;
                                 }
@@ -126,7 +129,7 @@ include('auth.php');
         $result6 = mysqli_query($conn, $sql6);
         if ($result6->num_rows > 0) {
             while ($row = $result6->fetch_assoc()) {
-                $firstname = $row['firstname'];
+                $firstname_surname = $row['firstname_surname'];
             }
         }
         //firstname คือใส่ชื่อ firstname คนตอบ เอามาจาก $sql6
@@ -136,7 +139,7 @@ include('auth.php');
         $username = $_SESSION['username'];
 
         for ($i = 0; $i < $count_question; $i++) {
-            $sql1 = "INSERT INTO answer (project_id,username,question,answer) VALUES ('$project_id','$firstname','$question_explode[$i]','";
+            $sql1 = "INSERT INTO answer (project_id,username,question,answer) VALUES ('$project_id','$firstname_surname','$question_explode[$i]','";
             if (gettype($_POST['ans_question' . $i]) == "array") {
                 $count_checkbox_check[$i] = count($_POST['ans_question' . $i]);
                 for ($y = 0; $y < $count_checkbox_check[$i]; $y++) {
@@ -165,8 +168,13 @@ include('auth.php');
         }
 
         $sql3 = "INSERT INTO history (id,username,project_id,status,name_project) 
-        VALUES ( '$user_id','$username','$project_id','ดำเนินการ','$name_project')";
+        VALUES ( '','$username','$project_id','ดำเนินการ','$name_project')";
         $result3 = mysqli_query($conn, $sql3);
+
+        $sql7 = "INSERT INTO check_payment (id,project_id,status,firstname_surname) VALUES ( '','$project_id','รอยืนยันการชำระเงิน','$firstname_surname')";
+        $result7 = mysqli_query($conn, $sql7);
+
+
 
         echo "<script type='text/javascript'>alert('สมัครเข้าร่วมโครงการสำเร็จ');</script>";
         echo "<script>window.location='allproject.php';</script>";
@@ -178,12 +186,21 @@ include('auth.php');
     ?>
 
 </body>
+<script>
+    $cbx_group = $("input:checkbox[id^='ans_question-']");
+
+    $cbx_group.prop('required', true);
+
+    function check() {
+        if ($cbx_group.is(":checked")) {
+            $cbx_group.prop('required', false);
+        }else{
+            $cbx_group.prop('required', true);
+        }
+    }
+</script>
 
 </html>
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then minified and Bootstrap JS -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<!-- Compiled and minified JavaScript -->
+
 
 <script src="index.js"></script>

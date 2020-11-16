@@ -56,6 +56,9 @@ session_start();
 
           $result = $conn->query($sql);
           $number = 0;
+
+          $sql3 = "SELECT * FROM check_payment WHERE 	firstname_surname = '" . $_SESSION['firstname_surname'] . "'";
+          $result3 = $conn->query($sql3);
           if ($result->num_rows > 0) {
 
             echo ' 
@@ -67,23 +70,26 @@ session_start();
                   <th data-orderable="false" style="width:15%"> สถานะ</th>
       
                   <th data-orderable="false" style="width:20%"> ประเมินโครงการ</th>
-                 
-    
                 </tr>
               </thead> ';
             // output data of each row
             while ($row = $result->fetch_assoc()) {
+              $his_project_id = $row["project_id"];
+
+              $row3 = $result3->fetch_assoc();
               $number++;
               echo "<tr><td>" . $number . "</td><td>" . $row["name_project"] . "</td>  
-            <td>" . $row["status"] . "</td>";
+            <td>" . $row3["status"] . "</td>";
 
-              $his_project_id = $row["project_id"];
+
+            
               $sql2 = "SELECT * FROM evaluate_form WHERE project_id = $his_project_id";
               $result2 = $conn->query($sql2);
 
               if ($result2->num_rows > 0) {
               while ($row2 = $result2->fetch_assoc()) {
-                  echo "<td> <a href=question_evaluate.php?project_id=" . $row['project_id'] . "> <button type='button' class='btn btn-info' style='width:10'>ประเมินโครงการ</button></a></td>";
+                  echo "<td> <a href=question_evaluate.php?project_id=" . $row['project_id'] . ">                                 
+                  <button type='button' class='btn btn-info' style='width:10'>ประเมินโครงการ</button></a></td>";
               }
             }else{
               echo "<td><button type='button' class='btn btn-info' style='width:10' disabled>ประเมินโครงการ</button></a></td>";
@@ -96,6 +102,9 @@ session_start();
               echo "0 results";
           }
           ?> </div>
+
+
+
 
         <div class="tab-pane fade" id="list2">
           <?php
@@ -120,16 +129,22 @@ session_start();
               </thead> ';
             // output data of each row
             while ($row = $result->fetch_assoc()) {
+              $his_project_id = $row["project_id"];
+
+              $row3 = $result3->fetch_assoc();
               $number++;
               echo "<tr><td>" . $number . "</td><td>" . $row["name_project"] . "</td>  
-            <td>" . $row["status"] . "</td>";
-            $his_project_id = $row["project_id"];
-            $sql2 = "SELECT * FROM evaluate_form WHERE project_id = $his_project_id";
-            $result2 = $conn->query($sql2);
+            <td>" . $row3["status"] . "</td>";
 
-            if ($result2->num_rows > 0) {
+
+            
+              $sql2 = "SELECT * FROM evaluate_form WHERE project_id = $his_project_id";
+              $result2 = $conn->query($sql2);
+
+              if ($result2->num_rows > 0) {
               while ($row2 = $result2->fetch_assoc()) {
-                  echo "<td> <a href=question_evaluate.php?project_id=" . $row['project_id'] . "> <button type='button' class='btn btn-info' style='width:10'>ประเมินโครงการ</button></a></td>";
+                  echo "<td> <a href=question_evaluate.php?project_id=" . $row['project_id'] . ">                                 
+                  <button type='button' class='btn btn-info' style='width:10'>ประเมินโครงการ</button></a></td>";
               }
             }else{
               echo "<td><button type='button' class='btn btn-info' style='width:10' disabled>ประเมินโครงการ</button></a></td>";
@@ -139,7 +154,7 @@ session_start();
             }
               echo "</table>";
           } else {
-            echo "0 results";
+              echo "0 results";
           }
           ?>
 

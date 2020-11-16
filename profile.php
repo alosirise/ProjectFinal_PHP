@@ -1,7 +1,9 @@
-<?php ob_start();?>
+<?php ob_start(); ?>
 <?php
 session_start();
 include('auth.php');
+
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -24,22 +26,36 @@ include('auth.php');
             <form action="" method="POST">
                 <div class="form-group">
                     <center><label style="font-size: 32px;">โปรไฟล์</label><br><br>
-                    <?php
-                    include_once('connect.php');
-                    $sql2 = "SELECT * FROM images WHERE id = '" . $_SESSION['id'] . "'";
-                    $result2 = $conn->query($sql2);
+                        <?php
+                        include_once('connect.php');
+                        $sql2 = "SELECT * FROM images WHERE id = '" . $_SESSION['id'] . "'";
+                        $result2 = $conn->query($sql2);
 
-                    if ($result2->num_rows > 0) {
-                        while ($row = $result2->fetch_assoc()) {
-                            echo '<img id="profileDisplay" src="data:image;base64,' . $row["image"] . '">';
+                        if ($result2->num_rows > 0) {
+                            while ($row = $result2->fetch_assoc()) {
+                                echo '<img id="profileDisplay" src="data:image;base64,' . $row["image"] . '">';
+                            }
+                        } else {
+                            echo '<img src="images/placeholder_2.jpg" id="profileDisplay">';
                         }
-                    } else {
-                        echo '<img src="images/placeholder_2.jpg" id="profileDisplay">';
-                    }
-                    ?>
+                        ?>
                 </div>
-                <center><button type="button" class="btn btn-primary" onclick="location.href='editprofile.php'">Edit</button></center>
-                </center>
+
+
+
+
+                <?php
+                if ($_SESSION['id'] == $_GET['profile_id']) {
+                ?>
+                    <center><button type="button" class="btn btn-primary" onclick="location.href='editprofile.php'">Edit</button></center></center>
+                <?php
+                }
+                ?>
+
+
+
+
+
                 <?php
 
                 $sql = "SELECT * FROM profile WHERE profile_id = '$_GET[profile_id]'";
@@ -48,8 +64,7 @@ include('auth.php');
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         $date = new DateTime($row["dateofbirth"]);
-                        echo '<div class="col-lg-8 mx-auto">ชื่อ : ' . $row["firstname"] . '</div> 
-                            <div class="col-lg-8 mx-auto">นามสกุล : ' . $row["surname"] . '</div>' .
+                        echo '<div class="col-lg-8 mx-auto">ชื่อ-สกุล : ' . $row["firstname_surname"] . '</div> ' .
                             '<div class="col-lg-8 mx-auto">วัน/เดือน/ปีเกิด : ' . date_format($date, "d/m/Y") . '</div>
                             <div class="col-lg-8 mx-auto">ที่อยู่ : ' . $row["address2"] . '</div>
                             <div class="col-lg-8 mx-auto">เบอร์โทร : ' . $row["telephone"] . '</div>

@@ -3,10 +3,10 @@
 session_start();
 include('auth.php');
 
-if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
+if ($_SESSION['role'] != "admin") {
     header('location: home.php');
     exit();
-}
+  }
 include_once('connect.php');
 ?>
 
@@ -366,8 +366,8 @@ $result = $conn->query($sql);
 
 
 
-        echo "<script>window.location='request.php';</script>";
-
+        echo "<script>alert('ระบบได้คำนวณ และจัดเก็บลงไปใน สรุปรายงานแล้ว !!');
+                window.location='request.php';</script>";
 
     }
 

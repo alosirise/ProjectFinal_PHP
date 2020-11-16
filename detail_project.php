@@ -20,14 +20,43 @@ session_start();
         width: 100%;
         height: 400px;
         overflow: hidden;
+
+
+
+        cursor: pointer;
+        vertical-align: middle;
+      
+        
+        transition: opacity .6s;
+        background: black;
+        color: whitesmoke;
+        font-size: 30px;
     }
 
     /* This will style any <img> element in .parent div */
     .parent img {
-   
         width: 100%;
         height: auto;
+     
     }
+</style>
+<style>
+    .container {
+        position: relative;
+        width: 50%;
+        padding: 0px 50px 0px 50px;
+    }
+    .middle {
+        transition: .5s ease;
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+    }
+    
 </style>
 <body>
 
@@ -85,15 +114,21 @@ function thai_date_short_number($time)
 
                         while ($row = $result->fetch_assoc()) {
                             $_SESSION['project_id'] = $row['project_id'];
-                            echo '   
-
-                                      <h3 style=" padding :35px;">ชื่อโครงการ  : ' . $row["name_project"] . '</h2>
+                            echo '   <br>
+                                      <h3 style="   padding: 35px 5px 0px 40px;">ชื่อโครงการ  : ' . $row["name_project"] . '</h2>
                                       ';
 
                                 if ($row["image_project"] == NULL) {
-                                    echo '<div style="padding: 25px 50px 25px 50px;"><div class="parent"><img src="images/placeholder_2.jpg" id="profileDisplay" onclick="triggerClick()"></center></div></div>';
+                                    echo '<div class="container"> <div class="parent "><img id="profileDisplay"  class="image"  
+                                     src="images/980.png"></div></div>';    
+                               
                                 } else {
-                                    echo '<div style="padding: 25px 50px 25px 50px;"><div class="parent"><img id="profileDisplay" onclick="triggerClick()" src="data:image;base64,' . $row["image_project"] . '"></center></div></div>';
+
+                                    echo '<div class="container"> <div class="parent "><img id="profileDisplay"  class="image"  
+                                    src="data:image;base64,' . $row["image_project"] . '"></div></div>';   
+                                
+                                
+                                
                                 }
                                 echo '
                                    

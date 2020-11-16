@@ -63,7 +63,7 @@ include('auth.php');
                     $result4 = mysqli_query($conn, $sql4);
                     if ($result4->num_rows > 0) {
                         while ($row = $result4->fetch_assoc()) {
-                            $firstname_check = $row['firstname'];
+                            $firstname_check = $row['firstname_surname'];
                         }
                     }
 
@@ -159,7 +159,7 @@ if (isset($_POST['sendAnswer'])) {
     $result3 = mysqli_query($conn, $sql3);
     if ($result3->num_rows > 0) {
         while ($row = $result3->fetch_assoc()) {
-            $firstname = $row['firstname'];
+            $firstname_surname = $row['firstname_surname'];
         }
     }
 
@@ -167,7 +167,7 @@ if (isset($_POST['sendAnswer'])) {
     $suggestion = $_POST['suggestion'];
 
     //firstname คือใส่ชื่อ firstname คนตอบ เอามาจาก $sql3
-    $sql = "INSERT INTO answer_evaluate (project_id,username,suggestion,answer) VALUES ('$project_id','$firstname','$suggestion','";
+    $sql = "INSERT INTO answer_evaluate (project_id,username,suggestion,answer) VALUES ('$project_id','$firstname_surname','$suggestion','";
 
     for ($i = 0; $i < $count_will_appendquestion; $i++) {
         $sql .= "" . $_POST['score' . $i] . ",";
@@ -188,11 +188,6 @@ if (isset($_POST['back'])) {
 ?>
 
 
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then minified and Bootstrap JS -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-
-<!-- Compiled and minified JavaScript -->
 
 <script src="index.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.colVis.min.js"></script>

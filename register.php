@@ -113,7 +113,7 @@ if (isset($_POST['submit'])) {
                 $profile_id = $row['id'];
         }
 
-        $sql2 = "INSERT INTO profile (id, firstname, surname , dateofbirth, address2, telephone, email, drug_food_allergy, sex, profile_id) VALUES ( NULL,'$firstname', '$surname','1900-01-01','','','','','','$profile_id')";
+        $sql2 = "INSERT INTO profile (id, firstname_surname , dateofbirth, address2, telephone, email, drug_food_allergy, sex, profile_id) VALUES ( NULL,'$firstname $surname','1900-01-01','','','','','','$profile_id')";
         $result2 = mysqli_query($conn, $sql2);
 
         

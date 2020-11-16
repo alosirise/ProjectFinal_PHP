@@ -56,7 +56,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
           
                         <div>
                             <label for="exampleFormControlInput1">ชื่อโครงการ</label>  <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'name_project\')"></i>
-                            <input type="text" class="form-control text" id=edit_name_project name="name_project"  readonly value="' . $row["name_project"] . '"></td>
+                            <input type="text" class="form-control text" id=edit_name_project name="name_project"  readonly value="' . $row["name_project"] . '" required></td>
                         </div>
                         <div>
                             <label for="exampleFormControlInput1">แหล่งเงิน</label>  <i class="glyphicon glyphicon-edit" style="cursor: pointer;" onclick="edit(\'respond\')"></i>
@@ -97,8 +97,8 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                     <div style ="padding-left : 12px;"> 
                     <table>  
                     <tr>
-                        <td style="padding-right : 30px;><div id="pickup_date"><p><label class="form">เริ่มวันที่ : </label><input type="date" class="form-control" id="pick_date" name="pickup_date" value="' . $row["startDate"] . '" onchange="cal()"</p></div></td>
-                        <td ><div id="dropoff_date"><p><label class="form">สิ้นสุดวันที่ : </label><input type="date" class="form-control" id="drop_date" name="dropoff_date" value="' . $row["endDate"] . '" onchange="cal()"/></p></div></td>
+                        <td style="padding-right : 30px;><div id="pickup_date"><p><label class="form">เริ่มวันที่ : </label><input type="date" class="form-control" id="pick_date" name="pickup_date" value="' . $row["startDate"] . '" onchange="cal()" required/></p></div></td>
+                        <td ><div id="dropoff_date"><p><label class="form">สิ้นสุดวันที่ : </label><input type="date" class="form-control" id="drop_date" name="dropoff_date" value="' . $row["endDate"] . '" onchange="cal()" required/></p></div></td>
                        
                         </tr><tr>
                         <td ><div id="numdays"><p><label class="form">รวมทั้งหมด (วัน) : </label><input type="text" class="form-control" id="numdays2" name="numdays" 

@@ -7,7 +7,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     header('location: home.php');
     exit();
 }
-//   if($_SESSION['role'] != id)
+
 
 ?>
 
@@ -597,7 +597,7 @@ var num_question = 0;
 
             //addquestion คือจำนวนที่มีการสร้าง
             $addquestion = $_COOKIE['addquestion'];
-            echo " all_question = " . $addquestion;
+            // echo " all_question = " . $addquestion;
     
     
             //count_question คือจำนวนคำถามที่มีอยู่จริงๆ
@@ -607,7 +607,7 @@ var num_question = 0;
             } else {
                 $count_question = count($_POST['question']);
             }
-            echo " true_num_question = " . $count_question;
+            // echo " true_num_question = " . $count_question;
     
     
             // var_dump($_COOKIE['type']);
@@ -627,7 +627,7 @@ var num_question = 0;
             } else {
                 $count_radio = count($_POST['text_radio']);
             }
-            echo "num_radio = " . $count_radio;
+            // echo "num_radio = " . $count_radio;
 
             
             include_once('connect.php');

@@ -195,13 +195,13 @@ if ($_SESSION['role'] != "admin") {
 
 
                     echo  "</td><td>" . thai_date_short(strtotime($row["startDate"])) . ' - ' . thai_date_short(strtotime($row["endDate"])) . "</td><td>" . $row["respondsible_department"] . "</td>
-                    <td>" . $row["sum_result_budget"] .  "</td><td>" . $row["summary_budget"] .  "</td>
+                    <td>" . number_format($row["sum_result_budget"],2) .  "</td><td>" . number_format($row["summary_budget"],2) .  "</td>
                     
 
-                    <td>" . $row["sum_topic1"] .  "</td>
-                    <td>" . $row["sum_topic2"] .  "</td>
-                    <td>" . $row["sum_topic3"] .  "</td>
-                    <td>" . $row["sum_topic4"] .  "</td>";
+                    <td>" . number_format($row["sum_topic1"],2) .  "</td>
+                    <td>" . number_format($row["sum_topic2"],2) .  "</td>
+                    <td>" . number_format($row["sum_topic3"],2) .  "</td>
+                    <td>" . number_format($row["sum_topic4"],2) .  "</td>";
 
                     $x = (float)$row["summary_budget"];
                     $y = (float)$row["sum_result_budget"];
@@ -210,16 +210,16 @@ if ($_SESSION['role'] != "admin") {
                     echo"
                     <td>".number_format($ans,2)."</td>
 
-                    <td>" . $row["operation_fee"].  "</td>
-                    <td>" . (1.5 * $row["operation_fee"])/15 .  "</td>
-                    <td>" . (2.5 * $row["operation_fee"])/15 .  "</td>
-                    <td>" . (11 * $row["operation_fee"])/15 .  "</td>";
+                    <td>" . number_format($row["operation_fee"],2).  "</td>
+                    <td>" . number_format((1.5 * $row["operation_fee"])/15,2) .  "</td>
+                    <td>" . number_format((2.5 * $row["operation_fee"])/15,2) .  "</td>
+                    <td>" . number_format((11 * $row["operation_fee"])/15,2) .  "</td>";
                    
                    $stored_11 = (11 * $row["operation_fee"])/15;
 
                     echo "
-                    <td>" . (5 * $stored_11)/11 .  "</td>
-                    <td>" . (6 * $stored_11)/11 .  "</td>";
+                    <td>" . number_format((5 * $stored_11)/11,2) .  "</td>
+                    <td>" . number_format((6 * $stored_11)/11,2) .  "</td>";
 
 
                     if($row["status"] == 'อนุมัติ'){
@@ -234,7 +234,7 @@ if ($_SESSION['role'] != "admin") {
                 
                 echo "</table>";
             } else {
-                echo "0 results";
+                echo "<h3>-ยังไม่มีรายการ-</h3>";
             }
             ?>
 
