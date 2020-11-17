@@ -187,7 +187,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
 
 
-                echo '<td><a onClick=\'javascript: return confirm("ต้องการลบคำตอบ ใช่ หรือ ไม่?"); \'href=del_answer.php?project_id=' . $project_id . '><button type="button" class="btn-danger" onclick="delAnswer(' . "'" . $username[$z] . "'" . ')">ลบ</button></a></td>';
+                echo '<td><a onClick=\'javascript: return confirm("ต้องการลบคำตอบ ใช่ หรือ ไม่?"); \'href=del_answer.php?project_id=' . $project_id . '><button type="button" class="btn btn-danger" onclick="delAnswer(' . "'" . $username[$z] . "'" . ')">ลบ</button></a></td>';
                 echo '</tr>';
               }
               ?>

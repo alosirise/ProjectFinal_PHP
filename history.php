@@ -100,7 +100,7 @@ include('auth.php');
             }
               echo "</table>";
           } else {
-              echo "0 results";
+              echo "<h3>-ยังไม่มีประวัติการเข้าร่วม-</h3>";
           }
           ?> </div>
 
@@ -155,7 +155,7 @@ include('auth.php');
             }
               echo "</table>";
           } else {
-              echo "0 results";
+            echo "<h3>-ยังไม่มีประวัติการเข้าร่วม-</h3>";
           }
           ?>
 

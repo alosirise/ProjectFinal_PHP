@@ -33,7 +33,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             <div class="col-3"></div>
 
             <div class="w3-container col-lg-6 center" style="background-color: white;">
-                <h2 style=" padding:30px;">จัดการแบบฟอร์ม</h2>
+                <h2 style="padding:30px;">จัดการแบบฟอร์ม</h2>
 
 <script>
 var num_question = 0;
@@ -153,8 +153,8 @@ var num_question = 0;
                                         echo '<div><img src="images/radio-off-512.png" width="42" height="42"></div><div><input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก"></div>';
                                     }
                                     echo '
-                                        <div>
-                                            <button type="button" class="btn-danger" onclick="delRadio('.$c.','.$i.')">ลบ</button>
+                                        <div style="padding: 3px 0px 0px 5px;">
+                                            <button type="button" class="btn btn-danger btn-sm" onclick="delRadio('.$c.','.$i.')">ลบ</button>
                                         </div>
                                     </div>';
                                     $x++;
@@ -165,7 +165,7 @@ var num_question = 0;
                                 }
                                 $z++;
                                 echo '</div>
-                                        <button type="button" class="btn-primary" onclick="addRadio('.$i.',1)">เพิ่ม</button>
+                                        <button type="button" class="btn btn-primary btn-sm" onclick="addRadio('.$i.',1)">เพิ่ม</button>
                                     </div>
                                 </div>';
                             $update_type[$i] = "3";
@@ -196,8 +196,8 @@ var num_question = 0;
                                     }else{
                                         echo '<div><img src="images/square_blank_check_empty-512.png" width="42" height="42"></div><div><input name="text_radio[]" class="form-control" type="text" value="'.$text_radio_explode[$x].'" placeholder="ตัวเลือก"></div>';
                                     }
-                                    echo '<div>
-                                            <button type="button" class="btn-danger" onclick="delRadio('.$c.','.$i.')">ลบ</button>
+                                    echo '<div style="padding: 3px 0px 0px 5px;">
+                                            <button type="button" class="btn btn-danger btn-sm" onclick="delRadio('.$c.','.$i.')">ลบ</button>
                                         </div>
                                     </div>';
                                     $x++;
@@ -209,7 +209,7 @@ var num_question = 0;
                                 $z++;
 
                                 echo '</div>
-                                        <button type="button" class="btn-primary" onclick="addRadio('.$i.',2)">เพิ่ม</button>
+                                        <button type="button" class="btn btn-primary btn-sm" onclick="addRadio('.$i.',2)">เพิ่ม</button>
                                     </div>
                                 </div>';
                             $update_type[$i] = "4";   
@@ -217,7 +217,7 @@ var num_question = 0;
                  
                 echo '<hr style="width:100%;">
                 <div style="margin-left:95%">
-                    <button type="button" class="btn-danger" onclick="delQuestion('.$i.')">ลบ</button>
+                    <button type="button" class="btn btn-danger btn-sm" onclick="delQuestion('.$i.')">ลบ</button>
                 </div>
                 </div>';
             $value_php = $i;
@@ -254,7 +254,7 @@ var num_question = 0;
         </div>
         <hr style="width:100%;">
         <div style="margin-left:95%">
-            <button type="button" class="btn-danger" onclick="delQuestion(0)">ลบ</button>
+            <button type="button" class="btn btn-danger btn-sm" onclick="delQuestion(0)">ลบ</button>
         </div>
     </div>
     <div id="question">
@@ -264,13 +264,13 @@ var num_question = 0;
 ?>
 
             </div>
-            <div style="background-color: white;">
-                <button type="button" class="btn-primary" onclick="addQuestion()">เพิ่ม</button>
+            <div  style="padding: 30px 0px 0px 0px;" >
+                <button type="button" class="btn btn-primary" onclick="addQuestion()">เพิ่ม</button>
             </div>
             <div class="w3-container col-lg-3">
             </div>
             <div class="w3-container col-lg-2">
-                <button type="submit" class="btn-primary" name="addQ">บันทึก</button>
+                <button type="submit" class="btn btn-success" name="addQ">บันทึก</button>
             </div>
     </form>
 
@@ -345,7 +345,7 @@ var num_question = 0;
                 '</div>' +
                 '<hr style="width:100%">' +
                 '<div style="margin-left:95%">' +
-                '<button style="margin-right:4px" type="button" class="btn-danger" onclick="delQuestion(' + num_question + ')">ลบ</button>' +
+                '<button style="margin-right:4px" type="button" class="btn btn-danger btn-sm" onclick="delQuestion(' + num_question + ')">ลบ</button>' +
                 '</div>' +
                 '</div>';
             $("#question").append(question);
@@ -461,7 +461,7 @@ var num_question = 0;
                 '</div>' +
                 '<div id="addradio' + digitSelect + '"></div>' +
                 //ใน parameter ใหมี 1 ไว้เพื่อเช็คตอนวาง icon
-                '<button type="button" class="btn-primary" onclick="addRadio(' + digitSelect + ',1)">เพิ่ม</button>' +
+                '<button type="button" class="btn btn-primary btn-sm" onclick="addRadio(' + digitSelect + ',1)">เพิ่ม</button>' +
                 '</div>';
             var select4 = '<div class="form-row">' +
                 '<div class="col-7">' +
@@ -487,7 +487,7 @@ var num_question = 0;
                 '</div>' +
                 //ใน parameter ใหมี 2 ไว้เพื่อเช็คตอนวาง icon
                 '<div id="addradio' + digitSelect + '"></div>' +
-                '<button type="button" class="btn-primary" onclick="addRadio(' + digitSelect + ',2)">เพิ่ม</button>' +
+                '<button type="button" class="btn btn-primary btn-sm" onclick="addRadio(' + digitSelect + ',2)">เพิ่ม</button>' +
                 '</div>';
 
             console.log(num_select + " has select " + selectedValue + " | digit selectbox is " + digitSelect);
@@ -543,8 +543,8 @@ var num_question = 0;
                 '<div>' +
                 '<input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก">' +
                 '</div>' +
-                '<div>' +
-                '<button type="button" class="btn-danger" onclick="delRadio(' + num_radio + ',' + digitSelect + ')">ลบ</button>' +
+                '<div style="padding: 3px 0px 0px 5px;">' +
+                '<button type="button" class="btn btn-danger btn-sm" onclick="delRadio(' + num_radio + ',' + digitSelect + ')">ลบ</button>' +
                 '</div>' +
                 '</div>';
 
@@ -553,8 +553,8 @@ var num_question = 0;
                 '<div>' +
                 '<input name="text_radio[]" class="form-control" type="text" placeholder="ตัวเลือก">' +
                 '</div>' +
-                '<div>' +
-                '<button type="button" class="btn-danger" onclick="delRadio(' + num_radio + ',' + digitSelect + ')">ลบ</button>' +
+                '<div style="padding: 3px 0px 0px 5px;">' +
+                '<button type="button" class="btn btn-danger btn-sm" onclick="delRadio(' + num_radio + ',' + digitSelect + ')">ลบ</button>' +
                 '</div>' +
                 '</div>';
 

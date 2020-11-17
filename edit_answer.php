@@ -103,8 +103,8 @@ include('auth.php');
                         }
                     }
 
-                    echo '<div class="w3-container col-lg-2">
-                    <button type="submit" class="btn-primary" name="sendAnswer">ส่งคำตอบ</button>
+                    echo '<div class="w3-container col-lg-3" style="padding-left:0px;">
+                    <button type="submit" class="btn btn-primary" name="sendAnswer">ส่งคำตอบ</button>
                 </div>';
                 
                 ?>

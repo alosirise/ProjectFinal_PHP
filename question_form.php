@@ -45,8 +45,8 @@ include('auth.php');
                             <div style="font-size:30px;">คุณได้สมัครเข้าร่วมโครงการนี้แล้ว</div><br>
                             <div>หากต้องการแก้ไขคำตอบให้กดปุ่ม แก้ไขคำตอบ</div>
                         </div>';
-                    echo '<div class="w3-container col-lg-2">
-                        <button type="submit" class="btn-primary" name="changeAnswer">แก้ไขคำตอบ</button>
+                    echo '<div class="w3-container col-lg-3">
+                        <button type="submit" class="btn btn-primary" name="changeAnswer">แก้ไขคำตอบ</button>
                     </div>';
                 } else {
 
@@ -111,7 +111,7 @@ include('auth.php');
                     }
 
                     echo '<div class="w3-container col-lg-2">
-                    <button type="submit" class="btn-primary" name="sendAnswer">ส่งคำตอบ</button>
+                    <button type="submit" class="btn btn-primary" name="sendAnswer">ส่งคำตอบ</button>
                 </div>';
                 }
                 ?>

@@ -50,7 +50,7 @@ th,td {
             <div class="col-3"></div>
 
             <div class="w3-container col-lg-7 center" style="background-color: white;">
-                <h2 style=" padding:30px;">แบบประเมิน</h2>
+                <h2 style=" padding:30px;  padding-left:50px;">แบบประเมิน</h2>
                 <div class="container">
                     <?php
 
@@ -190,12 +190,12 @@ th,td {
 
 
                     <div>
-                        <button type="submit" class="btn-primary" name="addQ">บันทึก</button>
+                        <button type="submit" class="btn btn-success" name="addQ">บันทึก</button>
                     </div>
                 </div>
             </div>
-            <div class="col-1">
-                <button type="button" class="btn-primary" onclick="addQuestion()">เพิ่ม</button>
+            <div class="col-1"  style="padding: 30px 0px 0px 0px;">
+                <button type="button" class="btn btn-primary" onclick="addQuestion()">เพิ่ม</button>
             </div>
         </div>
     </form>

@@ -68,7 +68,7 @@ session_start();
         }
         echo "</table>";
       } else {
-        echo "0 results";
+        echo "<h3>-ยังไม่มีโครงการที่เปิดรับสมัคร-</h3>";
       }
       ?>
     </div>

@@ -73,9 +73,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
                                 </select>
                             </div>
-                            <div class="col-1" style="margin-top:2px">
-                                <!-- <button type="button" class="btn-danger" onclick="delColumn()">ลบ</button> -->
-                            </div>
+                         
 
                         </div>
                     </div>
@@ -86,13 +84,13 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
 
             </div>
-            <div style="background-color: white;">
-                <button type="button" class="btn-primary" onclick="addColumn()">เพิ่ม</button>
+            <div style="padding: 30px 0px 0px 0px;">
+                <button type="button" class="btn btn-primary" onclick="addColumn()">เพิ่ม</button>
             </div>
             <div class="w3-container col-lg-3">
             </div>
             <div class="w3-container">
-                <button type="button" class="btn-primary" onclick="createRegist()">สร้าง</button>
+                <button type="button" class="btn btn-success" onclick="createRegist()">สร้าง</button>
             </div>
         </div>
 
@@ -121,7 +119,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             ?> '</select>' +
             '</div>' +
             '<div class="col-1" style="margin-top:2px">' +
-            '<button type="button" class="btn-danger" onclick="delColumn(' + num_column + ')">ลบ</button>' +
+            '<button type="button" class="btn btn-danger btn-sm" onclick="delColumn(' + num_column + ')">ลบ</button>' +
             '</div>' +
             '</div>' +
             '</div>';
