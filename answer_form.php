@@ -1,12 +1,25 @@
 <?php ob_start(); ?>
 <?php
 session_start();
+include_once('connect.php');
 include('auth.php');
 
 if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
   header('location: home.php');
   exit();
 }
+
+
+if ($_SESSION['role'] == "staff") {
+  $sql_check_project = "SELECT * FROM create_project WHERE id = '" . $_SESSION['id'] . "' AND project_id = $_GET[project_id]";
+  $result_check_project = $conn->query($sql_check_project);
+
+  if (!($result_check_project->num_rows > 0)) {
+      header('location: home.php');
+      exit();
+  } 
+}
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -40,7 +53,6 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
           <?php
           $project_id = $_GET['project_id'];
 
-          include_once('connect.php');
 
           $sql4 = "SELECT form_name from question where project_id = $project_id";
           $result4 = mysqli_query($conn, $sql4);
@@ -124,7 +136,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
               $append_answer = 0;
               if ($count_user == 0) {
-                echo "ยังไม่การตอบกลับ";
+              
               }
 
 
@@ -262,114 +274,86 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         {
           extend: 'excelHtml5',
           exportOptions: {
-            columns: ':visible'
+            columns: [':visible']
           }
         },
-        {
-          extend: 'pdfHtml5',
-          title: 'Report',
-          text: 'PDF (landscape)',
-          orientation: 'landscape',
-          pageSize: 'A4',
-          exportOptions: {
-            columns: [':visible :not(:last-child) ']
-          },
-          customize: function(doc) {
-            doc.defaultStyle = {
-              font: 'THSarabun',
-              fontSize: 15
-            };
-            doc.content[1].margin = [100, 0, 0, 0];
-            doc.styles.tableHeader.fontSize = 15;
-            countColumn = parseInt(countColumn) + 1; //+1 เพราะ เพิ่มแถว ชื่อผู้ใช้
-
-            // doc.content[1].table.widths = ['25%', '25%', '25%'];
-            // doc.content[1].table.widths = 
-            // Array(doc.content[1].table.body[0].length + 1).join('*').split('');
-
-            var colCount = new Array();
-            $('#table').find('tbody tr:first-child td').each(function() {
-              if ($(this).attr('colspan')) {
-                for (var i = 1; i <= $(this).attr('colspan'); $i++) {
-                  colCount.push('*');
-                }
-              } else {
-                colCount.push('*');
-              }
-            });
-            doc.content[1].table.widths = colCount;
-
-            doc.styles.tableBodyOdd.alignment = 'center';
-            doc.styles.tableBodyEven.alignment = 'center';
-
-            // var rowCount = doc.content[1].table.body.length; // นับจำนวนแถวทั้งหมดในตาราง
-            // วนลูปเพื่อกำหนดค่า
-
-            // var x = 0;
-            // for (i = 1; i < rowCount; i++) { // i เริ่มที่ 1 เพราะ i แรกเป็นแถวของหัวข้อ
-            //     for (var z = 0; z < countColumn; z++) {
-            //       console.log("row : " + i + ", col : " + z);
-            //       doc.content[1].table.body[i][z].alignment = 'center';
-            //     }
-
-            //     x++;
-            //     console.log("all : " + countColumn); //เนื่องจาก x=0 ดังนั้น coutcolumn ต้อง-1
-
-            // };
-            console.log(doc);
-          }
-        },
-        {
-          "extend": 'pdf',
-          "text": 'PDF (vertical)',
-          "title": 'Report',
-          "pageSize": 'A4',
-          exportOptions: {
-            columns: [':visible :not(:last-child)']
-          },
-          "customize": function(doc) {
-            doc.defaultStyle = {
-              font: 'THSarabun',
-              fontSize: 15
-            };
-
-            doc.content[1].margin = [50, 0, 0, 0];
-            doc.styles.tableHeader.fontSize = 15;
-
-            var colCount = new Array();
-            $('#table').find('tbody tr:first-child td').each(function() {
-              if ($(this).attr('colspan')) {
-                for (var i = 1; i <= $(this).attr('colspan'); $i++) {
-                  colCount.push('*');
-                }
-              } else {
-                colCount.push('*');
-              }
-            });
-            doc.content[1].table.widths = colCount; // กำหนดความกว้างของ header แต่ละคอลัมน์หัวข้อ
+        // {
+        //   extend: 'pdfHtml5',
+        //   title: 'Report',
+        //   text: 'PDF (landscape)',
+        //   orientation: 'landscape',
+        //   pageSize: 'A4',
+        //   exportOptions: {
+        //     columns: [':visible :not(:nth-last-child(-1n+2)) ']
+        //   },
+        //   customize: function(doc) {
+        //     doc.defaultStyle = {
+        //       font: 'THSarabun',
+        //       fontSize: 15
+        //     };
+        //     doc.content[1].margin = [100, 0, 0, 0];
+        //     doc.styles.tableHeader.fontSize = 15;
+        //     countColumn = parseInt(countColumn) + 1; 
+            
+        //     //+1 เพราะ เพิ่มแถว ชื่อผู้ใช้
 
 
-            doc.styles.tableHeader.fontSize = 13;
-            doc.styles.tableBodyOdd.alignment = 'center';
-            doc.styles.tableBodyEven.alignment = 'center';
+        //     var colCount = new Array();
+        //     $('#table').find('tbody tr:first-child td').each(function() {
+        //       if ($(this).attr('colspan')) {
+        //         for (var i = 1; i <= $(this).attr('colspan'); $i++) {
+        //           colCount.push('*');
+        //         }
+        //       } else {
+        //         colCount.push('*');
+        //       }
+        //     });
+        //     doc.content[1].table.widths = colCount;
 
-            // var rowCount = doc.content[1].table.body.length; // นับจำนวนแถวทั้งหมดในตาราง
-            // // วนลูปเพื่อกำหนดค่า
-            // var x = 0;
-            // for (i = 1; i < rowCount; i++) { // i เริ่มที่ 1 เพราะ i แรกเป็นแถวของหัวข้อ
-            //     for (var z = 0; z < countColumn; z++) {
-            //       console.log("row : " + i + ", col : " + z);
-            //       doc.content[1].table.body[i][z].alignment = 'center';
-            //     }
+        //     doc.styles.tableBodyOdd.alignment = 'center';
+        //     doc.styles.tableBodyEven.alignment = 'center';
 
-            //     x++;
-            //     console.log("all : " + countColumn); //เนื่องจาก x=0 ดังนั้น coutcolumn ต้อง-1
+        //     console.log(doc);
+        //   }
+        // },
+        // {
+        //   "extend": 'pdf',
+        //   "text": 'PDF (vertical)',
+        //   "title": 'Report',
+        //   "pageSize": 'A4',
+        //   exportOptions: {
+        //     columns: [':visible :not(:nth-last-child(-1n+2)) ']
+        //   },
+        //   "customize": function(doc) {
+        //     doc.defaultStyle = {
+        //       font: 'THSarabun',
+        //       fontSize: 15
+        //     };
 
-            // };
+        //     doc.content[1].margin = [50, 0, 0, 0];
+        //     doc.styles.tableHeader.fontSize = 15;
 
-            console.log(doc);
-          }
-        },
+        //     var colCount = new Array();
+        //     $('#table').find('tbody tr:first-child td').each(function() {
+        //       if ($(this).attr('colspan')) {
+        //         for (var i = 1; i <= $(this).attr('colspan'); $i++) {
+        //           colCount.push('*');
+        //         }
+        //       } else {
+        //         colCount.push('*');
+        //       }
+        //     });
+        //     doc.content[1].table.widths = colCount; // กำหนดความกว้างของ header แต่ละคอลัมน์หัวข้อ
+
+        //     doc.styles.tableHeader.fontSize = 13;
+        //     doc.styles.tableBodyOdd.alignment = 'center';
+        //     doc.styles.tableBodyEven.alignment = 'center';
+
+        
+
+        //     console.log(doc);
+        //   }
+        // },
        {
           extend: 'colvis',
           collectionLayout: 'fixed two-column'
@@ -396,11 +380,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
   }
 </script>
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then minified and Bootstrap JS -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 
-<!-- Compiled and minified JavaScript -->
 
 <script src="index.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.colVis.min.js"></script>

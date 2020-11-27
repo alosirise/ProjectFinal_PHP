@@ -2,12 +2,28 @@
 <?php
 session_start();
 include('auth.php');
-
+include_once('connect.php');
 if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     header('location: home.php');
     exit();
 }
-//   if($_SESSION['role'] != id)
+
+
+
+if ($_SESSION['role'] == "staff") {
+
+    $sql_check_project = "SELECT * FROM create_project WHERE id = '" . $_SESSION['id'] . "' AND project_id = $_GET[project_id]";
+    $result_check_project = $conn->query($sql_check_project);
+ 
+    if (!($result_check_project->num_rows > 0)) {
+        header('location: home.php');
+        exit();
+    } 
+  }
+  
+  
+  
+  
 
 ?>
 
@@ -45,7 +61,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                     <div class="card-body" style="width:90%;">
 
                         <?php
-                        include_once('connect.php');
+                     
                         $sql = "SELECT * FROM create_project WHERE project_id = '$_GET[project_id]'";
                         $result = $conn->query($sql);
 
@@ -80,7 +96,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                                 foreach ($result_mutiple_text as $value) {
                                     if ($value["objective"] != "") {
                                         echo        '            
-                            <tr>
+                            <tr class="drag">
                             <td><input type="text" class ="form-control" name="objective[]" readonly id=edit_objective value="' . $value["objective"] . '"></td>
                             <td><a class="remove" >-</td>
                             </tr>';
@@ -124,7 +140,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                                     if ($value["lecturer"] != "") {
                                         echo        '      
                                
-                                    <tr>
+                                    <tr class="drag">
                                     <td><input type="text" class ="form-control" name="lecturer[]" readonly  id=edit_lecturer value="' . $value["lecturer"] . '"></td>
                                     <td><a class="remove" >-</td>
                                     </tr>';
@@ -152,7 +168,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                                 foreach ($result_mutiple_text as $value) {
                                     if ($value["benefits"] != "") {
                                         echo        '                    
-                                    <tr>
+                                    <tr class="drag">
                                     <td><input type="text" class ="form-control"  readonly name="benefits[]" id=edit_benefits value="' . $value["benefits"] . '"></td>
                                     <td><a class="remove" >-</td>
                                     </tr>';
@@ -211,7 +227,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                                 foreach ($result_mutiple_text as $value) {
                                     if ($value["working_group"] != "") {
                                         echo '               
-                                    <tr>
+                                    <tr class="drag">
                                     <td><input type="text" class ="form-control" readonly name="working_group[]" id=edit_working_group value="' . $value["working_group"] . '"></td>
                                     <td><a class="remove" >-</td>
                                     </tr>';
@@ -337,6 +353,12 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
     <script src="index.js"> </script>
     <script>
+
+$(".drag").draggable({
+            disabled: false
+        });
+
+
         var objective_replace = '<tr><td style ="width = 25%;"><input type="text" class ="form-control" name="objective[]" id=edit_objective></td><td><a class="remove" >-</td></tr>';
         var lecturer_replace = '<tr><td><input type="text" class ="form-control" name="lecturer[]" id=edit_lecturer></td><td><a class="remove" >-</td></tr>';
         var benefits_replace = '<tr> <td><input type="text" class ="form-control"  name="benefits[]" id=edit_benefits></td><td><a class="remove" >-</td></tr>';

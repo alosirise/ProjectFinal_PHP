@@ -31,6 +31,7 @@ session_start();
         background: black;
         color: whitesmoke;
         font-size: 30px;
+
     }
 
     /* This will style any <img> element in .parent div */
@@ -42,9 +43,10 @@ session_start();
 </style>
 <style>
     .container {
+        margin: 60px 0px 40px 0px;
         position: relative;
         width: 50%;
-        padding: 0px 50px 0px 50px;
+     
     }
     .middle {
         transition: .5s ease;
@@ -153,7 +155,7 @@ function thai_date_short_number($time)
                                   <h2 style=" padding :45px;"></h2>
                   
                                   <div class="card">
-                                      <div class="card-body">
+                                      <div class="card-body" style="width: 100%; padding: 20px 70px 20px 70px;">
                                       
                               <h4 style=" padding :30px;">รายละเอียดโครงการ </h4>
                              <h5> &emsp;&emsp;'. $row["detail"] .'</h5>

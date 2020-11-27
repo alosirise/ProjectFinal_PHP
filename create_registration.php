@@ -1,11 +1,26 @@
 <?php ob_start();?>
 <?php
 session_start();
+include_once('connect.php');
 include('auth.php');
 if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     header('location: home.php');
-    exit();
+    exit(); 
 }
+
+
+
+if ($_SESSION['role'] == "staff") {
+
+    $sql_check_project = "SELECT * FROM create_project WHERE id = '" . $_SESSION['id'] . "' AND project_id = $_GET[project_id]";
+    $result_check_project = $conn->query($sql_check_project);
+ 
+    if (!($result_check_project->num_rows > 0)) {
+        header('location: home.php');
+        exit();
+    } 
+  }
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -52,7 +67,6 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                                     <?php
                                     $project_id = $_GET['project_id'];
                                     // $project_id = "235";
-                                    include_once('connect.php');
 
                                     $count_question = 0;
                                     $question_explode = "";

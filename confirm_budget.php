@@ -373,7 +373,7 @@ $result = $conn->query($sql);
 
 
 
-        echo "<script>alert('ระบบได้คำนวณ และจัดเก็บลงไปใน สรุปรายงานแล้ว !!');
+        echo "<script>alert('ระบบได้คำนวณ และจัดเก็บลงไปใน สรุปรายงานแล้ว ');
                 window.location='request.php';</script>";
     }
 

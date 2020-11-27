@@ -1,12 +1,25 @@
 <?php ob_start();?>
 <?php
 session_start();
+include_once('connect.php');
 include('auth.php');
 
 if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     header('location: home.php');
     exit();
 }
+
+if ($_SESSION['role'] == "staff") {
+
+    $sql_check_project = "SELECT * FROM create_project WHERE id = '" . $_SESSION['id'] . "' AND project_id = $_GET[project_id]";
+    $result_check_project = $conn->query($sql_check_project);
+ 
+    if (!($result_check_project->num_rows > 0)) {
+        header('location: home.php');
+        exit();
+    } 
+  }
+
 ?>
 
 <!doctype html>
@@ -30,23 +43,9 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-  <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.21/datatables.min.js"></script> 
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>   -->
 
 </head>
-<!-- <script>
-    $(document).ready(function() {
-        $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
-            localStorage.setItem('activeTab', $(e.target).attr('href'));
-        });
-        var activeTab = localStorage.getItem('activeTab');
-        console.log(activeTab);
-        if (activeTab) {
-            $('#myTab a[href="' + activeTab + '"]').tab('show');
-        }
-    });
-</script> -->
+
 <style>
     table {
         table-layout: fixed;
@@ -81,7 +80,6 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                     // $project_id = 302;
                     $project_id = $_GET['project_id'];
 
-                    include_once('connect.php');
                     $sqlanswer = "SELECT * from answer_evaluate where project_id = $project_id";
                     $resultanswer = mysqli_query($conn, $sqlanswer);
 

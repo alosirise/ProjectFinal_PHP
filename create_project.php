@@ -65,7 +65,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                      &nbsp;&nbsp;&nbsp;<a class="btn btn-info btn-xs" id="addRow1" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
                     <div style ="padding-left : 12px; padding-top: 6px;">         
                         <table>  
-                                <tr>
+                                <tr  class="drag">
                                 <td ><input type="text" class ="form-control" name="objective[]" id="objective"></td>
                                 <td><a class="remove " >-</td>
                                 </tr>      
@@ -98,7 +98,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                     &nbsp;&nbsp;&nbsp;<a class="btn btn-info btn-xs" id="addRow2" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
                     <div style ="padding-left : 12px; padding-top: 6px;">
                         <table>
-                                <tr>
+                                <tr  class="drag">
                                     <td><input type="text" class ="form-control" name="lecturer[]" id="lecturer"></td>
                                     <td><a class="remove" >-</td>
                                 </tr>                 
@@ -116,7 +116,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                     <label for="exampleFormControlInput1">ประโยชน์ที่จะได้รับ</label> &nbsp;&nbsp;&nbsp;<a class="btn btn-info btn-xs" id="addRow3" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
                     <div style ="padding-left : 12px; padding-top: 6px;">   
                         <table>                          
-                                <tr>
+                                <tr  class="drag">
                                     <td><input type="text" class ="form-control"  name="benefits[]" id="benefits"></td>
                                     <td><a class="remove" >-</td>
                                 </tr>
@@ -161,8 +161,8 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
                     <label for="exampleFormControlInput1">คณะทำงาน</label> &nbsp;&nbsp;&nbsp;<a class="btn btn-info btn-xs" id="addRow4" style="cursor: pointer;"> <i class="glyphicon glyphicon-plus"></i> เพิ่ม </a>
                     <div style ="padding-left : 12px; padding-top: 6px;">   
-                        <table>
-                                <tr>
+                        <table >
+                                <tr class="drag">
                                     <td ><input type="text" class ="form-control" name="working_group[]" id="working_group"></td>
                                     ';
 
@@ -174,7 +174,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
         <?php
 
-        echo '<td><a class="remove" >-</td></tr></table><tbody4> </tbody><br></div>
+        echo '<td ><a class="remove" >-</td></tr></table><tbody4> </tbody><br></div>
                    
                   
                 </div>
@@ -182,6 +182,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         </div>
     </div>
     ';
+
         ?>
 
         <div class="card-footer text-center">
@@ -283,12 +284,14 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
 
     <script type="text/javascript">
+       $(".drag").draggable({
+            disabled: false
+        });
         //  $('select[name="selectBox[]"]').on('change', function() {
         //             alert(this.value);
         //                 $('input[name="working_group[]"]').val(this.value);
 
         //         });
-
 
 
         var objective_replace = '<tr><td style ="width = 25%;"><input type="text" class ="form-control" name="objective[]" id="objective"></td><td><a class="remove" >-</td></tr>';
@@ -305,6 +308,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         $(function() {
             $("#includedContent").load("table_create.php");
         });
+
 
         $(function() {
             $('tbody').sortable();

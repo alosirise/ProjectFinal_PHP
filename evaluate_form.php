@@ -1,11 +1,24 @@
 <?php ob_start();?>
 <?php
 session_start();
+include_once('connect.php');
 include('auth.php');
 if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     header('location: home.php');
     exit();
   }
+
+
+  if ($_SESSION['role'] == "staff") {
+    $sql_check_project = "SELECT * FROM create_project WHERE id = '" . $_SESSION['id'] . "' AND project_id = $_GET[project_id]";
+    $result_check_project = $conn->query($sql_check_project);
+ 
+    if (!($result_check_project->num_rows > 0)) {
+        header('location: home.php');
+        exit();
+    } 
+  }
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -57,7 +70,7 @@ th,td {
                     $value_php = 1;
                     $project_id = $_GET['project_id'];
 
-                    include_once('connect.php');
+
                     $sqlselect = "SELECT * from evaluate_form where project_id = $project_id";
                     $resultselect = mysqli_query($conn, $sqlselect);
                     if ($resultselect->num_rows > 0) {

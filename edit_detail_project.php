@@ -1,11 +1,27 @@
 <?php ob_start();?>
 <?php
 session_start();
+include_once('connect.php');
 include('auth.php');
 if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     header('location: home.php');
     exit();
   }
+
+
+
+  if ($_SESSION['role'] == "staff") {
+    $sql_check_project = "SELECT * FROM create_project WHERE id = '" . $_SESSION['id'] . "' AND project_id = $_GET[project_id]";
+    $result_check_project = $conn->query($sql_check_project);
+ 
+    if (!($result_check_project->num_rows > 0)) {
+        header('location: home.php');
+        exit();
+    } 
+  }
+  
+
+
 ?>
 
 
@@ -28,16 +44,14 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         height: 400px;
         overflow: hidden;
 
-
-
         cursor: pointer;
         vertical-align: middle;
       
-        
         transition: opacity .6s;
         background: black;
         color: whitesmoke;
         font-size: 30px;
+
     }
 
     /* This will style any <img> element in .parent div */
@@ -49,9 +63,9 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 </style>
 <style>
     .container {
+        margin: 60px 0px 40px 0px;
         position: relative;
         width: 50%;
-        padding: 0px 50px 0px 50px;
     }
     .middle {
         transition: .5s ease;
@@ -72,10 +86,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
         opacity: 1;
     }
 
-    .text {
-      
-
-    }
+  
 </style>
 <body>
 
@@ -123,7 +134,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
                         <?php
 
-                        include_once('connect.php');
+                    
                         $sql = "SELECT * FROM create_project WHERE project_id = '$_GET[project_id]'";
                         $result = $conn->query($sql);
 
@@ -145,7 +156,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                                     onclick="triggerClick()"  src="images/980.png">  <div class="middle" onclick="triggerClick()">Change Picture</div></div></div>';    
                                
                                 } else {
-                                    echo '<div class="container"> <div class="parent "><img id="profileDisplay"  class="image"  style="cursor: pointer;" 
+                                    echo '<div class="container" > <div class="parent "><img id="profileDisplay"  class="image"  style="cursor: pointer;" 
                                     onclick="triggerClick()"  src="data:image;base64,' . $row["image_project"] . '">  <div class="middle" onclick="triggerClick()">Change Picture</div></div></div>';                            
                                
                                

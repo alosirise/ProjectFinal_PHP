@@ -29,7 +29,7 @@ label {
    padding-left: 30px;
   }
  
-.remove {
+  .remove {
 
     display: inline-block;
     width: 23px;
@@ -54,6 +54,3 @@ i:hover {
     cursor: pointer;
 }
 
-tr:hover {
-    cursor: move;
-}

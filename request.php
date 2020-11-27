@@ -122,8 +122,8 @@ $_SESSION['go'] = 'go_request';
                  <th style="width:4%">ที่</th>
                   <th style="width:26%">ชื่อโครงการ</th>
                   <th class="text-center" style="width:10%">ชื่อผู้ใช้</th>
-                  <th class="text-center" data-orderable="false" style="width:15%">ตรวจสอบโครงการ</th>
-                  <th class="text-center" class="text-center" data-orderable="false"></th>
+                  <th class="text-center" data-orderable="false" style="width:15%" colspan="2" >ตรวจสอบโครงการ</th>
+              
                   <th class="text-center" class="text-center" data-orderable="false" style="width:15%">ตรวจสอบแบบฟอร์ม</th>
                   <th class="text-center" class="text-center" data-orderable="false" style="width:15%">แบบประเมิน</th>
                   
@@ -195,16 +195,16 @@ $_SESSION['go'] = 'go_request';
                  <table class="table " id=table2 >
                    <thead>
                      <tr class="w3-green">
-                      <th style="width:4%">ที่</th>
-                       <th style="width:35%">ชื่อโครงการ</th>
-                       <th class="text-center" style="width:15%">ชื่อผู้ใช้</th>
-                       <th class="text-center" data-orderable="false" style="width:9%">ตรวจสอบโครงการ</th>
-                       <th class="text-center" data-orderable="false" style="width:9%"></th>
-                       <th class="text-center" data-orderable="false" style="width:9%">ตรวจสอบแบบฟอร์ม</th>
-                       <th class="text-center" data-orderable="false" style="width:9%">แบบประเมิน</th>
-                       <th data-orderable="false"></th>
-                       <th data-orderable="false"></th>
-                       <th data-orderable="false"></th>
+                      <th style="width:1%">ที่</th>
+                       <th style="width:29%">ชื่อโครงการ</th>
+                       <th class="text-center" style="width:10%">ชื่อผู้ใช้</th>
+                       <th class="text-center" data-orderable="false" style="width:10%" colspan="2">ตรวจสอบโครงการ</th>
+                     
+                       <th class="text-center" data-orderable="false" style="width:10%">ตรวจสอบแบบฟอร์ม</th>
+                       <th class="text-center" data-orderable="false" style="width:10%">แบบประเมิน</th>
+                       <th class="text-center" data-orderable="false" style="width:10%" colspan="2">คำตอบ / ใบลงทะเบียน</th>
+                     
+                       <th class="text-center" data-orderable="false" style="width:10%" >งบประมาณ</th>
                        <th class="text-center" data-orderable="false" style="width:10%">สถานะ</th>
                    
                      </tr>
@@ -279,8 +279,8 @@ $_SESSION['go'] = 'go_request';
                 <th style="width:4%">ที่</th>
                  <th style="width:26%">ชื่อโครงการ</th>
                  <th class="text-center" style="width:10%">ชื่อผู้ใช้</th>
-                 <th class="text-center" data-orderable="false" style="width:15%">ตรวจสอบโครงการ</th>
-                 <th data-orderable="false"></th>
+                 <th class="text-center" data-orderable="false" style="width:15%" colspan="2" >ตรวจสอบโครงการ</th>
+        
                  <th class="text-center" data-orderable="false" style="width:15%">ตรวจสอบแบบฟอร์ม</th>
                  <th class="text-center" data-orderable="false" style="width:15%">แบบประเมิน</th>
                  <th data-orderable="false" style="width:5%"></th>
@@ -355,16 +355,14 @@ $_SESSION['go'] = 'go_request';
            <table class="table " id=table3 >
              <thead>
                <tr class="w3-blue-gray">
-                <th style="width:4%">ที่</th>
-                 <th style="width:40%">ชื่อโครงการ</th>
-                 <th class="text-center" style="width:9%">ชื่อผู้ใช้</th>
-                 <th class="text-center" data-orderable="false" style="width:13%">ตรวจสอบโครงการ</th>
-                 <th data-orderable="false" ></th>
-                 <th class="text-center" data-orderable="false" style="width:13%">ตรวจสอบแบบฟอร์ม</th>
-                 <th class="text-center" data-orderable="false" style="width:13%">แบบประเมิน</th>
-                 <th data-orderable="false"></th>
-                 <th data-orderable="false"></th>
-                 <th class="text-center" data-orderable="false" style="width:13%">สถานะ</th>
+                <th style="width:1%">ที่</th>
+                 <th style="width:29%">ชื่อโครงการ</th>
+                 <th class="text-center" style="width:11%">ชื่อผู้ใช้</th>
+                 <th class="text-center" data-orderable="false" style="width:12%" colspan="2">ตรวจสอบโครงการ</th>
+                 <th class="text-center" data-orderable="false" style="width:12%">ตรวจสอบแบบฟอร์ม</th>
+                 <th class="text-center" data-orderable="false" style="width:11%">แบบประเมิน</th>
+                 <th class="text-center" data-orderable="false" style="width:12%" colspan="2">คำตอบ / ใบลงทะเบียน</th>
+                 <th class="text-center" data-orderable="false" style="width:12%">สถานะ</th>
            
              
                </tr>

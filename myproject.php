@@ -1,11 +1,14 @@
 <?php ob_start(); ?>
 <?php
 session_start();
+include_once('connect.php');
 include('auth.php');
 if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
   header('location: home.php');
   exit();
 }
+
+
 ?>
 
 <!doctype html>
@@ -96,7 +99,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
       echo "<div class='tab-content'>
       <div class='tab-pane fade active show ' id='list1'>";
       echo "<h2 style=' padding :35px; '>แบบร่าง</h2>";
-      include_once('connect.php');
+    
       $sql = "SELECT * FROM create_project WHERE id = '" . $_SESSION['id'] . "' AND status = '-' ORDER BY last_change DESC";
       $result = $conn->query($sql);
       $number = 0;
@@ -110,8 +113,8 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
                  <th class="text-center" style="width:1%" >ที่</th>
                   <th  style="width:30%" >ชื่อโครงการ</th>
            
-                  <th class="text-center" data-orderable="false" style="width:9%"> จัดการโครงการ</th>
-                  <th data-orderable="false"" style="width:9%"></th>
+                  <th class="text-center" data-orderable="false" style="width:9%" colspan="2" > จัดการโครงการ</th>
+               
                   <th class="text-center" data-orderable="false" style="width:13%">แบบฟอร์มใบสมัคร</th>
                   <th class="text-center" data-orderable="false" style="width:9%">แบบประเมิน</th>
                
@@ -155,18 +158,20 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
       $_SESSION['go'] = 'go_project';
       if ($result->num_rows > 0) {
         echo '
-            <table class="table " id="table2" >
+            <table class="table" id="table2" >
               <thead>
                 <tr class="w3-blue">
-                 <th class="text-center" style="width:1%" >ที่</th>
-                  <th style="width:40%" >ชื่อโครงการ</th>      
-                  <th class="text-center" data-orderable="false" style="width:10%"> จัดการโครงการ</th>
-                  <th data-orderable="false""></th>
-                  <th class="text-center" data-orderable="false" >แบบฟอร์มใบสมัคร</th>
-                  <th class="text-center" data-orderable="false">แบบประเมิน</th>
-                
-                  <th class="text-center" data-orderable="false" > สถานะ</th>
-                  <th class="text-center" data-orderable="false" >ส่ง</th>
+                <th class="text-center" style="width:1%" >ที่</th>
+                <th  style="width:30%" >ชื่อโครงการ</th>
+         
+                <th class="text-center" data-orderable="false" style="width:9%" colspan="2" > จัดการโครงการ</th>
+             
+                <th class="text-center" data-orderable="false" style="width:13%">แบบฟอร์มใบสมัคร</th>
+                <th class="text-center" data-orderable="false" style="width:9%">แบบประเมิน</th>
+             
+                <th class="text-center" data-orderable="false"style="width:14%"> สถานะ</th>
+                <th class="text-center" data-orderable="false" style="width:5%">ส่ง</th>
+         
                 
                 </tr>
               </thead> ';
@@ -201,16 +206,17 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
             <table class="table " id="table3" >
               <thead>
                 <tr class="w3-red">
-                 <th style="width:4%" >ที่</th>
-                  <th style="width:45%" >ชื่อโครงการ</th>      
-                  <th class="text-center" data-orderable="false" style="width:23%"> จัดการโครงการ</th>
-                  <th class="text-center" data-orderable="false""></th>
-                  <th class="text-center" data-orderable="false" style="width:13%">แบบฟอร์มใบสมัคร</th>
-                  <th class="text-center" data-orderable="false" style="width:13%">แบบประเมิน</th>   
-                  
-                  <th class="text-center" data-orderable="false" style="width:10%"> สถานะ</th>
-                  <th class="text-center" data-orderable="false" style="width:10%">ส่ง</th>
-                  <th class="text-center" data-orderable="false" style="width:5%">ลบ</th>
+                <th class="text-center" style="width:1%" >ที่</th>
+                <th  style="width:30%" >ชื่อโครงการ</th>
+         
+                <th class="text-center" data-orderable="false" style="width:9%" colspan="2" > จัดการโครงการ</th>
+             
+                <th class="text-center" data-orderable="false" style="width:13%">แบบฟอร์มใบสมัคร</th>
+                <th class="text-center" data-orderable="false" style="width:9%">แบบประเมิน</th>
+             
+                <th class="text-center" data-orderable="false"style="width:8%"> สถานะ</th>
+                <th class="text-center" data-orderable="false" style="width:5%">ส่ง</th>
+                <th class="text-center" data-orderable="false" style="width:5%">ลบ</th>
                 
                 </tr>
               </thead> ';
@@ -230,7 +236,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
 
         echo "</table>";
       } else {
-         echo "<h3>-ยังไม่มีรายการที่ถูกส่งคืน-</h3>";
+        echo "<h3>-ยังไม่มีรายการที่ถูกส่งคืน-</h3>";
       }
       echo "</div>";
 
@@ -251,11 +257,11 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
               <thead>
                 <tr class="w3-green">
                  <th style="width:5%" class="text-center" >ที่</th>
-                  <th style="width:45%" >ชื่อโครงการ</th>      
+                  <th style="width:35%" >ชื่อโครงการ</th>      
                   <th style="width:16%" class="text-center" data-orderable="false">คำตอบใบสมัคร</th>
                   <th style="width:16%" class="text-center" data-orderable="false">คำตอบแบบประเมิน</th>
                   <th style="width:16%" class="text-center" data-orderable="false">สร้างใบลงทะเบียน</th>
-                  <th style="width:17%" class="text-center" data-orderable="false" style="width:10%"> สถานะ</th>
+                  <th style="width:17%" class="text-center" data-orderable="false"> สถานะ</th>
             
                 
                 </tr>
@@ -306,12 +312,12 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
               <thead>
                 <tr class="w3-blue-gray">
                  <th style="width:5%" class="text-center" >ที่</th>
-                  <th style="width:45% "  >ชื่อโครงการ</th>      
+                  <th style="width:35% "  >ชื่อโครงการ</th>      
 
                   <th style="width:16%" class="text-center" data-orderable="false">คำตอบใบสมัคร</th>
                   <th style="width:16%" class="text-center" data-orderable="false">คำตอบแบบประเมิน</th>
                   <th style="width:16%" class="text-center" data-orderable="false">สร้างใบลงทะเบียน</th>
-                  <th style="width:17%" class="text-center" data-orderable="false" style="width:25%"> สถานะ</th>
+                  <th style="width:17%" class="text-center" data-orderable="false" > สถานะ</th>
             
                 
                 </tr>
