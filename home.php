@@ -59,9 +59,9 @@ session_start();
             $(".slide-two").click(function() {
                 $("#myCarousel").carousel(1);
             });
-            $(".slide-three").click(function() {
-                $("#myCarousel").carousel(2);
-            });
+            // $(".slide-three").click(function() {
+            //     $("#myCarousel").carousel(2);
+            // });
         });
     </script>
 </head>
@@ -73,7 +73,7 @@ session_start();
         <div class="col-lg-3"></div>
         <div class="col-lg-8">
             <center>
-                <h2 class="w3-center" style="padding :50px;  padding-top :70px;">โครงการแนะนำ</h2>
+                <h2 class="w3-center" style="padding :50px;  padding-top :70px;">ระบบจัดการบริการวิชาการแบบครบวงจร</h2>
             </center>
             <div class="container-lg my-3">
                 <div id="myCarousel" class="carousel slide" data-interval="3000" data-ride="carousel">
@@ -81,23 +81,17 @@ session_start();
                     <ol class="carousel-indicators">
                         <li class="slide-one active"></li>
                         <li class="slide-two"></li>
-                        <li class="slide-three"></li>
+                        <!-- <li class="slide-three"></li> -->
                     </ol>
 
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img src="poster.jpg" alt="First Slide">
                             <div class="carousel-caption d-none d-md-block">
-                                <!-- <h5>First slide label</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> -->
+                            
                             </div>
                         </div>
-                        <div class="carousel-item">
-                            <img src="pic4.jpg" alt="Second Slide">
-                            <div class="carousel-caption d-none d-md-block">
-
-                            </div>
-                        </div>
+                        
                         <div class="carousel-item">
                             <img src="pic5.jpg" alt="Third Slide">
                             <div class="carousel-caption d-none d-md-block">

@@ -75,7 +75,7 @@ include('auth.php');
                                     <div style="font-size:30px;">คุณได้ตอบแบบประเมินนี้แล้ว</div><br>
                             </div>';
                         echo '<div class="w3-container col-lg-2">
-                            <button type="submit" class="btn-primary" name="back">กลับ</button>
+                            <button type="submit" class="btn btn-primary" name="back">กลับ</button>
                         </div>';
                     } else {
 
@@ -126,7 +126,7 @@ include('auth.php');
                         }
 
                         echo '<div>
-                            <button type="submit" class="btn-primary" name="sendAnswer">ส่งคำตอบ</button>
+                            <button type="submit" class="btn btn-primary" name="sendAnswer">ส่งคำตอบ</button>
                         </div>';
                     }
                     ?>
