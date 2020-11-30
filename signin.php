@@ -96,7 +96,7 @@ include_once('connect.php');
             </div>
             <div style="padding-top :35px;">
                 <label>
-                    คู่มือการใช้งานระบบ
+                    <a href="user_manual.pdf" download>คู่มือการใช้งานระบบ</a>
                 </label>
             </div>
         </form>
