@@ -27,8 +27,10 @@ include('auth.php');
                 <div class="form-group">
                     <center><label style="font-size: 32px; padding-top:50px;">โปรไฟล์</label><br><br>
                         <?php
+                        $profile_id = $_GET['profile_id'];
+
                         include_once('connect.php');
-                        $sql2 = "SELECT * FROM images WHERE id = '" . $_SESSION['id'] . "'";
+                        $sql2 = "SELECT * FROM images WHERE id = '" . $profile_id . "'";
                         $result2 = $conn->query($sql2);
 
                         if ($result2->num_rows > 0) {

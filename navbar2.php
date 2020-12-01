@@ -103,7 +103,7 @@
       echo '
             <a href="allproject.php" style="font-size:18px">รายชื่อโครงการทั้งหมด</a>
             <a href="procedure.php" style="font-size:18px">ขั้นตอนการสมัครฝึกอบรม</a>
-            <a href="contact.php" style="font-size:18px">ช่องทางการติดต่อ</a> <hr>';
+            <hr>';
     } else {
 
       if (empty($_SESSION['role']) || $_SESSION['role'] == "user" || $_SESSION['role'] == "staff" || $_SESSION['role'] == "admin") {
@@ -111,7 +111,7 @@
             <a href="allproject.php" style="font-size:18px">รายชื่อโครงการทั้งหมด</a>
             <a href="history.php" style="font-size:18px">ประวัติการเข้าร่วม</a> 
             <a href="procedure.php" style="font-size:18px">ขั้นตอนการสมัครฝึกอบรม</a>
-            <a href="contact.php" style="font-size:18px">ช่องทางการติดต่อ</a> <hr>';
+            <hr>';
       }
 
       if (!empty($_SESSION['role']) && ($_SESSION['role'] == "staff" || $_SESSION['role'] == "admin")) {

@@ -49,6 +49,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
       
         transition: opacity .6s;
         background: black;
+        display:table-cell;
         color: whitesmoke;
         font-size: 30px;
 
@@ -58,7 +59,7 @@ if ($_SESSION['role'] != "staff" && $_SESSION['role'] != "admin") {
     .parent img {
         width: 100%;
         height: auto;
-     
+    
     }
 </style>
 <style>

@@ -76,7 +76,7 @@ include_once('connect.php');
         <h1 class="h3 mb-3 font-weight-normal"></h1>
         <form class="form-signin" action="" method="POST"> 
             <img class="mb-4" src="Webp.net-resizeimage (1).png" style="width : 100%; ">
-            <img class="mb-4" src="psu_passport.png" style="width : 70%; ">
+            <!-- <img class="mb-4" src="psu_passport.png" style="width : 70%; "> -->
             <h4 style="padding-top: 5px; padding-bottom: 20px; font-size: 18px;"></h4>
             <label for="Username" class="sr-only">Username</label>
             <input type="text" id="username" class="form-control" name="username" placeholder="Username" required="" autofocus="">

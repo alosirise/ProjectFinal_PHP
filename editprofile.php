@@ -144,7 +144,8 @@ include('auth.php');
     <?php
     function saveimage($name, $image)
     {
-        $conn = new mysqli('localhost', 'root', '', 'basic');
+        $conn = new mysqli('localhost','chinyhot','CX1f!1EwW2c6#g','chinyhot_as');
+        mysqli_query($conn,"set character set utf8");
         if ($conn->connect_errno) {
             die("Connection Filed" . $conn->connect_error);
         }

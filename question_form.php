@@ -18,7 +18,18 @@ include('auth.php');
     <link rel="stylesheet" href="bew.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </head>
+<style>
 
+.big-checkbox {width: 20px; height: 20px; }
+[type="checkbox"],[type="radio"]
+{
+    vertical-align:middle;
+}
+
+
+
+
+</style>
 <body>
     <div class="" id="nav"></div>
     <form action="" method="POST" enctype="multipart/form-data">
@@ -89,7 +100,7 @@ include('auth.php');
                                     $type_question[$i] = 2;
                                 } else if ($type_explode[$i] == 3) {
                                     for ($y = 0; $y < $num_radio_explode[$x]; $y++, $z++) {
-                                        echo '<input type="radio" name="ans_question' . $i . '" value="' . $text_radio_explode[$z] . '" required>
+                                        echo '<input type="radio" class="big-checkbox" name="ans_question' . $i . '" value="' . $text_radio_explode[$z] . '" required>
                                         <label>' . $text_radio_explode[$z] . '</label><br>';
                                     }
                                     $x++;
@@ -97,7 +108,7 @@ include('auth.php');
                                 } else if ($type_explode[$i] == 4) {
 
                                     for ($y = 0; $y < $num_radio_explode[$x]; $y++, $z++) {
-                                        echo '<input type="checkbox" id="ans_question-' . $y . '"  name="ans_question' . $i . '[]" value="' . $text_radio_explode[$z] . '" onclick="check()">
+                                        echo '<input type="checkbox" class="big-checkbox" id="ans_question-' . $y . '"  name="ans_question' . $i . '[]" value="' . $text_radio_explode[$z] . '" onclick="check()">
                                         <label>' . $text_radio_explode[$z] . '</label><br>';
                                     }
 
@@ -110,7 +121,7 @@ include('auth.php');
                         }
                     }
 
-                    echo '<div class="w3-container col-lg-2">
+                    echo '<div class="w3-container col-lg-3">
                     <button type="submit" class="btn btn-primary" name="sendAnswer">ส่งคำตอบ</button>
                 </div>';
                 }

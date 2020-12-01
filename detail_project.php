@@ -20,14 +20,9 @@ session_start();
         width: 100%;
         height: 400px;
         overflow: hidden;
-
-
-
-        cursor: pointer;
         vertical-align: middle;
-      
-        
         transition: opacity .6s;
+        display:table-cell;
         background: black;
         color: whitesmoke;
         font-size: 30px;
@@ -158,7 +153,7 @@ function thai_date_short_number($time)
                                       <div class="card-body" style="width: 100%; padding: 20px 70px 20px 70px;">
                                       
                               <h4 style=" padding :30px;">รายละเอียดโครงการ </h4>
-                             <h5> &emsp;&emsp;'. $row["detail"] .'</h5>
+                             <h6> &emsp;&emsp;'. $row["detail"] .'</h6>
                              <h2 style=" padding :20px;"></h2>
 
                                  

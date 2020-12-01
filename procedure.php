@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-lg-2"></div>
 
-        <div class="col-lg-6 mx-auto"><br><img class="mb-4 " src="poster1.png" style="width : 100%; "></div>
+        <div class="col-lg-6 mx-auto"><br><img class="mb-4 " src="poster2.png" style="width : 100%; "></div>
     </div>
 
     <br>

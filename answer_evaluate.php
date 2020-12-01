@@ -103,10 +103,11 @@ if ($_SESSION['role'] == "staff") {
                     if ($resultanswer->num_rows > 0) {
                         while ($row = $resultanswer->fetch_assoc()) {
                             $username[$count] = $row['username'];
+                            $suggestion[$count] = $row['suggestion'];
                             $count++;
 
                             $answer_explode = explode(",", $row['answer']);
-                            $score = array_merge($score, $answer_explode);
+                            $score = array_merge($score, $answer_explode);   
                         }
                     }
                     // var_dump($score);
@@ -138,6 +139,7 @@ if ($_SESSION['role'] == "staff") {
                     for ($i = 0; $i < $num_question; $i++) {
                         echo '<th>' . $question_explode[$i] . '</th>';
                     }
+                    echo '<th>ข้อเสนอแนะ</th>';
                     echo '</tr>
                             </thead>
                             <tbody>';
@@ -150,6 +152,7 @@ if ($_SESSION['role'] == "staff") {
                         for ($j = 0; $j < $num_question; $j++, $k++) {
                             echo '<td>' . $score[$k] . '</td>';
                         }
+                        echo '<td>' . $suggestion[$i] . '</td>';
                         echo '</tr>';
                     }
                     echo '</tbody>
