@@ -207,7 +207,7 @@ $result = $conn->query($sql);
             <th> <input type="text" style="width: 99%;"  value =  "' .  number_format($row2["result_budget"] * 0.15 + $row2["result_budget"], 2) . '" readonly></th>';
                     ?>
                         <script>
-                            var estimate_result = "<?php echo number_format($row2["result_budget"] * 0.15 + $row2["result_budget"], 2) ?>";
+                            var estimate_result = "<?php echo $row2["result_budget"] * 0.15 + $row2["result_budget"] ?>";
                         </script>
                     <?php
 
@@ -603,8 +603,10 @@ $result = $conn->query($sql);
         }
 
         function cal_diff() {
-            console.log("sds");
-            document.getElementById("cal_diff").value = (estimate_result - sum_total).toFixed(2);
+            console.log("estimate_result  : " +estimate_result);
+            console.log("sum_total  : " +sum_total);
+            
+            document.getElementById("cal_diff").value = (parseFloat(estimate_result) -  parseFloat(sum_total)).toFixed(2);
         }
 
 
